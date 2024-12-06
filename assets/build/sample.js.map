@@ -1,0 +1,1 @@
+{"version":3,"file":"sample.js","mappings":";;;;AAAAA,OAAO,CAACC,GAAG,CAAC,cAAc,CAAC,C","sources":["webpack://astralab/./themes/astralab/scripts/sample/index.js"],"sourcesContent":["console.log('Hello World!');\r\n"],"names":["console","log"],"sourceRoot":""}
