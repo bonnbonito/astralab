@@ -1,5 +1,34 @@
 <?php
 /**
+ * Theme Functions.
+ *
+ * @package Nova B2B
+ */
+
+// require_once get_stylesheet_directory() . '/vendor/autoload.php';
+require get_stylesheet_directory() . '/bonn-update-checker/plugin-update-checker.php';
+
+$namespace = 'ASTRALAB';
+
+use Bonn\PluginUpdateChecker\v5\PucFactory;
+
+$astralab = PucFactory::buildUpdateChecker(
+	'https://github.com/bonnbonito/astralab/',
+	__FILE__,
+	'astralab'
+);
+
+add_filter(
+	'ai1wm_exclude_themes_from_export',
+	function ( $exclude_filters ) {
+		$exclude_filters[] = '/node_modules';
+		return $exclude_filters;
+	}
+);
+
+$astralab->setBranch( 'master' );
+
+/**
  * Enqueue child styles.
  */
 function child_enqueue_styles() {
