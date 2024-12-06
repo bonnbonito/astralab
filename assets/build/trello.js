@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./themes/astralab/scripts/trello/index.js":
-/*!*************************************************!*\
-  !*** ./themes/astralab/scripts/trello/index.js ***!
-  \*************************************************/
+/***/ "./themes/astralab/scripts/trello/index.tsx":
+/*!**************************************************!*\
+  !*** ./themes/astralab/scripts/trello/index.tsx ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -168,7 +168,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["./style-trello"], () => (__webpack_require__("./themes/astralab/scripts/trello/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["./style-trello"], () => (__webpack_require__("./themes/astralab/scripts/trello/index.tsx")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
