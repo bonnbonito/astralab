@@ -27,6 +27,18 @@ class Scripts {
 	public function __construct() {
 		add_action( 'init', array( $this, 'init' ), 1 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_filter( 'kadence_css_files', array( $this, 'kadence_css_files' ) );
+	}
+
+	/**
+	 * Unset content.min.css
+	 *
+	 * @param array $files Array of CSS files to enqueue.
+	 * @return array Modified array of CSS files to enqueue.
+	 */
+	public function kadence_css_files( $css ) {
+		unset( $css['kadence-content'] );
+		return $css;
 	}
 
 	/**

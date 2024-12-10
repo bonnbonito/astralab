@@ -57,4 +57,24 @@ if ( ! defined( 'ASTRALAB_ARCHIVE_POST_PER_PAGE' ) ) {
 	define( 'ASTRALAB_ARCHIVE_POST_PER_PAGE', 9 );
 }
 
+// add Parsedown.ph
+require ASTRALAB_DIR_PATH . '/inc/Parsedown.php';
+
 require ASTRALAB_DIR_PATH . '/inc/autoloader.php';
+
+
+function convert_trello_markup_to_html( $trello_markup ) {
+	// Ensure Parsedown is included
+	// If using Composer's autoload, make sure to include it:
+	// require __DIR__ . '/vendor/autoload.php';
+
+	$parsedown = new Parsedown();
+	// Enable GitHub-Flavored Markdown features if needed
+	// $parsedown->setBreaksEnabled(true); // For line breaks without two spaces
+	// $parsedown->setUrlsLinked(true);    // Make links clickable
+
+	// Convert the Trello markup (Markdown) to HTML
+	$html = $parsedown->text( $trello_markup );
+
+	return $html;
+}

@@ -51,7 +51,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		do_action( 'kadence_after_header' );
 		?>
-		<div id="test"></div>
 		<div id="inner-wrap" class="wrap hfeed kt-clear">
 			<?php
 			/**

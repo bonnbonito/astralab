@@ -4,7 +4,6 @@ import { ToastDemo } from './ToastDemo';
 
 import {
 	AlertDialog,
-	AlertDialogAction,
 	AlertDialogCancel,
 	AlertDialogContent,
 	AlertDialogDescription,
@@ -23,10 +22,11 @@ function App() {
 			<div className="w-40 h-40 box bg-gray-200 block mx-auto my-10">
 				<div className="w-full h-full text-center">Hello, World!</div>
 			</div>
+			<Button variant="destructive">Click me</Button>
 			<AlertDialog>
 				<AlertDialogTrigger asChild>
-					<Button variant="outline" className="box">
-						Show Dialog
+					<Button variant="outline" className="box text-black">
+						Show Dialog 123
 					</Button>
 				</AlertDialogTrigger>
 				<AlertDialogContent className="bg-white">
@@ -38,7 +38,9 @@ function App() {
 						</AlertDialogDescription>
 					</AlertDialogHeader>
 					<AlertDialogFooter>
-						<AlertDialogCancel>Cancel</AlertDialogCancel>
+						<AlertDialogCancel className="text-gray-500 border-solid">
+							Cancel
+						</AlertDialogCancel>
 						<Button
 							onClick={() => {
 								toast({
@@ -53,7 +55,9 @@ function App() {
 					</AlertDialogFooter>
 				</AlertDialogContent>
 			</AlertDialog>
-			<Button variant="outline">Show Toaster</Button>
+			<Button variant="outline" className="text-black border-solid">
+				Show Toaster
+			</Button>
 			<ToastDemo />
 			<Toaster />
 		</>

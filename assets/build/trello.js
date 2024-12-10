@@ -2,6 +2,27 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./themes/astralab/scripts/trello/components/App.tsx":
+/*!***********************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/App.tsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ App)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+
+function App() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    children: "Hello, World!"
+  });
+}
+
+/***/ }),
+
 /***/ "./themes/astralab/scripts/trello/index.tsx":
 /*!**************************************************!*\
   !*** ./themes/astralab/scripts/trello/index.tsx ***!
@@ -9,21 +30,135 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./themes/astralab/scripts/trello/style.css");
+/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/dom-ready */ "@wordpress/dom-ready");
+/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./themes/astralab/scripts/trello/style.scss");
+/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/App */ "./themes/astralab/scripts/trello/components/App.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
 
-alert('test');
+
+
+
+
+_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(() => {
+  test_submit();
+  const trelloForm = document.getElementById('trelloForm');
+  if (trelloForm) {
+    const root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(trelloForm);
+    root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_App__WEBPACK_IMPORTED_MODULE_3__["default"], {}));
+  } else {
+    console.error('Root element with id "test" not found');
+  }
+});
+function test_submit() {
+  const form = document.getElementById('trello-form');
+  const responseDiv = document.getElementById('trello-form-response');
+  form?.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    formData.append('action', 'handle_trello_form_submission');
+    formData.append('trello_form_nonce', trello_ajax_object.trello_form_nonce);
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', trello_ajax_object.ajax_url, true);
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        try {
+          const response = JSON.parse(xhr.responseText);
+          if (response.success) {
+            responseDiv.innerHTML = response.data;
+            form.reset();
+          } else {
+            responseDiv.innerHTML = 'Error: ' + response.data;
+          }
+        } catch (e) {
+          responseDiv.innerHTML = 'An error occurred: Invalid JSON response';
+        }
+      } else {
+        responseDiv.innerHTML = 'An error occurred: ' + xhr.statusText;
+      }
+    };
+    xhr.onerror = function () {
+      responseDiv.innerHTML = 'An error occurred during the request.';
+    };
+    xhr.send(formData);
+  });
+}
 
 /***/ }),
 
-/***/ "./themes/astralab/scripts/trello/style.css":
-/*!**************************************************!*\
-  !*** ./themes/astralab/scripts/trello/style.css ***!
-  \**************************************************/
+/***/ "./themes/astralab/scripts/trello/style.scss":
+/*!***************************************************!*\
+  !*** ./themes/astralab/scripts/trello/style.scss ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
+
+/***/ }),
+
+/***/ "./node_modules/react-dom/client.js":
+/*!******************************************!*\
+  !*** ./node_modules/react-dom/client.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+var m = __webpack_require__(/*! react-dom */ "react-dom");
+if (false) {} else {
+  var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+  exports.createRoot = function(c, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.createRoot(c, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+  exports.hydrateRoot = function(c, h, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.hydrateRoot(c, h, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+}
+
+
+/***/ }),
+
+/***/ "react-dom":
+/*!***************************!*\
+  !*** external "ReactDOM" ***!
+  \***************************/
+/***/ ((module) => {
+
+module.exports = window["ReactDOM"];
+
+/***/ }),
+
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = window["ReactJSXRuntime"];
+
+/***/ }),
+
+/***/ "@wordpress/dom-ready":
+/*!**********************************!*\
+  !*** external ["wp","domReady"] ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["domReady"];
 
 /***/ })
 
@@ -88,6 +223,30 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	

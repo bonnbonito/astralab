@@ -1801,13 +1801,16 @@ function App() {
         className: "w-full h-full text-center",
         children: "Hello, World!"
       })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_button__WEBPACK_IMPORTED_MODULE_4__.Button, {
+      variant: "destructive",
+      children: "Click me"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_components_ui_alert_dialog__WEBPACK_IMPORTED_MODULE_3__.AlertDialog, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_alert_dialog__WEBPACK_IMPORTED_MODULE_3__.AlertDialogTrigger, {
         asChild: true,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_button__WEBPACK_IMPORTED_MODULE_4__.Button, {
           variant: "outline",
-          className: "box",
-          children: "Show Dialog"
+          className: "box text-black",
+          children: "Show Dialog 123"
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_components_ui_alert_dialog__WEBPACK_IMPORTED_MODULE_3__.AlertDialogContent, {
         className: "bg-white",
@@ -1819,6 +1822,7 @@ function App() {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_components_ui_alert_dialog__WEBPACK_IMPORTED_MODULE_3__.AlertDialogFooter, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_alert_dialog__WEBPACK_IMPORTED_MODULE_3__.AlertDialogCancel, {
+            className: "text-gray-500 border-solid",
             children: "Cancel"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_button__WEBPACK_IMPORTED_MODULE_4__.Button, {
             onClick: () => {
@@ -1834,6 +1838,7 @@ function App() {
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_button__WEBPACK_IMPORTED_MODULE_4__.Button, {
       variant: "outline",
+      className: "text-black border-solid",
       children: "Show Toaster"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ToastDemo__WEBPACK_IMPORTED_MODULE_2__.ToastDemo, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_toaster__WEBPACK_IMPORTED_MODULE_0__.Toaster, {})]
   });

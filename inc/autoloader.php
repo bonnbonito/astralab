@@ -17,6 +17,9 @@ function autoloader( $class ) {
 	// lowercase the class name
 	$class = strtolower( $class );
 
+	// Replace _ to -
+	$class = str_replace( '_', '-', $class );
+
 	// Construct the full path to the class file
 	$class_path = ASTRALAB_CLASS_PATH . '/class-' . $class . '.php';
 
@@ -30,7 +33,9 @@ spl_autoload_register( 'autoloader' );
 
 $instances = array(
 	'Scripts',
-	'Trello',
+	'Trello_Frontend',
+	'Trello_Backend',
+	'Shortcodes',
 );
 
 foreach ( $instances as $instance ) {
