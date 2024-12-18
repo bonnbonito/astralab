@@ -36,12 +36,71 @@ class Trello_Frontend {
 
 		// AJAX handlers for creating Trello cards
 		add_action( 'wp_ajax_handle_trello_form_submission', array( $this, 'handle_trello_form_submission_ajax' ) );
-		add_action( 'wp_ajax_nopriv_handle_trello_form_submission', array( $this, 'handle_trello_form_submission_ajax' ) );
+		add_action( 'wp_ajax_handle_trello_comment_submission', array( $this, 'handle_trello_comment_submission' ) );
 	}
 
-		/**
-		 * Enqueue the JavaScript file and pass variables to it.
-		 */
+	/**
+	 * Handle the AJAX request to create trello comment
+	 */
+	public function handle_trello_comment_submission() {
+		// Verify nonce for security
+		check_ajax_referer( 'trello_form_action', 'trello_form_nonce' );
+
+		// Get the Trello card ID and comment text from the form
+		$card_id   = sanitize_text_field( $_POST['card_id'] );
+		$card_desc = sanitize_textarea_field( $_POST['card_desc'] );
+
+		if ( empty( $card_id ) || empty( $card_desc ) ) {
+			wp_send_json_error( array( 'message' => 'Card ID or Comment is missing.' ) );
+		}
+
+		$card_desc = '<h1><strong>Reply:</strong></h1><br><br>' . $card_desc;
+
+		$trello_post = \ASTRALAB\Trello_Post::get_instance();
+
+		if ( $trello_post ) {
+			$card_desc = $trello_post->convert_html_to_trello_markup( $card_desc );
+		}
+
+		// Get Trello API credentials
+		$options   = get_option( 'astralab_trello_settings' );
+		$api_key   = $options['trello_api_key'] ?? '';
+		$api_token = $options['trello_api_token'] ?? '';
+
+		if ( empty( $api_key ) || empty( $api_token ) ) {
+			wp_send_json_error( array( 'message' => 'Trello API credentials are not configured.' ) );
+		}
+
+		// API endpoint to add a comment
+		$api_url = "https://api.trello.com/1/cards/$card_id/actions/comments";
+
+		$response = wp_remote_post(
+			$api_url,
+			array(
+				'body' => array(
+					'key'   => $api_key,
+					'token' => $api_token,
+					'text'  => $card_desc,
+				),
+			)
+		);
+
+		if ( is_wp_error( $response ) ) {
+			wp_send_json_error( array( 'message' => 'Failed to send comment: ' . $response->get_error_message() ) );
+		}
+
+		$response_body = json_decode( wp_remote_retrieve_body( $response ), true );
+
+		if ( isset( $response_body['id'] ) ) {
+			wp_send_json_success( array( 'message' => 'Comment added successfully!' ) );
+		} else {
+			wp_send_json_error( array( 'message' => 'Failed to add comment to Trello.' ) );
+		}
+	}
+
+	/**
+	 * Enqueue the JavaScript file and pass variables to it.
+	 */
 	public function enqueue_trello_vanilla_js_script() {
 		wp_enqueue_script(
 			'astralab/trello',
@@ -70,33 +129,33 @@ class Trello_Frontend {
 		?>
 <!-- Trello Form -->
 <form id="trello-form" enctype="multipart/form-data">
-		<?php wp_nonce_field( 'trello_form_action', 'trello_form_nonce' ); ?>
+    <?php wp_nonce_field( 'trello_form_action', 'trello_form_nonce' ); ?>
 
-	<label for="card_name">Card Name:</label><br>
-	<input type="text" id="card_name" name="card_name" required><br><br>
+    <label for="card_name">Card Name:</label><br>
+    <input type="text" id="card_name" name="card_name" required><br><br>
 
-	<label for="card_desc">Description:</label><br>
-	<textarea id="card_desc" name="card_desc"></textarea><br><br>
+    <label for="card_desc">Description:</label><br>
+    <textarea id="card_desc" name="card_desc"></textarea><br><br>
 
-	<label for="file_upload">Upload Files:</label><br>
-	<input type="file" id="file_upload" name="file_upload[]" multiple><br><br>
+    <label for="file_upload">Upload Files:</label><br>
+    <input type="file" id="file_upload" name="file_upload[]" multiple><br><br>
 
-	<input type="submit" value="Create Trello Card">
+    <input type="submit" value="Create Trello Card">
 </form>
 
 <div id="trello-form-response"></div>
-		<?php
+<?php
 		return ob_get_clean();
 	}
+
 
 	/**
 	 * Handle the AJAX request to create a Trello card and optionally attach files.
 	 */
 	public function handle_trello_form_submission_ajax() {
-		// Verify the nonce for security
+		// Verify the nonce
 		check_ajax_referer( 'trello_form_action', 'trello_form_nonce' );
 
-		// Get Trello options from DB
 		$options   = get_option( $this->option_name );
 		$api_key   = isset( $options['trello_api_key'] ) ? $options['trello_api_key'] : '';
 		$api_token = isset( $options['trello_api_token'] ) ? $options['trello_api_token'] : '';
@@ -107,11 +166,9 @@ class Trello_Frontend {
 			wp_send_json_error( 'Trello API credentials or List ID not set. Please configure them in Trello Settings.' );
 		}
 
-		// Sanitize and get form data
 		$card_name = sanitize_text_field( $_POST['card_name'] );
 		$card_desc = sanitize_textarea_field( $_POST['card_desc'] );
 
-		// Get current user data
 		$user = wp_get_current_user();
 		if ( $user && $user->ID ) {
 			$full_name = $user->display_name;
@@ -121,12 +178,10 @@ class Trello_Frontend {
 			$email     = 'N/A';
 		}
 
-		// Construct the Markdown description
 		$user_line  = '**User:** ' . ( ! empty( $full_name ) ? $full_name : 'N/A' );
 		$email_line = '**Email:** ' . ( ! empty( $email ) ? $email : 'N/A' );
 		$md_desc    = $user_line . "\n" . $email_line . "\n\n" . "**Message:**\n" . $card_desc;
 
-		// Create the Trello card
 		$card_url  = 'https://api.trello.com/1/cards';
 		$card_args = array(
 			'key'    => $api_key,
@@ -152,14 +207,14 @@ class Trello_Frontend {
 		if ( isset( $card_body->id ) ) {
 			$card_id = $card_body->id;
 
-			// Create a trello_card post and set the author to the current user
 			$post_author = get_current_user_id();
 			$post_id     = wp_insert_post(
 				array(
-					'post_type'   => 'trello-card',
-					'post_title'  => $card_name,
-					'post_status' => 'publish',
-					'post_author' => $post_author,
+					'post_type'    => 'trello-card',
+					'post_title'   => $card_name,
+					'post_status'  => 'publish',
+					'post_author'  => $post_author,
+					'post_content' => $card_desc,
 				)
 			);
 
@@ -170,12 +225,13 @@ class Trello_Frontend {
 				update_post_meta( $post_id, 'trello_card_user_email', $email );
 			}
 
-			// Handle multiple file uploads
+			// Handle files
 			if ( ! empty( $_FILES['file_upload']['name'][0] ) ) {
-				$uploadedfiles = $_FILES['file_upload'];
-				$file_count    = count( $uploadedfiles['name'] );
-				$errors        = array();
-				$success_count = 0;
+				$uploadedfiles    = $_FILES['file_upload'];
+				$file_count       = count( $uploadedfiles['name'] );
+				$errors           = array();
+				$success_count    = 0;
+				$attachments_data = array();
 
 				for ( $i = 0; $i < $file_count; $i++ ) {
 					$file_name     = sanitize_file_name( $uploadedfiles['name'][ $i ] );
@@ -184,27 +240,23 @@ class Trello_Frontend {
 					$file_error    = $uploadedfiles['error'][ $i ];
 					$file_size     = $uploadedfiles['size'][ $i ];
 
-					// Check for upload errors
 					if ( $file_error !== UPLOAD_ERR_OK ) {
 						$errors[] = 'Error uploading file: ' . $file_name;
 						continue;
 					}
 
-					// Validate file size if needed
 					$max_file_size = 10 * 1024 * 1024; // 10 MB
 					if ( $file_size > $max_file_size ) {
 						$errors[] = 'File size exceeds limit for file: ' . $file_name;
 						continue;
 					}
 
-					// Prepare the file for upload to Trello
 					$file_data = array(
 						'file'  => new \CURLFile( $file_tmp_name, $file_type, $file_name ),
 						'key'   => $api_key,
 						'token' => $api_token,
 					);
 
-					// Attach the file to the Trello card
 					$attachment_url = "https://api.trello.com/1/cards/{$card_id}/attachments";
 					$ch             = curl_init();
 					curl_setopt( $ch, CURLOPT_URL, $attachment_url );
@@ -221,22 +273,53 @@ class Trello_Frontend {
 						continue;
 					}
 
-					++$success_count;
+					$attachment_body = json_decode( $attachment_response, true );
+
+					if ( isset( $attachment_body['id'] ) ) {
+						++$success_count;
+						$attachments_data[] = array(
+							'id'    => $attachment_body['id'],
+							'name'  => isset( $attachment_body['name'] ) ? $attachment_body['name'] : $file_name,
+							'url'   => isset( $attachment_body['url'] ) ? $attachment_body['url'] : '',
+							'bytes' => isset( $attachment_body['bytes'] ) ? $attachment_body['bytes'] : 0,
+						);
+					} else {
+						$errors[] = 'File "' . $file_name . '" uploaded but attachment info not retrieved.';
+					}
 				}
 
-				// Generate response message
+				if ( ! empty( $attachments_data ) && ! is_wp_error( $post_id ) && $post_id ) {
+					update_post_meta( $post_id, 'trello_card_attachments', $attachments_data );
+				}
+
 				if ( $success_count > 0 && empty( $errors ) ) {
-					wp_send_json_success( 'Card created and all files attached successfully!' );
+					$response_message = 'Card created and all files attached successfully!';
 				} elseif ( $success_count > 0 && ! empty( $errors ) ) {
-					$error_messages = implode( '<br>', $errors );
-					wp_send_json_success( "Card created. Successfully attached $success_count files.<br>Errors:<br>$error_messages" );
+					$error_messages   = implode( '<br>', $errors );
+					$response_message = "Card created. Successfully attached $success_count files.<br>Errors:<br>$error_messages";
 				} else {
 					$error_messages = implode( '<br>', $errors );
 					wp_send_json_error( "Card created but failed to attach files.<br>Errors:<br>$error_messages" );
 				}
 			} else {
-				wp_send_json_success( 'Card created successfully!' );
+				$response_message = 'Card created successfully!';
 			}
+
+			$trello_backend = \ASTRALAB\Trello_Backend::get_instance();
+
+			if ( $trello_backend ) {
+
+				// Register webhook for this card, using the card name
+				$webhook_result = $trello_backend->register_trello_webhook( $card_id, "Monitoring {$card_name}" );
+				if ( is_wp_error( $webhook_result ) ) {
+					error_log( 'Error creating Trello webhook: ' . $webhook_result->get_error_message() );
+				} elseif ( isset( $webhook_result['id'] ) && ! is_wp_error( $post_id ) && $post_id ) {
+						update_post_meta( $post_id, 'trello_webhook_id', $webhook_result['id'] );
+				}
+			}
+
+			wp_send_json_success( $response_message );
+
 		} else {
 			wp_send_json_error( 'Error creating card.' );
 		}
