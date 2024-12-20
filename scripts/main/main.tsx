@@ -11,6 +11,6 @@ domReady(() => {
 		const root = createRoot(testElement);
 		root.render(<App />);
 	} else {
-		console.error('Root element with id "test" not found');
+		// console.error('Root element with id "test" not found');
 	}
 });

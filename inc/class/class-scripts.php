@@ -27,7 +27,7 @@ class Scripts {
 	public function __construct() {
 		add_action( 'init', array( $this, 'init' ), 1 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-		add_filter( 'kadence_css_files', array( $this, 'kadence_css_files' ) );
+		//add_filter( 'kadence_css_files', array( $this, 'kadence_css_files' ) );
 	}
 
 	/**
@@ -58,16 +58,16 @@ class Scripts {
 			$asset_filename = basename( $asset_file );
 
 			$asset_parts = explode( '.asset.php', $asset_filename );
-			$asset_slug  = array_shift( $asset_parts );
+			$asset_slug = array_shift( $asset_parts );
 
 			$asset_handle = sprintf( 'astralab/%s', $asset_slug );
 
 			if ( 'main' === $asset_slug ) {
 				$stylesheet_path = $asset_dir . $asset_slug . '.css';
-				$stylesheet_url  = $asset_url . $asset_slug . '.css';
+				$stylesheet_url = $asset_url . $asset_slug . '.css';
 			} else {
 				$stylesheet_path = $asset_dir . 'style-' . $asset_slug . '.css';
-				$stylesheet_url  = $asset_url . 'style-' . $asset_slug . '.css';
+				$stylesheet_url = $asset_url . 'style-' . $asset_slug . '.css';
 			}
 
 			if ( true === is_readable( $stylesheet_path ) ) {
@@ -81,7 +81,7 @@ class Scripts {
 			}
 
 			$javascript_path = $asset_dir . $asset_slug . '.js';
-			$javascript_url  = $asset_url . $asset_slug . '.js';
+			$javascript_url = $asset_url . $asset_slug . '.js';
 
 			if ( true === is_readable( $javascript_path ) ) {
 				wp_register_script(

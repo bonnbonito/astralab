@@ -2,97 +2,74 @@ import domReady from '@wordpress/dom-ready';
 import { createRoot } from 'react-dom/client';
 import './style.scss';
 
-import App from './components/App';
+import OrderForm from './components/OrderForm';
 
 domReady(() => {
 	test_submit();
 	comment_submit();
 
-	const trelloForm = document.getElementById('trelloForm');
-	if (trelloForm) {
-		const root = createRoot(trelloForm);
-		root.render(<App />);
+	const orderForm = document.getElementById('orderForm');
+	if (orderForm) {
+		const root = createRoot(orderForm);
+		root.render(<OrderForm />);
 	} else {
 		console.error('Root element with id "test" not found');
 	}
 });
 
+async function submitForm(
+	form: HTMLFormElement,
+	action: string,
+	responseDiv: HTMLElement
+) {
+	try {
+		const formData = new FormData(form);
+		formData.append('action', action);
+		formData.append('trello_form_nonce', trello_ajax_object.trello_form_nonce);
+
+		const response = await fetch(trello_ajax_object.ajax_url, {
+			method: 'POST',
+			body: formData,
+		});
+
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
+
+		const data = await response.json();
+		if (data.success) {
+			responseDiv.innerHTML = data.data || 'Success';
+			form.reset();
+		} else {
+			responseDiv.innerHTML = 'Error: ' + data.data;
+		}
+	} catch (error) {
+		responseDiv.innerHTML = `An error occurred: ${error.message}`;
+	}
+}
+
 function comment_submit() {
-	const form = document.getElementById('trello-comment-form');
-	const responseDiv = document.getElementById('trello-comment-response');
+	const form = document.getElementById(
+		'trello-comment-form'
+	) as HTMLFormElement;
+	const responseDiv = document.getElementById(
+		'trello-comment-response'
+	) as HTMLElement;
 
 	form?.addEventListener('submit', function (e) {
 		e.preventDefault();
-
-		const formData = new FormData(form);
-		formData.append('action', 'handle_trello_comment_submission');
-		formData.append('trello_form_nonce', trello_ajax_object.trello_form_nonce);
-
-		const xhr = new XMLHttpRequest();
-		xhr.open('POST', trello_ajax_object.ajax_url, true);
-
-		xhr.onload = function () {
-			if (xhr.status === 200) {
-				try {
-					const response = JSON.parse(xhr.responseText);
-					if (response.success) {
-						responseDiv.innerHTML = 'Comment updated';
-						form.reset();
-					} else {
-						responseDiv.innerHTML = 'Error: ' + response.data;
-					}
-				} catch (e) {
-					responseDiv.innerHTML = 'An error occurred: Invalid JSON response';
-				}
-			} else {
-				responseDiv.innerHTML = 'An error occurred: ' + xhr.statusText;
-			}
-		};
-
-		xhr.onerror = function () {
-			responseDiv.innerHTML = 'An error occurred during the request.';
-		};
-
-		xhr.send(formData);
+		submitForm(form, 'handle_trello_comment_submission', responseDiv);
 	});
 }
 
 function test_submit() {
-	const form = document.getElementById('trello-form');
-	const responseDiv = document.getElementById('trello-form-response');
+	const form = document.getElementById('trello-form') as HTMLFormElement;
+	const responseDiv = document.getElementById(
+		'trello-form-response'
+	) as HTMLElement;
 
 	form?.addEventListener('submit', function (e) {
 		e.preventDefault();
-
-		const formData = new FormData(form);
-		formData.append('action', 'handle_trello_form_submission');
-		formData.append('trello_form_nonce', trello_ajax_object.trello_form_nonce);
-
-		const xhr = new XMLHttpRequest();
-		xhr.open('POST', trello_ajax_object.ajax_url, true);
-
-		xhr.onload = function () {
-			if (xhr.status === 200) {
-				try {
-					const response = JSON.parse(xhr.responseText);
-					if (response.success) {
-						responseDiv.innerHTML = response.data;
-						form.reset();
-					} else {
-						responseDiv.innerHTML = 'Error: ' + response.data;
-					}
-				} catch (e) {
-					responseDiv.innerHTML = 'An error occurred: Invalid JSON response';
-				}
-			} else {
-				responseDiv.innerHTML = 'An error occurred: ' + xhr.statusText;
-			}
-		};
-
-		xhr.onerror = function () {
-			responseDiv.innerHTML = 'An error occurred during the request.';
-		};
-
-		xhr.send(formData);
+		submitForm(form, 'handle_trello_form_submission', responseDiv);
 	});
 }
