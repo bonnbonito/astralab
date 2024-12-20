@@ -21,34 +21,34 @@ interface ProjectDetailsProps {
 	form: any;
 }
 
-export default function ProjectDetails({ form }: ProjectDetailsProps) {
-	const layoutOptions = [
-		{
-			id: 'layout1',
-			label: 'Layout 1',
-			imageUrl:
-				'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png',
-		},
-		{
-			id: 'layout2',
-			label: 'Layout 2',
-			imageUrl:
-				'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png',
-		},
-		{
-			id: 'layout3',
-			label: 'Layout 3',
-			imageUrl:
-				'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png',
-		},
-		{
-			id: 'layout4',
-			label: 'Layout 4',
-			imageUrl:
-				'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png',
-		},
-	];
+const layoutOptions = [
+	{
+		id: 'layout1',
+		label: 'Layout 1',
+		imageUrl:
+			'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png',
+	},
+	{
+		id: 'layout2',
+		label: 'Layout 2',
+		imageUrl:
+			'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png',
+	},
+	{
+		id: 'layout3',
+		label: 'Layout 3',
+		imageUrl:
+			'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png',
+	},
+	{
+		id: 'layout4',
+		label: 'Layout 4',
+		imageUrl:
+			'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png',
+	},
+];
 
+export default function ProjectDetails({ form }: ProjectDetailsProps) {
 	return (
 		<div className="border px-4 py-6 mb-8 rounded">
 			<div className="grid grid-cols-[45%_1fr_1fr] gap-4 mb-4">
@@ -155,7 +155,7 @@ export default function ProjectDetails({ form }: ProjectDetailsProps) {
 								<RadioGroup
 									value={field.value}
 									onValueChange={(value) => field.onChange(value)}
-									className={`grid grid-cols-${layoutOptions.length} gap-4`}
+									className={`grid grid-cols-4 gap-4`}
 								>
 									{layoutOptions.map((option) => (
 										<div key={option.id}>
@@ -200,7 +200,6 @@ export default function ProjectDetails({ form }: ProjectDetailsProps) {
 							<FormControl>
 								<Input
 									type="file"
-									accept="image/*,.pdf,.doc,.docx"
 									multiple // Enable multiple file selection
 									onChange={(e) => {
 										if (e.target.files) {
@@ -208,6 +207,7 @@ export default function ProjectDetails({ form }: ProjectDetailsProps) {
 											field.onChange(Array.from(e.target.files));
 										}
 									}}
+									className="inline-block"
 								/>
 							</FormControl>
 							<FormMessage />

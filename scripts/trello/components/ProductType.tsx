@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 
 interface ProductTypeProps {
-	form: any;
+	form: HTMLFormElement;
 }
 
 export default function ProductType({ form }: ProductTypeProps) {

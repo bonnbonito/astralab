@@ -9,34 +9,19 @@ import { Form } from '@/components/ui/form';
 import Sidebar from './Sidebar';
 import Main from './Main';
 
+import { projectDetailsSchema } from '../helpers/schema';
+
+import { exampleRefine } from '../helpers/superRefine';
+
 const formSchema = z
 	.object({
 		projectName: z.string().min(2, {
 			message: 'Project Name must be at least 2 characters.',
 		}),
-		turnaroundTime: z.string().optional(),
-		designDetails: z.string().optional(),
-		projectDescription: z.string().nonempty({
-			message: 'Project Description is required.',
-		}),
-		layoutType: z.string().nonempty({ message: 'Layout Type is required.' }),
-		productType: z.array(z.string()),
-		fileUpload: z.array(z.instanceof(File)).nonempty({
-			message: 'Files are required.',
-		}),
+		...projectDetailsSchema,
 	})
 	.superRefine((data, ctx) => {
-		if (
-			data.turnaroundTime === 'option3' &&
-			(!data.designDetails || data.designDetails.length === 0)
-		) {
-			ctx.addIssue({
-				code: z.ZodIssueCode.custom,
-				path: ['designDetails'],
-				message:
-					'Design Details are required when Turn Around Time is option3.',
-			});
-		}
+		exampleRefine(data, ctx);
 	});
 
 export default function OrderForm() {
@@ -49,7 +34,7 @@ export default function OrderForm() {
 			projectDescription: '',
 			layoutType: '',
 			productType: [],
-			fileUpload: [], // Initialize as an empty array
+			fileUpload: [],
 		},
 	});
 
@@ -57,7 +42,7 @@ export default function OrderForm() {
 
 	const [layoutType, productType] = useWatch({
 		control: form.control,
-		name: ['layoutType', 'productType'], // Watching multiple fields
+		name: ['layoutType', 'productType'],
 	});
 
 	// Automatically remove productType values if layoutType is "option2"
@@ -75,7 +60,7 @@ export default function OrderForm() {
 		<Form {...form}>
 			<h3>PROJECT DETAILS</h3>
 			<form onSubmit={form.handleSubmit(onSubmit)} className="flex gap-9">
-				<Main form={form} />
+				<Main form={form} productType={productType} />
 
 				<Sidebar watchedValues={watchedValues} />
 			</form>

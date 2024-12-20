@@ -792,24 +792,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _ProjectDetails__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProjectDetails */ "./themes/astralab/scripts/trello/components/ProjectDetails.tsx");
 /* harmony import */ var _ProductType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductType */ "./themes/astralab/scripts/trello/components/ProductType.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _products_ADAWayfinding__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./products/ADAWayfinding */ "./themes/astralab/scripts/trello/components/products/ADAWayfinding.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
 function Main({
-  form
+  form,
+  productType
 }) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "flex-1 w-full",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProjectDetails__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ProjectDetails__WEBPACK_IMPORTED_MODULE_0__["default"], {
         form: form
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
         children: "PRODUCT TYPE"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProductType__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ProductType__WEBPACK_IMPORTED_MODULE_1__["default"], {
         form: form
-      })]
+      }), productType?.includes('ADA Wayfinding') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_products_ADAWayfinding__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
     })
   });
 }
@@ -829,13 +832,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _hookform_resolvers_zod__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @hookform/resolvers/zod */ "./node_modules/@hookform/resolvers/zod/dist/zod.mjs");
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
-/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
 /* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/form */ "./themes/astralab/scripts/components/ui/form.tsx");
 /* harmony import */ var _Sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Sidebar */ "./themes/astralab/scripts/trello/components/Sidebar.tsx");
 /* harmony import */ var _Main__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Main */ "./themes/astralab/scripts/trello/components/Main.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _helpers_schema__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../helpers/schema */ "./themes/astralab/scripts/trello/helpers/schema.js");
+/* harmony import */ var _helpers_superRefine__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../helpers/superRefine */ "./themes/astralab/scripts/trello/helpers/superRefine.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 'use client';
 
 
@@ -846,33 +851,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const formSchema = zod__WEBPACK_IMPORTED_MODULE_6__.z.object({
-  projectName: zod__WEBPACK_IMPORTED_MODULE_6__.z.string().min(2, {
+
+
+const formSchema = zod__WEBPACK_IMPORTED_MODULE_8__.z.object({
+  projectName: zod__WEBPACK_IMPORTED_MODULE_8__.z.string().min(2, {
     message: 'Project Name must be at least 2 characters.'
   }),
-  turnaroundTime: zod__WEBPACK_IMPORTED_MODULE_6__.z.string().optional(),
-  designDetails: zod__WEBPACK_IMPORTED_MODULE_6__.z.string().optional(),
-  projectDescription: zod__WEBPACK_IMPORTED_MODULE_6__.z.string().nonempty({
-    message: 'Project Description is required.'
-  }),
-  layoutType: zod__WEBPACK_IMPORTED_MODULE_6__.z.string().nonempty({
-    message: 'Layout Type is required.'
-  }),
-  productType: zod__WEBPACK_IMPORTED_MODULE_6__.z.array(zod__WEBPACK_IMPORTED_MODULE_6__.z.string()),
-  fileUpload: zod__WEBPACK_IMPORTED_MODULE_6__.z.array(zod__WEBPACK_IMPORTED_MODULE_6__.z.instanceof(File)).nonempty({
-    message: 'Files are required.'
-  })
+  ..._helpers_schema__WEBPACK_IMPORTED_MODULE_5__.projectDetailsSchema
 }).superRefine((data, ctx) => {
-  if (data.turnaroundTime === 'option3' && (!data.designDetails || data.designDetails.length === 0)) {
-    ctx.addIssue({
-      code: zod__WEBPACK_IMPORTED_MODULE_6__.z.ZodIssueCode.custom,
-      path: ['designDetails'],
-      message: 'Design Details are required when Turn Around Time is option3.'
-    });
-  }
+  (0,_helpers_superRefine__WEBPACK_IMPORTED_MODULE_6__.exampleRefine)(data, ctx);
 });
 function OrderForm() {
-  const form = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_7__.useForm)({
+  const form = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_9__.useForm)({
     resolver: (0,_hookform_resolvers_zod__WEBPACK_IMPORTED_MODULE_1__.zodResolver)(formSchema),
     defaultValues: {
       projectName: '',
@@ -881,13 +871,13 @@ function OrderForm() {
       projectDescription: '',
       layoutType: '',
       productType: [],
-      fileUpload: [] // Initialize as an empty array
+      fileUpload: []
     }
   });
   const watchedValues = form.watch();
-  const [layoutType, productType] = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_7__.useWatch)({
+  const [layoutType, productType] = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_9__.useWatch)({
     control: form.control,
-    name: ['layoutType', 'productType'] // Watching multiple fields
+    name: ['layoutType', 'productType']
   });
 
   // Automatically remove productType values if layoutType is "option2"
@@ -899,16 +889,17 @@ function OrderForm() {
   function onSubmit(values) {
     console.log(values, 'Tewr');
   }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_2__.Form, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_2__.Form, {
     ...form,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
       children: "PROJECT DETAILS"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("form", {
       onSubmit: form.handleSubmit(onSubmit),
       className: "flex gap-9",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Main__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        form: form
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Sidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Main__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        form: form,
+        productType: productType
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Sidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
         watchedValues: watchedValues
       })]
     })]
@@ -1045,26 +1036,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const layoutOptions = [{
+  id: 'layout1',
+  label: 'Layout 1',
+  imageUrl: 'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png'
+}, {
+  id: 'layout2',
+  label: 'Layout 2',
+  imageUrl: 'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png'
+}, {
+  id: 'layout3',
+  label: 'Layout 3',
+  imageUrl: 'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png'
+}, {
+  id: 'layout4',
+  label: 'Layout 4',
+  imageUrl: 'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png'
+}];
 function ProjectDetails({
   form
 }) {
-  const layoutOptions = [{
-    id: 'layout1',
-    label: 'Layout 1',
-    imageUrl: 'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png'
-  }, {
-    id: 'layout2',
-    label: 'Layout 2',
-    imageUrl: 'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png'
-  }, {
-    id: 'layout3',
-    label: 'Layout 3',
-    imageUrl: 'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png'
-  }, {
-    id: 'layout4',
-    label: 'Layout 4',
-    imageUrl: 'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png'
-  }];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     className: "border px-4 py-6 mb-8 rounded",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
@@ -1188,7 +1179,7 @@ function ProjectDetails({
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_radio_group__WEBPACK_IMPORTED_MODULE_4__.RadioGroup, {
               value: field.value,
               onValueChange: value => field.onChange(value),
-              className: `grid grid-cols-${layoutOptions.length} gap-4`,
+              className: `grid grid-cols-4 gap-4`,
               children: layoutOptions.map(option => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                   className: "flex items-center gap-2 mb-1",
@@ -1232,7 +1223,6 @@ function ProjectDetails({
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_input__WEBPACK_IMPORTED_MODULE_1__.Input, {
               type: "file",
-              accept: "image/*,.pdf,.doc,.docx",
               multiple: true // Enable multiple file selection
               ,
               onChange: e => {
@@ -1240,7 +1230,8 @@ function ProjectDetails({
                   // Convert FileList to an array and pass it to the form
                   field.onChange(Array.from(e.target.files));
                 }
-              }
+              },
+              className: "inline-block"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
         })
@@ -1366,6 +1357,88 @@ function Sidebar({
     })
   });
 }
+
+/***/ }),
+
+/***/ "./themes/astralab/scripts/trello/components/products/ADAWayfinding.tsx":
+/*!******************************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/products/ADAWayfinding.tsx ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ADAWayfinding)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+
+function ADAWayfinding() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+    children: "ADA Wayfinding"
+  });
+}
+
+/***/ }),
+
+/***/ "./themes/astralab/scripts/trello/helpers/schema.js":
+/*!**********************************************************!*\
+  !*** ./themes/astralab/scripts/trello/helpers/schema.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   projectDetailsSchema: () => (/* binding */ projectDetailsSchema)
+/* harmony export */ });
+/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
+
+const projectDetailsSchema = {
+  turnaroundTime: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().optional(),
+  designDetails: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().optional(),
+  projectDescription: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
+    message: 'Project Description is required.'
+  }),
+  layoutType: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
+    message: 'Layout Type is required.'
+  }),
+  productType: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string()).nonempty({
+    message: 'Product Type is required.'
+  }),
+  fileUpload: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.instanceof(File)).nonempty({
+    message: 'Files are required.'
+  })
+};
+
+/***/ }),
+
+/***/ "./themes/astralab/scripts/trello/helpers/superRefine.tsx":
+/*!****************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/helpers/superRefine.tsx ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   exampleRefine: () => (/* binding */ exampleRefine)
+/* harmony export */ });
+/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
+
+const schema = zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+  turnaroundTime: zod__WEBPACK_IMPORTED_MODULE_0__.z.string(),
+  designDetails: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().optional()
+});
+
+// Define the refine function
+const exampleRefine = (data, ctx) => {
+  if (data.turnaroundTime === 'option3' && (!data.designDetails || data.designDetails === '')) {
+    ctx.addIssue({
+      code: zod__WEBPACK_IMPORTED_MODULE_0__.z.ZodIssueCode.custom,
+      path: ['designDetails'],
+      message: 'Design Details are required when Turn Around Time is option3.'
+    });
+  }
+};
 
 /***/ }),
 

@@ -600,26 +600,20 @@ video {
 #astralab .right-1 {
   left: 0.25rem;
 }
+#astralab .right-2 {
+  left: 0.5rem;
+}
 #astralab .top-0 {
   top: 0px;
 }
 #astralab .top-1 {
   top: 0.25rem;
 }
-#astralab .top-\[50\%\] {
-  top: 50%;
-}
-#astralab .right-2 {
-  left: 0.5rem;
-}
-#astralab .top-5 {
-  top: 1.25rem;
-}
-#astralab .top-10 {
-  top: 2.5rem;
-}
 #astralab .top-12 {
   top: 3rem;
+}
+#astralab .top-\[50\%\] {
+  top: 50%;
 }
 #astralab .z-30 {
   z-index: 30;
@@ -630,27 +624,36 @@ video {
 #astralab .z-\[100\] {
   z-index: 100;
 }
-#astralab .mx-auto {
-  margin-right: auto;
-  margin-left: auto;
-}
-#astralab .my-10 {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-}
 #astralab .-mx-1 {
   margin-right: -0.25rem;
   margin-left: -0.25rem;
+}
+#astralab .mx-auto {
+  margin-right: auto;
+  margin-left: auto;
 }
 #astralab .my-1 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
 }
+#astralab .my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
 #astralab .mb-0 {
   margin-bottom: 0px;
 }
+#astralab .mb-1 {
+  margin-bottom: 0.25rem;
+}
 #astralab .mb-2 {
   margin-bottom: 0.5rem;
+}
+#astralab .mb-4 {
+  margin-bottom: 1rem;
+}
+#astralab .mb-8 {
+  margin-bottom: 2rem;
 }
 #astralab .ml-2 {
   margin-right: 0.5rem;
@@ -667,23 +670,17 @@ video {
 #astralab .mt-2 {
   margin-top: 0.5rem;
 }
-#astralab .mt-7 {
-  margin-top: 1.75rem;
-}
-#astralab .mb-1 {
-  margin-bottom: 0.25rem;
-}
-#astralab .mb-8 {
-  margin-bottom: 2rem;
-}
-#astralab .mb-4 {
-  margin-bottom: 1rem;
-}
 #astralab .mt-4 {
   margin-top: 1rem;
 }
+#astralab .mt-7 {
+  margin-top: 1.75rem;
+}
 #astralab .block {
   display: block;
+}
+#astralab .inline-block {
+  display: inline-block;
 }
 #astralab .inline {
   display: inline;
@@ -721,6 +718,9 @@ video {
 #astralab .h-3 {
   height: 0.75rem;
 }
+#astralab .h-3\.5 {
+  height: 0.875rem;
+}
 #astralab .h-4 {
   height: 1rem;
 }
@@ -733,38 +733,35 @@ video {
 #astralab .h-9 {
   height: 2.25rem;
 }
-#astralab .h-full {
-  height: 100%;
-}
-#astralab .h-3\.5 {
-  height: 0.875rem;
-}
 #astralab .h-\[var\(--radix-select-trigger-height\)\] {
   height: var(--radix-select-trigger-height);
+}
+#astralab .h-full {
+  height: 100%;
 }
 #astralab .h-px {
   height: 1px;
 }
-#astralab .max-h-screen {
-  max-height: 100vh;
-}
 #astralab .max-h-96 {
   max-height: 24rem;
 }
-#astralab .min-h-\[60px\] {
-  min-height: 60px;
+#astralab .max-h-screen {
+  max-height: 100vh;
 }
 #astralab .min-h-48 {
   min-height: 12rem;
 }
-#astralab .min-h-32 {
-  min-height: 8rem;
+#astralab .min-h-\[60px\] {
+  min-height: 60px;
 }
 #astralab .w-10 {
   width: 2.5rem;
 }
 #astralab .w-24 {
   width: 6rem;
+}
+#astralab .w-3\.5 {
+  width: 0.875rem;
 }
 #astralab .w-4 {
   width: 1rem;
@@ -775,38 +772,23 @@ video {
 #astralab .w-full {
   width: 100%;
 }
-#astralab .w-3\.5 {
-  width: 0.875rem;
-}
-#astralab .w-1\/3 {
-  width: 33.333333%;
-}
-#astralab .w-16 {
-  width: 4rem;
-}
 #astralab .min-w-\[8rem\] {
   min-width: 8rem;
 }
 #astralab .min-w-\[var\(--radix-select-trigger-width\)\] {
   min-width: var(--radix-select-trigger-width);
 }
-#astralab .max-w-lg {
-  max-width: 32rem;
-}
-#astralab .max-w-\[810px\] {
-  max-width: 810px;
-}
 #astralab .max-w-\[310px\] {
   max-width: 310px;
+}
+#astralab .max-w-lg {
+  max-width: 32rem;
 }
 #astralab .flex-1 {
   flex: 1 1 0%;
 }
 #astralab .shrink-0 {
   flex-shrink: 0;
-}
-#astralab .table-auto {
-  table-layout: auto;
 }
 #astralab .border-collapse {
   border-collapse: collapse;
@@ -819,31 +801,25 @@ video {
   --tw-translate-y: -50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-#astralab .cursor-pointer {
-  cursor: pointer;
-}
 #astralab .cursor-default {
   cursor: default;
+}
+#astralab .cursor-pointer {
+  cursor: pointer;
 }
 #astralab .select-none {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
 }
-#astralab .grid-cols-\[50\%_25\%_25\%\] {
-  grid-template-columns: 50% 25% 25%;
-}
-#astralab .grid-cols-\[50\%_1fr_1fr\] {
-  grid-template-columns: 50% 1fr 1fr;
-}
-#astralab .grid-cols-\[45\%_1fr_1fr\] {
-  grid-template-columns: 45% 1fr 1fr;
-}
 #astralab .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 #astralab .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+#astralab .grid-cols-\[45\%_1fr_1fr\] {
+  grid-template-columns: 45% 1fr 1fr;
 }
 #astralab .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -853,9 +829,6 @@ video {
 }
 #astralab .flex-col-reverse {
   flex-direction: column-reverse;
-}
-#astralab .flex-nowrap {
-  flex-wrap: nowrap;
 }
 #astralab .items-start {
   align-items: flex-start;
@@ -878,11 +851,11 @@ video {
 #astralab .gap-4 {
   gap: 1rem;
 }
-#astralab .gap-9 {
-  gap: 2.25rem;
-}
 #astralab .gap-6 {
   gap: 1.5rem;
+}
+#astralab .gap-9 {
+  gap: 2.25rem;
 }
 #astralab :is(.space-x-2 > :not([hidden]) ~ :not([hidden])) {
   --tw-space-x-reverse: 0;
@@ -899,11 +872,6 @@ video {
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
-#astralab :is(.space-y-8 > :not([hidden]) ~ :not([hidden])) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(2rem * var(--tw-space-y-reverse));
-}
 #astralab .overflow-hidden {
   overflow: hidden;
 }
@@ -916,6 +884,9 @@ video {
 #astralab .rounded {
   border-radius: 0.25rem;
 }
+#astralab .rounded-full {
+  border-radius: 9999px;
+}
 #astralab .rounded-lg {
   border-radius: var(--radius);
 }
@@ -924,12 +895,6 @@ video {
 }
 #astralab .rounded-sm {
   border-radius: calc(var(--radius) - 4px);
-}
-#astralab .rounded-full {
-  border-radius: 9999px;
-}
-#astralab .rounded-none {
-  border-radius: 0px;
 }
 #astralab .border {
   border-width: 1px;
@@ -975,6 +940,12 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
 }
+#astralab .bg-muted {
+  background-color: hsl(var(--muted));
+}
+#astralab .bg-popover {
+  background-color: hsl(var(--popover));
+}
 #astralab .bg-primary {
   background-color: hsl(var(--primary));
 }
@@ -992,30 +963,15 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
-#astralab .bg-muted {
-  background-color: hsl(var(--muted));
-}
-#astralab .bg-popover {
-  background-color: hsl(var(--popover));
-}
-#astralab .bg-blue-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(191 219 254 / var(--tw-bg-opacity, 1));
-}
-#astralab .bg-green-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(187 247 208 / var(--tw-bg-opacity, 1));
-}
-#astralab .bg-red-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 202 202 / var(--tw-bg-opacity, 1));
-}
 #astralab .fill-primary {
   fill: hsl(var(--primary));
 }
 #astralab .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+#astralab .p-0 {
+  padding: 0px;
 }
 #astralab .p-1 {
   padding: 0.25rem;
@@ -1025,9 +981,6 @@ video {
 }
 #astralab .p-6 {
   padding: 1.5rem;
-}
-#astralab .p-0 {
-  padding: 0px;
 }
 #astralab .px-2 {
   padding-right: 0.5rem;
@@ -1049,6 +1002,14 @@ video {
   padding-right: 2rem;
   padding-left: 2rem;
 }
+#astralab .py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+#astralab .py-1\.5 {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
 #astralab .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1061,21 +1022,12 @@ video {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-#astralab .py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
 #astralab .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
-#astralab .py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-#astralab .py-1\.5 {
-  padding-top: 0.375rem;
-  padding-bottom: 0.375rem;
+#astralab .pl-2 {
+  padding-right: 0.5rem;
 }
 #astralab .pl-24 {
   padding-right: 6rem;
@@ -1089,17 +1041,17 @@ video {
 #astralab .pr-6 {
   padding-left: 1.5rem;
 }
-#astralab .pt-2 {
-  padding-top: 0.5rem;
-}
-#astralab .pl-2 {
-  padding-right: 0.5rem;
-}
 #astralab .pr-8 {
   padding-left: 2rem;
 }
+#astralab .pt-2 {
+  padding-top: 0.5rem;
+}
 #astralab .text-center {
   text-align: center;
+}
+#astralab .text-\[0\.8rem\] {
+  font-size: 0.8rem;
 }
 #astralab .text-base {
   font-size: 1rem;
@@ -1117,20 +1069,17 @@ video {
   font-size: 0.75rem;
   line-height: 1rem;
 }
-#astralab .text-\[0\.8rem\] {
-  font-size: 0.8rem;
-}
 #astralab .font-bold {
   font-weight: 700;
+}
+#astralab .font-light {
+  font-weight: 300;
 }
 #astralab .font-medium {
   font-weight: 500;
 }
 #astralab .font-semibold {
   font-weight: 600;
-}
-#astralab .font-light {
-  font-weight: 300;
 }
 #astralab .uppercase {
   text-transform: uppercase;
@@ -1148,6 +1097,12 @@ video {
 #astralab .text-blue-600 {
   --tw-text-opacity: 1;
   color: rgb(37 99 235 / var(--tw-text-opacity, 1));
+}
+#astralab .text-current {
+  color: currentColor;
+}
+#astralab .text-destructive {
+  color: hsl(var(--destructive));
 }
 #astralab .text-destructive-foreground {
   color: hsl(var(--destructive-foreground));
@@ -1181,6 +1136,9 @@ video {
 #astralab .text-muted-foreground {
   color: hsl(var(--muted-foreground));
 }
+#astralab .text-popover-foreground {
+  color: hsl(var(--popover-foreground));
+}
 #astralab .text-primary {
   color: hsl(var(--primary));
 }
@@ -1194,30 +1152,17 @@ video {
 #astralab .text-secondary-foreground {
   color: hsl(var(--secondary-foreground));
 }
-#astralab .text-popover-foreground {
-  color: hsl(var(--popover-foreground));
-}
-#astralab .text-destructive {
-  color: hsl(var(--destructive));
-}
-#astralab .text-gray-300 {
-  --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity, 1));
-}
-#astralab .text-current {
-  color: currentColor;
-}
 #astralab .underline-offset-4 {
   text-underline-offset: 4px;
 }
 #astralab .opacity-0 {
   opacity: 0;
 }
-#astralab .opacity-90 {
-  opacity: 0.9;
-}
 #astralab .opacity-50 {
   opacity: 0.5;
+}
+#astralab .opacity-90 {
+  opacity: 0.9;
 }
 #astralab .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -1411,23 +1356,17 @@ video {
   text-decoration-line: underline;
 }
 
-#astralab .hover\:shadow-md:hover {
-  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 #astralab .focus\:bg-accent:focus {
   background-color: hsl(var(--accent));
+}
+
+#astralab .focus\:text-accent-foreground:focus {
+  color: hsl(var(--accent-foreground));
 }
 
 #astralab .focus\:text-indigo-600:focus {
   --tw-text-opacity: 1;
   color: rgb(79 70 229 / var(--tw-text-opacity, 1));
-}
-
-#astralab .focus\:text-accent-foreground:focus {
-  color: hsl(var(--accent-foreground));
 }
 
 #astralab .focus\:opacity-100:focus {
@@ -1460,11 +1399,6 @@ video {
   --tw-ring-color: hsl(var(--ring));
 }
 
-#astralab .focus\:ring-indigo-500:focus {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity, 1));
-}
-
 #astralab .focus\:ring-offset-2:focus {
   --tw-ring-offset-width: 2px;
 }
@@ -1474,15 +1408,15 @@ video {
   outline-offset: 2px;
 }
 
-#astralab .focus-visible\:ring-2:focus-visible {
-  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-}
-
 #astralab .focus-visible\:ring-1:focus-visible {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+#astralab .focus-visible\:ring-2:focus-visible {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
@@ -1561,21 +1495,6 @@ video {
   pointer-events: none;
 }
 
-#astralab .data-\[swipe\=cancel\]\:translate-x-0[data-swipe="cancel"] {
-  --tw-translate-x: 0px;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-#astralab .data-\[swipe\=end\]\:translate-x-\[var\(--radix-toast-swipe-end-x\)\][data-swipe="end"] {
-  --tw-translate-x: var(--radix-toast-swipe-end-x);
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-#astralab .data-\[swipe\=move\]\:translate-x-\[var\(--radix-toast-swipe-move-x\)\][data-swipe="move"] {
-  --tw-translate-x: var(--radix-toast-swipe-move-x);
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 #astralab .data-\[side\=bottom\]\:translate-y-1[data-side="bottom"] {
   --tw-translate-y: 0.25rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1593,6 +1512,21 @@ video {
 
 #astralab .data-\[side\=top\]\:-translate-y-1[data-side="top"] {
   --tw-translate-y: -0.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+#astralab .data-\[swipe\=cancel\]\:translate-x-0[data-swipe="cancel"] {
+  --tw-translate-x: 0px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+#astralab .data-\[swipe\=end\]\:translate-x-\[var\(--radix-toast-swipe-end-x\)\][data-swipe="end"] {
+  --tw-translate-x: var(--radix-toast-swipe-end-x);
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+#astralab .data-\[swipe\=move\]\:translate-x-\[var\(--radix-toast-swipe-move-x\)\][data-swipe="move"] {
+  --tw-translate-x: var(--radix-toast-swipe-move-x);
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -1662,6 +1596,22 @@ video {
   --tw-enter-scale: .95;
 }
 
+#astralab .data-\[side\=bottom\]\:slide-in-from-top-2[data-side="bottom"] {
+  --tw-enter-translate-y: -0.5rem;
+}
+
+#astralab .data-\[side\=left\]\:slide-in-from-right-2[data-side="left"] {
+  --tw-enter-translate-x: 0.5rem;
+}
+
+#astralab .data-\[side\=right\]\:slide-in-from-left-2[data-side="right"] {
+  --tw-enter-translate-x: -0.5rem;
+}
+
+#astralab .data-\[side\=top\]\:slide-in-from-bottom-2[data-side="top"] {
+  --tw-enter-translate-y: 0.5rem;
+}
+
 #astralab .data-\[state\=closed\]\:slide-out-to-left-1\/2[data-state="closed"] {
   --tw-exit-translate-x: -50%;
 }
@@ -1684,22 +1634,6 @@ video {
 
 #astralab .data-\[state\=open\]\:slide-in-from-top-full[data-state="open"] {
   --tw-enter-translate-y: -100%;
-}
-
-#astralab .data-\[side\=bottom\]\:slide-in-from-top-2[data-side="bottom"] {
-  --tw-enter-translate-y: -0.5rem;
-}
-
-#astralab .data-\[side\=left\]\:slide-in-from-right-2[data-side="left"] {
-  --tw-enter-translate-x: 0.5rem;
-}
-
-#astralab .data-\[side\=right\]\:slide-in-from-left-2[data-side="right"] {
-  --tw-enter-translate-x: -0.5rem;
-}
-
-#astralab .data-\[side\=top\]\:slide-in-from-bottom-2[data-side="top"] {
-  --tw-enter-translate-y: 0.5rem;
 }
 
 @media (min-width: 640px) {
