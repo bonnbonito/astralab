@@ -20,7 +20,7 @@ $astralab = PucFactory::buildUpdateChecker(
 
 add_filter(
 	'ai1wm_exclude_themes_from_export',
-	function ( $exclude_filters ) {
+	function ($exclude_filters) {
 		$exclude_filters[] = '/node_modules';
 		return $exclude_filters;
 	}
@@ -78,3 +78,26 @@ function convert_trello_markup_to_html( $trello_markup ) {
 
 	return $html;
 }
+
+function modify_rest_featured_media() {
+	register_rest_field(
+		'product-type', // The post type (e.g., 'post', 'product', etc.)
+		'featured_media_url', // The new field name
+		array(
+			'get_callback' => function ($object) {
+				$media_id = $object['featured_media'];
+				if ( $media_id ) {
+					return wp_get_attachment_url( $media_id );
+				}
+				return null;
+			},
+			'update_callback' => null, // Optional: If you want to make it writable
+			'schema' => array(
+				'description' => 'The URL of the featured media.',
+				'type' => 'string',
+				'context' => array( 'view', 'edit' ),
+			),
+		)
+	);
+}
+add_action( 'rest_api_init', 'modify_rest_featured_media' );

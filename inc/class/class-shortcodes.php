@@ -32,6 +32,7 @@ class Shortcodes {
 	 * @return bool|string
 	 */
 	public function order_form_shortcode() {
+
 		ob_start();
 		wp_enqueue_style( 'astralab/trello' );
 		wp_enqueue_script( 'astralab/trello' );

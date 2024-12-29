@@ -1,22 +1,40 @@
 import ProjectDetails from './ProjectDetails';
 import ProjectType from './ProductType';
-import ADAWayfinding from './products/ADAWayfinding';
+import ADAWayfinding from './products/ADA/ADAWayfinding';
+import { WatchedValues } from '@/trello/helpers/types';
 
 interface MainProps {
 	form: any;
-	productType?: string[];
+	productComponent?: string[]; // Optional array of strings
+	productId?: number[]; // Optional array of numbers
+	watchedValues: WatchedValues; // Optional array of any type
 }
 
-export default function Main({ form, productType }: MainProps) {
+export default function Main({
+	form,
+	productComponent = [],
+	productId = [],
+	watchedValues,
+}: MainProps) {
 	return (
 		<>
 			<div className="flex-1 w-full">
 				<ProjectDetails form={form} />
 
-				<h3>PRODUCT TYPE</h3>
+				<h3 className="text-[30px]">PRODUCT TYPE</h3>
 				<ProjectType form={form} />
 
-				{productType?.includes('ADA Wayfinding') && <ADAWayfinding />}
+				{productId.map((id, index) => (
+					<div key={id} className="productAccordion">
+						{productComponent[index] === 'ADAWayfinding' && (
+							<ADAWayfinding
+								form={form}
+								product={id}
+								watchedValues={watchedValues}
+							/>
+						)}
+					</div>
+				))}
 			</div>
 		</>
 	);

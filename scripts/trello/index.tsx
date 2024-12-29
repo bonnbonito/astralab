@@ -17,6 +17,8 @@ domReady(() => {
 	}
 });
 
+declare const trello_ajax_object: any;
+
 async function submitForm(
 	form: HTMLFormElement,
 	action: string,
@@ -44,7 +46,14 @@ async function submitForm(
 			responseDiv.innerHTML = 'Error: ' + data.data;
 		}
 	} catch (error) {
-		responseDiv.innerHTML = `An error occurred: ${error.message}`;
+		// Narrow the error type
+		if (error instanceof Error) {
+			responseDiv.innerHTML = `An error occurred: ${error.message}`;
+		} else {
+			// Fallback for unexpected error types
+			responseDiv.innerHTML = 'An unknown error occurred.';
+			console.error('Unexpected error:', error);
+		}
 	}
 }
 

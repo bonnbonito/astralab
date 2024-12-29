@@ -37,7 +37,7 @@ class Scripts {
 	 * @return array Modified array of CSS files to enqueue.
 	 */
 	public function kadence_css_files( $css ) {
-		unset( $css['kadence-content'] );
+		//unset( $css['kadence-content'] );
 		return $css;
 	}
 
@@ -101,5 +101,16 @@ class Scripts {
 	public function enqueue_scripts() {
 		wp_enqueue_style( 'astralab/main' );
 		wp_enqueue_script( 'astralab/main' );
+
+		wp_localize_script(
+			'astralab/trello',
+			'astralab',
+			array(
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'nonce' => wp_create_nonce( 'astralab_nonce' ),
+				'options' => rest_url() . 'astralab/v1/options',
+				'product-types' => rest_url() . 'wp/v2/product-type'
+			)
+		);
 	}
 }

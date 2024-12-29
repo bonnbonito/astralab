@@ -1,22 +1,21 @@
 import { Button } from '@/components/ui/button';
+import { WatchedValues } from '@/trello/helpers/types';
+import SidebarDetails from './SidebarDetails';
 
 interface SidebarProps {
-	watchedValues: {
-		layoutType?: string;
-		projectName: string;
-		turnaroundTime?: string;
-		designDetails?: string;
-		projectDescription?: string;
-		fileUpload?: File[];
-		productType?: string[];
-	};
+	watchedValues: WatchedValues;
 }
 
 export default function Sidebar({ watchedValues }: SidebarProps) {
+	const productTypes = watchedValues.productType || {};
+	const hasProductTypes = Object.keys(productTypes).length > 0;
+
 	return (
-		<div className="max-w-[310px] w-full  ">
+		<div className="max-w-[310px] w-full">
 			<div className="px-4 py-6 border flex-1 rounded sticky top-12">
 				<h5 className="uppercase font-semibold text-lg">Project Summary</h5>
+
+				{/* General Project Details */}
 				<div className="grid grid-cols-2 gap-4 mb-1">
 					<div className="uppercase font-semibold text-sm">Project Name</div>
 					<div className="text-xs">{watchedValues.projectName}</div>
@@ -40,6 +39,7 @@ export default function Sidebar({ watchedValues }: SidebarProps) {
 					<div className="text-xs">{watchedValues.layoutType}</div>
 				</div>
 
+				{/* File Uploads */}
 				<div className="grid grid-cols-2 gap-4 mb-1">
 					<div className="uppercase font-semibold text-sm">Uploads</div>
 					<div className="text-xs">
@@ -54,50 +54,41 @@ export default function Sidebar({ watchedValues }: SidebarProps) {
 					</div>
 				</div>
 
-				{watchedValues.productType && watchedValues.productType.length > 0 && (
+				{/* Product Types */}
+				{hasProductTypes && (
 					<div className="mt-4">
 						<h5 className="uppercase font-semibold text-lg">Product Types</h5>
+						{Object.entries(productTypes).map(([id, productObject], index) => {
+							// Safely access the component for the current product type
+							const component = watchedValues?.productComponent?.[index] || '';
 
-						{Array.isArray(watchedValues.productType) &&
-							watchedValues.productType.includes('ADA Wayfinding') && (
-								<h4 className="uppercase font-semibold text-base">
-									ADA Wayfinding
-								</h4>
-							)}
+							// Perform runtime check or assertion
+							if (
+								typeof productObject === 'object' &&
+								productObject !== null &&
+								'title' in productObject
+							) {
+								return (
+									<SidebarDetails
+										productTypes={productObject}
+										title={productObject.title || 'Untitled Product'}
+										key={id}
+										component={component}
+									/>
+								);
+							}
 
-						{Array.isArray(watchedValues.productType) &&
-							watchedValues.productType.includes('Monuments & Pylons') && (
-								<h4 className="uppercase font-semibold text-base">
-									Monuments & Pylons
-								</h4>
-							)}
-
-						{Array.isArray(watchedValues.productType) &&
-							watchedValues.productType.includes('Channel Letters') && (
-								<h4 className="uppercase font-semibold text-base">
-									Channel Letters
-								</h4>
-							)}
-
-						{Array.isArray(watchedValues.productType) &&
-							watchedValues.productType.includes('Dimensional Letters') && (
-								<h4 className="uppercase font-semibold text-base">
-									Dimensional Letters
-								</h4>
-							)}
-
-						{Array.isArray(watchedValues.productType) &&
-							watchedValues.productType.includes('Lightbox') && (
-								<h4 className="uppercase font-semibold text-base">Lightbox</h4>
-							)}
-
-						{Array.isArray(watchedValues.productType) &&
-							watchedValues.productType.includes('Undecided') && (
-								<h4 className="uppercase font-semibold text-base">Undecided</h4>
-							)}
+							// Log and skip invalid entries
+							console.error(
+								`Invalid productObject for ID ${id}:`,
+								productObject
+							);
+							return null;
+						})}
 					</div>
 				)}
 
+				{/* Submit Button */}
 				<Button type="submit" className="w-full uppercase font-semibold">
 					Place Order
 				</Button>

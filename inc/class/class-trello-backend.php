@@ -41,6 +41,101 @@ class Trello_Backend {
 		// AJAX: handle trello card creation
 		add_action( 'wp_ajax_handle_trello_form_submission', array( $this, 'handle_trello_form_submission_ajax' ) );
 		add_action( 'wp_ajax_nopriv_handle_trello_form_submission', array( $this, 'handle_trello_form_submission_ajax' ) );
+
+		//Add Rest API for Options
+		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
+	}
+
+	/**
+	 * Register REST API routes
+	 */
+	public function register_rest_routes() {
+		register_rest_route( 'astralab/v1', '/options', array(
+			'methods' => 'GET',
+			'callback' => function () {
+				return get_fields( 'options' ); // Retrieve ACF options page fields
+			},
+		) );
+
+		register_rest_field(
+			'product-type',
+			'featured_media_url',
+			array(
+				'get_callback' => function ($object) {
+					$media_id = $object['featured_media'];
+					if ( $media_id ) {
+						return wp_get_attachment_url( $media_id );
+					}
+					return null;
+				},
+				'update_callback' => null, // Optional: If you want to make it writable
+				'schema' => array(
+					'description' => 'The URL of the featured media.',
+					'type' => 'string',
+					'context' => array( 'view' ),
+				),
+			)
+		);
+
+		register_rest_field(
+			'product-type',
+			'component_field',
+			array(
+				'get_callback' => function ($object) {
+					$post_id = $object['id'];
+					if ( $post_id ) {
+						return get_field( 'component', $post_id );
+					}
+					return null;
+				},
+				'update_callback' => null, // Optional: If you want to make it writable
+				'schema' => array(
+					'description' => 'Component field.',
+					'type' => 'string',
+					'context' => array( 'view' ),
+				),
+			)
+		);
+
+		register_rest_field(
+			'product-type',
+			'design_inspiration',
+			array(
+				'get_callback' => function ($object) {
+					$post_id = $object['id'];
+					if ( $post_id ) {
+						return get_field( 'design_inspiration', $post_id );
+					}
+					return null;
+				},
+				'update_callback' => null, // Optional: If you want to make it writable
+				'schema' => array(
+					'description' => 'Design Inspiration.',
+					'type' => 'string',
+					'context' => array( 'view' ),
+				),
+			)
+		);
+
+		register_rest_field(
+			'product-type',
+			'product_types_options',
+			array(
+				'get_callback' => function ($object) {
+					$post_id = $object['id'];
+					if ( $post_id ) {
+						return get_field( 'product_types_options', $post_id );
+					}
+					return null;
+				},
+				'update_callback' => null, // Optional: If you want to make it writable
+				'schema' => array(
+					'description' => 'Type Options.',
+					'type' => 'string',
+					'context' => array( 'view' ),
+				),
+			)
+		);
 	}
 
 	/**
@@ -58,7 +153,7 @@ class Trello_Backend {
 	 * @param string $description
 	 */
 	public function register_trello_webhook( $id_model, $description = 'My Trello Webhook' ) {
-		$options      = get_option( $this->option_name );
+		$options = get_option( $this->option_name );
 		$callback_url = $options['trello_webhook_callback'] ?? '';
 
 		// Validate inputs
@@ -69,7 +164,7 @@ class Trello_Backend {
 		// Prepare request payload
 		$body = array(
 			'callbackURL' => $callback_url,
-			'idModel'     => $id_model,
+			'idModel' => $id_model,
 			'description' => $description,
 		);
 
@@ -92,36 +187,36 @@ class Trello_Backend {
 			return;
 		}
 		$trello_board_id = get_user_meta( $user->ID, 'trello_board_id', true );
-		$trello_url      = get_user_meta( $user->ID, 'trello_board_short_url', true );
-		$trello_list_id  = get_user_meta( $user->ID, 'trello_list_id', true );
+		$trello_url = get_user_meta( $user->ID, 'trello_board_short_url', true );
+		$trello_list_id = get_user_meta( $user->ID, 'trello_list_id', true );
 
 		?>
-<h2>Create Trello Board</h2>
-<table class="form-table">
-    <tr>
-        <th scope="row"><label for="create_trello_board">Trello Board</label></th>
-        <?php
-		if ( ! empty( $trello_board_id ) ) {
-			echo '<td>
+		<h2>Create Trello Board</h2>
+		<table class="form-table">
+			<tr>
+				<th scope="row"><label for="create_trello_board">Trello Board</label></th>
+				<?php
+				if ( ! empty( $trello_board_id ) ) {
+					echo '<td>
 					<p><strong>Trello Board ID:</strong> ' . esc_html( $trello_board_id ) . ' <a href="' . esc_url( $trello_url ) . '" target="_blank">View Board</a></p>';
-			if ( ! empty( $trello_list_id ) ) {
-				echo '<p><strong>List ID:</strong> ' . esc_html( $trello_list_id ) . '</p>';
-			}
-			echo '</td>';
-		} else {
-			?>
-        <td>
-            <label for="create_trello_board">
-                <input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
-                Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
-            </label>
-        </td>
-        <?php
-		}
-		?>
-    </tr>
-</table>
-<?php
+					if ( ! empty( $trello_list_id ) ) {
+						echo '<p><strong>List ID:</strong> ' . esc_html( $trello_list_id ) . '</p>';
+					}
+					echo '</td>';
+				} else {
+					?>
+					<td>
+						<label for="create_trello_board">
+							<input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
+							Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
+						</label>
+					</td>
+					<?php
+				}
+				?>
+			</tr>
+		</table>
+		<?php
 	}
 
 	/**
@@ -143,15 +238,15 @@ class Trello_Backend {
 			return;
 		}
 
-		$full_name  = $user->display_name ?: 'User';
+		$full_name = $user->display_name ?: 'User';
 		$board_name = $full_name . ' Board';
 
 		// Prepare board creation arguments
 		$board_args = array(
-			'name'                  => $board_name,
-			'defaultLists'          => 'true',
+			'name' => $board_name,
+			'defaultLists' => 'true',
 			'prefs_permissionLevel' => 'private',
-			'idOrganization'        => 'astralabtickets',
+			'idOrganization' => 'astralabtickets',
 		);
 
 		// Create the board using trello_api_request
@@ -198,7 +293,7 @@ class Trello_Backend {
 			array(
 				'user_id' => $user_id,
 				'updated' => 'true',
-				'type'    => $type,
+				'type' => $type,
 				'message' => urlencode( $message ),
 			),
 			admin_url( 'user-edit.php' )
@@ -210,7 +305,7 @@ class Trello_Backend {
 	public function astralab_show_trello_board_message_checkbox() {
 		if ( isset( $_GET['updated'] ) && $_GET['updated'] === 'true' && isset( $_GET['message'] ) ) {
 			$message = urldecode( $_GET['message'] );
-			$type    = isset( $_GET['type'] ) ? sanitize_text_field( $_GET['type'] ) : 'error';
+			$type = isset( $_GET['type'] ) ? sanitize_text_field( $_GET['type'] ) : 'error';
 
 			$class = ( $type === 'success' ) ? 'notice-success' : 'notice-error';
 

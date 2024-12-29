@@ -7,110 +7,178 @@ import {
 } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
+import { useEffect, useState } from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface ProductTypeProps {
-	form: HTMLFormElement;
+	form: any; // If using React Hook Form, prefer UseFormReturn<YourFormValues>
 }
 
+declare const astralab: any;
+
 export default function ProductType({ form }: ProductTypeProps) {
-	const layoutOptions = [
-		{
-			id: 'ada-wayfinding',
-			label: 'ADA Wayfinding',
-			imageUrl:
-				'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png',
-		},
-		{
-			id: 'monuments',
-			label: 'Monuments & Pylons',
-			imageUrl:
-				'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png',
-		},
-		{
-			id: 'channel-letters',
-			label: 'Channel Letters',
-			imageUrl:
-				'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png',
-		},
-		{
-			id: 'dimensional-letters',
-			label: 'Dimensional Letters',
-			imageUrl:
-				'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png',
-		},
-		{
-			id: 'lightbox',
-			label: 'Lightbox',
-			imageUrl:
-				'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png',
-		},
-		{
-			id: 'undecided',
-			label: 'Undecided',
-			imageUrl:
-				'http://localhost:8888/wp-content/uploads/2024/12/Lightbox-1-1.png',
-		},
-	];
+	const [productTypes, setProductTypes] = useState<any>(null);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		async function fetchProductTypes() {
+			try {
+				const response = await fetch(astralab['product-types']);
+				if (!response.ok) {
+					throw new Error(`HTTP error! Status: ${response.status}`);
+				}
+				const data = await response.json();
+				setProductTypes(data);
+			} catch (error) {
+				console.error('Error fetching product types:', error);
+			} finally {
+				setLoading(false);
+			}
+		}
+
+		fetchProductTypes();
+	}, []);
 
 	return (
-		<>
-			<div className="border px-4 py-6 mb-8 rounded">
-				<div className="mb-4">
-					<FormField
-						control={form.control}
-						name="productType"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel className="uppercase font-medium">
-									Product Type
-								</FormLabel>
-								<FormControl>
-									<div className="grid grid-cols-3 gap-6">
-										{layoutOptions.map((option) => (
-											<div key={option.id}>
-												<div className="flex items-start justify-between gap-4">
-													<Checkbox
-														id={option.id}
-														checked={field.value?.includes(option.label)}
-														onCheckedChange={(checked) => {
-															const newValue = checked
-																? [...(field.value || []), option.label]
-																: field.value.filter(
-																		(v: string) => v !== option.label
-																  );
-															field.onChange(newValue);
-														}}
-														className="p-0 border-solid bg-transparent"
-													/>
+		<div className="border px-4 py-6 mb-8 rounded">
+			<FormField
+				control={form.control}
+				name="productType"
+				render={() => (
+					<FormItem>
+						<FormLabel className="uppercase font-medium">
+							Product Type
+						</FormLabel>
+						<FormControl>
+							<div className="grid grid-cols-3 gap-6">
+								{loading ? (
+									Array.from({ length: 3 }).map((_, index) => (
+										<div className="flex flex-col space-y-3" key={index}>
+											<div className="space-y-2">
+												<Skeleton className="h-4 w-full" />
+											</div>
+											<Skeleton className="h-[150px] w-full rounded-xl" />
+											<div className="space-y-2">
+												<Skeleton className="h-4 w-full" />
+											</div>
+										</div>
+									))
+								) : productTypes?.length > 0 ? (
+									productTypes.map(
+										(post: {
+											id: number;
+											title: { rendered: string };
+											featured_media_url: string;
+											acf: { component: string };
+										}) => {
+											const productTypeObj =
+												form.getValues('productType') || {};
+											// If a key exists for this post.id, it's considered 'checked'
+											const isChecked = Boolean(productTypeObj[post.id]);
+
+											return (
+												<div key={`prodtype-${post.id}`}>
+													<div className="flex items-start justify-between gap-4">
+														<Checkbox
+															id={`prodtype-${post.id}`}
+															checked={isChecked}
+															onCheckedChange={(checked) => {
+																const updatedProductType = {
+																	...productTypeObj,
+																};
+
+																if (checked) {
+																	/*
+                                    If checked, set the key to an object:
+                                    { title: "ADA Wayfinding" }
+                                  */
+																	updatedProductType[post.id] = {
+																		title: post.title.rendered,
+																	};
+																} else {
+																	/*
+                                    If unchecked, remove the key completely.
+                                  */
+																	delete updatedProductType[post.id];
+																}
+
+																// Save back to form
+																form.setValue(
+																	'productType',
+																	updatedProductType
+																);
+
+																// Handle productComponent
+																const productComponentCurrent =
+																	form.getValues('productComponent') || [];
+																let newProductComponent = [
+																	...productComponentCurrent,
+																];
+
+																if (checked) {
+																	newProductComponent.push(post.acf.component);
+																} else {
+																	newProductComponent =
+																		newProductComponent.filter(
+																			(item) => item !== post.acf.component
+																		);
+																}
+																form.setValue(
+																	'productComponent',
+																	newProductComponent
+																);
+
+																// Handle productId
+																const productIdCurrent =
+																	form.getValues('productId') || [];
+																let newProductId = [...productIdCurrent];
+
+																if (checked) {
+																	newProductId.push(post.id);
+																} else {
+																	newProductId = newProductId.filter(
+																		(item) => item !== post.id
+																	);
+																}
+																form.setValue('productId', newProductId);
+															}}
+															className="p-0 border-solid bg-transparent"
+														/>
+														<Label
+															htmlFor={`prodtype-${post.id}`}
+															className="cursor-pointer uppercase font-medium text-sm"
+															dangerouslySetInnerHTML={{
+																__html: post.title.rendered,
+															}}
+														/>
+													</div>
+
 													<Label
-														htmlFor={option.id}
-														className="cursor-pointer uppercase font-medium text-sm"
-													>
-														{option.label}
-													</Label>
-												</div>
-												<div>
-													<Label
-														htmlFor={option.id}
+														htmlFor={`prodtype-${post.id}`}
 														className="cursor-pointer uppercase font-medium text-sm"
 													>
 														<img
-															src={option.imageUrl}
-															alt={option.label}
+															src={
+																post.featured_media_url ||
+																'placeholder-image-url'
+															}
+															alt={post.title.rendered}
 															className="object-cover mt-2 rounded-md w-full"
 														/>
 													</Label>
 												</div>
-											</div>
-										))}
-									</div>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-				</div>
-			</div>
-		</>
+											);
+										}
+									)
+								) : (
+									<p>No product types available</p>
+								)}
+							</div>
+						</FormControl>
+						<FormMessage />
+					</FormItem>
+				)}
+			/>
+		</div>
 	);
 }
