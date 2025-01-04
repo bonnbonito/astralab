@@ -1,13 +1,11 @@
 import SidebarADA from './products/ADA/SidebarADA';
 
 interface SidebarDetailsProps {
-	productTypes?: { [key: string]: any }; // Allow flexible types for dynamic keys
 	title: string;
 	component?: string;
 }
 
 export default function SidebarDetails({
-	productTypes,
 	title,
 	component,
 }: SidebarDetailsProps) {
@@ -18,9 +16,7 @@ export default function SidebarDetails({
 				dangerouslySetInnerHTML={{ __html: title }}
 			/>
 
-			{component === 'ADAWayfinding' && (
-				<SidebarADA productTypes={productTypes} />
-			)}
+			{component === 'ADAWayfinding' && <SidebarADA />}
 		</div>
 	);
 }

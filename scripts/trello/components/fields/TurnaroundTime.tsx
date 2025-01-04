@@ -12,19 +12,16 @@ import {
 	SelectContent,
 	SelectItem,
 } from '@/components/ui/select';
+import { FormSchema } from '@/trello/helpers/schema';
 
-import { FieldValues, UseFormReturn } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 
 interface TurnaroundTimeOption {
 	name: string;
 }
 
-interface MyFormValues extends FieldValues {
-	turnaroundTime: string;
-}
-
 interface TurnaroundTimeProps {
-	form: UseFormReturn<MyFormValues>;
+	form: UseFormReturn<FormSchema>;
 	turnaroundTimeOptions: TurnaroundTimeOption[];
 	loading: boolean;
 }

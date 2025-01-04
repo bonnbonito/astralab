@@ -8,20 +8,16 @@ import {
 import { Skeleton } from '@/components/ui/skeleton';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { UseFormReturn, FieldValues } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
+import { FormSchema } from '@/trello/helpers/schema';
 
 interface LayoutOption {
 	title: string;
-	id: string;
 	image: { url: string };
 }
 
-interface MyFormValues extends FieldValues {
-	layoutType: string;
-}
-
 interface LayoutTypeProps {
-	form: UseFormReturn<MyFormValues>;
+	form: UseFormReturn<FormSchema>;
 	loading: boolean;
 	layoutTypeOptions: LayoutOption[];
 }

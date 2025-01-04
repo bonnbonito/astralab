@@ -1,71 +1,106 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm, useWatch } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Form } from '@/components/ui/form';
+import { formSchema, formDefaultValues, FormSchema } from '../helpers/schema';
 
+import { Button } from '@/components/ui/button';
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import { Skeleton } from '@/components/ui/skeleton';
+
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from '@/components/ui/select';
+
+import ProductType from './ProductType';
+import { Astralab, Options } from '../helpers/types';
 import Sidebar from './Sidebar';
 import Main from './Main';
 
-import { projectDetailsSchema } from '../helpers/schema';
+declare const astralab: Astralab;
 
-import { exampleRefine } from '../helpers/superRefine';
-import { defaultValues } from '../helpers/defaults';
-import { adaRefine } from './products/ADA/adaRefine';
-
-const formSchema = z
-	.object({
-		projectName: z.string().min(2, {
-			message: 'Project Name must be at least 2 characters.',
-		}),
-		...projectDetailsSchema,
-	})
-	.superRefine((data, ctx) => {
-		exampleRefine(data, ctx);
-		adaRefine(data, ctx);
-	});
+const defaultOptions: Options = {
+	turnaround_time: [],
+	layout_types: [],
+	design_details: [],
+};
 
 export default function OrderForm() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
-		defaultValues: defaultValues,
+		defaultValues: formDefaultValues,
 	});
 
-	const watchedValues = form.watch();
+	const onSubmit: SubmitHandler<FormSchema> = (data) => {
+		console.log(data);
+	};
 
-	const [layoutType, productType, productComponent, productId] = useWatch({
-		control: form.control,
-		name: ['layoutType', 'productType', 'productComponent', 'productId'],
-	});
+	const [options, setOptions] = useState(null);
+	const [loading, setLoading] = useState(true);
 
-	function onSubmit(values: z.infer<typeof formSchema>) {
-		console.log(values);
-		console.log(watchedValues, 'Tewr');
-	}
-
-	// Automatically remove productType values if layoutType is "option2"
 	useEffect(() => {
-		// if (layoutType === 'Layout 2') {
-		// 	form.setValue('productType', ['ADA Wayfinding']);
-		// } else {
-		// 	form.setValue('productType', []);
-		// }
-	}, [layoutType, form]);
+		async function fetchOptions() {
+			try {
+				const response = await fetch(astralab.options);
+
+				if (!response.ok) {
+					throw new Error(`HTTP error! Status: ${response.status}`);
+				}
+
+				const data = await response.json();
+				setOptions(data);
+				setLoading(false);
+			} catch (error) {
+				console.error('Error fetching options:', error);
+				setLoading(false);
+			}
+		}
+
+		fetchOptions();
+	}, []);
+
+	const typedOptions: Options = options ? (options as Options) : defaultOptions;
+
+	const turnaroundTimeOptions = (typedOptions.turnaround_time || []).map(
+		(item) => {
+			if (typeof item === 'string') {
+				return { name: item };
+			}
+			return item;
+		}
+	) as { name: string }[];
+	const layoutTypeOptions = (typedOptions.layout_types || []).map((item) => {
+		if (typeof item === 'string') {
+			return { title: item, image: { url: '' } };
+		}
+		return item;
+	}) as { title: string; image: { url: string } }[];
+	const designDetailsOptions = typedOptions?.design_details || [];
 
 	return (
 		<Form {...form}>
-			<h3 className="text-[30px]">PROJECT DETAILS</h3>
 			<form onSubmit={form.handleSubmit(onSubmit)} className="md:flex gap-9">
-				<Main
-					form={form}
-					productComponent={productComponent}
-					productId={productId}
-					watchedValues={watchedValues}
-				/>
+				<Main form={form} />
 
-				<Sidebar watchedValues={watchedValues} />
+				<Sidebar form={form} />
 			</form>
 		</Form>
 	);

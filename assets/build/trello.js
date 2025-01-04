@@ -185,77 +185,6 @@ var suppressOthers = function (originalTarget, parentNode, markerName) {
 
 /***/ }),
 
-/***/ "./themes/astralab/scripts/components/ui/accordion.tsx":
-/*!*************************************************************!*\
-  !*** ./themes/astralab/scripts/components/ui/accordion.tsx ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Accordion: () => (/* binding */ Accordion),
-/* harmony export */   AccordionContent: () => (/* binding */ AccordionContent),
-/* harmony export */   AccordionItem: () => (/* binding */ AccordionItem),
-/* harmony export */   AccordionTrigger: () => (/* binding */ AccordionTrigger)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _radix_ui_react_accordion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @radix-ui/react-accordion */ "./node_modules/@radix-ui/react-accordion/dist/index.mjs");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/chevron-down.js");
-/* harmony import */ var _lib_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/lib/utils */ "./themes/astralab/scripts/lib/utils.ts");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
-'use client';
-
-
-
-
-
-
-const Accordion = _radix_ui_react_accordion__WEBPACK_IMPORTED_MODULE_3__.Root;
-const AccordionItem = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(({
-  className,
-  ...props
-}, ref) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_radix_ui_react_accordion__WEBPACK_IMPORTED_MODULE_3__.Item, {
-  ref: ref,
-  className: (0,_lib_utils__WEBPACK_IMPORTED_MODULE_1__.cn)('border-b', className),
-  ...props
-}));
-AccordionItem.displayName = 'AccordionItem';
-const AccordionTrigger = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(({
-  className,
-  children,
-  ...props
-}, ref) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_radix_ui_react_accordion__WEBPACK_IMPORTED_MODULE_3__.Header, {
-  className: "flex",
-  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_radix_ui_react_accordion__WEBPACK_IMPORTED_MODULE_3__.Trigger, {
-    ref: ref,
-    className: (0,_lib_utils__WEBPACK_IMPORTED_MODULE_1__.cn)('flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline text-left [&[data-state=open]>svg]:rotate-180', className),
-    ...props,
-    children: [children, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      className: "h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200"
-    })]
-  })
-}));
-AccordionTrigger.displayName = _radix_ui_react_accordion__WEBPACK_IMPORTED_MODULE_3__.Trigger.displayName;
-const AccordionContent = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(({
-  className,
-  children,
-  ...props
-}, ref) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_radix_ui_react_accordion__WEBPACK_IMPORTED_MODULE_3__.Content, {
-  ref: ref,
-  className: "overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
-  ...props,
-  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: (0,_lib_utils__WEBPACK_IMPORTED_MODULE_1__.cn)('pb-4 pt-0', className),
-    children: children
-  })
-}));
-AccordionContent.displayName = _radix_ui_react_accordion__WEBPACK_IMPORTED_MODULE_3__.Content.displayName;
-
-
-/***/ }),
-
 /***/ "./themes/astralab/scripts/components/ui/button.tsx":
 /*!**********************************************************!*\
   !*** ./themes/astralab/scripts/components/ui/button.tsx ***!
@@ -891,38 +820,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _ProjectDetails__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProjectDetails */ "./themes/astralab/scripts/trello/components/ProjectDetails.tsx");
 /* harmony import */ var _ProductType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductType */ "./themes/astralab/scripts/trello/components/ProductType.tsx");
-/* harmony import */ var _products_ADA_ADAWayfinding__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./products/ADA/ADAWayfinding */ "./themes/astralab/scripts/trello/components/products/ADA/ADAWayfinding.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
-
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 function Main({
-  form,
-  productComponent = [],
-  productId = [],
-  watchedValues
+  form
 }) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "flex-1 w-full",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ProjectDetails__WEBPACK_IMPORTED_MODULE_0__["default"], {
-        form: form
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
-        className: "text-[30px]",
-        children: "PRODUCT TYPE"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ProductType__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        form: form
-      }), productId.map((id, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "productAccordion",
-        children: productComponent[index] === 'ADAWayfinding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_products_ADA_ADAWayfinding__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          form: form,
-          product: id,
-          watchedValues: watchedValues
-        })
-      }, id))]
-    })
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "flex-1 w-full",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProjectDetails__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      form: form
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+      className: "text-[30px]",
+      children: "PRODUCT TYPE"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProductType__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      form: form
+    })]
   });
 }
 
@@ -941,17 +856,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _hookform_resolvers_zod__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @hookform/resolvers/zod */ "./node_modules/@hookform/resolvers/zod/dist/zod.mjs");
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
-/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
-/* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/form */ "./themes/astralab/scripts/components/ui/form.tsx");
-/* harmony import */ var _Sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Sidebar */ "./themes/astralab/scripts/trello/components/Sidebar.tsx");
-/* harmony import */ var _Main__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Main */ "./themes/astralab/scripts/trello/components/Main.tsx");
-/* harmony import */ var _helpers_schema__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../helpers/schema */ "./themes/astralab/scripts/trello/helpers/schema.js");
-/* harmony import */ var _helpers_superRefine__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../helpers/superRefine */ "./themes/astralab/scripts/trello/helpers/superRefine.tsx");
-/* harmony import */ var _helpers_defaults__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../helpers/defaults */ "./themes/astralab/scripts/trello/helpers/defaults.tsx");
-/* harmony import */ var _products_ADA_adaRefine__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./products/ADA/adaRefine */ "./themes/astralab/scripts/trello/components/products/ADA/adaRefine.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var _helpers_schema__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/schema */ "./themes/astralab/scripts/trello/helpers/schema.tsx");
+/* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/ui/form */ "./themes/astralab/scripts/components/ui/form.tsx");
+/* harmony import */ var _Sidebar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Sidebar */ "./themes/astralab/scripts/trello/components/Sidebar.tsx");
+/* harmony import */ var _Main__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Main */ "./themes/astralab/scripts/trello/components/Main.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
 'use client';
 
 
@@ -962,59 +873,70 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-const formSchema = zod__WEBPACK_IMPORTED_MODULE_10__.z.object({
-  projectName: zod__WEBPACK_IMPORTED_MODULE_10__.z.string().min(2, {
-    message: 'Project Name must be at least 2 characters.'
-  }),
-  ..._helpers_schema__WEBPACK_IMPORTED_MODULE_5__.projectDetailsSchema
-}).superRefine((data, ctx) => {
-  (0,_helpers_superRefine__WEBPACK_IMPORTED_MODULE_6__.exampleRefine)(data, ctx);
-  (0,_products_ADA_adaRefine__WEBPACK_IMPORTED_MODULE_8__.adaRefine)(data, ctx);
-});
+const defaultOptions = {
+  turnaround_time: [],
+  layout_types: [],
+  design_details: []
+};
 function OrderForm() {
-  const form = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_11__.useForm)({
-    resolver: (0,_hookform_resolvers_zod__WEBPACK_IMPORTED_MODULE_1__.zodResolver)(formSchema),
-    defaultValues: _helpers_defaults__WEBPACK_IMPORTED_MODULE_7__.defaultValues
+  const form = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_7__.useForm)({
+    resolver: (0,_hookform_resolvers_zod__WEBPACK_IMPORTED_MODULE_1__.zodResolver)(_helpers_schema__WEBPACK_IMPORTED_MODULE_2__.formSchema),
+    defaultValues: _helpers_schema__WEBPACK_IMPORTED_MODULE_2__.formDefaultValues
   });
-  const watchedValues = form.watch();
-  const [layoutType, productType, productComponent, productId] = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_11__.useWatch)({
-    control: form.control,
-    name: ['layoutType', 'productType', 'productComponent', 'productId']
-  });
-  function onSubmit(values) {
-    console.log(values);
-    console.log(watchedValues, 'Tewr');
-  }
-
-  // Automatically remove productType values if layoutType is "option2"
+  const onSubmit = data => {
+    console.log(data);
+  };
+  const [options, setOptions] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    // if (layoutType === 'Layout 2') {
-    // 	form.setValue('productType', ['ADA Wayfinding']);
-    // } else {
-    // 	form.setValue('productType', []);
-    // }
-  }, [layoutType, form]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_2__.Form, {
+    async function fetchOptions() {
+      try {
+        const response = await fetch(astralab.options);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setOptions(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching options:', error);
+        setLoading(false);
+      }
+    }
+    fetchOptions();
+  }, []);
+  const typedOptions = options ? options : defaultOptions;
+  const turnaroundTimeOptions = (typedOptions.turnaround_time || []).map(item => {
+    if (typeof item === 'string') {
+      return {
+        name: item
+      };
+    }
+    return item;
+  });
+  const layoutTypeOptions = (typedOptions.layout_types || []).map(item => {
+    if (typeof item === 'string') {
+      return {
+        title: item,
+        image: {
+          url: ''
+        }
+      };
+    }
+    return item;
+  });
+  const designDetailsOptions = typedOptions?.design_details || [];
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_3__.Form, {
     ...form,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h3", {
-      className: "text-[30px]",
-      children: "PROJECT DETAILS"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("form", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
       onSubmit: form.handleSubmit(onSubmit),
       className: "md:flex gap-9",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Main__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        form: form,
-        productComponent: productComponent,
-        productId: productId,
-        watchedValues: watchedValues
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Sidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        watchedValues: watchedValues
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Main__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        form: form
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Sidebar__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        form: form
       })]
-    })]
+    })
   });
 }
 
@@ -1047,7 +969,8 @@ __webpack_require__.r(__webpack_exports__);
 function ProductType({
   form
 }) {
-  const [productTypes, setProductTypes] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
+  // Initialize productTypes with an empty array of the defined type
+  const [productTypes, setProductTypes] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]);
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(true);
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
     async function fetchProductTypes() {
@@ -1070,7 +993,7 @@ function ProductType({
     className: "border px-4 py-6 mb-8 rounded",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
       control: form.control,
-      name: "productType",
+      name: "productTypes",
       render: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
           className: "uppercase font-medium",
@@ -1095,10 +1018,9 @@ function ProductType({
                   className: "h-4 w-full"
                 })
               })]
-            }, index)) : productTypes?.length > 0 ? productTypes.map(post => {
-              const productTypeObj = form.getValues('productType') || {};
-              // If a key exists for this post.id, it's considered 'checked'
-              const isChecked = Boolean(productTypeObj[post.id]);
+            }, index)) : productTypes && productTypes.length > 0 ? productTypes.map(post => {
+              const productTypeArray = form.getValues('productTypes') || [];
+              const isChecked = productTypeArray.some(item => item.id === post.id);
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                   className: "flex items-start justify-between gap-4",
@@ -1106,46 +1028,18 @@ function ProductType({
                     id: `prodtype-${post.id}`,
                     checked: isChecked,
                     onCheckedChange: checked => {
-                      const updatedProductType = {
-                        ...productTypeObj
-                      };
+                      let updatedProductTypes = [...productTypeArray];
                       if (checked) {
-                        /*
-                                           If checked, set the key to an object:
-                                           { title: "ADA Wayfinding" }
-                                         */
-                        updatedProductType[post.id] = {
-                          title: post.title.rendered
-                        };
+                        updatedProductTypes.push({
+                          title: post.title.rendered,
+                          component: post.acf.component,
+                          id: post.id
+                        });
                       } else {
-                        /*
-                                           If unchecked, remove the key completely.
-                                         */
-                        delete updatedProductType[post.id];
+                        updatedProductTypes = updatedProductTypes.filter(item => item.id !== post.id);
                       }
-
-                      // Save back to form
-                      form.setValue('productType', updatedProductType);
-
-                      // Handle productComponent
-                      const productComponentCurrent = form.getValues('productComponent') || [];
-                      let newProductComponent = [...productComponentCurrent];
-                      if (checked) {
-                        newProductComponent.push(post.acf.component);
-                      } else {
-                        newProductComponent = newProductComponent.filter(item => item !== post.acf.component);
-                      }
-                      form.setValue('productComponent', newProductComponent);
-
-                      // Handle productId
-                      const productIdCurrent = form.getValues('productId') || [];
-                      let newProductId = [...productIdCurrent];
-                      if (checked) {
-                        newProductId.push(post.id);
-                      } else {
-                        newProductId = newProductId.filter(item => item !== post.id);
-                      }
-                      form.setValue('productId', newProductId);
+                      form.setValue('productTypes', updatedProductTypes);
+                      form.trigger('productTypes');
                     },
                     className: "p-0 border-solid bg-transparent"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_label__WEBPACK_IMPORTED_MODULE_1__.Label, {
@@ -1205,6 +1099,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const defaultOptions = {
+  turnaround_time: [],
+  layout_types: [],
+  design_details: []
+};
 function ProjectDetails({
   form
 }) {
@@ -1227,9 +1126,29 @@ function ProjectDetails({
     }
     fetchOptions();
   }, []);
-  const turnaroundTimeOptions = options?.turnaround_time || [];
-  const layoutTypeOptions = options?.layout_types || [];
-  const designDetailsOptions = options?.design_details || [];
+
+  // Use defaultOptions as the fallback
+  const typedOptions = options ? options : defaultOptions;
+  const turnaroundTimeOptions = (typedOptions.turnaround_time || []).map(item => {
+    if (typeof item === 'string') {
+      return {
+        name: item
+      };
+    }
+    return item;
+  });
+  const layoutTypeOptions = (typedOptions.layout_types || []).map(item => {
+    if (typeof item === 'string') {
+      return {
+        title: item,
+        image: {
+          url: ''
+        }
+      };
+    }
+    return item;
+  });
+  const designDetailsOptions = typedOptions?.design_details || [];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     className: "border px-4 py-6 mb-8 rounded",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
@@ -1286,9 +1205,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Sidebar({
-  watchedValues
+  form
 }) {
-  const productTypes = watchedValues.productType || {};
+  const watchedValues = form.watch();
+  const productTypes = watchedValues.productTypes || {};
   const hasProductTypes = Object.keys(productTypes).length > 0;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "max-w-[310px] w-full",
@@ -1360,16 +1280,11 @@ function Sidebar({
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
           className: "uppercase font-semibold text-lg",
           children: "Product Types"
-        }), Object.entries(productTypes).map(([id, productObject], index) => {
-          // Safely access the component for the current product type
-          const component = watchedValues?.productComponent?.[index] || '';
-
-          // Perform runtime check or assertion
-          if (typeof productObject === 'object' && productObject !== null && 'title' in productObject) {
+        }), JSON.stringify(productTypes), Object.entries(productTypes).map(([id, productObject], index) => {
+          if (typeof productObject === 'object' && productObject !== null && 'title' in productObject && 'component' in productObject) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_SidebarDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
-              productTypes: productObject,
-              title: productObject.title || 'Untitled Product',
-              component: component
+              title: typeof productObject.title === 'string' ? productObject.title : 'Untitled Product',
+              component: typeof productObject.component === 'string' ? productObject.component : ''
             }, id);
           }
 
@@ -1404,7 +1319,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function SidebarDetails({
-  productTypes,
   title,
   component
 }) {
@@ -1415,9 +1329,7 @@ function SidebarDetails({
       dangerouslySetInnerHTML: {
         __html: title
       }
-    }), component === 'ADAWayfinding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_products_ADA_SidebarADA__WEBPACK_IMPORTED_MODULE_0__["default"], {
-      productTypes: productTypes
-    })]
+    }), component === 'ADAWayfinding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_products_ADA_SidebarADA__WEBPACK_IMPORTED_MODULE_0__["default"], {})]
   });
 }
 
@@ -1615,78 +1527,6 @@ function LayoutType({
 
 /***/ }),
 
-/***/ "./themes/astralab/scripts/trello/components/fields/NumberSigns.tsx":
-/*!**************************************************************************!*\
-  !*** ./themes/astralab/scripts/trello/components/fields/NumberSigns.tsx ***!
-  \**************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ NumberSigns)
-/* harmony export */ });
-/* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/ui/form */ "./themes/astralab/scripts/components/ui/form.tsx");
-/* harmony import */ var _components_ui_select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/select */ "./themes/astralab/scripts/components/ui/select.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-function NumberSigns({
-  form,
-  name,
-  number = 30
-}) {
-  console.log(name);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
-    control: form.control,
-    name: name,
-    render: ({
-      field
-    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
-        className: "uppercase font-medium text-base",
-        children: "Number of Signs"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "grid grid-cols-3 gap-4 items-center mt-1",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.Select, {
-              onValueChange: value => {
-                field.onChange(value);
-                console.log('Selected value:', value);
-                console.log(field);
-              },
-              value: field.value || '' // Fallback for undefined value
-              ,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectTrigger, {
-                className: "border-solid font-light",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectValue, {
-                  placeholder: "Select an option"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectContent, {
-                children: Array.from({
-                  length: number
-                }, (_, i) => i + 1).map(num => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectItem, {
-                  value: num.toString(),
-                  children: num
-                }, num))
-              })]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "col-span-2",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            children: "Size Template - Download the template to upload multiple orders"
-          })
-        })]
-      })]
-    })
-  });
-}
-
-/***/ }),
-
 /***/ "./themes/astralab/scripts/trello/components/fields/ProjectDescription.tsx":
 /*!*********************************************************************************!*\
   !*** ./themes/astralab/scripts/trello/components/fields/ProjectDescription.tsx ***!
@@ -1771,53 +1611,6 @@ function ProjectName({
 
 /***/ }),
 
-/***/ "./themes/astralab/scripts/trello/components/fields/TextField.tsx":
-/*!************************************************************************!*\
-  !*** ./themes/astralab/scripts/trello/components/fields/TextField.tsx ***!
-  \************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ TextField)
-/* harmony export */ });
-/* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/ui/form */ "./themes/astralab/scripts/components/ui/form.tsx");
-/* harmony import */ var _components_ui_input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/input */ "./themes/astralab/scripts/components/ui/input.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-function TextField({
-  form,
-  name,
-  label,
-  placeholder,
-  rules
-}) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
-    control: form.control,
-    name: name,
-    rules: rules,
-    render: ({
-      field
-    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
-        className: "uppercase font-medium text-base",
-        children: label
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_input__WEBPACK_IMPORTED_MODULE_1__.Input, {
-          placeholder: placeholder,
-          ...field,
-          value: typeof field.value === 'string' ? field.value : '' // Validate value type
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
-    })
-  });
-}
-
-/***/ }),
-
 /***/ "./themes/astralab/scripts/trello/components/fields/TurnaroundTime.tsx":
 /*!*****************************************************************************!*\
   !*** ./themes/astralab/scripts/trello/components/fields/TurnaroundTime.tsx ***!
@@ -1876,171 +1669,6 @@ function TurnaroundTime({
 
 /***/ }),
 
-/***/ "./themes/astralab/scripts/trello/components/products/ADA/ADAWayfinding.tsx":
-/*!**********************************************************************************!*\
-  !*** ./themes/astralab/scripts/trello/components/products/ADA/ADAWayfinding.tsx ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ADAWayfinding)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/accordion */ "./themes/astralab/scripts/components/ui/accordion.tsx");
-/* harmony import */ var _trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/trello/components/fields/NumberSigns */ "./themes/astralab/scripts/trello/components/fields/NumberSigns.tsx");
-/* harmony import */ var _trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/trello/components/fields/TextField */ "./themes/astralab/scripts/trello/components/fields/TextField.tsx");
-/* harmony import */ var _components_ui_checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/ui/checkbox */ "./themes/astralab/scripts/components/ui/checkbox.tsx");
-/* harmony import */ var _components_ui_label__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/ui/label */ "./themes/astralab/scripts/components/ui/label.tsx");
-/* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/ui/form */ "./themes/astralab/scripts/components/ui/form.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
-
-
-
-
-
-
-
-
-function ADAWayfinding({
-  form,
-  product,
-  watchedValues = {}
-}) {
-  const [productType, setProductType] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
-
-  // Safely extract numberOfSigns with fallback to 0
-  const numberOfSigns = watchedValues?.productType?.[product]?.numberOfSigns || 0;
-  const processedProductType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => productType, [productType]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    async function fetchProductTypes() {
-      try {
-        setLoading(true);
-        const response = await fetch(`${astralab['product-types']}/${product}`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        setProductType(data || null); // Ensure null fallback if data is invalid
-      } catch (error) {
-        console.error('Error fetching product type:', error);
-        setProductType(null); // Set null if fetching fails
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchProductTypes();
-  }, [product]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.Accordion, {
-    type: "single",
-    collapsible: true,
-    defaultValue: product.toString(),
-    className: "border border-solid rounded",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionItem, {
-      value: product.toString(),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionTrigger, {
-        className: "bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6",
-        children: loading ? 'Loading...' : processedProductType?.title?.rendered || 'No Data Available'
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionContent, {
-        children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
-          children: "Loading..."
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-          className: "p-4 pt-0",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__["default"], {
-            form: form,
-            name: `productType.${product}.numberOfSigns`
-          }), Array.from({
-            length: numberOfSigns
-          }, (_, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-            className: "mt-4 grid md:grid-cols-3 gap-4",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              form: form,
-              name: `productType.${product}.signs.${index}.name`,
-              label: `Project ${index + 1} Name`,
-              placeholder: `Enter project name ${index + 1}`,
-              rules: {
-                required: 'Project name is required'
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              form: form,
-              name: `productType.${product}.signs.${index}.dimension`,
-              label: `No. ${index + 1} Width x Height`,
-              placeholder: `Enter ${index + 1} dimensions`,
-              rules: {
-                required: 'Dimensions are required'
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              form: form,
-              name: `productType.${product}.signs.${index}.details`,
-              label: `Sign ${index + 1} Details`,
-              placeholder: `Enter details for sign ${index + 1}`,
-              rules: {
-                required: 'Details are required'
-              }
-            })]
-          }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_6__.FormField, {
-            control: form.control,
-            name: "productType",
-            render: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_6__.FormItem, {
-              className: "mt-4",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_6__.FormLabel, {
-                className: "uppercase font-medium text-base mt-4",
-                children: "Types"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_6__.FormControl, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                  className: "grid grid-cols-1 md:grid-cols-3 gap-6",
-                  children: processedProductType?.product_types_options?.map((option, optionIndex) => {
-                    const optionKey = `option-${optionIndex}`;
-                    const currentSelections = form.getValues(`productType.${product}.typeSelections`) || [];
-                    const isChecked = currentSelections?.includes(option.title);
-                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                      className: "text-center",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                        className: "flex items-center mb-2",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_checkbox__WEBPACK_IMPORTED_MODULE_4__.Checkbox, {
-                          id: optionKey,
-                          checked: isChecked,
-                          onCheckedChange: checked => {
-                            let updatedSelections = currentSelections || [];
-                            if (checked) {
-                              updatedSelections = [...updatedSelections, option.title];
-                            } else {
-                              updatedSelections = updatedSelections.filter(item => item !== option.title);
-                            }
-                            form.setValue(`productType.${product}.typeSelections`, updatedSelections);
-                          },
-                          className: "p-0 border-solid bg-transparent"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_label__WEBPACK_IMPORTED_MODULE_5__.Label, {
-                          htmlFor: optionKey,
-                          className: "cursor-pointer ml-2 font-medium uppercase",
-                          children: option.title
-                        })]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_label__WEBPACK_IMPORTED_MODULE_5__.Label, {
-                        htmlFor: optionKey,
-                        className: "cursor-pointer",
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
-                          src: option.image,
-                          alt: option.title,
-                          className: "w-full h-auto rounded"
-                        })
-                      })]
-                    }, `checkbox-${optionKey}`);
-                  })
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_6__.FormMessage, {})]
-            })
-          })]
-        })
-      })]
-    })
-  });
-}
-
-/***/ }),
-
 /***/ "./themes/astralab/scripts/trello/components/products/ADA/SidebarADA.tsx":
 /*!*******************************************************************************!*\
   !*** ./themes/astralab/scripts/trello/components/products/ADA/SidebarADA.tsx ***!
@@ -2054,9 +1682,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
 
-function SidebarADA({
-  productTypes
-}) {
+function SidebarADA() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
     children: "Ada"
   });
@@ -2064,148 +1690,54 @@ function SidebarADA({
 
 /***/ }),
 
-/***/ "./themes/astralab/scripts/trello/components/products/ADA/adaRefine.tsx":
-/*!******************************************************************************!*\
-  !*** ./themes/astralab/scripts/trello/components/products/ADA/adaRefine.tsx ***!
-  \******************************************************************************/
+/***/ "./themes/astralab/scripts/trello/helpers/schema.tsx":
+/*!***********************************************************!*\
+  !*** ./themes/astralab/scripts/trello/helpers/schema.tsx ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   adaRefine: () => (/* binding */ adaRefine)
+/* harmony export */   formDefaultValues: () => (/* binding */ formDefaultValues),
+/* harmony export */   formSchema: () => (/* binding */ formSchema)
 /* harmony export */ });
 /* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
 
-const schema = zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
-  productComponent: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string()).optional(),
-  productType: zod__WEBPACK_IMPORTED_MODULE_0__.z.record(zod__WEBPACK_IMPORTED_MODULE_0__.z.string(), zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
-    title: zod__WEBPACK_IMPORTED_MODULE_0__.z.string(),
-    numberOfSigns: zod__WEBPACK_IMPORTED_MODULE_0__.z.number().optional(),
-    signs: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
-      details: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().optional()
-    })).optional()
-  })).optional()
-});
-const adaRefine = (data, ctx) => {
-  console.log('TEST');
-  const productType = data.productType && Object.values(data.productType).find(type => type.title === 'ADA Wayfinding');
-  console.log(data.productType);
-  if (productType?.numberOfSigns && productType.numberOfSigns > 0) {
-    for (let i = 0; i < productType.numberOfSigns; i++) {
-      if (!productType.signs || !productType.signs[i]?.details) {
-        ctx.addIssue({
-          code: zod__WEBPACK_IMPORTED_MODULE_0__.z.ZodIssueCode.custom,
-          path: ['productType', i, 'details'],
-          message: `Sign ${i + 1} details are required.`
-        });
-      }
-    }
-  }
-};
-
-/***/ }),
-
-/***/ "./themes/astralab/scripts/trello/helpers/defaults.tsx":
-/*!*************************************************************!*\
-  !*** ./themes/astralab/scripts/trello/helpers/defaults.tsx ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   defaultValues: () => (/* binding */ defaultValues)
-/* harmony export */ });
-const defaultValues = {
-  projectName: '',
-  turnaroundTime: '',
-  designDetails: '',
-  projectDescription: '',
-  layoutType: '',
-  productType: {},
-  fileUpload: []
-};
-
-/***/ }),
-
-/***/ "./themes/astralab/scripts/trello/helpers/schema.js":
-/*!**********************************************************!*\
-  !*** ./themes/astralab/scripts/trello/helpers/schema.js ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   projectDetailsSchema: () => (/* binding */ projectDetailsSchema)
-/* harmony export */ });
-/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
-
-const projectDetailsSchema = {
+const formSchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+  projectName: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().min(2).nonempty(),
   turnaroundTime: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
     message: 'Turnaround Time is required.'
   }),
-  designDetails: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().optional(),
+  designDetails: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
   projectDescription: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
     message: 'Project Description is required.'
   }),
   layoutType: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
     message: 'Layout Type is required.'
   }),
-  productType: zod__WEBPACK_IMPORTED_MODULE_0__.z.record(zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
-    title: zod__WEBPACK_IMPORTED_MODULE_0__.z.string()
+  productTypes: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+    title: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    component: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    id: zod__WEBPACK_IMPORTED_MODULE_0__.z.number().positive()
   })).optional(),
-  productComponent: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string()).optional(),
-  productId: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.number()).optional(),
-  fileUpload: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.instanceof(File)).nonempty({
-    message: 'Files are required.'
-  })
-};
-
-/***/ }),
-
-/***/ "./themes/astralab/scripts/trello/helpers/superRefine.tsx":
-/*!****************************************************************!*\
-  !*** ./themes/astralab/scripts/trello/helpers/superRefine.tsx ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   exampleRefine: () => (/* binding */ exampleRefine)
-/* harmony export */ });
-/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
-
-
-// Update schema to match the `productType` type
-const schema = zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
-  turnaroundTime: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
-    message: 'Turn Around Time is required.'
-  }),
-  designDetails: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().optional(),
-  productType: zod__WEBPACK_IMPORTED_MODULE_0__.z.record(zod__WEBPACK_IMPORTED_MODULE_0__.z.string(), zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
-    title: zod__WEBPACK_IMPORTED_MODULE_0__.z.string()
-  })).optional() // Matches Record<string, { title: string }>
+  fileUpload: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.instanceof(File))
+}).refine(data => data.productTypes ? data.productTypes.length > 0 : true, {
+  message: 'Product types upload cannot be empty.',
+  path: ['productTypes']
+}).refine(data => data.fileUpload ? data.fileUpload.length > 0 : true, {
+  message: 'File upload cannot be empty.',
+  path: ['fileUpload']
 });
-
-// Update exampleRefine to handle the new structure
-const exampleRefine = (data, ctx) => {
-  // Example refinement for turnaroundTime
-  if (data.turnaroundTime === 'option3' && (!data.designDetails || data.designDetails === '')) {
-    ctx.addIssue({
-      code: zod__WEBPACK_IMPORTED_MODULE_0__.z.ZodIssueCode.custom,
-      path: ['designDetails'],
-      message: 'Design Details are required when Turn Around Time is option3.'
-    });
-  }
-
-  // Example refinement for productType
-  if (!data.productType || Object.keys(data.productType).length === 0) {
-    ctx.addIssue({
-      code: zod__WEBPACK_IMPORTED_MODULE_0__.z.ZodIssueCode.custom,
-      path: ['productType'],
-      message: 'Product Type is required.'
-    });
-  }
+const formDefaultValues = {
+  projectName: '',
+  turnaroundTime: '',
+  designDetails: '',
+  projectDescription: '',
+  layoutType: '',
+  productTypes: [],
+  fileUpload: []
 };
+
 
 /***/ }),
 
@@ -6424,347 +5956,6 @@ function composeEventHandlers(originalEventHandler, ourEventHandler, { checkForD
 
 /***/ }),
 
-/***/ "./node_modules/@radix-ui/react-accordion/dist/index.mjs":
-/*!***************************************************************!*\
-  !*** ./node_modules/@radix-ui/react-accordion/dist/index.mjs ***!
-  \***************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Accordion: () => (/* binding */ Accordion),
-/* harmony export */   AccordionContent: () => (/* binding */ AccordionContent),
-/* harmony export */   AccordionHeader: () => (/* binding */ AccordionHeader),
-/* harmony export */   AccordionItem: () => (/* binding */ AccordionItem),
-/* harmony export */   AccordionTrigger: () => (/* binding */ AccordionTrigger),
-/* harmony export */   Content: () => (/* binding */ Content2),
-/* harmony export */   Header: () => (/* binding */ Header),
-/* harmony export */   Item: () => (/* binding */ Item),
-/* harmony export */   Root: () => (/* binding */ Root2),
-/* harmony export */   Trigger: () => (/* binding */ Trigger2),
-/* harmony export */   createAccordionScope: () => (/* binding */ createAccordionScope)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var _radix_ui_react_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @radix-ui/react-context */ "./node_modules/@radix-ui/react-context/dist/index.mjs");
-/* harmony import */ var _radix_ui_react_collection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @radix-ui/react-collection */ "./node_modules/@radix-ui/react-collection/dist/index.mjs");
-/* harmony import */ var _radix_ui_react_compose_refs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @radix-ui/react-compose-refs */ "./node_modules/@radix-ui/react-compose-refs/dist/index.mjs");
-/* harmony import */ var _radix_ui_primitive__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @radix-ui/primitive */ "./node_modules/@radix-ui/primitive/dist/index.mjs");
-/* harmony import */ var _radix_ui_react_use_controllable_state__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @radix-ui/react-use-controllable-state */ "./node_modules/@radix-ui/react-use-controllable-state/dist/index.mjs");
-/* harmony import */ var _radix_ui_react_primitive__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @radix-ui/react-primitive */ "./node_modules/@radix-ui/react-primitive/dist/index.mjs");
-/* harmony import */ var _radix_ui_react_collapsible__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @radix-ui/react-collapsible */ "./node_modules/@radix-ui/react-collapsible/dist/index.mjs");
-/* harmony import */ var _radix_ui_react_id__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @radix-ui/react-id */ "./node_modules/@radix-ui/react-id/dist/index.mjs");
-/* harmony import */ var _radix_ui_react_direction__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @radix-ui/react-direction */ "./node_modules/@radix-ui/react-direction/dist/index.mjs");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-"use client";
-
-// packages/react/accordion/src/Accordion.tsx
-
-
-
-
-
-
-
-
-
-
-
-
-var ACCORDION_NAME = "Accordion";
-var ACCORDION_KEYS = ["Home", "End", "ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight"];
-var [Collection, useCollection, createCollectionScope] = (0,_radix_ui_react_collection__WEBPACK_IMPORTED_MODULE_2__.createCollection)(ACCORDION_NAME);
-var [createAccordionContext, createAccordionScope] = (0,_radix_ui_react_context__WEBPACK_IMPORTED_MODULE_3__.createContextScope)(ACCORDION_NAME, [
-  createCollectionScope,
-  _radix_ui_react_collapsible__WEBPACK_IMPORTED_MODULE_4__.createCollapsibleScope
-]);
-var useCollapsibleScope = (0,_radix_ui_react_collapsible__WEBPACK_IMPORTED_MODULE_4__.createCollapsibleScope)();
-var Accordion = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
-  (props, forwardedRef) => {
-    const { type, ...accordionProps } = props;
-    const singleProps = accordionProps;
-    const multipleProps = accordionProps;
-    return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Collection.Provider, { scope: props.__scopeAccordion, children: type === "multiple" ? /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(AccordionImplMultiple, { ...multipleProps, ref: forwardedRef }) : /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(AccordionImplSingle, { ...singleProps, ref: forwardedRef }) });
-  }
-);
-Accordion.displayName = ACCORDION_NAME;
-var [AccordionValueProvider, useAccordionValueContext] = createAccordionContext(ACCORDION_NAME);
-var [AccordionCollapsibleProvider, useAccordionCollapsibleContext] = createAccordionContext(
-  ACCORDION_NAME,
-  { collapsible: false }
-);
-var AccordionImplSingle = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
-  (props, forwardedRef) => {
-    const {
-      value: valueProp,
-      defaultValue,
-      onValueChange = () => {
-      },
-      collapsible = false,
-      ...accordionSingleProps
-    } = props;
-    const [value, setValue] = (0,_radix_ui_react_use_controllable_state__WEBPACK_IMPORTED_MODULE_5__.useControllableState)({
-      prop: valueProp,
-      defaultProp: defaultValue,
-      onChange: onValueChange
-    });
-    return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
-      AccordionValueProvider,
-      {
-        scope: props.__scopeAccordion,
-        value: value ? [value] : [],
-        onItemOpen: setValue,
-        onItemClose: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => collapsible && setValue(""), [collapsible, setValue]),
-        children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(AccordionCollapsibleProvider, { scope: props.__scopeAccordion, collapsible, children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(AccordionImpl, { ...accordionSingleProps, ref: forwardedRef }) })
-      }
-    );
-  }
-);
-var AccordionImplMultiple = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((props, forwardedRef) => {
-  const {
-    value: valueProp,
-    defaultValue,
-    onValueChange = () => {
-    },
-    ...accordionMultipleProps
-  } = props;
-  const [value = [], setValue] = (0,_radix_ui_react_use_controllable_state__WEBPACK_IMPORTED_MODULE_5__.useControllableState)({
-    prop: valueProp,
-    defaultProp: defaultValue,
-    onChange: onValueChange
-  });
-  const handleItemOpen = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(
-    (itemValue) => setValue((prevValue = []) => [...prevValue, itemValue]),
-    [setValue]
-  );
-  const handleItemClose = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(
-    (itemValue) => setValue((prevValue = []) => prevValue.filter((value2) => value2 !== itemValue)),
-    [setValue]
-  );
-  return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
-    AccordionValueProvider,
-    {
-      scope: props.__scopeAccordion,
-      value,
-      onItemOpen: handleItemOpen,
-      onItemClose: handleItemClose,
-      children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(AccordionCollapsibleProvider, { scope: props.__scopeAccordion, collapsible: true, children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(AccordionImpl, { ...accordionMultipleProps, ref: forwardedRef }) })
-    }
-  );
-});
-var [AccordionImplProvider, useAccordionContext] = createAccordionContext(ACCORDION_NAME);
-var AccordionImpl = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
-  (props, forwardedRef) => {
-    const { __scopeAccordion, disabled, dir, orientation = "vertical", ...accordionProps } = props;
-    const accordionRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
-    const composedRefs = (0,_radix_ui_react_compose_refs__WEBPACK_IMPORTED_MODULE_6__.useComposedRefs)(accordionRef, forwardedRef);
-    const getItems = useCollection(__scopeAccordion);
-    const direction = (0,_radix_ui_react_direction__WEBPACK_IMPORTED_MODULE_7__.useDirection)(dir);
-    const isDirectionLTR = direction === "ltr";
-    const handleKeyDown = (0,_radix_ui_primitive__WEBPACK_IMPORTED_MODULE_8__.composeEventHandlers)(props.onKeyDown, (event) => {
-      if (!ACCORDION_KEYS.includes(event.key)) return;
-      const target = event.target;
-      const triggerCollection = getItems().filter((item) => !item.ref.current?.disabled);
-      const triggerIndex = triggerCollection.findIndex((item) => item.ref.current === target);
-      const triggerCount = triggerCollection.length;
-      if (triggerIndex === -1) return;
-      event.preventDefault();
-      let nextIndex = triggerIndex;
-      const homeIndex = 0;
-      const endIndex = triggerCount - 1;
-      const moveNext = () => {
-        nextIndex = triggerIndex + 1;
-        if (nextIndex > endIndex) {
-          nextIndex = homeIndex;
-        }
-      };
-      const movePrev = () => {
-        nextIndex = triggerIndex - 1;
-        if (nextIndex < homeIndex) {
-          nextIndex = endIndex;
-        }
-      };
-      switch (event.key) {
-        case "Home":
-          nextIndex = homeIndex;
-          break;
-        case "End":
-          nextIndex = endIndex;
-          break;
-        case "ArrowRight":
-          if (orientation === "horizontal") {
-            if (isDirectionLTR) {
-              moveNext();
-            } else {
-              movePrev();
-            }
-          }
-          break;
-        case "ArrowDown":
-          if (orientation === "vertical") {
-            moveNext();
-          }
-          break;
-        case "ArrowLeft":
-          if (orientation === "horizontal") {
-            if (isDirectionLTR) {
-              movePrev();
-            } else {
-              moveNext();
-            }
-          }
-          break;
-        case "ArrowUp":
-          if (orientation === "vertical") {
-            movePrev();
-          }
-          break;
-      }
-      const clampedIndex = nextIndex % triggerCount;
-      triggerCollection[clampedIndex].ref.current?.focus();
-    });
-    return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
-      AccordionImplProvider,
-      {
-        scope: __scopeAccordion,
-        disabled,
-        direction: dir,
-        orientation,
-        children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Collection.Slot, { scope: __scopeAccordion, children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
-          _radix_ui_react_primitive__WEBPACK_IMPORTED_MODULE_9__.Primitive.div,
-          {
-            ...accordionProps,
-            "data-orientation": orientation,
-            ref: composedRefs,
-            onKeyDown: disabled ? void 0 : handleKeyDown
-          }
-        ) })
-      }
-    );
-  }
-);
-var ITEM_NAME = "AccordionItem";
-var [AccordionItemProvider, useAccordionItemContext] = createAccordionContext(ITEM_NAME);
-var AccordionItem = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
-  (props, forwardedRef) => {
-    const { __scopeAccordion, value, ...accordionItemProps } = props;
-    const accordionContext = useAccordionContext(ITEM_NAME, __scopeAccordion);
-    const valueContext = useAccordionValueContext(ITEM_NAME, __scopeAccordion);
-    const collapsibleScope = useCollapsibleScope(__scopeAccordion);
-    const triggerId = (0,_radix_ui_react_id__WEBPACK_IMPORTED_MODULE_10__.useId)();
-    const open = value && valueContext.value.includes(value) || false;
-    const disabled = accordionContext.disabled || props.disabled;
-    return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
-      AccordionItemProvider,
-      {
-        scope: __scopeAccordion,
-        open,
-        disabled,
-        triggerId,
-        children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
-          _radix_ui_react_collapsible__WEBPACK_IMPORTED_MODULE_4__.Root,
-          {
-            "data-orientation": accordionContext.orientation,
-            "data-state": getState(open),
-            ...collapsibleScope,
-            ...accordionItemProps,
-            ref: forwardedRef,
-            disabled,
-            open,
-            onOpenChange: (open2) => {
-              if (open2) {
-                valueContext.onItemOpen(value);
-              } else {
-                valueContext.onItemClose(value);
-              }
-            }
-          }
-        )
-      }
-    );
-  }
-);
-AccordionItem.displayName = ITEM_NAME;
-var HEADER_NAME = "AccordionHeader";
-var AccordionHeader = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
-  (props, forwardedRef) => {
-    const { __scopeAccordion, ...headerProps } = props;
-    const accordionContext = useAccordionContext(ACCORDION_NAME, __scopeAccordion);
-    const itemContext = useAccordionItemContext(HEADER_NAME, __scopeAccordion);
-    return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
-      _radix_ui_react_primitive__WEBPACK_IMPORTED_MODULE_9__.Primitive.h3,
-      {
-        "data-orientation": accordionContext.orientation,
-        "data-state": getState(itemContext.open),
-        "data-disabled": itemContext.disabled ? "" : void 0,
-        ...headerProps,
-        ref: forwardedRef
-      }
-    );
-  }
-);
-AccordionHeader.displayName = HEADER_NAME;
-var TRIGGER_NAME = "AccordionTrigger";
-var AccordionTrigger = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
-  (props, forwardedRef) => {
-    const { __scopeAccordion, ...triggerProps } = props;
-    const accordionContext = useAccordionContext(ACCORDION_NAME, __scopeAccordion);
-    const itemContext = useAccordionItemContext(TRIGGER_NAME, __scopeAccordion);
-    const collapsibleContext = useAccordionCollapsibleContext(TRIGGER_NAME, __scopeAccordion);
-    const collapsibleScope = useCollapsibleScope(__scopeAccordion);
-    return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Collection.ItemSlot, { scope: __scopeAccordion, children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
-      _radix_ui_react_collapsible__WEBPACK_IMPORTED_MODULE_4__.Trigger,
-      {
-        "aria-disabled": itemContext.open && !collapsibleContext.collapsible || void 0,
-        "data-orientation": accordionContext.orientation,
-        id: itemContext.triggerId,
-        ...collapsibleScope,
-        ...triggerProps,
-        ref: forwardedRef
-      }
-    ) });
-  }
-);
-AccordionTrigger.displayName = TRIGGER_NAME;
-var CONTENT_NAME = "AccordionContent";
-var AccordionContent = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
-  (props, forwardedRef) => {
-    const { __scopeAccordion, ...contentProps } = props;
-    const accordionContext = useAccordionContext(ACCORDION_NAME, __scopeAccordion);
-    const itemContext = useAccordionItemContext(CONTENT_NAME, __scopeAccordion);
-    const collapsibleScope = useCollapsibleScope(__scopeAccordion);
-    return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
-      _radix_ui_react_collapsible__WEBPACK_IMPORTED_MODULE_4__.Content,
-      {
-        role: "region",
-        "aria-labelledby": itemContext.triggerId,
-        "data-orientation": accordionContext.orientation,
-        ...collapsibleScope,
-        ...contentProps,
-        ref: forwardedRef,
-        style: {
-          ["--radix-accordion-content-height"]: "var(--radix-collapsible-content-height)",
-          ["--radix-accordion-content-width"]: "var(--radix-collapsible-content-width)",
-          ...props.style
-        }
-      }
-    );
-  }
-);
-AccordionContent.displayName = CONTENT_NAME;
-function getState(open) {
-  return open ? "open" : "closed";
-}
-var Root2 = Accordion;
-var Item = AccordionItem;
-var Header = AccordionHeader;
-var Trigger2 = AccordionTrigger;
-var Content2 = AccordionContent;
-
-//# sourceMappingURL=index.mjs.map
-
-
-/***/ }),
-
 /***/ "./node_modules/@radix-ui/react-arrow/dist/index.mjs":
 /*!***********************************************************!*\
   !*** ./node_modules/@radix-ui/react-arrow/dist/index.mjs ***!
@@ -6988,182 +6179,6 @@ function getState(checked) {
 }
 var Root = Checkbox;
 var Indicator = CheckboxIndicator;
-
-//# sourceMappingURL=index.mjs.map
-
-
-/***/ }),
-
-/***/ "./node_modules/@radix-ui/react-collapsible/dist/index.mjs":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@radix-ui/react-collapsible/dist/index.mjs ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Collapsible: () => (/* binding */ Collapsible),
-/* harmony export */   CollapsibleContent: () => (/* binding */ CollapsibleContent),
-/* harmony export */   CollapsibleTrigger: () => (/* binding */ CollapsibleTrigger),
-/* harmony export */   Content: () => (/* binding */ Content),
-/* harmony export */   Root: () => (/* binding */ Root),
-/* harmony export */   Trigger: () => (/* binding */ Trigger),
-/* harmony export */   createCollapsibleScope: () => (/* binding */ createCollapsibleScope)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var _radix_ui_primitive__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @radix-ui/primitive */ "./node_modules/@radix-ui/primitive/dist/index.mjs");
-/* harmony import */ var _radix_ui_react_context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @radix-ui/react-context */ "./node_modules/@radix-ui/react-context/dist/index.mjs");
-/* harmony import */ var _radix_ui_react_use_controllable_state__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @radix-ui/react-use-controllable-state */ "./node_modules/@radix-ui/react-use-controllable-state/dist/index.mjs");
-/* harmony import */ var _radix_ui_react_use_layout_effect__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @radix-ui/react-use-layout-effect */ "./node_modules/@radix-ui/react-use-layout-effect/dist/index.mjs");
-/* harmony import */ var _radix_ui_react_compose_refs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @radix-ui/react-compose-refs */ "./node_modules/@radix-ui/react-compose-refs/dist/index.mjs");
-/* harmony import */ var _radix_ui_react_primitive__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @radix-ui/react-primitive */ "./node_modules/@radix-ui/react-primitive/dist/index.mjs");
-/* harmony import */ var _radix_ui_react_presence__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @radix-ui/react-presence */ "./node_modules/@radix-ui/react-presence/dist/index.mjs");
-/* harmony import */ var _radix_ui_react_id__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @radix-ui/react-id */ "./node_modules/@radix-ui/react-id/dist/index.mjs");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-"use client";
-
-// packages/react/collapsible/src/Collapsible.tsx
-
-
-
-
-
-
-
-
-
-
-var COLLAPSIBLE_NAME = "Collapsible";
-var [createCollapsibleContext, createCollapsibleScope] = (0,_radix_ui_react_context__WEBPACK_IMPORTED_MODULE_2__.createContextScope)(COLLAPSIBLE_NAME);
-var [CollapsibleProvider, useCollapsibleContext] = createCollapsibleContext(COLLAPSIBLE_NAME);
-var Collapsible = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
-  (props, forwardedRef) => {
-    const {
-      __scopeCollapsible,
-      open: openProp,
-      defaultOpen,
-      disabled,
-      onOpenChange,
-      ...collapsibleProps
-    } = props;
-    const [open = false, setOpen] = (0,_radix_ui_react_use_controllable_state__WEBPACK_IMPORTED_MODULE_3__.useControllableState)({
-      prop: openProp,
-      defaultProp: defaultOpen,
-      onChange: onOpenChange
-    });
-    return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
-      CollapsibleProvider,
-      {
-        scope: __scopeCollapsible,
-        disabled,
-        contentId: (0,_radix_ui_react_id__WEBPACK_IMPORTED_MODULE_4__.useId)(),
-        open,
-        onOpenToggle: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => setOpen((prevOpen) => !prevOpen), [setOpen]),
-        children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
-          _radix_ui_react_primitive__WEBPACK_IMPORTED_MODULE_5__.Primitive.div,
-          {
-            "data-state": getState(open),
-            "data-disabled": disabled ? "" : void 0,
-            ...collapsibleProps,
-            ref: forwardedRef
-          }
-        )
-      }
-    );
-  }
-);
-Collapsible.displayName = COLLAPSIBLE_NAME;
-var TRIGGER_NAME = "CollapsibleTrigger";
-var CollapsibleTrigger = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
-  (props, forwardedRef) => {
-    const { __scopeCollapsible, ...triggerProps } = props;
-    const context = useCollapsibleContext(TRIGGER_NAME, __scopeCollapsible);
-    return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
-      _radix_ui_react_primitive__WEBPACK_IMPORTED_MODULE_5__.Primitive.button,
-      {
-        type: "button",
-        "aria-controls": context.contentId,
-        "aria-expanded": context.open || false,
-        "data-state": getState(context.open),
-        "data-disabled": context.disabled ? "" : void 0,
-        disabled: context.disabled,
-        ...triggerProps,
-        ref: forwardedRef,
-        onClick: (0,_radix_ui_primitive__WEBPACK_IMPORTED_MODULE_6__.composeEventHandlers)(props.onClick, context.onOpenToggle)
-      }
-    );
-  }
-);
-CollapsibleTrigger.displayName = TRIGGER_NAME;
-var CONTENT_NAME = "CollapsibleContent";
-var CollapsibleContent = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
-  (props, forwardedRef) => {
-    const { forceMount, ...contentProps } = props;
-    const context = useCollapsibleContext(CONTENT_NAME, props.__scopeCollapsible);
-    return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_radix_ui_react_presence__WEBPACK_IMPORTED_MODULE_7__.Presence, { present: forceMount || context.open, children: ({ present }) => /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(CollapsibleContentImpl, { ...contentProps, ref: forwardedRef, present }) });
-  }
-);
-CollapsibleContent.displayName = CONTENT_NAME;
-var CollapsibleContentImpl = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((props, forwardedRef) => {
-  const { __scopeCollapsible, present, children, ...contentProps } = props;
-  const context = useCollapsibleContext(CONTENT_NAME, __scopeCollapsible);
-  const [isPresent, setIsPresent] = react__WEBPACK_IMPORTED_MODULE_0__.useState(present);
-  const ref = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
-  const composedRefs = (0,_radix_ui_react_compose_refs__WEBPACK_IMPORTED_MODULE_8__.useComposedRefs)(forwardedRef, ref);
-  const heightRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(0);
-  const height = heightRef.current;
-  const widthRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(0);
-  const width = widthRef.current;
-  const isOpen = context.open || isPresent;
-  const isMountAnimationPreventedRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(isOpen);
-  const originalStylesRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(void 0);
-  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
-    const rAF = requestAnimationFrame(() => isMountAnimationPreventedRef.current = false);
-    return () => cancelAnimationFrame(rAF);
-  }, []);
-  (0,_radix_ui_react_use_layout_effect__WEBPACK_IMPORTED_MODULE_9__.useLayoutEffect)(() => {
-    const node = ref.current;
-    if (node) {
-      originalStylesRef.current = originalStylesRef.current || {
-        transitionDuration: node.style.transitionDuration,
-        animationName: node.style.animationName
-      };
-      node.style.transitionDuration = "0s";
-      node.style.animationName = "none";
-      const rect = node.getBoundingClientRect();
-      heightRef.current = rect.height;
-      widthRef.current = rect.width;
-      if (!isMountAnimationPreventedRef.current) {
-        node.style.transitionDuration = originalStylesRef.current.transitionDuration;
-        node.style.animationName = originalStylesRef.current.animationName;
-      }
-      setIsPresent(present);
-    }
-  }, [context.open, present]);
-  return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
-    _radix_ui_react_primitive__WEBPACK_IMPORTED_MODULE_5__.Primitive.div,
-    {
-      "data-state": getState(context.open),
-      "data-disabled": context.disabled ? "" : void 0,
-      id: context.contentId,
-      hidden: !isOpen,
-      ...contentProps,
-      ref: composedRefs,
-      style: {
-        [`--radix-collapsible-content-height`]: height ? `${height}px` : void 0,
-        [`--radix-collapsible-content-width`]: width ? `${width}px` : void 0,
-        ...props.style
-      },
-      children: isOpen && children
-    }
-  );
-});
-function getState(open) {
-  return open ? "open" : "closed";
-}
-var Root = Collapsible;
-var Trigger = CollapsibleTrigger;
-var Content = CollapsibleContent;
 
 //# sourceMappingURL=index.mjs.map
 

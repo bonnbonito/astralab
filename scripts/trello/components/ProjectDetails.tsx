@@ -5,15 +5,24 @@ import DesignDetails from './fields/DesignDetails';
 import ProjectDescription from './fields/ProjectDescription';
 import LayoutType from './fields/LayoutType';
 import FileUpload from './fields/FileUpload';
+import { Astralab, Options } from '../helpers/types';
+import { UseFormReturn } from 'react-hook-form';
+import { FormSchema } from '../helpers/schema';
 
 interface ProjectDetailsProps {
-	form: any;
+	form: UseFormReturn<FormSchema>;
 }
 
-declare const astralab: any;
+declare const astralab: Astralab;
+
+const defaultOptions: Options = {
+	turnaround_time: [],
+	layout_types: [],
+	design_details: [],
+};
 
 export default function ProjectDetails({ form }: ProjectDetailsProps) {
-	const [options, setOptions] = useState<any>(null);
+	const [options, setOptions] = useState(null);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -37,9 +46,25 @@ export default function ProjectDetails({ form }: ProjectDetailsProps) {
 		fetchOptions();
 	}, []);
 
-	const turnaroundTimeOptions = options?.turnaround_time || [];
-	const layoutTypeOptions = options?.layout_types || [];
-	const designDetailsOptions = options?.design_details || [];
+	// Use defaultOptions as the fallback
+	const typedOptions: Options = options ? (options as Options) : defaultOptions;
+
+	const turnaroundTimeOptions = (typedOptions.turnaround_time || []).map(
+		(item) => {
+			if (typeof item === 'string') {
+				return { name: item };
+			}
+			return item;
+		}
+	) as { name: string }[];
+
+	const layoutTypeOptions = (typedOptions.layout_types || []).map((item) => {
+		if (typeof item === 'string') {
+			return { title: item, image: { url: '' } };
+		}
+		return item;
+	}) as { title: string; image: { url: string } }[];
+	const designDetailsOptions = typedOptions?.design_details || [];
 
 	return (
 		<div className="border px-4 py-6 mb-8 rounded">

@@ -6,14 +6,11 @@ import {
 	FormMessage,
 } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
-import { UseFormReturn, FieldValues } from 'react-hook-form';
-
-interface ProjectFormValues extends FieldValues {
-	projectDescription: string;
-}
+import { FormSchema } from '@/trello/helpers/schema';
+import { UseFormReturn } from 'react-hook-form';
 
 interface ProjectDescriptionProps {
-	form: UseFormReturn<ProjectFormValues>;
+	form: UseFormReturn<FormSchema>;
 }
 
 export default function ProjectDescription({ form }: ProjectDescriptionProps) {

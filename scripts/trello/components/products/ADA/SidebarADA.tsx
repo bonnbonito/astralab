@@ -1,3 +1,3 @@
-export default function SidebarADA({ productTypes }: any) {
+export default function SidebarADA() {
 	return <h1>Ada</h1>;
 }

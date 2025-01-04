@@ -679,9 +679,6 @@ video {
 #astralab .mt-7 {
   margin-top: 1.75rem;
 }
-#astralab .mt-6 {
-  margin-top: 1.5rem;
-}
 #astralab .block {
   display: block;
 }
@@ -751,14 +748,14 @@ video {
 #astralab .h-\[var\(--radix-select-trigger-height\)\] {
   height: var(--radix-select-trigger-height);
 }
+#astralab .h-auto {
+  height: auto;
+}
 #astralab .h-full {
   height: 100%;
 }
 #astralab .h-px {
   height: 1px;
-}
-#astralab .h-auto {
-  height: auto;
 }
 #astralab .max-h-96 {
   max-height: 24rem;
@@ -839,6 +836,9 @@ video {
      -moz-user-select: none;
           user-select: none;
 }
+#astralab .grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
 #astralab .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -847,9 +847,6 @@ video {
 }
 #astralab .grid-cols-\[repeat\(auto-fill\2c minmax\(190px\2c 1fr\)\)\] {
   grid-template-columns: repeat(auto-fill,minmax(190px,1fr));
-}
-#astralab .grid-cols-1 {
-  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 #astralab .flex-col {
   flex-direction: column;
@@ -903,6 +900,11 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+#astralab :is(.space-y-8 > :not([hidden]) ~ :not([hidden])) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 #astralab .overflow-hidden {
   overflow: hidden;
@@ -1022,9 +1024,6 @@ video {
 }
 #astralab .p-6 {
   padding: 1.5rem;
-}
-#astralab .p-2 {
-  padding: 0.5rem;
 }
 #astralab .px-2 {
   padding-left: 0.5rem;
@@ -1603,36 +1602,6 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-@keyframes accordion-up {
-
-  from {
-    height: var(--radix-accordion-content-height);
-  }
-
-  to {
-    height: 0;
-  }
-}
-
-#astralab .data-\[state\=closed\]\:animate-accordion-up[data-state="closed"] {
-  animation: accordion-up 0.2s ease-out;
-}
-
-@keyframes accordion-down {
-
-  from {
-    height: 0;
-  }
-
-  to {
-    height: var(--radix-accordion-content-height);
-  }
-}
-
-#astralab .data-\[state\=open\]\:animate-accordion-down[data-state="open"] {
-  animation: accordion-down 0.2s ease-out;
-}
-
 #astralab .data-\[state\=checked\]\:bg-primary[data-state="checked"] {
   background-color: hsl(var(--primary));
 }
@@ -1803,16 +1772,12 @@ video {
     max-width: 420px;
   }
 
-  #astralab .md\:grid-cols-\[45\%_1fr_1fr\] {
-    grid-template-columns: 45% 1fr 1fr;
-  }
-
   #astralab .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  #astralab .md\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  #astralab .md\:grid-cols-\[45\%_1fr_1fr\] {
+    grid-template-columns: 45% 1fr 1fr;
   }
 
   #astralab .md\:px-8 {

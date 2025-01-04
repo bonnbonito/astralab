@@ -1,16 +1,13 @@
 import { Button } from '@/components/ui/button';
+import { WatchedValues } from '@/trello/helpers/types';
 import SidebarDetails from './SidebarDetails';
-import { UseFormReturn } from 'react-hook-form';
-
-import { FormSchema } from '@/trello/helpers/schema';
 
 interface SidebarProps {
-	form: UseFormReturn<FormSchema>;
+	watchedValues: WatchedValues;
 }
 
-export default function Sidebar({ form }: SidebarProps) {
-	const watchedValues = form.watch();
-	const productTypes = watchedValues.productTypes || {};
+export default function Sidebar({ watchedValues }: SidebarProps) {
+	const productTypes = watchedValues.productType || {};
 	const hasProductTypes = Object.keys(productTypes).length > 0;
 
 	return (
@@ -61,28 +58,22 @@ export default function Sidebar({ form }: SidebarProps) {
 				{hasProductTypes && (
 					<div className="mt-4">
 						<h5 className="uppercase font-semibold text-lg">Product Types</h5>
-						{JSON.stringify(productTypes)}
-
 						{Object.entries(productTypes).map(([id, productObject], index) => {
+							// Safely access the component for the current product type
+							const component = watchedValues?.productComponent?.[index] || '';
+
+							// Perform runtime check or assertion
 							if (
 								typeof productObject === 'object' &&
 								productObject !== null &&
-								'title' in productObject &&
-								'component' in productObject
+								'title' in productObject
 							) {
 								return (
 									<SidebarDetails
-										title={
-											typeof productObject.title === 'string'
-												? productObject.title
-												: 'Untitled Product'
-										}
+										productTypes={productObject}
+										title={productObject.title || 'Untitled Product'}
 										key={id}
-										component={
-											typeof productObject.component === 'string'
-												? productObject.component
-												: ''
-										}
+										component={component}
 									/>
 								);
 							}

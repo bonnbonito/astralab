@@ -12,19 +12,16 @@ import {
 	SelectContent,
 	SelectItem,
 } from '@/components/ui/select';
+import { FormSchema } from '@/trello/helpers/schema';
 
-import { FieldValues, UseFormReturn } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 
 interface DesignDetailsOption {
 	name: string;
 }
 
-interface MyFormValues extends FieldValues {
-	designDetailsOptions: string;
-}
-
 interface DesignDetailsProps {
-	form: UseFormReturn<MyFormValues>;
+	form: UseFormReturn<FormSchema>;
 	designDetailsOptions: DesignDetailsOption[];
 	loading: boolean;
 }

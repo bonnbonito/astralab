@@ -6,14 +6,11 @@ import {
 	FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { UseFormReturn, FieldValues } from 'react-hook-form';
-
-interface ProjectFormValues extends FieldValues {
-	projectName: string;
-}
+import { FormSchema } from '@/trello/helpers/schema';
+import { UseFormReturn } from 'react-hook-form';
 
 interface ProjectNameProps {
-	form: UseFormReturn<ProjectFormValues>;
+	form: UseFormReturn<FormSchema>;
 }
 
 export default function ProjectName({ form }: ProjectNameProps) {

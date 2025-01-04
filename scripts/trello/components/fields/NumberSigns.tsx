@@ -12,12 +12,11 @@ import {
 	SelectContent,
 	SelectItem,
 } from '@/components/ui/select';
+import { FormSchema } from '@/trello/helpers/schema';
 import { UseFormReturn } from 'react-hook-form';
 
-import { MyFormValues } from '@/trello/helpers/types';
-
 interface NumberSignsProps {
-	form: UseFormReturn<MyFormValues>;
+	form: UseFormReturn<FormSchema>;
 	name: string;
 	number?: number; // Maximum number of signs (default: 30)
 }
@@ -47,7 +46,13 @@ export default function NumberSigns({
 										console.log('Selected value:', value);
 										console.log(field);
 									}}
-									value={field.value || ''} // Fallback for undefined value
+									value={
+										typeof field.value === 'number'
+											? field.value.toString()
+											: typeof field.value === 'string'
+											? field.value
+											: ''
+									}
 								>
 									<SelectTrigger className="border-solid font-light">
 										<SelectValue placeholder="Select an option" />

@@ -6,14 +6,11 @@ import {
 	FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { UseFormReturn, FieldValues } from 'react-hook-form';
-
-interface MyFormValues extends FieldValues {
-	fileUpload: File[];
-}
+import { FormSchema } from '@/trello/helpers/schema';
+import { UseFormReturn } from 'react-hook-form';
 
 interface FileUploadProps {
-	form: UseFormReturn<MyFormValues>;
+	form: UseFormReturn<FormSchema>;
 }
 
 export default function FileUpload({ form }: FileUploadProps) {

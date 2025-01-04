@@ -9,15 +9,20 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Astralab, ProductTypeProps } from '../helpers/types';
 
-interface ProductTypeProps {
-	form: any; // If using React Hook Form, prefer UseFormReturn<YourFormValues>
-}
+declare const astralab: Astralab;
 
-declare const astralab: any;
+type ProductType = {
+	id: number;
+	title: { rendered: string };
+	featured_media_url: string;
+	acf: { component: string };
+};
 
 export default function ProductType({ form }: ProductTypeProps) {
-	const [productTypes, setProductTypes] = useState<any>(null);
+	// Initialize productTypes with an empty array of the defined type
+	const [productTypes, setProductTypes] = useState<ProductType[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -43,7 +48,7 @@ export default function ProductType({ form }: ProductTypeProps) {
 		<div className="border px-4 py-6 mb-8 rounded">
 			<FormField
 				control={form.control}
-				name="productType"
+				name="productTypes"
 				render={() => (
 					<FormItem>
 						<FormLabel className="uppercase font-medium">
@@ -63,7 +68,7 @@ export default function ProductType({ form }: ProductTypeProps) {
 											</div>
 										</div>
 									))
-								) : productTypes?.length > 0 ? (
+								) : productTypes && productTypes.length > 0 ? (
 									productTypes.map(
 										(post: {
 											id: number;
@@ -71,10 +76,11 @@ export default function ProductType({ form }: ProductTypeProps) {
 											featured_media_url: string;
 											acf: { component: string };
 										}) => {
-											const productTypeObj =
-												form.getValues('productType') || {};
-											// If a key exists for this post.id, it's considered 'checked'
-											const isChecked = Boolean(productTypeObj[post.id]);
+											const productTypeArray =
+												form.getValues('productTypes') || [];
+											const isChecked = productTypeArray.some(
+												(item) => item.id === post.id
+											);
 
 											return (
 												<div key={`prodtype-${post.id}`}>
@@ -83,64 +89,26 @@ export default function ProductType({ form }: ProductTypeProps) {
 															id={`prodtype-${post.id}`}
 															checked={isChecked}
 															onCheckedChange={(checked) => {
-																const updatedProductType = {
-																	...productTypeObj,
-																};
+																let updatedProductTypes = [...productTypeArray];
 
 																if (checked) {
-																	/*
-                                    If checked, set the key to an object:
-                                    { title: "ADA Wayfinding" }
-                                  */
-																	updatedProductType[post.id] = {
+																	updatedProductTypes.push({
 																		title: post.title.rendered,
-																	};
+																		component: post.acf.component,
+																		id: post.id,
+																	});
 																} else {
-																	/*
-                                    If unchecked, remove the key completely.
-                                  */
-																	delete updatedProductType[post.id];
-																}
-
-																// Save back to form
-																form.setValue(
-																	'productType',
-																	updatedProductType
-																);
-
-																// Handle productComponent
-																const productComponentCurrent =
-																	form.getValues('productComponent') || [];
-																let newProductComponent = [
-																	...productComponentCurrent,
-																];
-
-																if (checked) {
-																	newProductComponent.push(post.acf.component);
-																} else {
-																	newProductComponent =
-																		newProductComponent.filter(
-																			(item) => item !== post.acf.component
+																	updatedProductTypes =
+																		updatedProductTypes.filter(
+																			(item) => item.id !== post.id
 																		);
 																}
 																form.setValue(
-																	'productComponent',
-																	newProductComponent
+																	'productTypes',
+																	updatedProductTypes
 																);
 
-																// Handle productId
-																const productIdCurrent =
-																	form.getValues('productId') || [];
-																let newProductId = [...productIdCurrent];
-
-																if (checked) {
-																	newProductId.push(post.id);
-																} else {
-																	newProductId = newProductId.filter(
-																		(item) => item !== post.id
-																	);
-																}
-																form.setValue('productId', newProductId);
+																form.trigger('productTypes');
 															}}
 															className="p-0 border-solid bg-transparent"
 														/>

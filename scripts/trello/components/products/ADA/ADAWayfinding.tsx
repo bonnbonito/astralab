@@ -34,18 +34,15 @@ interface ProductTypeData {
 interface ADAWayfindingProps {
 	form: UseFormReturn<MyFormValues>;
 	product: number;
-	watchedValues: any;
 }
 
 declare const astralab: Record<string, string>;
 
-export default function ADAWayfinding({
-	form,
-	product,
-	watchedValues = {},
-}: ADAWayfindingProps) {
+export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 	const [productType, setProductType] = useState<ProductTypeData | null>(null);
 	const [loading, setLoading] = useState(true);
+
+	const watchedValues = form.watch();
 
 	// Safely extract numberOfSigns with fallback to 0
 	const numberOfSigns =

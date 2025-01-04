@@ -1,28 +1,19 @@
-import { FieldValues } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
+import { FormSchema } from './schema';
 
-export interface WatchedValues {
-	projectName: string;
-	turnaroundTime: string;
-	projectDescription: string;
-	layoutType: string;
-	fileUpload: File[]; // Must be an array of `File` objects
-	productComponent?: string[]; // Optional, array of strings
-	productId?: number[]; // Optional, array of numbers
-	designDetails?: string; // Optional, string
-	productType?: Record<string, { title: string }>;
+export interface Astralab {
+	ajax_url: string;
+	nonce: string;
+	'product-types': string;
+	options: string;
 }
 
-export interface MyFormValues extends FieldValues {
-	productType: Record<
-		number,
-		{
-			numberOfSigns: number;
-			project?: {
-				name: string;
-				dimensions: string;
-				details: string;
-			}[];
-			typeSelections?: string[];
-		}
-	>;
+export interface ProductTypeProps {
+	form: UseFormReturn<FormSchema>;
+}
+
+export interface Options {
+	turnaround_time: string[];
+	layout_types: string[];
+	design_details: { name: string }[];
 }
