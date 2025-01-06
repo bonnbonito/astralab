@@ -17,20 +17,14 @@ import { UseFormReturn } from 'react-hook-form';
 
 interface NumberSignsProps {
 	form: UseFormReturn<FormSchema>;
-	name: string;
 	number?: number; // Maximum number of signs (default: 30)
 }
 
-export default function NumberSigns({
-	form,
-	name,
-	number = 30,
-}: NumberSignsProps) {
-	console.log(name);
+export default function NumberSigns({ form, number = 30 }: NumberSignsProps) {
 	return (
 		<FormField
 			control={form.control}
-			name={name}
+			name={'ADA.numberOfSigns'}
 			render={({ field }) => (
 				<div>
 					<FormLabel className="uppercase font-medium text-base">
@@ -43,14 +37,11 @@ export default function NumberSigns({
 								<Select
 									onValueChange={(value) => {
 										field.onChange(value);
-										console.log('Selected value:', value);
-										console.log(field);
 									}}
 									value={
-										typeof field.value === 'number'
+										typeof field.value === 'number' ||
+										typeof field.value === 'string'
 											? field.value.toString()
-											: typeof field.value === 'string'
-											? field.value
 											: ''
 									}
 								>

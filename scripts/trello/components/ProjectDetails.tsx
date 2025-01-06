@@ -7,7 +7,7 @@ import LayoutType from './fields/LayoutType';
 import FileUpload from './fields/FileUpload';
 import { Astralab, Options } from '../helpers/types';
 import { UseFormReturn } from 'react-hook-form';
-import { FormSchema } from '../helpers/schema';
+import { FormSchema } from '@/trello/helpers/schema';
 
 interface ProjectDetailsProps {
 	form: UseFormReturn<FormSchema>;

@@ -1,47 +1,25 @@
 'use client';
-import { useEffect, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { formSchema, formDefaultValues, FormSchema } from '../helpers/schema';
-
-import { Button } from '@/components/ui/button';
 import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
-import { Skeleton } from '@/components/ui/skeleton';
+	formSchema,
+	formDefaultValues,
+	FormSchema,
+} from '@/trello/helpers/schema';
 
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from '@/components/ui/select';
+import { Form } from '@/components/ui/form';
 
-import ProductType from './ProductType';
-import { Astralab, Options } from '../helpers/types';
 import Sidebar from './Sidebar';
 import Main from './Main';
+import { Astralab } from '@/trello/helpers/types';
+import axios from 'axios';
+import { Toaster } from '@/components/ui/toaster';
+import { useToast } from '@/hooks/use-toast';
 
 declare const astralab: Astralab;
-
-const defaultOptions: Options = {
-	turnaround_time: [],
-	layout_types: [],
-	design_details: [],
-};
 
 export default function OrderForm() {
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -49,59 +27,71 @@ export default function OrderForm() {
 		defaultValues: formDefaultValues,
 	});
 
-	const onSubmit: SubmitHandler<FormSchema> = (data) => {
-		console.log(data);
+	const { toast } = useToast();
+
+	const appendToFormData = (formData: FormData, key: string, value: any) => {
+		if (value instanceof File) {
+			// Handle file uploads
+			formData.append(key, value, value.name);
+		} else if (Array.isArray(value)) {
+			// Handle arrays
+			value.forEach((item, index) => {
+				if (typeof item === 'object' && item !== null) {
+					appendToFormData(formData, `${key}[${index}]`, item);
+				} else {
+					formData.append(`${key}[${index}]`, item);
+				}
+			});
+		} else if (typeof value === 'object' && value !== null) {
+			// Handle nested objects
+			for (const subKey in value) {
+				if (value.hasOwnProperty(subKey)) {
+					appendToFormData(formData, `${key}[${subKey}]`, value[subKey]);
+				}
+			}
+		} else {
+			// Handle simple key-value pairs
+			formData.append(key, value);
+		}
 	};
 
-	const [options, setOptions] = useState(null);
-	const [loading, setLoading] = useState(true);
+	const onSubmit: SubmitHandler<FormSchema> = async (data) => {
+		const formData = new FormData();
+		formData.append('action', 'astralab_form_submission');
+		formData.append('astralab_nonce', astralab.nonce);
 
-	useEffect(() => {
-		async function fetchOptions() {
-			try {
-				const response = await fetch(astralab.options);
+		// Append all data to FormData
+		Object.entries(data).forEach(([key, value]) => {
+			appendToFormData(formData, key, value);
+		});
 
-				if (!response.ok) {
-					throw new Error(`HTTP error! Status: ${response.status}`);
-				}
+		try {
+			const response = await axios.post(astralab.ajax_url, formData);
 
-				const data = await response.json();
-				setOptions(data);
-				setLoading(false);
-			} catch (error) {
-				console.error('Error fetching options:', error);
-				setLoading(false);
+			if (response.data.success === true) {
+				console.log('Success:', response.data);
+				form.reset();
+				toast({
+					title: 'Order placed successfully',
+				});
+			} else {
+				console.error('Error:', response.data);
 			}
+		} catch (error) {
+			console.error('Error:', error);
 		}
-
-		fetchOptions();
-	}, []);
-
-	const typedOptions: Options = options ? (options as Options) : defaultOptions;
-
-	const turnaroundTimeOptions = (typedOptions.turnaround_time || []).map(
-		(item) => {
-			if (typeof item === 'string') {
-				return { name: item };
-			}
-			return item;
-		}
-	) as { name: string }[];
-	const layoutTypeOptions = (typedOptions.layout_types || []).map((item) => {
-		if (typeof item === 'string') {
-			return { title: item, image: { url: '' } };
-		}
-		return item;
-	}) as { title: string; image: { url: string } }[];
-	const designDetailsOptions = typedOptions?.design_details || [];
+	};
 
 	return (
-		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="md:flex gap-9">
-				<Main form={form} />
+		<>
+			<Form {...form}>
+				<form onSubmit={form.handleSubmit(onSubmit)} className="md:flex gap-9">
+					<Main form={form} />
 
-				<Sidebar form={form} />
-			</form>
-		</Form>
+					<Sidebar form={form} />
+				</form>
+			</Form>
+			<Toaster />
+		</>
 	);
 }

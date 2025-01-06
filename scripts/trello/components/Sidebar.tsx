@@ -13,6 +13,15 @@ export default function Sidebar({ form }: SidebarProps) {
 	const productTypes = watchedValues.productTypes || {};
 	const hasProductTypes = Object.keys(productTypes).length > 0;
 
+	let submitLabel = 'Place Order';
+	if (form.formState.isSubmitting) {
+		submitLabel = 'Please wait...';
+	}
+
+	if (form.formState.isSubmitSuccessful) {
+		submitLabel = 'Order Placed';
+	}
+
 	return (
 		<div className="max-w-[310px] w-full">
 			<div className="px-4 py-6 border flex-1 rounded sticky top-12">
@@ -61,7 +70,6 @@ export default function Sidebar({ form }: SidebarProps) {
 				{hasProductTypes && (
 					<div className="mt-4">
 						<h5 className="uppercase font-semibold text-lg">Product Types</h5>
-						{JSON.stringify(productTypes)}
 
 						{Object.entries(productTypes).map(([id, productObject], index) => {
 							if (
@@ -78,6 +86,7 @@ export default function Sidebar({ form }: SidebarProps) {
 												: 'Untitled Product'
 										}
 										key={id}
+										form={form}
 										component={
 											typeof productObject.component === 'string'
 												? productObject.component
@@ -98,8 +107,12 @@ export default function Sidebar({ form }: SidebarProps) {
 				)}
 
 				{/* Submit Button */}
-				<Button type="submit" className="w-full uppercase font-semibold">
-					Place Order
+				<Button
+					type="submit"
+					className="w-full uppercase font-semibold"
+					disabled={form.formState.isSubmitting}
+				>
+					{submitLabel}
 				</Button>
 			</div>
 		</div>

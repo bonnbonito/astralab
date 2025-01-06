@@ -6,8 +6,7 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from '@/components/ui/accordion';
-import NumberSigns from '@/trello/components/fields/NumberSigns';
-import { MyFormValues } from '@/trello/helpers/types';
+import NumberSigns from '@/trello/components/products/ADA/NumberSigns';
 import TextField from '@/trello/components/fields/TextField';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
@@ -18,6 +17,8 @@ import {
 	FormControl,
 	FormMessage,
 } from '@/components/ui/form';
+import { FormSchema } from '@/trello/helpers/schema';
+import DesignInspiration from '../../DesignInspiration';
 
 interface ProductTypeData {
 	title?: {
@@ -28,11 +29,16 @@ interface ProductTypeData {
 	product_types_options?: {
 		title: string;
 		image: string;
-	}[]; // Explicitly define the type for product_types_options
+	}[];
+	design_inspiration?: {
+		name: string;
+		image: string;
+		group: string;
+	}[];
 }
 
 interface ADAWayfindingProps {
-	form: UseFormReturn<MyFormValues>;
+	form: UseFormReturn<FormSchema>;
 	product: number;
 }
 
@@ -42,11 +48,7 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 	const [productType, setProductType] = useState<ProductTypeData | null>(null);
 	const [loading, setLoading] = useState(true);
 
-	const watchedValues = form.watch();
-
-	// Safely extract numberOfSigns with fallback to 0
-	const numberOfSigns =
-		watchedValues?.productType?.[product]?.numberOfSigns || 0;
+	const numberOfSigns = form.watch('ADA.numberOfSigns');
 
 	const processedProductType = useMemo(() => productType, [productType]);
 
@@ -78,7 +80,7 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 			className="border border-solid rounded"
 		>
 			<AccordionItem value={product.toString()}>
-				<AccordionTrigger className="bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6">
+				<AccordionTrigger className="bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4">
 					{loading
 						? 'Loading...'
 						: processedProductType?.title?.rendered || 'No Data Available'}
@@ -89,41 +91,34 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 					) : (
 						<div className="p-4 pt-0">
 							{/* Render Number of Signs Input */}
-							<NumberSigns
-								form={form}
-								name={`productType.${product}.numberOfSigns`}
-							/>
-
-							{/* Render dynamic fields based on numberOfSigns */}
-							{Array.from({ length: numberOfSigns }, (_, index) => (
-								<div key={index} className="mt-4 grid md:grid-cols-3 gap-4">
-									<TextField
-										form={form}
-										name={`productType.${product}.signs.${index}.name`}
-										label={`Project ${index + 1} Name`}
-										placeholder={`Enter project name ${index + 1}`}
-										rules={{ required: 'Project name is required' }}
-									/>
-									<TextField
-										form={form}
-										name={`productType.${product}.signs.${index}.dimension`}
-										label={`No. ${index + 1} Width x Height`}
-										placeholder={`Enter ${index + 1} dimensions`}
-										rules={{ required: 'Dimensions are required' }}
-									/>
-									<TextField
-										form={form}
-										name={`productType.${product}.signs.${index}.details`}
-										label={`Sign ${index + 1} Details`}
-										placeholder={`Enter details for sign ${index + 1}`}
-										rules={{ required: 'Details are required' }}
-									/>
-								</div>
-							))}
+							<NumberSigns form={form} />
+							{numberOfSigns &&
+								Array.from({ length: Number(numberOfSigns) }, (_, index) => (
+									<div key={index} className="mt-4 grid md:grid-cols-3 gap-4">
+										<TextField
+											form={form}
+											name={`ADA.signs.${index}.name`}
+											label={`No.${index + 1} Name`}
+											placeholder={`Enter project name ${index + 1}`}
+										/>
+										<TextField
+											form={form}
+											name={`ADA.signs.${index}.dimension`}
+											label={`No. ${index + 1} Width x Height`}
+											placeholder={`Enter ${index + 1} dimensions`}
+										/>
+										<TextField
+											form={form}
+											name={`ADA.signs.${index}.details`}
+											label={`Sign ${index + 1} Details`}
+											placeholder={`Enter details for sign ${index + 1}`}
+										/>
+									</div>
+								))}
 
 							<FormField
 								control={form.control}
-								name="productType"
+								name="ADA.types"
 								render={() => (
 									<FormItem className="mt-4">
 										<FormLabel className="uppercase font-medium text-base mt-4">
@@ -135,9 +130,7 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 													(option, optionIndex) => {
 														const optionKey = `option-${optionIndex}`;
 														const currentSelections =
-															(form.getValues(
-																`productType.${product}.typeSelections`
-															) as string[]) || [];
+															(form.getValues(`ADA.types`) as string[]) || [];
 														const isChecked = currentSelections?.includes(
 															option.title
 														);
@@ -167,9 +160,10 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 																					);
 																			}
 																			form.setValue(
-																				`productType.${product}.typeSelections`,
-																				updatedSelections as never
+																				`ADA.types`,
+																				updatedSelections
 																			);
+																			form.trigger('ADA.types');
 																		}}
 																		className="p-0 border-solid bg-transparent"
 																	/>
@@ -200,6 +194,20 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 										<FormMessage />
 									</FormItem>
 								)}
+							/>
+
+							<DesignInspiration
+								form={form}
+								fieldName="ADA[designInspirations]"
+								options={
+									processedProductType?.design_inspiration?.map(
+										(inspiration) => ({
+											name: inspiration.name,
+											image: inspiration.image,
+											group: inspiration.group,
+										})
+									) || []
+								}
 							/>
 						</div>
 					)}

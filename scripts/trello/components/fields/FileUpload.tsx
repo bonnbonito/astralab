@@ -7,30 +7,49 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { FormSchema } from '@/trello/helpers/schema';
+import { useRef, useEffect } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
-interface FileUploadProps {
+export default function FileUpload({
+	form,
+}: {
 	form: UseFormReturn<FormSchema>;
-}
+}) {
+	const fileInputRef = useRef<HTMLInputElement>(null);
 
-export default function FileUpload({ form }: FileUploadProps) {
+	// Handle form reset in useEffect to properly manage side effects
+	useEffect(() => {
+		if (form.formState.isSubmitted && fileInputRef.current) {
+			fileInputRef.current.value = '';
+		}
+	}, [form.formState.isSubmitted]);
+
+	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const files = event.target.files;
+		if (files?.length) {
+			form.setValue('fileUpload', Array.from(files), {
+				shouldValidate: true,
+				shouldDirty: true,
+			});
+		}
+	};
+
 	return (
 		<FormField
 			control={form.control}
 			name="fileUpload"
-			render={({ field }) => (
+			render={({ field: { value, ...field } }) => (
 				<FormItem>
 					<FormLabel className="uppercase font-medium">File Upload</FormLabel>
 					<FormControl>
 						<Input
+							{...field}
+							value={undefined}
 							type="file"
+							ref={fileInputRef}
 							multiple
-							onChange={(e) => {
-								if (e.target.files) {
-									field.onChange(Array.from(e.target.files));
-								}
-							}}
-							className="inline-block"
+							onChange={handleFileChange}
+							className="inline-block bg-button border-0 !leading-[30px]"
 						/>
 					</FormControl>
 					<FormMessage />

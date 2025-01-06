@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { ADASchema } from '../components/products/ADA/schema';
+
 const formSchema = z
 	.object({
 		projectName: z.string().min(2).nonempty(),
@@ -23,13 +25,14 @@ const formSchema = z
 		fileUpload: z.array(z.instanceof(File)),
 	})
 	.refine((data) => (data.productTypes ? data.productTypes.length > 0 : true), {
-		message: 'Product types upload cannot be empty.',
+		message: 'Select at least one Product Type',
 		path: ['productTypes'],
 	})
 	.refine((data) => (data.fileUpload ? data.fileUpload.length > 0 : true), {
 		message: 'File upload cannot be empty.',
 		path: ['fileUpload'],
-	});
+	})
+	.and(ADASchema);
 
 type FormSchema = z.infer<typeof formSchema>;
 
@@ -41,6 +44,7 @@ const formDefaultValues: FormSchema = {
 	layoutType: '',
 	productTypes: [],
 	fileUpload: [],
+	hasADA: false,
 };
 
 export { formDefaultValues, formSchema, type FormSchema };

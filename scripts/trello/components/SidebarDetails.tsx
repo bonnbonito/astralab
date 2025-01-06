@@ -1,12 +1,16 @@
+import { UseFormReturn } from 'react-hook-form';
+import { FormSchema } from '@/trello/helpers/schema';
 import SidebarADA from './products/ADA/SidebarADA';
 
 interface SidebarDetailsProps {
 	title: string;
+	form: UseFormReturn<FormSchema>;
 	component?: string;
 }
 
 export default function SidebarDetails({
 	title,
+	form,
 	component,
 }: SidebarDetailsProps) {
 	return (
@@ -16,7 +20,7 @@ export default function SidebarDetails({
 				dangerouslySetInnerHTML={{ __html: title }}
 			/>
 
-			{component === 'ADAWayfinding' && <SidebarADA />}
+			{component === 'ADAWayfinding' && <SidebarADA form={form} />}
 		</div>
 	);
 }

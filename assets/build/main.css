@@ -612,6 +612,9 @@ video {
 #astralab .top-12 {
   top: 3rem;
 }
+#astralab .top-2 {
+  top: 0.5rem;
+}
 #astralab .top-\[50\%\] {
   top: 50%;
 }
@@ -623,6 +626,9 @@ video {
 }
 #astralab .z-\[100\] {
   z-index: 100;
+}
+#astralab .z-10 {
+  z-index: 10;
 }
 #astralab .col-span-2 {
   grid-column: span 2 / span 2;
@@ -661,6 +667,9 @@ video {
 #astralab .ml-2 {
   margin-left: 0.5rem;
 }
+#astralab .ml-auto {
+  margin-left: auto;
+}
 #astralab .mr-2 {
   margin-right: 0.5rem;
 }
@@ -676,8 +685,17 @@ video {
 #astralab .mt-4 {
   margin-top: 1rem;
 }
+#astralab .mt-6 {
+  margin-top: 1.5rem;
+}
 #astralab .mt-7 {
   margin-top: 1.75rem;
+}
+#astralab .mb-3 {
+  margin-bottom: 0.75rem;
+}
+#astralab .mr-4 {
+  margin-right: 1rem;
 }
 #astralab .block {
   display: block;
@@ -730,6 +748,9 @@ video {
 #astralab .h-40 {
   height: 10rem;
 }
+#astralab .h-6 {
+  height: 1.5rem;
+}
 #astralab .h-8 {
   height: 2rem;
 }
@@ -757,14 +778,32 @@ video {
 #astralab .h-px {
   height: 1px;
 }
+#astralab .h-5 {
+  height: 1.25rem;
+}
 #astralab .max-h-96 {
   max-height: 24rem;
 }
 #astralab .max-h-screen {
   max-height: 100vh;
 }
+#astralab .max-h-20 {
+  max-height: 5rem;
+}
+#astralab .max-h-10 {
+  max-height: 2.5rem;
+}
+#astralab .max-h-14 {
+  max-height: 3.5rem;
+}
+#astralab .max-h-\[72px\] {
+  max-height: 72px;
+}
 #astralab .min-h-48 {
   min-height: 12rem;
+}
+#astralab .min-h-\[400px\] {
+  min-height: 400px;
 }
 #astralab .min-h-\[60px\] {
   min-height: 60px;
@@ -784,8 +823,14 @@ video {
 #astralab .w-40 {
   width: 10rem;
 }
+#astralab .w-6 {
+  width: 1.5rem;
+}
 #astralab .w-full {
   width: 100%;
+}
+#astralab .w-5 {
+  width: 1.25rem;
 }
 #astralab .min-w-\[8rem\] {
   min-width: 8rem;
@@ -795,6 +840,9 @@ video {
 }
 #astralab .max-w-\[310px\] {
   max-width: 310px;
+}
+#astralab .max-w-\[500px\] {
+  max-width: 500px;
 }
 #astralab .max-w-lg {
   max-width: 32rem;
@@ -824,6 +872,15 @@ video {
 }
 #astralab .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes spin {
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+#astralab .animate-spin {
+  animation: spin 1s linear infinite;
 }
 #astralab .cursor-default {
   cursor: default;
@@ -912,6 +969,9 @@ video {
 #astralab .overflow-x-auto {
   overflow-x: auto;
 }
+#astralab .overflow-y-auto {
+  overflow-y: auto;
+}
 #astralab .whitespace-nowrap {
   white-space: nowrap;
 }
@@ -936,8 +996,14 @@ video {
 #astralab .border {
   border-width: 1px;
 }
+#astralab .border-0 {
+  border-width: 0px;
+}
 #astralab .border-b {
   border-bottom-width: 1px;
+}
+#astralab .border-b-0 {
+  border-bottom-width: 0px;
 }
 #astralab .border-solid {
   border-style: solid;
@@ -958,6 +1024,22 @@ video {
 }
 #astralab .border-primary {
   border-color: hsl(var(--primary));
+}
+#astralab .border-transparent {
+  border-color: transparent;
+}
+#astralab .border-x-\[\#D2D2D2\] {
+  --tw-border-opacity: 1;
+  border-left-color: rgb(210 210 210 / var(--tw-border-opacity, 1));
+  border-right-color: rgb(210 210 210 / var(--tw-border-opacity, 1));
+}
+#astralab .border-b-\[\#D2D2D2\] {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(210 210 210 / var(--tw-border-opacity, 1));
+}
+#astralab .border-t-\[\#D2D2D2\] {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(210 210 210 / var(--tw-border-opacity, 1));
 }
 #astralab .bg-background {
   background-color: hsl(var(--background));
@@ -1006,6 +1088,24 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
+#astralab .bg-button {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 255 157 / var(--tw-bg-opacity, 1));
+}
+#astralab .bg-opacity-60 {
+  --tw-bg-opacity: 0.6;
+}
+#astralab .bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+}
+#astralab .from-background {
+  --tw-gradient-from: hsl(var(--background)) var(--tw-gradient-from-position);
+  --tw-gradient-to: hsl(var(--background) / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+#astralab .to-muted\/20 {
+  --tw-gradient-to: hsl(var(--muted) / 0.2) var(--tw-gradient-to-position);
+}
 #astralab .fill-primary {
   fill: hsl(var(--primary));
 }
@@ -1018,6 +1118,12 @@ video {
 }
 #astralab .p-1 {
   padding: 0.25rem;
+}
+#astralab .p-12 {
+  padding: 3rem;
+}
+#astralab .p-3 {
+  padding: 0.75rem;
 }
 #astralab .p-4 {
   padding: 1rem;
@@ -1040,6 +1146,10 @@ video {
 #astralab .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}
+#astralab .px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 #astralab .px-8 {
   padding-left: 2rem;
@@ -1102,6 +1212,10 @@ video {
 #astralab .text-center {
   text-align: center;
 }
+#astralab .text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
 #astralab .text-\[0\.8rem\] {
   font-size: 0.8rem;
 }
@@ -1147,6 +1261,15 @@ video {
 }
 #astralab .leading-none {
   line-height: 1;
+}
+#astralab .leading-\[30px\] {
+  line-height: 30px;
+}
+#astralab .\!leading-\[30px\] {
+  line-height: 30px !important;
+}
+#astralab .tracking-tight {
+  letter-spacing: -0.025em;
 }
 #astralab .text-black {
   --tw-text-opacity: 1;
@@ -1221,6 +1344,12 @@ video {
 }
 #astralab .opacity-90 {
   opacity: 0.9;
+}
+#astralab .opacity-25 {
+  opacity: 0.25;
+}
+#astralab .opacity-75 {
+  opacity: 0.75;
 }
 #astralab .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -1724,6 +1853,10 @@ video {
 
   #astralab .sm\:mt-0 {
     margin-top: 0px;
+  }
+
+  #astralab .sm\:grid-cols-\[repeat\(auto-fill\2c minmax\(270px\2c 1fr\)\)\] {
+    grid-template-columns: repeat(auto-fill,minmax(270px,1fr));
   }
 
   #astralab .sm\:flex-row {

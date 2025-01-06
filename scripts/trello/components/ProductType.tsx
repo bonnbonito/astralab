@@ -55,7 +55,7 @@ export default function ProductType({ form }: ProductTypeProps) {
 							Product Type
 						</FormLabel>
 						<FormControl>
-							<div className="grid grid-cols-3 gap-6">
+							<div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-6">
 								{loading ? (
 									Array.from({ length: 3 }).map((_, index) => (
 										<div className="flex flex-col space-y-3" key={index}>
@@ -97,7 +97,14 @@ export default function ProductType({ form }: ProductTypeProps) {
 																		component: post.acf.component,
 																		id: post.id,
 																	});
+
+																	if (post.acf.component === 'ADAWayfinding') {
+																		form.setValue('hasADA', true);
+																	}
 																} else {
+																	if (post.acf.component === 'ADAWayfinding') {
+																		form.setValue('hasADA', false);
+																	}
 																	updatedProductTypes =
 																		updatedProductTypes.filter(
 																			(item) => item.id !== post.id

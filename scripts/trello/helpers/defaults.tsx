@@ -6,4 +6,5 @@ export const defaultValues = {
 	layoutType: '',
 	productType: {},
 	fileUpload: [],
+	hasADA: false,
 };

@@ -44,8 +44,8 @@ class Trello_API {
 			'astralab/v1',
 			'/trello-webhook',
 			array(
-				'methods'             => \WP_REST_Server::ALLMETHODS,
-				'callback'            => array( $this, 'handle_trello_webhook' ),
+				'methods' => \WP_REST_Server::ALLMETHODS,
+				'callback' => array( $this, 'handle_trello_webhook' ),
 				'permission_callback' => '__return_true',
 			)
 		);
@@ -70,7 +70,7 @@ class Trello_API {
 			error_log( 'Invalid Trello webhook payload received.' );
 			return new \WP_REST_Response(
 				array(
-					'status'  => 'error',
+					'status' => 'error',
 					'message' => 'Invalid payload',
 				),
 				400
@@ -79,15 +79,15 @@ class Trello_API {
 
 		$card_id = sanitize_text_field( $data['webhook']['idModel'] );
 
-		$options   = get_option( $this->option_name );
-		$api_key   = $options['trello_api_key'] ?? '';
+		$options = get_option( $this->option_name );
+		$api_key = $options['trello_api_key'] ?? '';
 		$api_token = $options['trello_api_token'] ?? '';
 
 		if ( empty( $api_key ) || empty( $api_token ) ) {
 			error_log( 'Missing Trello API credentials.' );
 			return new \WP_REST_Response(
 				array(
-					'status'  => 'error',
+					'status' => 'error',
 					'message' => 'Missing Trello API credentials',
 				),
 				500
@@ -101,7 +101,7 @@ class Trello_API {
 			error_log( "Trello card with ID {$card_id} does not exist." );
 			return new \WP_REST_Response(
 				array(
-					'status'  => 'error',
+					'status' => 'error',
 					'message' => 'Card does not exist',
 				),
 				404
@@ -115,7 +115,7 @@ class Trello_API {
 			error_log( 'Error retrieving Trello card actions: ' . $response->get_error_message() );
 			return new \WP_REST_Response(
 				array(
-					'status'  => 'error',
+					'status' => 'error',
 					'message' => 'Error retrieving card actions',
 				),
 				500
@@ -128,7 +128,7 @@ class Trello_API {
 
 		return new \WP_REST_Response(
 			array(
-				'status'  => 'ok',
+				'status' => 'ok',
 				'message' => 'Webhook processed successfully',
 			),
 			200
@@ -145,15 +145,15 @@ class Trello_API {
 	private function get_post_id_by_meta( $meta_key, $meta_value ) {
 		$query = new \WP_Query(
 			array(
-				'post_type'      => 'trello-card',
-				'meta_query'     => array(
+				'post_type' => 'trello-card',
+				'meta_query' => array(
 					array(
-						'key'   => $meta_key,
+						'key' => $meta_key,
 						'value' => $meta_value,
 					),
 				),
 				'posts_per_page' => 1,
-				'post_status'    => 'publish',
+				'post_status' => 'publish',
 			)
 		);
 
@@ -204,11 +204,11 @@ class Trello_API {
 	 * @param string $endpoint The API endpoint (e.g., 'cards/{id}/actions').
 	 * @param array  $params Query parameters or body data for the request.
 	 * @param array  $headers Optional. Additional headers for the request.
-	 * @return array|WP_Error The API response as an associative array or WP_Error on failure.
+	 * @return array|\WP_Error The API response as an associative array or WP_Error on failure.
 	 */
 	public function trello_api_request( $method, $endpoint, $params = array(), $headers = array() ) {
-		$options   = get_option( $this->option_name );
-		$api_key   = $options['trello_api_key'] ?? '';
+		$options = get_option( $this->option_name );
+		$api_key = $options['trello_api_key'] ?? '';
 		$api_token = $options['trello_api_token'] ?? '';
 
 		if ( empty( $api_key ) || empty( $api_token ) ) {
@@ -216,9 +216,9 @@ class Trello_API {
 		}
 
 		$base_url = 'https://api.trello.com/1/';
-		$url      = trailingslashit( $base_url ) . $endpoint;
+		$url = trailingslashit( $base_url ) . $endpoint;
 
-		$params['key']   = $api_key;
+		$params['key'] = $api_key;
 		$params['token'] = $api_token;
 
 		$args = array(

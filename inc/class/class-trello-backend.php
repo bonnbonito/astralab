@@ -39,8 +39,9 @@ class Trello_Backend {
 		add_action( 'admin_notices', array( $this, 'astralab_show_trello_board_message_checkbox' ) );
 
 		// AJAX: handle trello card creation
-		add_action( 'wp_ajax_handle_trello_form_submission', array( $this, 'handle_trello_form_submission_ajax' ) );
-		add_action( 'wp_ajax_nopriv_handle_trello_form_submission', array( $this, 'handle_trello_form_submission_ajax' ) );
+		add_action( 'wp_ajax_astralab_form_submission', array( $this, 'astralab_form_submission' ) );
+		//add_action( 'wp_ajax_nopriv_astralab_form_submission', array( $this, 'astralab_form_submission' ) );
+
 
 		//Add Rest API for Options
 		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
@@ -311,5 +312,208 @@ class Trello_Backend {
 
 			echo '<div class="notice ' . esc_attr( $class ) . ' is-dismissible"><p>' . esc_html( $message ) . '</p></div>';
 		}
+	}
+
+	public function astralab_form_submission() {
+		$nonce = $_POST['astralab_nonce'];
+
+		$user_id = get_current_user_id();
+
+
+		$return['post'] = $_POST;
+		$return['file'] = $_FILES['fileUpload'];
+		$return['user'] = $user_id;
+		$post = $_POST;
+
+		//check astralab_nonce
+		if ( ! wp_verify_nonce( $nonce, 'astralab_nonce' ) ) {
+			wp_send_json_error(
+				array(
+					'message' => 'Invalid nonce verification',
+					'post' => $_POST
+				) );
+		}
+
+		$options = get_option( $this->option_name );
+		$api_key = isset( $options['trello_api_key'] ) ? $options['trello_api_key'] : '';
+		$api_token = isset( $options['trello_api_token'] ) ? $options['trello_api_token'] : '';
+		$list_id = get_user_meta( $user_id, 'trello_list_id', true );
+
+		if ( empty( $api_key ) ) {
+			wp_send_json_error( 'Trello API credentials not set.' );
+		}
+
+		if ( empty( $api_token ) ) {
+			wp_send_json_error( 'Trello API Token not set' );
+		}
+
+		if ( empty( $list_id ) ) {
+			wp_send_json_error( 'Trello List ID not set.' );
+		}
+
+		$card_name = sanitize_text_field( $_POST['projectName'] );
+
+		$user = wp_get_current_user();
+		if ( $user && $user->ID ) {
+			$full_name = $user->display_name;
+			$email = $user->user_email;
+		} else {
+			$full_name = 'Guest';
+			$email = 'N/A';
+		}
+
+		$jsonData = json_decode( json_encode( $_POST ), true );
+		$ada = $jsonData['ADA'];
+
+		// Construct the Markdown description
+		$user_line = '**User:** ' . ( ! empty( $full_name ) ? $full_name : 'N/A' );
+		$email_line = '**Email:** ' . ( ! empty( $email ) ? $email : 'N/A' );
+
+		$project_details = '## **Project Name:** ' . $card_name . "\n";
+		$project_details .= '### **Turnaround Time:** ' . $_POST['turnaroundTime'] . "\n";
+		$project_details .= '### **Design Details: ** ' . $_POST['designDetails'] . "\n";
+		$project_details .= '### **Project Description:**' . "\n";
+		$project_details .= sanitize_textarea_field( $_POST['projectDescription'] ) . "\n";
+
+		$project_details .= '### **Layout Type:** ' . $_POST['layoutType'] . "\n\n";
+
+		$project_details .= '## **Product Types:**' . "\n";
+
+		if ( ! empty( $_POST["hasADA"] ) ) {
+			$signs = $ada['signs'] ?? [];
+			$project_details .= '### **ADA Wayfinding:** ' . "\n";
+			$project_details .= '- **No. of Signs:** ' . $ada['numberOfSigns'] . " \n";
+			foreach ( $signs as $index => $sign ) {
+				$no = $index + 1;
+				$project_details .= " - No.$no Name: {$sign['name']} \n";
+				$project_details .= " - No.$no Dimension: {$sign['dimension']} \n";
+				$project_details .= " - No.$no Details: {$sign['details']} \n";
+			}
+		}
+
+
+		$md_desc = $user_line . "\n" . $email_line . "\n\n" . $project_details;
+
+		// Create the Trello card
+		$card_url = 'https://api.trello.com/1/cards';
+		$card_args = array(
+			'key' => $api_key,
+			'token' => $api_token,
+			'idList' => $list_id,
+			'name' => $card_name,
+			'desc' => $md_desc,
+		);
+
+		$card_response = wp_remote_post(
+			$card_url,
+			array(
+				'body' => $card_args,
+			)
+		);
+
+		if ( is_wp_error( $card_response ) ) {
+			wp_send_json_error( 'Error creating card: ' . $card_response->get_error_message() );
+		}
+
+		$card_body = json_decode( wp_remote_retrieve_body( $card_response ) );
+
+		if ( isset( $card_body->id ) ) {
+			$card_id = $card_body->id;
+
+			// Create a trello_card post and set the author to the current user
+			$post_author = get_current_user_id();
+			$post_id = wp_insert_post(
+				array(
+					'post_type' => 'trello-card',
+					'post_title' => $card_name,
+					'post_status' => 'publish',
+					'post_author' => $post_author,
+				)
+			);
+
+			if ( ! is_wp_error( $post_id ) && $post_id ) {
+				update_post_meta( $post_id, 'trello_card_id', $card_id );
+				//update_post_meta( $post_id, 'trello_card_message', $card_desc );
+				update_post_meta( $post_id, 'trello_card_user_name', $full_name );
+				update_post_meta( $post_id, 'trello_card_user_email', $email );
+			}
+
+			// Handle multiple file uploads
+			if ( ! empty( $_FILES['fileUpload']['name'][0] ) ) {
+				$uploadedfiles = $_FILES['fileUpload'];
+				$file_count = count( $uploadedfiles['name'] );
+				$errors = array();
+				$success_count = 0;
+
+				for ( $i = 0; $i < $file_count; $i++ ) {
+					$file_name = sanitize_file_name( $uploadedfiles['name'][ $i ] );
+					$file_type = $uploadedfiles['type'][ $i ];
+					$file_tmp_name = $uploadedfiles['tmp_name'][ $i ];
+					$file_error = $uploadedfiles['error'][ $i ];
+					$file_size = $uploadedfiles['size'][ $i ];
+
+					// Check for upload errors
+					if ( $file_error !== UPLOAD_ERR_OK ) {
+						$errors[] = 'Error uploading file: ' . $file_name;
+						continue;
+					}
+
+					// Validate file size if needed
+					$max_file_size = 10 * 1024 * 1024; // 10 MB
+					if ( $file_size > $max_file_size ) {
+						$errors[] = 'File size exceeds limit for file: ' . $file_name;
+						continue;
+					}
+
+					// Prepare the file for upload to Trello
+					$file_data = array(
+						'file' => new \CURLFile( $file_tmp_name, $file_type, $file_name ),
+						'key' => $api_key,
+						'token' => $api_token,
+					);
+
+					// Attach the file to the Trello card
+					$attachment_url = "https://api.trello.com/1/cards/{$card_id}/attachments";
+					$ch = curl_init();
+					curl_setopt( $ch, CURLOPT_URL, $attachment_url );
+					curl_setopt( $ch, CURLOPT_POST, 1 );
+					curl_setopt( $ch, CURLOPT_POSTFIELDS, $file_data );
+					curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+
+					$attachment_response = curl_exec( $ch );
+					$attachment_error = curl_error( $ch );
+					curl_close( $ch );
+
+					if ( $attachment_error ) {
+						$errors[] = 'Error uploading attachment for file ' . $file_name . ': ' . $attachment_error;
+						continue;
+					}
+
+					++$success_count;
+				}
+
+				// Generate response message
+				if ( $success_count > 0 && empty( $errors ) ) {
+
+					wp_send_json_success( array(
+						'message' => 'Card created and all files attached successfully!',
+						'post' => $jsonData['ADA']
+					) );
+				} elseif ( $success_count > 0 && ! empty( $errors ) ) {
+					$error_messages = implode( '<br>', $errors );
+					wp_send_json_success( "Card created. Successfully attached $success_count files.<br>Errors:<br>$error_messages" );
+				} else {
+					$error_messages = implode( '<br>', $errors );
+					wp_send_json_error( "Card created but failed to attach files.<br>Errors:<br>$error_messages" );
+				}
+			} else {
+				wp_send_json_success( 'Card created successfully!' );
+			}
+		} else {
+			wp_send_json_error( 'Error creating card.' );
+		}
+
+		wp_die();
+
 	}
 }
