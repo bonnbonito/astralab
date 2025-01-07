@@ -155,7 +155,7 @@ export default function ProductType({ form }: ProductTypeProps) {
 																'placeholder-image-url'
 															}
 															alt={post.title.rendered}
-															className="object-cover mt-2 rounded-md w-full"
+															className="object-cover mt-2 rounded-md w-full aspect-[4/3]"
 														/>
 													</Label>
 												</div>

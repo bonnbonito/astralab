@@ -1686,7 +1686,7 @@ function ProductType({
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
                     src: post.featured_media_url || 'placeholder-image-url',
                     alt: post.title.rendered,
-                    className: "object-cover mt-2 rounded-md w-full"
+                    className: "object-cover mt-2 rounded-md w-full aspect-[4/3]"
                   })
                 })]
               }, `prodtype-${post.id}`);
