@@ -115,7 +115,7 @@ export default function DesignInspiration({
 								All
 							</div>
 						</div>
-						<div className="mt-4 grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-6">
+						<div className="mt-4 grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(195px,1fr))] gap-4">
 							{options.map((option, index) => {
 								const designArray: string[] =
 									form.getValues(fieldName as any) || [];

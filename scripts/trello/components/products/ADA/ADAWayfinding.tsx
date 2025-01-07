@@ -6,7 +6,7 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from '@/components/ui/accordion';
-import NumberSigns from '@/trello/components/products/ADA/NumberSigns';
+import NumberSigns from '@/trello/components/fields/NumberSigns';
 import TextField from '@/trello/components/fields/TextField';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
@@ -18,17 +18,21 @@ import {
 	FormMessage,
 } from '@/components/ui/form';
 import { FormSchema } from '@/trello/helpers/schema';
-import DesignInspiration from '../../DesignInspiration';
+import DesignInspiration from '@/trello/components/DesignInspiration';
+import { ProductOptions } from '@/trello/components/fields/ProductOptions';
 
-interface ProductTypeData {
+interface ADAProductTypeData {
 	title?: {
 		rendered: string;
 	};
 	component_field?: string;
 	id?: number;
-	product_types_options?: {
-		title: string;
-		image: string;
+	product_types_options: {
+		name: string;
+		options: {
+			title: string;
+			image: string;
+		}[];
 	}[];
 	design_inspiration?: {
 		name: string;
@@ -45,12 +49,18 @@ interface ADAWayfindingProps {
 declare const astralab: Record<string, string>;
 
 export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
-	const [productType, setProductType] = useState<ProductTypeData | null>(null);
+	const [productType, setProductType] = useState<ADAProductTypeData | null>(
+		null
+	);
 	const [loading, setLoading] = useState(true);
 
 	const numberOfSigns = form.watch('ADA.numberOfSigns');
 
 	const processedProductType = useMemo(() => productType, [productType]);
+
+	const types = processedProductType?.product_types_options?.find(
+		(item) => item.name === 'Types'
+	);
 
 	useEffect(() => {
 		async function fetchProductTypes() {
@@ -60,8 +70,9 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 				if (!response.ok) {
 					throw new Error(`HTTP error! Status: ${response.status}`);
 				}
-				const data: ProductTypeData = await response.json();
+				const data: ADAProductTypeData = await response.json();
 				setProductType(data || null); // Ensure null fallback if data is invalid
+				console.log(data);
 			} catch (error) {
 				console.error('Error fetching product type:', error);
 				setProductType(null); // Set null if fetching fails
@@ -91,7 +102,7 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 					) : (
 						<div className="p-4 pt-0">
 							{/* Render Number of Signs Input */}
-							<NumberSigns form={form} />
+							<NumberSigns form={form} fieldName="ADA.numberOfSigns" />
 							{numberOfSigns &&
 								Array.from({ length: Number(numberOfSigns) }, (_, index) => (
 									<div key={index} className="mt-4 grid md:grid-cols-3 gap-4">
@@ -116,84 +127,11 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 									</div>
 								))}
 
-							<FormField
-								control={form.control}
-								name="ADA.types"
-								render={() => (
-									<FormItem className="mt-4">
-										<FormLabel className="uppercase font-medium text-base mt-4">
-											Types
-										</FormLabel>
-										<FormControl>
-											<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-												{processedProductType?.product_types_options?.map(
-													(option, optionIndex) => {
-														const optionKey = `option-${optionIndex}`;
-														const currentSelections =
-															(form.getValues(`ADA.types`) as string[]) || [];
-														const isChecked = currentSelections?.includes(
-															option.title
-														);
-
-														return (
-															<div
-																key={`checkbox-${optionKey}`}
-																className="text-center"
-															>
-																{/* Checkbox and Label */}
-																<div className="flex items-center mb-2">
-																	<Checkbox
-																		id={optionKey}
-																		checked={isChecked}
-																		onCheckedChange={(checked) => {
-																			let updatedSelections: string[] =
-																				currentSelections || [];
-																			if (checked) {
-																				updatedSelections = [
-																					...updatedSelections,
-																					option.title,
-																				];
-																			} else {
-																				updatedSelections =
-																					updatedSelections.filter(
-																						(item) => item !== option.title
-																					);
-																			}
-																			form.setValue(
-																				`ADA.types`,
-																				updatedSelections
-																			);
-																			form.trigger('ADA.types');
-																		}}
-																		className="p-0 border-solid bg-transparent"
-																	/>
-																	<Label
-																		htmlFor={optionKey}
-																		className="cursor-pointer ml-2 font-medium uppercase"
-																	>
-																		{option.title}
-																	</Label>
-																</div>
-																{/* Image */}
-																<Label
-																	htmlFor={optionKey}
-																	className="cursor-pointer"
-																>
-																	<img
-																		src={option.image}
-																		alt={option.title}
-																		className="w-full h-auto rounded"
-																	/>
-																</Label>
-															</div>
-														);
-													}
-												)}
-											</div>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
+							<ProductOptions
+								form={form}
+								options={types?.options || []}
+								formKey="ADA.types"
+								optionTitle="Types"
 							/>
 
 							<DesignInspiration

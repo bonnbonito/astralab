@@ -6,12 +6,14 @@ import {
 	FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { FormSchema } from '@/trello/helpers/schema';
+import { UseFormReturn } from 'react-hook-form';
 
 interface TextFieldProps {
-	form: any;
+	form: UseFormReturn<FormSchema>;
 	name: string;
 	label: string;
-	placeholder: string;
+	placeholder?: string;
 	rules?: any;
 }
 
@@ -19,13 +21,13 @@ export default function TextField({
 	form,
 	name,
 	label,
-	placeholder,
+	placeholder = '',
 	rules,
 }: TextFieldProps) {
 	return (
 		<FormField
 			control={form.control}
-			name={name}
+			name={name as keyof FormSchema}
 			rules={rules}
 			render={({ field }) => (
 				<FormItem>

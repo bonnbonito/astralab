@@ -18,6 +18,7 @@ import { Astralab } from '@/trello/helpers/types';
 import axios from 'axios';
 import { Toaster } from '@/components/ui/toaster';
 import { useToast } from '@/hooks/use-toast';
+import { useEffect } from 'react';
 
 declare const astralab: Astralab;
 
@@ -81,6 +82,23 @@ export default function OrderForm() {
 			console.error('Error:', error);
 		}
 	};
+
+	useEffect(() => {
+		const errors = form.formState.errors;
+		const errorCount = Object.keys(errors).length;
+
+		if (errorCount > 0) {
+			const firstError = Object.entries(errors)[0];
+			const [fieldName, error] = firstError;
+
+			console.log(error);
+
+			toast({
+				variant: 'destructive',
+				title: `${error.message || 'Fill all the required fields.'}`,
+			});
+		}
+	}, [form.formState.errors, toast]);
 
 	return (
 		<>

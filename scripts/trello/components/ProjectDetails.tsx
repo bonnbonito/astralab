@@ -96,7 +96,7 @@ export default function ProjectDetails({ form }: ProjectDetailsProps) {
 				/>
 			</div>
 
-			<div className="mb-4">
+			<div className="mb-4 relative">
 				<FileUpload form={form} />
 			</div>
 		</div>

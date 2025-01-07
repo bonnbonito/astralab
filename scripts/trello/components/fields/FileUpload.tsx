@@ -1,9 +1,11 @@
+import { Button } from '@/components/ui/button';
 import {
 	FormField,
 	FormItem,
 	FormLabel,
 	FormControl,
 	FormMessage,
+	FormDescription,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { FormSchema } from '@/trello/helpers/schema';
@@ -34,25 +36,34 @@ export default function FileUpload({
 		}
 	};
 
+	const fileUpload = form.watch('fileUpload');
+
 	return (
 		<FormField
 			control={form.control}
 			name="fileUpload"
 			render={({ field: { value, ...field } }) => (
-				<FormItem>
+				<FormItem className="relative">
 					<FormLabel className="uppercase font-medium">File Upload</FormLabel>
 					<FormControl>
 						<Input
 							{...field}
+							id="fileUpload"
 							value={undefined}
 							type="file"
 							ref={fileInputRef}
 							multiple
 							onChange={handleFileChange}
-							className="inline-block bg-button border-0 !leading-[30px]"
+							className="inline-block bg-button border-0 !leading-[30px] relative cursor-pointer"
 						/>
 					</FormControl>
-					<FormMessage />
+					<div className="text-[0.8rem] text-muted-foreground">
+						<ul>
+							{fileUpload?.map((file, index) => (
+								<li key={index}>{file.name}</li>
+							))}
+						</ul>
+					</div>
 				</FormItem>
 			)}
 		/>

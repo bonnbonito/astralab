@@ -57,6 +57,8 @@ if ( ! defined( 'ASTRALAB_ARCHIVE_POST_PER_PAGE' ) ) {
 	define( 'ASTRALAB_ARCHIVE_POST_PER_PAGE', 9 );
 }
 
+require 'vendor/autoload.php';
+
 // add Parsedown.ph
 require ASTRALAB_DIR_PATH . '/inc/Parsedown.php';
 

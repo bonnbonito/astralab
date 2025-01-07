@@ -101,9 +101,26 @@ export default function ProductType({ form }: ProductTypeProps) {
 																	if (post.acf.component === 'ADAWayfinding') {
 																		form.setValue('hasADA', true);
 																	}
+
+																	if (
+																		post.acf.component === 'MonumentsAndPylons'
+																	) {
+																		form.setValue(
+																			'hasMonumentsAndPylons',
+																			true
+																		);
+																	}
 																} else {
 																	if (post.acf.component === 'ADAWayfinding') {
 																		form.setValue('hasADA', false);
+																	}
+																	if (
+																		post.acf.component === 'MonumentsAndPylons'
+																	) {
+																		form.setValue(
+																			'hasMonumentsAndPylons',
+																			false
+																		);
 																	}
 																	updatedProductTypes =
 																		updatedProductTypes.filter(

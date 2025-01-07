@@ -1,14 +1,19 @@
 import { z } from 'zod';
 
-import { ADASchema } from '../components/products/ADA/schema';
+import { ADASchema } from '@/trello/components/products/ADA/schema';
+import { MonumentsAndPylonsSchema } from '@/trello/components/products/MonumentsAndPylons/schema';
 
 const formSchema = z
 	.object({
-		projectName: z.string().min(2).nonempty(),
+		projectName: z.string().min(2, {
+			message: 'Project Name must contain at least 2 character(s)',
+		}),
 		turnaroundTime: z
 			.string()
 			.nonempty({ message: 'Turnaround Time is required.' }),
-		designDetails: z.string().nonempty(),
+		designDetails: z.string().nonempty({
+			message: 'Design Details is required.',
+		}),
 		projectDescription: z
 			.string()
 			.nonempty({ message: 'Project Description is required.' }),
@@ -22,17 +27,16 @@ const formSchema = z
 				})
 			)
 			.optional(),
-		fileUpload: z.array(z.instanceof(File)),
+		fileUpload: z.array(z.instanceof(File)).min(1, {
+			message: 'Upload atleast 1 File.',
+		}),
 	})
 	.refine((data) => (data.productTypes ? data.productTypes.length > 0 : true), {
 		message: 'Select at least one Product Type',
 		path: ['productTypes'],
 	})
-	.refine((data) => (data.fileUpload ? data.fileUpload.length > 0 : true), {
-		message: 'File upload cannot be empty.',
-		path: ['fileUpload'],
-	})
-	.and(ADASchema);
+	.and(ADASchema)
+	.and(MonumentsAndPylonsSchema);
 
 type FormSchema = z.infer<typeof formSchema>;
 
@@ -45,6 +49,7 @@ const formDefaultValues: FormSchema = {
 	productTypes: [],
 	fileUpload: [],
 	hasADA: false,
+	hasMonumentsAndPylons: false,
 };
 
 export { formDefaultValues, formSchema, type FormSchema };

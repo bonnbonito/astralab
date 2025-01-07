@@ -17,14 +17,19 @@ import { UseFormReturn } from 'react-hook-form';
 
 interface NumberSignsProps {
 	form: UseFormReturn<FormSchema>;
+	fieldName: string;
 	number?: number; // Maximum number of signs (default: 30)
 }
 
-export default function NumberSigns({ form, number = 30 }: NumberSignsProps) {
+export default function NumberSigns({
+	form,
+	fieldName,
+	number = 30,
+}: NumberSignsProps) {
 	return (
 		<FormField
 			control={form.control}
-			name={'ADA.numberOfSigns'}
+			name={fieldName as keyof FormSchema}
 			render={({ field }) => (
 				<div>
 					<FormLabel className="uppercase font-medium text-base">

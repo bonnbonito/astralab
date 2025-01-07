@@ -62,16 +62,16 @@ class Trello_Post {
 		}
 		?>
 <div class="wrap">
-	<h1>Trello Settings</h1>
-	<form method="post" action="options.php">
-		<?php
+  <h1>Trello Settings</h1>
+  <form method="post" action="options.php">
+    <?php
 		settings_fields( 'astralab_trello_group' );
 		do_settings_sections( 'astralab-trello-settings' );
 		submit_button();
 		?>
-	</form>
+  </form>
 </div>
-		<?php
+<?php
 	}
 
 	/**
@@ -235,7 +235,6 @@ class Trello_Post {
 	public function render_trello_card_message_metabox( $post ) {
 		$trello_card_message = get_post_meta( $post->ID, 'trello_card_message', true );
 		if ( ! empty( $trello_card_message ) ) {
-			$trello_card_message = nl2br( esc_html( $trello_card_message ) );
 			echo '<p><strong>Description:</strong></p>';
 			echo '<table class="widefat" style="border:1px solid #ddd; border-collapse: collapse; width:100%;">';
 			echo '<tbody>';
@@ -422,42 +421,42 @@ class Trello_Post {
 
 			// Line Breaks
 			'/<br\s*\/?>/i',
-		);
+);
 
-		$replace = array(
-			// Headings
-			'# $1',
-			'## $1',
-			'### $1',
+$replace = array(
+// Headings
+'# $1',
+'## $1',
+'### $1',
 
-			// Bold and Italic
-			'**$1**',
-			'**$1**',
-			'_$1_',
-			'_$1_',
+// Bold and Italic
+'**$1**',
+'**$1**',
+'_$1_',
+'_$1_',
 
-			// Links
-			'[$2]($1)',
+// Links
+'[$2]($1)',
 
-			// Unordered Lists
-			"\n$1\n",
-			'- $1',
+// Unordered Lists
+"\n$1\n",
+'- $1',
 
-			// Ordered Lists
-			"\n$1\n",
-			'1. $1',
+// Ordered Lists
+"\n$1\n",
+'1. $1',
 
-			// Paragraphs
-			"\n$1\n",
+// Paragraphs
+"\n$1\n",
 
-			// Line Breaks
-			"\n",
-		);
+// Line Breaks
+"\n",
+);
 
-		// Remove all other HTML tags
-		$html = preg_replace( $search, $replace, $html );
-		$html = strip_tags( $html );
+// Remove all other HTML tags
+$html = preg_replace( $search, $replace, $html );
+$html = strip_tags( $html );
 
-		return trim( $html );
-	}
+return trim( $html );
+}
 }

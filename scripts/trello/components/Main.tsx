@@ -4,6 +4,7 @@ import ADAWayfinding from './products/ADA/ADAWayfinding';
 import { FormSchema } from '@/trello/helpers/schema';
 import { UseFormReturn } from 'react-hook-form';
 import Loading from './Loading';
+import MonumentsAndPylons from './products/MonumentsAndPylons/MonumentsAndPylons';
 
 export interface MainProps {
 	form: UseFormReturn<FormSchema>;
@@ -19,10 +20,15 @@ export default function Main({ form }: MainProps) {
 			<ProjectType form={form} />
 
 			{productTypes?.map((productType, index) => (
-				<div key={productType.id} className="productAccordion">
+				<div key={productType.id} className="productAccordion mt-6">
 					{productType.component === 'ADAWayfinding' && (
 						<>
 							<ADAWayfinding form={form} product={productType.id} />
+						</>
+					)}
+					{productType.component === 'MonumentsAndPylons' && (
+						<>
+							<MonumentsAndPylons form={form} product={productType.id} />
 						</>
 					)}
 				</div>

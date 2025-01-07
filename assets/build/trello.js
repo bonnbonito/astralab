@@ -1286,7 +1286,7 @@ function DesignInspiration({
             children: "All"
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-          className: "mt-4 grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-6",
+          className: "mt-4 grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(195px,1fr))] gap-4",
           children: options.map((option, index) => {
             const designArray = form.getValues(fieldName) || [];
             const isChecked = designArray.some(item => item === option.name);
@@ -1394,8 +1394,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProductType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductType */ "./themes/astralab/scripts/trello/components/ProductType.tsx");
 /* harmony import */ var _products_ADA_ADAWayfinding__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./products/ADA/ADAWayfinding */ "./themes/astralab/scripts/trello/components/products/ADA/ADAWayfinding.tsx");
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Loading */ "./themes/astralab/scripts/trello/components/Loading.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _products_MonumentsAndPylons_MonumentsAndPylons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./products/MonumentsAndPylons/MonumentsAndPylons */ "./themes/astralab/scripts/trello/components/products/MonumentsAndPylons/MonumentsAndPylons.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -1405,24 +1407,29 @@ function Main({
   form
 }) {
   const productTypes = form.watch('productTypes');
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "flex-1 w-full relative",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ProjectDetails__WEBPACK_IMPORTED_MODULE_0__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ProjectDetails__WEBPACK_IMPORTED_MODULE_0__["default"], {
       form: form
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
       className: "text-[30px]",
       children: "PRODUCT TYPE"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ProductType__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ProductType__WEBPACK_IMPORTED_MODULE_1__["default"], {
       form: form
-    }), productTypes?.map((productType, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      className: "productAccordion",
-      children: productType.component === 'ADAWayfinding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_products_ADA_ADAWayfinding__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }), productTypes?.map((productType, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "productAccordion mt-6",
+      children: [productType.component === 'ADAWayfinding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_products_ADA_ADAWayfinding__WEBPACK_IMPORTED_MODULE_2__["default"], {
           form: form,
           product: productType.id
         })
-      })
-    }, productType.id)), form.formState.isSubmitting && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
+      }), productType.component === 'MonumentsAndPylons' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_products_MonumentsAndPylons_MonumentsAndPylons__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          form: form,
+          product: productType.id
+        })
+      })]
+    }, productType.id)), form.formState.isSubmitting && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
   });
 }
 
@@ -1440,16 +1447,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ OrderForm)
 /* harmony export */ });
 /* harmony import */ var _hookform_resolvers_zod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @hookform/resolvers/zod */ "./node_modules/@hookform/resolvers/zod/dist/zod.mjs");
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var _trello_helpers_schema__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/trello/helpers/schema */ "./themes/astralab/scripts/trello/helpers/schema.tsx");
 /* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/form */ "./themes/astralab/scripts/components/ui/form.tsx");
 /* harmony import */ var _Sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Sidebar */ "./themes/astralab/scripts/trello/components/Sidebar.tsx");
 /* harmony import */ var _Main__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Main */ "./themes/astralab/scripts/trello/components/Main.tsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _components_ui_toaster__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/ui/toaster */ "./themes/astralab/scripts/components/ui/toaster.tsx");
 /* harmony import */ var _hooks_use_toast__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/hooks/use-toast */ "./themes/astralab/scripts/hooks/use-toast.ts");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
 'use client';
 
 
@@ -1462,8 +1471,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function OrderForm() {
-  const form = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_8__.useForm)({
+  const form = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_9__.useForm)({
     resolver: (0,_hookform_resolvers_zod__WEBPACK_IMPORTED_MODULE_0__.zodResolver)(_trello_helpers_schema__WEBPACK_IMPORTED_MODULE_1__.formSchema),
     defaultValues: _trello_helpers_schema__WEBPACK_IMPORTED_MODULE_1__.formDefaultValues
   });
@@ -1505,7 +1515,7 @@ function OrderForm() {
       appendToFormData(formData, key, value);
     });
     try {
-      const response = await axios__WEBPACK_IMPORTED_MODULE_9__["default"].post(astralab.ajax_url, formData);
+      const response = await axios__WEBPACK_IMPORTED_MODULE_10__["default"].post(astralab.ajax_url, formData);
       if (response.data.success === true) {
         console.log('Success:', response.data);
         form.reset();
@@ -1519,19 +1529,32 @@ function OrderForm() {
       console.error('Error:', error);
     }
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_2__.Form, {
+  (0,react__WEBPACK_IMPORTED_MODULE_7__.useEffect)(() => {
+    const errors = form.formState.errors;
+    const errorCount = Object.keys(errors).length;
+    if (errorCount > 0) {
+      const firstError = Object.entries(errors)[0];
+      const [fieldName, error] = firstError;
+      console.log(error);
+      toast({
+        variant: 'destructive',
+        title: `${error.message || 'Fill all the required fields.'}`
+      });
+    }
+  }, [form.formState.errors, toast]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_2__.Form, {
       ...form,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("form", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("form", {
         onSubmit: form.handleSubmit(onSubmit),
         className: "md:flex gap-9",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Main__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Main__WEBPACK_IMPORTED_MODULE_4__["default"], {
           form: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Sidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Sidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
           form: form
         })]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_toaster__WEBPACK_IMPORTED_MODULE_5__.Toaster, {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ui_toaster__WEBPACK_IMPORTED_MODULE_5__.Toaster, {})]
   });
 }
 
@@ -1634,9 +1657,15 @@ function ProductType({
                         if (post.acf.component === 'ADAWayfinding') {
                           form.setValue('hasADA', true);
                         }
+                        if (post.acf.component === 'MonumentsAndPylons') {
+                          form.setValue('hasMonumentsAndPylons', true);
+                        }
                       } else {
                         if (post.acf.component === 'ADAWayfinding') {
                           form.setValue('hasADA', false);
+                        }
+                        if (post.acf.component === 'MonumentsAndPylons') {
+                          form.setValue('hasMonumentsAndPylons', false);
                         }
                         updatedProductTypes = updatedProductTypes.filter(item => item.id !== post.id);
                       }
@@ -1780,7 +1809,7 @@ function ProjectDetails({
         loading: loading
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-      className: "mb-4",
+      className: "mb-4 relative",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_FileUpload__WEBPACK_IMPORTED_MODULE_6__["default"], {
         form: form
       })
@@ -1880,8 +1909,8 @@ function Sidebar({
           children: "Uploads"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "text-xs",
-          children: watchedValues.fileUpload && watchedValues.fileUpload.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
-            children: watchedValues.fileUpload.map((file, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          children: watchedValues.fileUpload && watchedValues.fileUpload?.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
+            children: watchedValues.fileUpload?.map((file, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
               children: file.name
             }, index))
           })
@@ -1928,8 +1957,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ SidebarDetails)
 /* harmony export */ });
 /* harmony import */ var _products_ADA_SidebarADA__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./products/ADA/SidebarADA */ "./themes/astralab/scripts/trello/components/products/ADA/SidebarADA.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _products_MonumentsAndPylons_SidebarMonuments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./products/MonumentsAndPylons/SidebarMonuments */ "./themes/astralab/scripts/trello/components/products/MonumentsAndPylons/SidebarMonuments.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 function SidebarDetails({
@@ -1937,14 +1968,16 @@ function SidebarDetails({
   form,
   component
 }) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "mb-4",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
       className: "uppercase font-semibold text-base mb-1",
       dangerouslySetInnerHTML: {
         __html: title
       }
-    }), component === 'ADAWayfinding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_products_ADA_SidebarADA__WEBPACK_IMPORTED_MODULE_0__["default"], {
+    }), component === 'ADAWayfinding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_products_ADA_SidebarADA__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      form: form
+    }), component === 'MonumentsAndPylons' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_products_MonumentsAndPylons_SidebarMonuments__WEBPACK_IMPORTED_MODULE_1__["default"], {
       form: form
     })]
   });
@@ -2052,6 +2085,7 @@ function FileUpload({
       });
     }
   };
+  const fileUpload = form.watch('fileUpload');
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
     control: form.control,
     name: "fileUpload",
@@ -2061,20 +2095,29 @@ function FileUpload({
         ...field
       }
     }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
+      className: "relative",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
         className: "uppercase font-medium",
         children: "File Upload"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_input__WEBPACK_IMPORTED_MODULE_1__.Input, {
           ...field,
+          id: "fileUpload",
           value: undefined,
           type: "file",
           ref: fileInputRef,
           multiple: true,
           onChange: handleFileChange,
-          className: "inline-block bg-button border-0 !leading-[30px]"
+          className: "inline-block bg-button border-0 !leading-[30px] relative cursor-pointer"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "text-[0.8rem] text-muted-foreground",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
+          children: fileUpload?.map((file, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
+            children: file.name
+          }, index))
+        })
+      })]
     })
   });
 }
@@ -2166,6 +2209,158 @@ function LayoutType({
     })
   });
 }
+
+/***/ }),
+
+/***/ "./themes/astralab/scripts/trello/components/fields/NumberSigns.tsx":
+/*!**************************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/fields/NumberSigns.tsx ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ NumberSigns)
+/* harmony export */ });
+/* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/ui/form */ "./themes/astralab/scripts/components/ui/form.tsx");
+/* harmony import */ var _components_ui_select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/select */ "./themes/astralab/scripts/components/ui/select.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+function NumberSigns({
+  form,
+  fieldName,
+  number = 30
+}) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
+    control: form.control,
+    name: fieldName,
+    render: ({
+      field
+    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
+        className: "uppercase font-medium text-base",
+        children: "Number of Signs"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "grid grid-cols-3 gap-4 items-center mt-1",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.Select, {
+              onValueChange: value => {
+                field.onChange(value);
+              },
+              value: typeof field.value === 'number' || typeof field.value === 'string' ? field.value.toString() : '',
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectTrigger, {
+                className: "border-solid font-light",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectValue, {
+                  placeholder: "Select an option"
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectContent, {
+                children: Array.from({
+                  length: number
+                }, (_, i) => i + 1).map(num => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectItem, {
+                  value: num.toString(),
+                  children: num
+                }, num))
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "col-span-2",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+            children: "Size Template - Download the template to upload multiple orders"
+          })
+        })]
+      })]
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./themes/astralab/scripts/trello/components/fields/ProductOptions.tsx":
+/*!*****************************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/fields/ProductOptions.tsx ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ProductOptions: () => (/* binding */ ProductOptions)
+/* harmony export */ });
+/* harmony import */ var _components_ui_checkbox__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/ui/checkbox */ "./themes/astralab/scripts/components/ui/checkbox.tsx");
+/* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/form */ "./themes/astralab/scripts/components/ui/form.tsx");
+/* harmony import */ var _components_ui_label__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/label */ "./themes/astralab/scripts/components/ui/label.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+const ProductOptions = ({
+  form,
+  options,
+  formKey,
+  optionTitle
+}) => {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormField, {
+    control: form.control,
+    name: formKey,
+    render: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormItem, {
+      className: "mt-4",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
+        className: "uppercase font-medium text-base mt-4",
+        children: optionTitle
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormControl, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(195px,1fr))] gap-4",
+          children: options && options.map((option, optionIndex) => {
+            const optionKey = `${formKey}-${optionIndex}`;
+            const currentSelections = form.getValues(formKey) || [];
+            const isChecked = currentSelections.includes(option.title);
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "text-center",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                className: "flex items-center mb-2",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_checkbox__WEBPACK_IMPORTED_MODULE_0__.Checkbox, {
+                  id: optionKey,
+                  checked: isChecked,
+                  onCheckedChange: checked => {
+                    let updatedSelections = currentSelections || [];
+                    if (checked) {
+                      updatedSelections = [...updatedSelections, option.title];
+                    } else {
+                      updatedSelections = updatedSelections.filter(item => item !== option.title);
+                    }
+                    form.setValue(formKey, updatedSelections);
+                    form.trigger(formKey);
+                  },
+                  className: "p-0 border-solid bg-transparent"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_label__WEBPACK_IMPORTED_MODULE_2__.Label, {
+                  htmlFor: optionKey,
+                  className: "cursor-pointer ml-2 font-medium uppercase",
+                  children: option.title
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_label__WEBPACK_IMPORTED_MODULE_2__.Label, {
+                htmlFor: optionKey,
+                className: "cursor-pointer",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                  src: option.image,
+                  alt: option.title,
+                  className: "w-full h-auto rounded"
+                })
+              })]
+            }, `checkbox-${optionKey}`);
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormMessage, {})]
+    })
+  });
+};
 
 /***/ }),
 
@@ -2277,7 +2472,7 @@ function TextField({
   form,
   name,
   label,
-  placeholder,
+  placeholder = '',
   rules
 }) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
@@ -2376,16 +2571,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/accordion */ "./themes/astralab/scripts/components/ui/accordion.tsx");
-/* harmony import */ var _trello_components_products_ADA_NumberSigns__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/trello/components/products/ADA/NumberSigns */ "./themes/astralab/scripts/trello/components/products/ADA/NumberSigns.tsx");
+/* harmony import */ var _trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/trello/components/fields/NumberSigns */ "./themes/astralab/scripts/trello/components/fields/NumberSigns.tsx");
 /* harmony import */ var _trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/trello/components/fields/TextField */ "./themes/astralab/scripts/trello/components/fields/TextField.tsx");
-/* harmony import */ var _components_ui_checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/ui/checkbox */ "./themes/astralab/scripts/components/ui/checkbox.tsx");
-/* harmony import */ var _components_ui_label__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/ui/label */ "./themes/astralab/scripts/components/ui/label.tsx");
-/* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/ui/form */ "./themes/astralab/scripts/components/ui/form.tsx");
-/* harmony import */ var _DesignInspiration__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../DesignInspiration */ "./themes/astralab/scripts/trello/components/DesignInspiration.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
-
-
+/* harmony import */ var _trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/trello/components/DesignInspiration */ "./themes/astralab/scripts/trello/components/DesignInspiration.tsx");
+/* harmony import */ var _trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/trello/components/fields/ProductOptions */ "./themes/astralab/scripts/trello/components/fields/ProductOptions.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
 
 
 
@@ -2401,6 +2592,7 @@ function ADAWayfinding({
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const numberOfSigns = form.watch('ADA.numberOfSigns');
   const processedProductType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => productType, [productType]);
+  const types = processedProductType?.product_types_options?.find(item => item.name === 'Types');
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     async function fetchProductTypes() {
       try {
@@ -2411,6 +2603,7 @@ function ADAWayfinding({
         }
         const data = await response.json();
         setProductType(data || null); // Ensure null fallback if data is invalid
+        console.log(data);
       } catch (error) {
         console.error('Error fetching product type:', error);
         setProductType(null); // Set null if fetching fails
@@ -2420,96 +2613,50 @@ function ADAWayfinding({
     }
     fetchProductTypes();
   }, [product]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.Accordion, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.Accordion, {
     type: "single",
     collapsible: true,
     defaultValue: product.toString(),
     className: "border border-solid rounded",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionItem, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionItem, {
       value: product.toString(),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionTrigger, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionTrigger, {
         className: "bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4",
         children: loading ? 'Loading...' : processedProductType?.title?.rendered || 'No Data Available'
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionContent, {
-        children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionContent, {
+        children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
           children: "Loading..."
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           className: "p-4 pt-0",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_trello_components_products_ADA_NumberSigns__WEBPACK_IMPORTED_MODULE_2__["default"], {
-            form: form
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            form: form,
+            fieldName: "ADA.numberOfSigns"
           }), numberOfSigns && Array.from({
             length: Number(numberOfSigns)
-          }, (_, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          }, (_, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             className: "mt-4 grid md:grid-cols-3 gap-4",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
               form: form,
               name: `ADA.signs.${index}.name`,
               label: `No.${index + 1} Name`,
               placeholder: `Enter project name ${index + 1}`
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
               form: form,
               name: `ADA.signs.${index}.dimension`,
               label: `No. ${index + 1} Width x Height`,
               placeholder: `Enter ${index + 1} dimensions`
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
               form: form,
               name: `ADA.signs.${index}.details`,
               label: `Sign ${index + 1} Details`,
               placeholder: `Enter details for sign ${index + 1}`
             })]
-          }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_6__.FormField, {
-            control: form.control,
-            name: "ADA.types",
-            render: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_6__.FormItem, {
-              className: "mt-4",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_6__.FormLabel, {
-                className: "uppercase font-medium text-base mt-4",
-                children: "Types"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_6__.FormControl, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
-                  className: "grid grid-cols-1 md:grid-cols-3 gap-6",
-                  children: processedProductType?.product_types_options?.map((option, optionIndex) => {
-                    const optionKey = `option-${optionIndex}`;
-                    const currentSelections = form.getValues(`ADA.types`) || [];
-                    const isChecked = currentSelections?.includes(option.title);
-                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-                      className: "text-center",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-                        className: "flex items-center mb-2",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ui_checkbox__WEBPACK_IMPORTED_MODULE_4__.Checkbox, {
-                          id: optionKey,
-                          checked: isChecked,
-                          onCheckedChange: checked => {
-                            let updatedSelections = currentSelections || [];
-                            if (checked) {
-                              updatedSelections = [...updatedSelections, option.title];
-                            } else {
-                              updatedSelections = updatedSelections.filter(item => item !== option.title);
-                            }
-                            form.setValue(`ADA.types`, updatedSelections);
-                            form.trigger('ADA.types');
-                          },
-                          className: "p-0 border-solid bg-transparent"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ui_label__WEBPACK_IMPORTED_MODULE_5__.Label, {
-                          htmlFor: optionKey,
-                          className: "cursor-pointer ml-2 font-medium uppercase",
-                          children: option.title
-                        })]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ui_label__WEBPACK_IMPORTED_MODULE_5__.Label, {
-                        htmlFor: optionKey,
-                        className: "cursor-pointer",
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
-                          src: option.image,
-                          alt: option.title,
-                          className: "w-full h-auto rounded"
-                        })
-                      })]
-                    }, `checkbox-${optionKey}`);
-                  })
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_6__.FormMessage, {})]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_DesignInspiration__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_5__.ProductOptions, {
+            form: form,
+            options: types?.options || [],
+            formKey: "ADA.types",
+            optionTitle: "Types"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_4__["default"], {
             form: form,
             fieldName: "ADA[designInspirations]",
             options: processedProductType?.design_inspiration?.map(inspiration => ({
@@ -2519,74 +2666,6 @@ function ADAWayfinding({
             })) || []
           })]
         })
-      })]
-    })
-  });
-}
-
-/***/ }),
-
-/***/ "./themes/astralab/scripts/trello/components/products/ADA/NumberSigns.tsx":
-/*!********************************************************************************!*\
-  !*** ./themes/astralab/scripts/trello/components/products/ADA/NumberSigns.tsx ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ NumberSigns)
-/* harmony export */ });
-/* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/ui/form */ "./themes/astralab/scripts/components/ui/form.tsx");
-/* harmony import */ var _components_ui_select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/select */ "./themes/astralab/scripts/components/ui/select.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-function NumberSigns({
-  form,
-  number = 30
-}) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
-    control: form.control,
-    name: 'ADA.numberOfSigns',
-    render: ({
-      field
-    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
-        className: "uppercase font-medium text-base",
-        children: "Number of Signs"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "grid grid-cols-3 gap-4 items-center mt-1",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.Select, {
-              onValueChange: value => {
-                field.onChange(value);
-              },
-              value: typeof field.value === 'number' || typeof field.value === 'string' ? field.value.toString() : '',
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectTrigger, {
-                className: "border-solid font-light",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectValue, {
-                  placeholder: "Select an option"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectContent, {
-                children: Array.from({
-                  length: number
-                }, (_, i) => i + 1).map(num => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectItem, {
-                  value: num.toString(),
-                  children: num
-                }, num))
-              })]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "col-span-2",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            children: "Size Template - Download the template to upload multiple orders"
-          })
-        })]
       })]
     })
   });
@@ -2717,6 +2796,316 @@ const ADASchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.discriminatedUnion('hasADA'
 
 /***/ }),
 
+/***/ "./themes/astralab/scripts/trello/components/products/MonumentsAndPylons/MonumentsAndPylons.tsx":
+/*!******************************************************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/products/MonumentsAndPylons/MonumentsAndPylons.tsx ***!
+  \******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MonumentsAndPylons)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/accordion */ "./themes/astralab/scripts/components/ui/accordion.tsx");
+/* harmony import */ var _trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/trello/components/fields/NumberSigns */ "./themes/astralab/scripts/trello/components/fields/NumberSigns.tsx");
+/* harmony import */ var _trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/trello/components/DesignInspiration */ "./themes/astralab/scripts/trello/components/DesignInspiration.tsx");
+/* harmony import */ var _trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/trello/components/fields/ProductOptions */ "./themes/astralab/scripts/trello/components/fields/ProductOptions.tsx");
+/* harmony import */ var _fields_TextField__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../fields/TextField */ "./themes/astralab/scripts/trello/components/fields/TextField.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+
+
+
+
+
+
+
+function MonumentsAndPylons({
+  form,
+  product
+}) {
+  const [productType, setProductType] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const numberOfSigns = form.watch('monumentsAndPylons.numberOfSigns');
+  const processedProductType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => productType, [productType]);
+  const types = processedProductType?.product_types_options?.find(item => item.name === 'Types');
+  const illuminations = processedProductType?.product_types_options?.find(item => item.name === 'Illumination');
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    async function fetchProductTypes() {
+      try {
+        setLoading(true);
+        const response = await fetch(`${astralab['product-types']}/${product}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setProductType(data || null); // Ensure null fallback if data is invalid
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching product type:', error);
+        setProductType(null); // Set null if fetching fails
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProductTypes();
+  }, [product]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.Accordion, {
+    type: "single",
+    collapsible: true,
+    defaultValue: product.toString(),
+    className: "border border-solid rounded",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionItem, {
+      value: product.toString(),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionTrigger, {
+        className: "bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4",
+        children: loading ? 'Loading...' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+          dangerouslySetInnerHTML: {
+            __html: processedProductType?.title?.rendered || 'No Data Available'
+          }
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionContent, {
+        children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+          children: "Loading..."
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          className: "p-4 pt-0",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            form: form,
+            fieldName: "monumentsAndPylons.numberOfSigns"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            className: "my-4",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "monumentsAndPylons.textAndContent",
+              label: "Sign Text & Content",
+              placeholder: "specific vendor for fabrication"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            className: "grid md:grid-cols-3 gap-6",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "monumentsAndPylons.vendor",
+              label: "Vendor",
+              placeholder: "specific vendor for fabrication"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "monumentsAndPylons.sides",
+              label: "Sides"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "monumentsAndPylons.dimensions",
+              label: "Dimensions"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "monumentsAndPylons.maxContentArea",
+              label: "Maximum Content Area"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "monumentsAndPylons.minContentArea",
+              label: "Minimun Content Area"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "monumentsAndPylons.maxGroundClearance",
+              label: "Maximum Ground Clearance"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__.ProductOptions, {
+            form: form,
+            options: types?.options || [],
+            formKey: "monumentsAndPylons.types",
+            optionTitle: "Types"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__.ProductOptions, {
+            form: form,
+            options: illuminations?.options || [],
+            formKey: "monumentsAndPylons.illumination",
+            optionTitle: "Illumination"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            form: form,
+            fieldName: "monumentsAndPylons[designInspirations]",
+            options: processedProductType?.design_inspiration?.map(inspiration => ({
+              name: inspiration.name,
+              image: inspiration.image,
+              group: inspiration.group
+            })) || []
+          })]
+        })
+      })]
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./themes/astralab/scripts/trello/components/products/MonumentsAndPylons/SidebarMonuments.tsx":
+/*!****************************************************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/products/MonumentsAndPylons/SidebarMonuments.tsx ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SidebarMonuments)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+
+function SidebarMonuments({
+  form
+}) {
+  var _monumentsAndPylons$n;
+  const monumentsAndPylons = form.watch('monumentsAndPylons');
+  const numberOfSigns = (_monumentsAndPylons$n = monumentsAndPylons?.numberOfSigns) !== null && _monumentsAndPylons$n !== void 0 ? _monumentsAndPylons$n : 0;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Number of Signs"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: numberOfSigns
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Sign Text & Content"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: monumentsAndPylons?.textAndContent || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Vendor"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: monumentsAndPylons?.vendor || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Sides"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: monumentsAndPylons?.sides || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Dimensions"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: monumentsAndPylons?.dimensions || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Maximum Content Area"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: monumentsAndPylons?.maxContentArea || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Minimum Content Area"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: monumentsAndPylons?.minContentArea || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Maximum Ground Clearance"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: monumentsAndPylons?.maxGroundClearance || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Types"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: monumentsAndPylons?.types?.join(', ')
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Illumination"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: monumentsAndPylons?.illumination?.join(', ')
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Design Inspiration"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: monumentsAndPylons?.designInspirations?.join(', ')
+      })]
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./themes/astralab/scripts/trello/components/products/MonumentsAndPylons/schema.tsx":
+/*!******************************************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/products/MonumentsAndPylons/schema.tsx ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   MonumentsAndPylonsSchema: () => (/* binding */ MonumentsAndPylonsSchema)
+/* harmony export */ });
+/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
+
+const MonumentsAndPylonsSchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.discriminatedUnion('hasMonumentsAndPylons', [zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+  hasMonumentsAndPylons: zod__WEBPACK_IMPORTED_MODULE_0__.z.literal(true),
+  monumentsAndPylons: zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+    numberOfSigns: zod__WEBPACK_IMPORTED_MODULE_0__.z.string(),
+    types: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string()).min(1, {
+      message: 'Select atleast one type.'
+    }),
+    illumination: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string()).min(1, {
+      message: 'Select atleast one illumination.'
+    }),
+    textAndContent: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
+      message: 'Text and Content is required.'
+    }),
+    vendor: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
+      message: 'Vendor required.'
+    }),
+    sides: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    dimensions: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    maxContentArea: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    minContentArea: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    maxGroundClearance: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    designInspirations: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string())
+  })
+}), zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+  hasMonumentsAndPylons: zod__WEBPACK_IMPORTED_MODULE_0__.z.literal(false)
+})]);
+
+/***/ }),
+
 /***/ "./themes/astralab/scripts/trello/helpers/schema.tsx":
 /*!***********************************************************!*\
   !*** ./themes/astralab/scripts/trello/helpers/schema.tsx ***!
@@ -2729,35 +3118,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   formDefaultValues: () => (/* binding */ formDefaultValues),
 /* harmony export */   formSchema: () => (/* binding */ formSchema)
 /* harmony export */ });
-/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
-/* harmony import */ var _components_products_ADA_schema__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/products/ADA/schema */ "./themes/astralab/scripts/trello/components/products/ADA/schema.tsx");
+/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
+/* harmony import */ var _trello_components_products_ADA_schema__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/trello/components/products/ADA/schema */ "./themes/astralab/scripts/trello/components/products/ADA/schema.tsx");
+/* harmony import */ var _trello_components_products_MonumentsAndPylons_schema__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/trello/components/products/MonumentsAndPylons/schema */ "./themes/astralab/scripts/trello/components/products/MonumentsAndPylons/schema.tsx");
 
 
-const formSchema = zod__WEBPACK_IMPORTED_MODULE_1__.z.object({
-  projectName: zod__WEBPACK_IMPORTED_MODULE_1__.z.string().min(2).nonempty(),
-  turnaroundTime: zod__WEBPACK_IMPORTED_MODULE_1__.z.string().nonempty({
+
+const formSchema = zod__WEBPACK_IMPORTED_MODULE_2__.z.object({
+  projectName: zod__WEBPACK_IMPORTED_MODULE_2__.z.string().min(2, {
+    message: 'Project Name must contain at least 2 character(s)'
+  }),
+  turnaroundTime: zod__WEBPACK_IMPORTED_MODULE_2__.z.string().nonempty({
     message: 'Turnaround Time is required.'
   }),
-  designDetails: zod__WEBPACK_IMPORTED_MODULE_1__.z.string().nonempty(),
-  projectDescription: zod__WEBPACK_IMPORTED_MODULE_1__.z.string().nonempty({
+  designDetails: zod__WEBPACK_IMPORTED_MODULE_2__.z.string().nonempty({
+    message: 'Design Details is required.'
+  }),
+  projectDescription: zod__WEBPACK_IMPORTED_MODULE_2__.z.string().nonempty({
     message: 'Project Description is required.'
   }),
-  layoutType: zod__WEBPACK_IMPORTED_MODULE_1__.z.string().nonempty({
+  layoutType: zod__WEBPACK_IMPORTED_MODULE_2__.z.string().nonempty({
     message: 'Layout Type is required.'
   }),
-  productTypes: zod__WEBPACK_IMPORTED_MODULE_1__.z.array(zod__WEBPACK_IMPORTED_MODULE_1__.z.object({
-    title: zod__WEBPACK_IMPORTED_MODULE_1__.z.string().nonempty(),
-    component: zod__WEBPACK_IMPORTED_MODULE_1__.z.string().nonempty(),
-    id: zod__WEBPACK_IMPORTED_MODULE_1__.z.number().positive()
+  productTypes: zod__WEBPACK_IMPORTED_MODULE_2__.z.array(zod__WEBPACK_IMPORTED_MODULE_2__.z.object({
+    title: zod__WEBPACK_IMPORTED_MODULE_2__.z.string().nonempty(),
+    component: zod__WEBPACK_IMPORTED_MODULE_2__.z.string().nonempty(),
+    id: zod__WEBPACK_IMPORTED_MODULE_2__.z.number().positive()
   })).optional(),
-  fileUpload: zod__WEBPACK_IMPORTED_MODULE_1__.z.array(zod__WEBPACK_IMPORTED_MODULE_1__.z.instanceof(File))
+  fileUpload: zod__WEBPACK_IMPORTED_MODULE_2__.z.array(zod__WEBPACK_IMPORTED_MODULE_2__.z.instanceof(File)).min(1, {
+    message: 'Upload atleast 1 File.'
+  })
 }).refine(data => data.productTypes ? data.productTypes.length > 0 : true, {
   message: 'Select at least one Product Type',
   path: ['productTypes']
-}).refine(data => data.fileUpload ? data.fileUpload.length > 0 : true, {
-  message: 'File upload cannot be empty.',
-  path: ['fileUpload']
-}).and(_components_products_ADA_schema__WEBPACK_IMPORTED_MODULE_0__.ADASchema);
+}).and(_trello_components_products_ADA_schema__WEBPACK_IMPORTED_MODULE_0__.ADASchema).and(_trello_components_products_MonumentsAndPylons_schema__WEBPACK_IMPORTED_MODULE_1__.MonumentsAndPylonsSchema);
 const formDefaultValues = {
   projectName: '',
   turnaroundTime: '',
@@ -2766,7 +3160,8 @@ const formDefaultValues = {
   layoutType: '',
   productTypes: [],
   fileUpload: [],
-  hasADA: false
+  hasADA: false,
+  hasMonumentsAndPylons: false
 };
 
 

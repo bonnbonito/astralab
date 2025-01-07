@@ -2,6 +2,8 @@
 
 namespace ASTRALAB;
 
+use League\HTMLToMarkdown\HtmlConverter;
+
 class Trello_Backend {
 	/**
 	 * Instance of this class
@@ -192,11 +194,11 @@ class Trello_Backend {
 		$trello_list_id = get_user_meta( $user->ID, 'trello_list_id', true );
 
 		?>
-		<h2>Create Trello Board</h2>
-		<table class="form-table">
-			<tr>
-				<th scope="row"><label for="create_trello_board">Trello Board</label></th>
-				<?php
+<h2>Create Trello Board</h2>
+<table class="form-table">
+  <tr>
+    <th scope="row"><label for="create_trello_board">Trello Board</label></th>
+    <?php
 				if ( ! empty( $trello_board_id ) ) {
 					echo '<td>
 					<p><strong>Trello Board ID:</strong> ' . esc_html( $trello_board_id ) . ' <a href="' . esc_url( $trello_url ) . '" target="_blank">View Board</a></p>';
@@ -206,18 +208,18 @@ class Trello_Backend {
 					echo '</td>';
 				} else {
 					?>
-					<td>
-						<label for="create_trello_board">
-							<input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
-							Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
-						</label>
-					</td>
-					<?php
+    <td>
+      <label for="create_trello_board">
+        <input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
+        Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
+      </label>
+    </td>
+    <?php
 				}
 				?>
-			</tr>
-		</table>
-		<?php
+  </tr>
+</table>
+<?php
 	}
 
 	/**
@@ -363,36 +365,70 @@ class Trello_Backend {
 		}
 
 		$jsonData = json_decode( json_encode( $_POST ), true );
-		$ada = $jsonData['ADA'];
 
-		// Construct the Markdown description
+
 		$user_line = '**User:** ' . ( ! empty( $full_name ) ? $full_name : 'N/A' );
 		$email_line = '**Email:** ' . ( ! empty( $email ) ? $email : 'N/A' );
 
-		$project_details = '## **Project Name:** ' . $card_name . "\n";
-		$project_details .= '### **Turnaround Time:** ' . $_POST['turnaroundTime'] . "\n";
-		$project_details .= '### **Design Details: ** ' . $_POST['designDetails'] . "\n";
-		$project_details .= '### **Project Description:**' . "\n";
-		$project_details .= sanitize_textarea_field( $_POST['projectDescription'] ) . "\n";
+		$project_details = '<p><strong>Project Name:</strong> ' . $card_name . '</p>';
+		$project_details .= '<p><strong>Turnaround Time:</strong> ' . $_POST['turnaroundTime'] . '</p>';
+		$project_details .= '<p><strong>Design Details:</strong> ' . $_POST['designDetails'] . '</p>';
+		$project_details .= '<p><strong>Project Description:</strong>' . '</p>';
+		$project_details .= '<p>' . sanitize_textarea_field( $_POST['projectDescription'] ) . '</p>';
 
-		$project_details .= '### **Layout Type:** ' . $_POST['layoutType'] . "\n\n";
+		$project_details .= '<p><strong>Layout Type:</strong> ' . $_POST['layoutType'] . '</p>';
 
-		$project_details .= '## **Product Types:**' . "\n";
+		$project_details .= '<p><strong>Product Types:</strong>' . '</p>';
 
-		if ( ! empty( $_POST["hasADA"] ) ) {
+		$ada = $jsonData['ADA'];
+		if ( ! empty( $_POST["hasADA"] ) && $ada ) {
 			$signs = $ada['signs'] ?? [];
-			$project_details .= '### **ADA Wayfinding:** ' . "\n";
-			$project_details .= '- **No. of Signs:** ' . $ada['numberOfSigns'] . " \n";
+			$ada_types = $ada['types'] ?? [];
+			$ada_design = $ada['designInspirations'] ?? [];
+			$project_details .= '<h3><strong>ADA Wayfinding:</strong></h3>';
+			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . $ada['numberOfSigns'];
 			foreach ( $signs as $index => $sign ) {
 				$no = $index + 1;
-				$project_details .= " - No.$no Name: {$sign['name']} \n";
-				$project_details .= " - No.$no Dimension: {$sign['dimension']} \n";
-				$project_details .= " - No.$no Details: {$sign['details']} \n";
+				$project_details .= '<ul>';
+				$project_details .= "<li>No.$no Name: {$sign['name']}</li>";
+				$project_details .= "<li>No.$no Dimension: {$sign['dimension']}</li>";
+				$project_details .= "<li>No.$no Details: {$sign['details']}</li>";
+				$project_details .= '</ul>';
 			}
+			$project_details .= '</li>';
+			$project_details .= '<li><strong>Types:</strong> ' . implode( ", ", $ada_types ) . '</li>';
+			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $ada_design ) . '</li>';
+			$project_details .= '</ul>';
 		}
 
+		$monuments = $jsonData['monumentsAndPylons'];
 
-		$md_desc = $user_line . "\n" . $email_line . "\n\n" . $project_details;
+		if ( ! empty( $_POST["hasMonumentsAndPylons"] ) && $monuments ) {
+			$monuments_types = $monuments['types'] ?? [];
+			$monuments_design = $monuments['designInspirations'] ?? [];
+			$project_details .= '<h3><strong>Monuments & Pylons</strong></h3>';
+			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . $monuments['numberOfSigns'];
+			$project_details .= '<ul>';
+			$project_details .= "<li>Text & Content: {$monuments['textAndContent']}</li>";
+			$project_details .= "<li>Vendor: {$monuments['vendor']}</li>";
+			$project_details .= "<li>Sides: {$monuments['sides']}</li>";
+			$project_details .= "<li>Dimensions: {$monuments['dimensions']}</li>";
+			$project_details .= "<li>Maximum Content Area: {$monuments['maxContentArea']}</li>";
+			$project_details .= "<li>Minimum Content Area: {$monuments['minContentArea']}</li>";
+			$project_details .= "<li>Maximum Ground Clearance: {$monuments['maxGroundClearance']}</li>";
+			$project_details .= '</ul>';
+			$project_details .= '</li>';
+			$project_details .= '<li><strong>Types:</strong> ' . implode( ", ", $monuments_types ) . '</li>';
+			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $monuments_design ) . '</li>';
+			$project_details .= '</ul>';
+
+		}
+
+		$converter = new HtmlConverter();
+		$markdown = $converter->convert( $project_details );
+
+
+		$md_desc = $user_line . "\n" . $email_line . "\n\n" . $markdown;
 
 		// Create the Trello card
 		$card_url = 'https://api.trello.com/1/cards';
@@ -433,7 +469,7 @@ class Trello_Backend {
 
 			if ( ! is_wp_error( $post_id ) && $post_id ) {
 				update_post_meta( $post_id, 'trello_card_id', $card_id );
-				//update_post_meta( $post_id, 'trello_card_message', $card_desc );
+				update_post_meta( $post_id, 'trello_card_message', $project_details );
 				update_post_meta( $post_id, 'trello_card_user_name', $full_name );
 				update_post_meta( $post_id, 'trello_card_user_email', $email );
 			}
@@ -489,7 +525,39 @@ class Trello_Backend {
 						continue;
 					}
 
+					$attachment_data = json_decode( $attachment_response, true );
+
+
+					if ( $attachment_data && isset( $attachment_data['id'] ) ) {
+						$attachment_info = array(
+							'trello_id' => $attachment_data['id'],
+							'name' => $file_name,
+							'url' => $attachment_data['url'] ?? '',
+							'date' => current_time( 'mysql' )
+						);
+
+						// Get existing attachments or initialize empty array
+						$existing_attachments = get_post_meta( $post_id, 'trello_card_attachments', true );
+						if ( ! is_array( $existing_attachments ) ) {
+							$existing_attachments = array();
+						}
+
+						// Add new attachment
+						$existing_attachments[] = $attachment_info;
+
+						// Update post meta with all attachments
+						update_post_meta( $post_id, 'trello_card_attachments', $existing_attachments );
+					}
+
 					++$success_count;
+				}
+
+
+				$webhook_result = $this->register_trello_webhook( $card_id, "Monitoring {$card_name}" );
+				if ( is_wp_error( $webhook_result ) ) {
+					error_log( 'Error creating Trello webhook: ' . $webhook_result->get_error_message() );
+				} elseif ( isset( $webhook_result['id'] ) && ! is_wp_error( $post_id ) && $post_id ) {
+					update_post_meta( $post_id, 'trello_webhook_id', $webhook_result['id'] );
 				}
 
 				// Generate response message
@@ -497,7 +565,6 @@ class Trello_Backend {
 
 					wp_send_json_success( array(
 						'message' => 'Card created and all files attached successfully!',
-						'post' => $jsonData['ADA']
 					) );
 				} elseif ( $success_count > 0 && ! empty( $errors ) ) {
 					$error_messages = implode( '<br>', $errors );

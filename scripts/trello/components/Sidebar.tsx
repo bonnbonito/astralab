@@ -56,9 +56,9 @@ export default function Sidebar({ form }: SidebarProps) {
 					<div className="uppercase font-semibold text-sm">Uploads</div>
 					<div className="text-xs">
 						{watchedValues.fileUpload &&
-							watchedValues.fileUpload.length > 0 && (
+							watchedValues.fileUpload?.length > 0 && (
 								<ul>
-									{watchedValues.fileUpload.map((file, index) => (
+									{watchedValues.fileUpload?.map((file, index) => (
 										<li key={index}>{file.name}</li>
 									))}
 								</ul>

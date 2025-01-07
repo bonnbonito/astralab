@@ -25,7 +25,7 @@ export default function Main({
 				<ProjectType form={form} />
 
 				{productId.map((id, index) => (
-					<div key={id} className="productAccordion">
+					<div key={id} className="productAccordion mt-6">
 						{productComponent[index] === 'ADAWayfinding' && (
 							<ADAWayfinding
 								form={form}
