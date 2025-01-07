@@ -165,7 +165,7 @@ export default function DesignInspiration({
 												<img
 													src={option.image || 'placeholder-image-url'}
 													alt={option.name}
-													className="object-cover rounded-md w-full"
+													className="object-cover rounded-md w-full aspect-[4/3]"
 												/>
 											</Label>
 										</div>

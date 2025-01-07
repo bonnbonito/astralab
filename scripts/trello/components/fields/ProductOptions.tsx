@@ -90,7 +90,7 @@ export const ProductOptions = ({
 													<img
 														src={option.image}
 														alt={option.title}
-														className="w-full h-auto rounded"
+														className="w-full aspect-[4/3] rounded"
 													/>
 												</Label>
 											</div>

@@ -77,7 +77,7 @@ export default function LayoutType({
 											<img
 												src={option.image.url}
 												alt={option.title}
-												className="object-cover mb-2 w-full"
+												className="object-cover mb-2 w-full aspect-[4/3]"
 											/>
 										</Label>
 									</div>

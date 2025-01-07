@@ -56,8 +56,9 @@ class Trello_Backend {
 		register_rest_route( 'astralab/v1', '/options', array(
 			'methods' => 'GET',
 			'callback' => function () {
-				return get_fields( 'options' ); // Retrieve ACF options page fields
+				return get_fields( 'options' );
 			},
+			'permission_callback' => '__return_true',
 		) );
 
 		register_rest_field(
@@ -194,11 +195,11 @@ class Trello_Backend {
 		$trello_list_id = get_user_meta( $user->ID, 'trello_list_id', true );
 
 		?>
-<h2>Create Trello Board</h2>
-<table class="form-table">
-  <tr>
-    <th scope="row"><label for="create_trello_board">Trello Board</label></th>
-    <?php
+		<h2>Create Trello Board</h2>
+		<table class="form-table">
+			<tr>
+				<th scope="row"><label for="create_trello_board">Trello Board</label></th>
+				<?php
 				if ( ! empty( $trello_board_id ) ) {
 					echo '<td>
 					<p><strong>Trello Board ID:</strong> ' . esc_html( $trello_board_id ) . ' <a href="' . esc_url( $trello_url ) . '" target="_blank">View Board</a></p>';
@@ -208,18 +209,18 @@ class Trello_Backend {
 					echo '</td>';
 				} else {
 					?>
-    <td>
-      <label for="create_trello_board">
-        <input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
-        Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
-      </label>
-    </td>
-    <?php
+					<td>
+						<label for="create_trello_board">
+							<input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
+							Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
+						</label>
+					</td>
+					<?php
 				}
 				?>
-  </tr>
-</table>
-<?php
+			</tr>
+		</table>
+		<?php
 	}
 
 	/**

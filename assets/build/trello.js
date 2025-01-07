@@ -1318,7 +1318,7 @@ function DesignInspiration({
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
                     src: option.image || 'placeholder-image-url',
                     alt: option.name,
-                    className: "object-cover rounded-md w-full"
+                    className: "object-cover rounded-md w-full aspect-[4/3]"
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_tooltip__WEBPACK_IMPORTED_MODULE_5__.Tooltip, {
@@ -2198,7 +2198,7 @@ function LayoutType({
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
                 src: option.image.url,
                 alt: option.title,
-                className: "object-cover mb-2 w-full"
+                className: "object-cover mb-2 w-full aspect-[4/3]"
               })
             })]
           }, index)) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
@@ -2351,7 +2351,7 @@ const ProductOptions = ({
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
                   src: option.image,
                   alt: option.title,
-                  className: "w-full h-auto rounded"
+                  className: "w-full aspect-[4/3] rounded"
                 })
               })]
             }, `checkbox-${optionKey}`);
