@@ -1975,10 +1975,13 @@ function SidebarDetails({
       dangerouslySetInnerHTML: {
         __html: title
       }
-    }), component === 'ADAWayfinding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_products_ADA_SidebarADA__WEBPACK_IMPORTED_MODULE_0__["default"], {
-      form: form
-    }), component === 'MonumentsAndPylons' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_products_MonumentsAndPylons_SidebarMonuments__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      form: form
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "pl-2",
+      children: [component === 'ADAWayfinding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_products_ADA_SidebarADA__WEBPACK_IMPORTED_MODULE_0__["default"], {
+        form: form
+      }), component === 'MonumentsAndPylons' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_products_MonumentsAndPylons_SidebarMonuments__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        form: form
+      })]
     })]
   });
 }

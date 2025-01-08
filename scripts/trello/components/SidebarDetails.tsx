@@ -20,8 +20,10 @@ export default function SidebarDetails({
 				className="uppercase font-semibold text-base mb-1"
 				dangerouslySetInnerHTML={{ __html: title }}
 			/>
-			{component === 'ADAWayfinding' && <SidebarADA form={form} />}
-			{component === 'MonumentsAndPylons' && <SidebarMonuments form={form} />}
+			<div className="pl-2">
+				{component === 'ADAWayfinding' && <SidebarADA form={form} />}
+				{component === 'MonumentsAndPylons' && <SidebarMonuments form={form} />}
+			</div>
 		</div>
 	);
 }
