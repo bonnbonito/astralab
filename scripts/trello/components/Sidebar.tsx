@@ -23,7 +23,7 @@ export default function Sidebar({ form }: SidebarProps) {
 	}
 
 	return (
-		<div className="max-w-[310px] w-full">
+		<div className="md:max-w-[310px] w-full">
 			<div className="px-4 py-6 border border-input flex-1 rounded sticky top-12">
 				<h5 className="uppercase font-semibold text-lg">Project Summary</h5>
 

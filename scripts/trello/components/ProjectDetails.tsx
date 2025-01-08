@@ -68,7 +68,7 @@ export default function ProjectDetails({ form }: ProjectDetailsProps) {
 
 	return (
 		<div className="border border-input px-4 py-6 mb-8 rounded">
-			<div className="grid md:grid-cols-[45%_1fr_1fr] gap-4 mb-6">
+			<div className="grid grid-cols-1 lg:grid-cols-[45%_1fr_1fr] gap-4 mb-6">
 				<ProjectName form={form} />
 
 				<TurnaroundTime

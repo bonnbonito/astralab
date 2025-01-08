@@ -1035,6 +1035,10 @@ video {
 #astralab .border-transparent {
   border-color: transparent;
 }
+#astralab .border-green-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(22 163 74 / var(--tw-border-opacity, 1));
+}
 #astralab .border-x-\[\#D2D2D2\] {
   --tw-border-opacity: 1;
   border-left-color: rgb(210 210 210 / var(--tw-border-opacity, 1));
@@ -1098,6 +1102,14 @@ video {
 #astralab .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+#astralab .bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
+}
+#astralab .bg-green-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 163 74 / var(--tw-bg-opacity, 1));
 }
 #astralab .bg-opacity-60 {
   --tw-bg-opacity: 0.6;
@@ -1336,6 +1348,10 @@ video {
 }
 #astralab .text-secondary-foreground {
   color: hsl(var(--secondary-foreground));
+}
+#astralab .text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 #astralab .underline {
   text-decoration-line: underline;
@@ -1946,6 +1962,10 @@ video {
     max-width: 420px;
   }
 
+  #astralab .md\:max-w-\[310px\] {
+    max-width: 310px;
+  }
+
   #astralab .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1967,6 +1987,13 @@ video {
   #astralab .md\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  #astralab .lg\:grid-cols-\[45\%_1fr_1fr\] {
+    grid-template-columns: 45% 1fr 1fr;
   }
 }
 

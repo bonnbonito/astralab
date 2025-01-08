@@ -73,6 +73,7 @@ export default function OrderForm() {
 				console.log('Success:', response.data);
 				form.reset();
 				toast({
+					variant: 'success',
 					title: 'Order placed successfully',
 				});
 			} else {
