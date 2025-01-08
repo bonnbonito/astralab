@@ -44,7 +44,9 @@ export default function FileUpload({
 			name="fileUpload"
 			render={({ field: { value, ...field } }) => (
 				<FormItem className="relative">
-					<FormLabel className="uppercase font-medium">File Upload</FormLabel>
+					<FormLabel className="uppercase font-semibold text-base">
+						Uploads
+					</FormLabel>
 					<FormControl>
 						<Input
 							{...field}

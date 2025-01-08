@@ -37,7 +37,7 @@ export default function DesignDetails({
 			name="designDetails"
 			render={({ field }) => (
 				<FormItem>
-					<FormLabel className="uppercase font-medium">
+					<FormLabel className="uppercase font-semibold text-base">
 						Design Details
 					</FormLabel>
 					<FormControl>

@@ -51,7 +51,7 @@ export default function ProductType({ form }: ProductTypeProps) {
 				name="productTypes"
 				render={() => (
 					<FormItem>
-						<FormLabel className="uppercase font-medium">
+						<FormLabel className="uppercase font-semibold text-base">
 							Product Type
 						</FormLabel>
 						<FormControl>
@@ -134,11 +134,11 @@ export default function ProductType({ form }: ProductTypeProps) {
 
 																form.trigger('productTypes');
 															}}
-															className="p-0 border-solid bg-transparent"
+															className="p-0 border-input border-solid bg-transparent"
 														/>
 														<Label
 															htmlFor={`prodtype-${post.id}`}
-															className="cursor-pointer uppercase font-medium text-sm"
+															className="cursor-pointer uppercase font-semibold text-sm"
 															dangerouslySetInnerHTML={{
 																__html: post.title.rendered,
 															}}
@@ -147,7 +147,7 @@ export default function ProductType({ form }: ProductTypeProps) {
 
 													<Label
 														htmlFor={`prodtype-${post.id}`}
-														className="cursor-pointer uppercase font-medium text-sm"
+														className="cursor-pointer uppercase font-semibold text-sm"
 													>
 														<img
 															src={

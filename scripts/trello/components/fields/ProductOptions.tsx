@@ -30,7 +30,7 @@ export const ProductOptions = ({
 			name={formKey as keyof FormSchema}
 			render={() => (
 				<FormItem className="mt-4">
-					<FormLabel className="uppercase font-medium text-base mt-4">
+					<FormLabel className="uppercase font-semibold text-base mt-4">
 						{optionTitle}
 					</FormLabel>
 					<FormControl>
@@ -76,11 +76,11 @@ export const ProductOptions = ({
 															);
 															form.trigger(formKey as keyof FormSchema);
 														}}
-														className="p-0 border-solid bg-transparent"
+														className="p-0 border-solid border-input bg-transparent"
 													/>
 													<Label
 														htmlFor={optionKey}
-														className="cursor-pointer ml-2 font-medium uppercase"
+														className="cursor-pointer ml-2 font-semibold uppercase text-sm"
 													>
 														{option.title}
 													</Label>

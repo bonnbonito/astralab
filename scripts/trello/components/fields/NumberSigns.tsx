@@ -32,7 +32,7 @@ export default function NumberSigns({
 			name={fieldName as keyof FormSchema}
 			render={({ field }) => (
 				<div>
-					<FormLabel className="uppercase font-medium text-base">
+					<FormLabel className="uppercase font-semibold text-base">
 						Number of Signs
 					</FormLabel>
 

@@ -33,7 +33,12 @@ export default function LayoutType({
 			name="layoutType"
 			render={({ field }) => (
 				<FormItem>
-					<FormLabel className="uppercase font-medium">Layout Type</FormLabel>
+					<FormLabel className="font-semibold text-base">
+						<p className="mb-0 uppercase">Layout Type</p>
+						<span className="text-xs font-light ">
+							more details on layout type. <a href="#">CLICK HERE</a>
+						</span>
+					</FormLabel>
 					<FormControl>
 						<RadioGroup
 							value={field.value}
@@ -57,7 +62,7 @@ export default function LayoutType({
 									<div key={index}>
 										<div className="flex items-center gap-2 mb-1">
 											<RadioGroupItem
-												className="p-0 bg-transparent border-solid"
+												className="p-0 bg-transparent border-input border-solid"
 												value={option.title}
 												id={`layout-${index}`}
 											/>
@@ -65,7 +70,7 @@ export default function LayoutType({
 												htmlFor={`layout-${index}`}
 												className="cursor-pointer"
 											>
-												<span className="text-sm font-medium">
+												<span className="text-sm font-semibold">
 													{option.title}
 												</span>
 											</Label>

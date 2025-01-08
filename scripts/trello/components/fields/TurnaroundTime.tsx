@@ -37,7 +37,7 @@ export default function TurnaroundTime({
 			name="turnaroundTime"
 			render={({ field }) => (
 				<FormItem>
-					<FormLabel className="uppercase font-medium">
+					<FormLabel className="uppercase font-semibold text-base">
 						Turnaround Time
 					</FormLabel>
 					<FormControl>

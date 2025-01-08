@@ -68,7 +68,7 @@ export default function ProjectDetails({ form }: ProjectDetailsProps) {
 
 	return (
 		<div className="border px-4 py-6 mb-8 rounded">
-			<div className="grid md:grid-cols-[45%_1fr_1fr] gap-4 mb-4">
+			<div className="grid md:grid-cols-[45%_1fr_1fr] gap-4 mb-6">
 				<ProjectName form={form} />
 
 				<TurnaroundTime
@@ -84,11 +84,11 @@ export default function ProjectDetails({ form }: ProjectDetailsProps) {
 				/>
 			</div>
 
-			<div className="mb-4">
+			<div className="mb-6">
 				<ProjectDescription form={form} />
 			</div>
 
-			<div className="mb-4">
+			<div className="mb-6">
 				<LayoutType
 					form={form}
 					layoutTypeOptions={layoutTypeOptions}
@@ -96,7 +96,7 @@ export default function ProjectDetails({ form }: ProjectDetailsProps) {
 				/>
 			</div>
 
-			<div className="mb-4 relative">
+			<div className="mb-6 relative">
 				<FileUpload form={form} />
 			</div>
 		</div>

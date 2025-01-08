@@ -38,13 +38,13 @@ export default function DesignInspiration({
 				name={fieldName as keyof FormSchema}
 				render={() => (
 					<FormItem>
-						<FormLabel className="uppercase font-medium text-base">
+						<FormLabel className="uppercase font-semibold text-base">
 							Design Inspiration
 						</FormLabel>
 						<div className="mt-2 flex no-wrap justify-between border-b-[#D2D2D2] border-b uppercase overflow-x-auto">
 							{groupExists('Basic') && (
 								<div
-									className={`px-6 py-2 text-center cursor-pointer border whitespace-nowrap ${
+									className={`px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${
 										isCurrent('Basic', tab)
 											? 'border-t-[#D2D2D2] border-x-[#D2D2D2]'
 											: 'border-transparent border-b-0'
@@ -57,7 +57,7 @@ export default function DesignInspiration({
 
 							{groupExists('Modern') && (
 								<div
-									className={`px-6 py-2 text-center cursor-pointer border whitespace-nowrap ${
+									className={`px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${
 										isCurrent('Modern', tab)
 											? 'border-t-[#D2D2D2] border-x-[#D2D2D2]'
 											: 'border-transparent border-b-0'
@@ -70,7 +70,7 @@ export default function DesignInspiration({
 
 							{groupExists('Decorative') && (
 								<div
-									className={`px-6 py-2 text-center cursor-pointer border whitespace-nowrap ${
+									className={`px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${
 										isCurrent('Decorative', tab)
 											? 'border-t-[#D2D2D2] border-x-[#D2D2D2]'
 											: 'border-transparent border-b-0'
@@ -83,7 +83,7 @@ export default function DesignInspiration({
 
 							{groupExists('Corporate') && (
 								<div
-									className={`px-6 py-2 text-center cursor-pointer border whitespace-nowrap ${
+									className={`px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${
 										isCurrent('Corporate', tab)
 											? 'border-t-[#D2D2D2] border-x-[#D2D2D2]'
 											: 'border-transparent border-b-0'
@@ -95,7 +95,7 @@ export default function DesignInspiration({
 							)}
 
 							<div
-								className={`px-6 py-2 text-center cursor-pointer border whitespace-nowrap ${
+								className={`px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${
 									isCurrent('Classic', tab)
 										? 'border-t-[#D2D2D2] border-x-[#D2D2D2]'
 										: 'border-transparent border-b-0'
@@ -105,7 +105,7 @@ export default function DesignInspiration({
 								Classic
 							</div>
 							<div
-								className={`px-6 py-2 text-center cursor-pointer border whitespace-nowrap ${
+								className={`px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${
 									isCurrent('All', tab)
 										? 'border-t-[#D2D2D2] border-x-[#D2D2D2]'
 										: 'border-transparent border-b-0'
@@ -159,7 +159,7 @@ export default function DesignInspiration({
 
 															form.trigger(fieldName as keyof FormSchema);
 														}}
-														className="p-0 border-solid bg-transparent ml-auto absolute top-2 right-2 bg-white rounded-full"
+														className="p-0 border-input border-solid bg-transparent ml-auto absolute top-2 right-2 bg-white rounded-full"
 													/>
 												</div>
 												<img

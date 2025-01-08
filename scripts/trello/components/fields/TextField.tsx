@@ -31,7 +31,7 @@ export default function TextField({
 			rules={rules}
 			render={({ field }) => (
 				<FormItem>
-					<FormLabel className="uppercase font-medium text-base">
+					<FormLabel className="uppercase font-semibold text-base">
 						{label}
 					</FormLabel>
 					<FormControl>

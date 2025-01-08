@@ -20,7 +20,7 @@ export default function ProjectDescription({ form }: ProjectDescriptionProps) {
 			name="projectDescription"
 			render={({ field }) => (
 				<FormItem>
-					<FormLabel className="uppercase font-medium">
+					<FormLabel className="uppercase font-semibold text-base">
 						Project Description
 					</FormLabel>
 					<FormControl>

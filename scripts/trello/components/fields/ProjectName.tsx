@@ -20,7 +20,9 @@ export default function ProjectName({ form }: ProjectNameProps) {
 			name="projectName"
 			render={({ field }) => (
 				<FormItem>
-					<FormLabel className="uppercase font-medium">Project Name</FormLabel>
+					<FormLabel className="uppercase font-semibold text-base">
+						Project Name
+					</FormLabel>
 					<FormControl>
 						<Input placeholder="Enter project name" {...field} />
 					</FormControl>

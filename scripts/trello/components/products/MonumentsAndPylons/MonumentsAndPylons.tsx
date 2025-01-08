@@ -109,7 +109,7 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 								fieldName="monumentsAndPylons.numberOfSigns"
 							/>
 
-							<div className="my-4">
+							<div className="my-6">
 								<TextField
 									form={form}
 									name="monumentsAndPylons.textAndContent"
@@ -118,7 +118,7 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 								/>
 							</div>
 
-							<div className="grid md:grid-cols-3 gap-6">
+							<div className="grid md:grid-cols-3 gap-6 mb-6">
 								<TextField
 									form={form}
 									name="monumentsAndPylons.vendor"
@@ -152,19 +152,22 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 								/>
 							</div>
 
-							<ProductOptions
-								form={form}
-								options={types?.options || []}
-								formKey="monumentsAndPylons.types"
-								optionTitle="Types"
-							/>
-
-							<ProductOptions
-								form={form}
-								options={illuminations?.options || []}
-								formKey="monumentsAndPylons.illumination"
-								optionTitle="Illumination"
-							/>
+							<div className="mb-6">
+								<ProductOptions
+									form={form}
+									options={types?.options || []}
+									formKey="monumentsAndPylons.types"
+									optionTitle="Types"
+								/>
+							</div>
+							<div className="mb-6">
+								<ProductOptions
+									form={form}
+									options={illuminations?.options || []}
+									formKey="monumentsAndPylons.illumination"
+									optionTitle="Illumination"
+								/>
+							</div>
 
 							<DesignInspiration
 								form={form}

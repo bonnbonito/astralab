@@ -195,11 +195,11 @@ class Trello_Backend {
 		$trello_list_id = get_user_meta( $user->ID, 'trello_list_id', true );
 
 		?>
-		<h2>Create Trello Board</h2>
-		<table class="form-table">
-			<tr>
-				<th scope="row"><label for="create_trello_board">Trello Board</label></th>
-				<?php
+<h2>Create Trello Board</h2>
+<table class="form-table">
+  <tr>
+    <th scope="row"><label for="create_trello_board">Trello Board</label></th>
+    <?php
 				if ( ! empty( $trello_board_id ) ) {
 					echo '<td>
 					<p><strong>Trello Board ID:</strong> ' . esc_html( $trello_board_id ) . ' <a href="' . esc_url( $trello_url ) . '" target="_blank">View Board</a></p>';
@@ -209,18 +209,18 @@ class Trello_Backend {
 					echo '</td>';
 				} else {
 					?>
-					<td>
-						<label for="create_trello_board">
-							<input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
-							Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
-						</label>
-					</td>
-					<?php
+    <td>
+      <label for="create_trello_board">
+        <input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
+        Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
+      </label>
+    </td>
+    <?php
 				}
 				?>
-			</tr>
-		</table>
-		<?php
+  </tr>
+</table>
+<?php
 	}
 
 	/**
@@ -319,9 +319,7 @@ class Trello_Backend {
 
 	public function astralab_form_submission() {
 		$nonce = $_POST['astralab_nonce'];
-
 		$user_id = get_current_user_id();
-
 
 		$return['post'] = $_POST;
 		$return['file'] = $_FILES['fileUpload'];
@@ -334,7 +332,8 @@ class Trello_Backend {
 				array(
 					'message' => 'Invalid nonce verification',
 					'post' => $_POST
-				) );
+				)
+			);
 		}
 
 		$options = get_option( $this->option_name );
@@ -367,20 +366,19 @@ class Trello_Backend {
 
 		$jsonData = json_decode( json_encode( $_POST ), true );
 
-
 		$user_line = '**User:** ' . ( ! empty( $full_name ) ? $full_name : 'N/A' );
 		$email_line = '**Email:** ' . ( ! empty( $email ) ? $email : 'N/A' );
 
+		// Build your project details as before...
 		$project_details = '<p><strong>Project Name:</strong> ' . $card_name . '</p>';
 		$project_details .= '<p><strong>Turnaround Time:</strong> ' . $_POST['turnaroundTime'] . '</p>';
 		$project_details .= '<p><strong>Design Details:</strong> ' . $_POST['designDetails'] . '</p>';
-		$project_details .= '<p><strong>Project Description:</strong>' . '</p>';
+		$project_details .= '<p><strong>Project Description:</strong></p>';
 		$project_details .= '<p>' . sanitize_textarea_field( $_POST['projectDescription'] ) . '</p>';
-
 		$project_details .= '<p><strong>Layout Type:</strong> ' . $_POST['layoutType'] . '</p>';
+		$project_details .= '<p><strong>Product Types:</strong></p>';
 
-		$project_details .= '<p><strong>Product Types:</strong>' . '</p>';
-
+		// --- ADA ---
 		$ada = $jsonData['ADA'];
 		if ( ! empty( $_POST["hasADA"] ) && $ada ) {
 			$signs = $ada['signs'] ?? [];
@@ -402,8 +400,8 @@ class Trello_Backend {
 			$project_details .= '</ul>';
 		}
 
+		// --- Monuments & Pylons ---
 		$monuments = $jsonData['monumentsAndPylons'];
-
 		if ( ! empty( $_POST["hasMonumentsAndPylons"] ) && $monuments ) {
 			$monuments_types = $monuments['types'] ?? [];
 			$monuments_design = $monuments['designInspirations'] ?? [];
@@ -422,25 +420,23 @@ class Trello_Backend {
 			$project_details .= '<li><strong>Types:</strong> ' . implode( ", ", $monuments_types ) . '</li>';
 			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $monuments_design ) . '</li>';
 			$project_details .= '</ul>';
-
 		}
 
 		$converter = new HtmlConverter();
 		$markdown = $converter->convert( $project_details );
 
-
+		// Combine user_line, email_line, and the converted HTML details
 		$md_desc = $user_line . "\n" . $email_line . "\n\n" . $markdown;
 
-		// Create the Trello card
+		// --- Create the Trello card ---
 		$card_url = 'https://api.trello.com/1/cards';
 		$card_args = array(
 			'key' => $api_key,
 			'token' => $api_token,
 			'idList' => $list_id,
 			'name' => $card_name,
-			'desc' => $md_desc,
+			'desc' => $md_desc, // initial description
 		);
-
 		$card_response = wp_remote_post(
 			$card_url,
 			array(
@@ -473,6 +469,37 @@ class Trello_Backend {
 				update_post_meta( $post_id, 'trello_card_message', $project_details );
 				update_post_meta( $post_id, 'trello_card_user_name', $full_name );
 				update_post_meta( $post_id, 'trello_card_user_email', $email );
+
+				/**
+				 * -- NEW STEP --
+				 * Build the admin edit URL and prepend it to the existing Trello card description.
+				 */
+				$edit_url = admin_url( 'post.php?post=' . $post_id . '&action=edit' );
+
+				// Prepend the link to what Trello currently has (i.e., $card_body->desc).
+				// This ensures we do NOT overwrite the existing description.
+				$desc_with_edit_link = "**WP Edit URL:** [Edit Post]({$edit_url})\n\n" . $card_body->desc;
+
+				// Make a second request to Trello to update the card’s description
+				$update_url = "https://api.trello.com/1/cards/{$card_id}";
+				$update_args = array(
+					'key' => $api_key,
+					'token' => $api_token,
+					'desc' => $desc_with_edit_link, // updated desc with link on top
+				);
+
+				$update_response = wp_remote_request(
+					$update_url,
+					array(
+						'method' => 'PUT',
+						'body' => $update_args,
+					)
+				);
+
+				// Optional: check if there's an error from the update call
+				if ( is_wp_error( $update_response ) ) {
+					error_log( 'Error updating card description with edit URL: ' . $update_response->get_error_message() );
+				}
 			}
 
 			// Handle multiple file uploads
@@ -527,14 +554,12 @@ class Trello_Backend {
 					}
 
 					$attachment_data = json_decode( $attachment_response, true );
-
-
 					if ( $attachment_data && isset( $attachment_data['id'] ) ) {
 						$attachment_info = array(
 							'trello_id' => $attachment_data['id'],
 							'name' => $file_name,
 							'url' => $attachment_data['url'] ?? '',
-							'date' => current_time( 'mysql' )
+							'date' => current_time( 'mysql' ),
 						);
 
 						// Get existing attachments or initialize empty array
@@ -553,7 +578,6 @@ class Trello_Backend {
 					++$success_count;
 				}
 
-
 				$webhook_result = $this->register_trello_webhook( $card_id, "Monitoring {$card_name}" );
 				if ( is_wp_error( $webhook_result ) ) {
 					error_log( 'Error creating Trello webhook: ' . $webhook_result->get_error_message() );
@@ -563,7 +587,6 @@ class Trello_Backend {
 
 				// Generate response message
 				if ( $success_count > 0 && empty( $errors ) ) {
-
 					wp_send_json_success( array(
 						'message' => 'Card created and all files attached successfully!',
 					) );
@@ -574,7 +597,16 @@ class Trello_Backend {
 					$error_messages = implode( '<br>', $errors );
 					wp_send_json_error( "Card created but failed to attach files.<br>Errors:<br>$error_messages" );
 				}
+
 			} else {
+				// No files uploaded; still try to register a webhook
+				$webhook_result = $this->register_trello_webhook( $card_id, "Monitoring {$card_name}" );
+				if ( is_wp_error( $webhook_result ) ) {
+					error_log( 'Error creating Trello webhook: ' . $webhook_result->get_error_message() );
+				} elseif ( isset( $webhook_result['id'] ) && ! is_wp_error( $post_id ) && $post_id ) {
+					update_post_meta( $post_id, 'trello_webhook_id', $webhook_result['id'] );
+				}
+
 				wp_send_json_success( 'Card created successfully!' );
 			}
 		} else {
@@ -582,6 +614,5 @@ class Trello_Backend {
 		}
 
 		wp_die();
-
 	}
 }
