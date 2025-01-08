@@ -20,6 +20,7 @@ import {
 import { FormSchema } from '@/trello/helpers/schema';
 import DesignInspiration from '@/trello/components/DesignInspiration';
 import { ProductOptions } from '@/trello/components/fields/ProductOptions';
+import { SkeletonCard } from '../../SkeletonCard';
 
 interface ADAProductTypeData {
 	title?: {
@@ -98,7 +99,7 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 				</AccordionTrigger>
 				<AccordionContent>
 					{loading ? (
-						<span>Loading...</span>
+						<SkeletonCard />
 					) : (
 						<div className="p-4 pt-0">
 							{/* Render Number of Signs Input */}

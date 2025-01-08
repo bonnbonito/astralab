@@ -12,6 +12,8 @@ import { FormSchema } from '@/trello/helpers/schema';
 import DesignInspiration from '@/trello/components/DesignInspiration';
 import { ProductOptions } from '@/trello/components/fields/ProductOptions';
 import TextField from '../../fields/TextField';
+import { Skeleton } from '@/components/ui/skeleton';
+import { SkeletonCard } from '../../SkeletonCard';
 
 interface MonumentsProductTypeData {
 	title?: {
@@ -100,7 +102,7 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 				</AccordionTrigger>
 				<AccordionContent>
 					{loading ? (
-						<span>Loading...</span>
+						<SkeletonCard />
 					) : (
 						<div className="p-4 pt-0">
 							{/* Render Number of Signs Input */}
