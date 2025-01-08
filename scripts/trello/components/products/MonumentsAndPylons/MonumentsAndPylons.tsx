@@ -85,7 +85,7 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 			type="single"
 			collapsible
 			defaultValue={product.toString()}
-			className="border border-solid rounded"
+			className="border border-input border-solid rounded"
 		>
 			<AccordionItem value={product.toString()}>
 				<AccordionTrigger className="bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4">

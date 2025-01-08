@@ -830,14 +830,14 @@ video {
 #astralab .w-6 {
   width: 1.5rem;
 }
-#astralab .w-full {
-  width: 100%;
-}
 #astralab .w-\[200px\] {
   width: 200px;
 }
 #astralab .w-\[250px\] {
   width: 250px;
+}
+#astralab .w-full {
+  width: 100%;
 }
 #astralab .min-w-\[8rem\] {
   min-width: 8rem;
@@ -1736,6 +1736,36 @@ video {
 #astralab .data-\[swipe\=move\]\:translate-x-\[var\(--radix-toast-swipe-move-x\)\][data-swipe="move"] {
   --tw-translate-x: var(--radix-toast-swipe-move-x);
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@keyframes accordion-up {
+
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+
+  to {
+    height: 0;
+  }
+}
+
+#astralab .data-\[state\=closed\]\:animate-accordion-up[data-state="closed"] {
+  animation: accordion-up 0.4s ease-out;
+}
+
+@keyframes accordion-down {
+
+  from {
+    height: 0;
+  }
+
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+#astralab .data-\[state\=open\]\:animate-accordion-down[data-state="open"] {
+  animation: accordion-down 0.4s ease-out;
 }
 
 #astralab .data-\[state\=checked\]\:bg-primary[data-state="checked"] {

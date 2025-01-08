@@ -45,7 +45,7 @@ export default function ProductType({ form }: ProductTypeProps) {
 	}, []);
 
 	return (
-		<div className="border px-4 py-6 mb-8 rounded">
+		<div className="border border-input px-4 py-6 mb-8 rounded">
 			<FormField
 				control={form.control}
 				name="productTypes"

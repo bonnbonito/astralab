@@ -1609,7 +1609,7 @@ function ProductType({
     fetchProductTypes();
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-    className: "border px-4 py-6 mb-8 rounded",
+    className: "border border-input px-4 py-6 mb-8 rounded",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
       control: form.control,
       name: "productTypes",
@@ -1782,7 +1782,7 @@ function ProjectDetails({
   });
   const designDetailsOptions = typedOptions?.design_details || [];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-    className: "border px-4 py-6 mb-8 rounded",
+    className: "border border-input px-4 py-6 mb-8 rounded",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "grid md:grid-cols-[45%_1fr_1fr] gap-4 mb-6",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_ProjectName__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -1853,7 +1853,7 @@ function Sidebar({
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "max-w-[310px] w-full",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "px-4 py-6 border flex-1 rounded sticky top-12",
+      className: "px-4 py-6 border border-input flex-1 rounded sticky top-12",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
         className: "uppercase font-semibold text-lg",
         children: "Project Summary"
@@ -2690,7 +2690,7 @@ function ADAWayfinding({
     type: "single",
     collapsible: true,
     defaultValue: product.toString(),
-    className: "border border-solid rounded",
+    className: "border border-input border-solid rounded",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionItem, {
       value: product.toString(),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionTrigger, {
@@ -2930,7 +2930,7 @@ function MonumentsAndPylons({
     type: "single",
     collapsible: true,
     defaultValue: product.toString(),
-    className: "border border-solid rounded",
+    className: "border border-input border-solid rounded",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionItem, {
       value: product.toString(),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionTrigger, {

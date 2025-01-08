@@ -67,7 +67,7 @@ export default function ProjectDetails({ form }: ProjectDetailsProps) {
 	const designDetailsOptions = typedOptions?.design_details || [];
 
 	return (
-		<div className="border px-4 py-6 mb-8 rounded">
+		<div className="border border-input px-4 py-6 mb-8 rounded">
 			<div className="grid md:grid-cols-[45%_1fr_1fr] gap-4 mb-6">
 				<ProjectName form={form} />
 
