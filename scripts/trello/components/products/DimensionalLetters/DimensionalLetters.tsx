@@ -15,20 +15,23 @@ import TextField from '@/trello/components/fields/TextField';
 import { SkeletonCard } from '@/trello/components/SkeletonCard';
 import { ProductTypeDataProps } from '@/trello/helpers/types';
 
-interface MonumentsProps {
+interface DimensionalLettersProps {
 	form: UseFormReturn<FormSchema>;
 	product: number;
 }
 
 declare const astralab: Record<string, string>;
 
-export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
+export default function DimensionalLetters({
+	form,
+	product,
+}: DimensionalLettersProps) {
 	const [productType, setProductType] = useState<ProductTypeDataProps | null>(
 		null
 	);
 	const [loading, setLoading] = useState(true);
 
-	const numberOfSigns = form.watch('monumentsAndPylons.numberOfSigns');
+	const numberOfSigns = form.watch('dimensionalLetters.numberOfSigns');
 
 	const processedProductType = useMemo(() => productType, [productType]);
 
@@ -36,8 +39,8 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 		(item) => item.name === 'Types'
 	);
 
-	const illuminations = processedProductType?.product_types_options?.find(
-		(item) => item.name === 'Illumination'
+	const mounting = processedProductType?.product_types_options?.find(
+		(item) => item.name === 'Mounting'
 	);
 
 	useEffect(() => {
@@ -89,49 +92,56 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 							{/* Render Number of Signs Input */}
 							<NumberSigns
 								form={form}
-								fieldName="monumentsAndPylons.numberOfSigns"
+								fieldName="dimensionalLetters.numberOfSigns"
 							/>
 
 							<div className="my-6">
 								<TextField
 									form={form}
-									name="monumentsAndPylons.textAndContent"
+									name="dimensionalLetters.textAndContent"
 									label="Sign Text & Content"
 									placeholder="specific vendor for fabrication"
+								/>
+
+								<TextField
+									form={form}
+									name="dimensionalLetters.font"
+									label="Font"
+									placeholder="select font"
 								/>
 							</div>
 
 							<div className="grid md:grid-cols-3 gap-6 mb-6">
 								<TextField
 									form={form}
-									name="monumentsAndPylons.vendor"
+									name="dimensionalLetters.vendor"
 									label="Vendor"
 									placeholder="specific vendor for fabrication"
 								/>
 								<TextField
 									form={form}
-									name="monumentsAndPylons.sides"
+									name="dimensionalLetters.wallDimension"
+									label="Wall Dimension (WXH)"
+								/>
+								<TextField
+									form={form}
+									name="dimensionalLetters.signDimension"
+									label="Sign Dimension (WXH)"
+								/>
+								<TextField
+									form={form}
+									name="dimensionalLetters.sides"
 									label="Sides"
 								/>
 								<TextField
 									form={form}
-									name="monumentsAndPylons.dimensions"
-									label="Dimensions"
+									name="dimensionalLetters.backPanel"
+									label="Back Panel"
 								/>
 								<TextField
 									form={form}
-									name="monumentsAndPylons.maxContentArea"
-									label="Maximum Content Area"
-								/>
-								<TextField
-									form={form}
-									name="monumentsAndPylons.minContentArea"
-									label="Minimun Content Area"
-								/>
-								<TextField
-									form={form}
-									name="monumentsAndPylons.maxGroundClearance"
-									label="Maximum Ground Clearance"
+									name="dimensionalLetters.location"
+									label="Location"
 								/>
 							</div>
 
@@ -139,22 +149,23 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 								<ProductOptions
 									form={form}
 									options={types?.options || []}
-									formKey="monumentsAndPylons.types"
+									formKey="dimensionalLetters.types"
 									optionTitle="Types"
 								/>
 							</div>
+
 							<div className="mb-6">
 								<ProductOptions
 									form={form}
-									options={illuminations?.options || []}
-									formKey="monumentsAndPylons.illumination"
-									optionTitle="Illumination"
+									options={mounting?.options || []}
+									formKey="dimensionalLetters.mounting"
+									optionTitle="Mounting"
 								/>
 							</div>
 
 							<DesignInspiration
 								form={form}
-								fieldName="monumentsAndPylons[designInspirations]"
+								fieldName="dimensionalLetters[designInspirations]"
 								options={
 									processedProductType?.design_inspiration?.map(
 										(inspiration) => ({

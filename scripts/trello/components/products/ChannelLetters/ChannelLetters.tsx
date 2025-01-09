@@ -11,24 +11,24 @@ import NumberSigns from '@/trello/components/fields/NumberSigns';
 import { FormSchema } from '@/trello/helpers/schema';
 import DesignInspiration from '@/trello/components/DesignInspiration';
 import { ProductOptions } from '@/trello/components/fields/ProductOptions';
-import TextField from '@/trello/components/fields/TextField';
-import { SkeletonCard } from '@/trello/components/SkeletonCard';
+import TextField from '../../fields/TextField';
+import { SkeletonCard } from '../../SkeletonCard';
 import { ProductTypeDataProps } from '@/trello/helpers/types';
 
-interface MonumentsProps {
+interface ChannelLettersProps {
 	form: UseFormReturn<FormSchema>;
 	product: number;
 }
 
 declare const astralab: Record<string, string>;
 
-export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
+export default function ChannelLetters({ form, product }: ChannelLettersProps) {
 	const [productType, setProductType] = useState<ProductTypeDataProps | null>(
 		null
 	);
 	const [loading, setLoading] = useState(true);
 
-	const numberOfSigns = form.watch('monumentsAndPylons.numberOfSigns');
+	const numberOfSigns = form.watch('channelLetters.numberOfSigns');
 
 	const processedProductType = useMemo(() => productType, [productType]);
 
@@ -36,8 +36,12 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 		(item) => item.name === 'Types'
 	);
 
-	const illuminations = processedProductType?.product_types_options?.find(
-		(item) => item.name === 'Illumination'
+	const backer = processedProductType?.product_types_options?.find(
+		(item) => item.name === 'Backer'
+	);
+
+	const mounting = processedProductType?.product_types_options?.find(
+		(item) => item.name === 'Mounting'
 	);
 
 	useEffect(() => {
@@ -89,13 +93,13 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 							{/* Render Number of Signs Input */}
 							<NumberSigns
 								form={form}
-								fieldName="monumentsAndPylons.numberOfSigns"
+								fieldName="channelLetters.numberOfSigns"
 							/>
 
 							<div className="my-6">
 								<TextField
 									form={form}
-									name="monumentsAndPylons.textAndContent"
+									name="channelLetters.textAndContent"
 									label="Sign Text & Content"
 									placeholder="specific vendor for fabrication"
 								/>
@@ -104,34 +108,44 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 							<div className="grid md:grid-cols-3 gap-6 mb-6">
 								<TextField
 									form={form}
-									name="monumentsAndPylons.vendor"
+									name="channelLetters.vendor"
 									label="Vendor"
 									placeholder="specific vendor for fabrication"
 								/>
 								<TextField
 									form={form}
-									name="monumentsAndPylons.sides"
-									label="Sides"
+									name="channelLetters.wallDimension"
+									label="Wall Dimension (WXH)"
 								/>
 								<TextField
 									form={form}
-									name="monumentsAndPylons.dimensions"
-									label="Dimensions"
+									name="channelLetters.signDimension"
+									label="Sign Dimension (WXH)"
 								/>
 								<TextField
 									form={form}
-									name="monumentsAndPylons.maxContentArea"
-									label="Maximum Content Area"
+									name="channelLetters.material"
+									label="Material"
 								/>
 								<TextField
 									form={form}
-									name="monumentsAndPylons.minContentArea"
-									label="Minimun Content Area"
+									name="channelLetters.trimCapColor"
+									label="Trim Cap Color"
 								/>
 								<TextField
 									form={form}
-									name="monumentsAndPylons.maxGroundClearance"
-									label="Maximum Ground Clearance"
+									name="channelLetters.faceColor"
+									label="Face Color"
+								/>
+								<TextField
+									form={form}
+									name="channelLetters.returnColor"
+									label="Return Color"
+								/>
+								<TextField
+									form={form}
+									name="channelLetters.returnDepth"
+									label="Return Depth"
 								/>
 							</div>
 
@@ -139,22 +153,32 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 								<ProductOptions
 									form={form}
 									options={types?.options || []}
-									formKey="monumentsAndPylons.types"
+									formKey="channelLetters.types"
 									optionTitle="Types"
 								/>
 							</div>
+
 							<div className="mb-6">
 								<ProductOptions
 									form={form}
-									options={illuminations?.options || []}
-									formKey="monumentsAndPylons.illumination"
-									optionTitle="Illumination"
+									options={backer?.options || []}
+									formKey="channelLetters.backer"
+									optionTitle="Backer"
+								/>
+							</div>
+
+							<div className="mb-6">
+								<ProductOptions
+									form={form}
+									options={mounting?.options || []}
+									formKey="channelLetters.mounting"
+									optionTitle="Mounting"
 								/>
 							</div>
 
 							<DesignInspiration
 								form={form}
-								fieldName="monumentsAndPylons[designInspirations]"
+								fieldName="channelLetters[designInspirations]"
 								options={
 									processedProductType?.design_inspiration?.map(
 										(inspiration) => ({

@@ -1396,8 +1396,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _products_ADA_ADAWayfinding__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./products/ADA/ADAWayfinding */ "./themes/astralab/scripts/trello/components/products/ADA/ADAWayfinding.tsx");
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Loading */ "./themes/astralab/scripts/trello/components/Loading.js");
 /* harmony import */ var _products_MonumentsAndPylons_MonumentsAndPylons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./products/MonumentsAndPylons/MonumentsAndPylons */ "./themes/astralab/scripts/trello/components/products/MonumentsAndPylons/MonumentsAndPylons.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _products_ChannelLetters_ChannelLetters__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./products/ChannelLetters/ChannelLetters */ "./themes/astralab/scripts/trello/components/products/ChannelLetters/ChannelLetters.tsx");
+/* harmony import */ var _products_DimensionalLetters_DimensionalLetters__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./products/DimensionalLetters/DimensionalLetters */ "./themes/astralab/scripts/trello/components/products/DimensionalLetters/DimensionalLetters.tsx");
+/* harmony import */ var _products_Lightbox_Lightbox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./products/Lightbox/Lightbox */ "./themes/astralab/scripts/trello/components/products/Lightbox/Lightbox.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
+
+
+
 
 
 
@@ -1408,29 +1414,44 @@ function Main({
   form
 }) {
   const productTypes = form.watch('productTypes');
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
     className: "flex-1 w-full relative",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ProjectDetails__WEBPACK_IMPORTED_MODULE_0__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_ProjectDetails__WEBPACK_IMPORTED_MODULE_0__["default"], {
       form: form
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h3", {
       className: "text-[30px]",
       children: "PRODUCT TYPE"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ProductType__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_ProductType__WEBPACK_IMPORTED_MODULE_1__["default"], {
       form: form
-    }), productTypes?.map((productType, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    }), productTypes?.map((productType, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
       className: "productAccordion mt-6",
-      children: [productType.component === 'ADAWayfinding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_products_ADA_ADAWayfinding__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      children: [productType.component === 'ADAWayfinding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_products_ADA_ADAWayfinding__WEBPACK_IMPORTED_MODULE_2__["default"], {
           form: form,
           product: productType.id
         })
-      }), productType.component === 'MonumentsAndPylons' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_products_MonumentsAndPylons_MonumentsAndPylons__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }), productType.component === 'MonumentsAndPylons' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_products_MonumentsAndPylons_MonumentsAndPylons__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          form: form,
+          product: productType.id
+        })
+      }), productType.component === 'ChannelLetters' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_products_ChannelLetters_ChannelLetters__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          form: form,
+          product: productType.id
+        })
+      }), productType.component === 'DimensionalLetters' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_products_DimensionalLetters_DimensionalLetters__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          form: form,
+          product: productType.id
+        })
+      }), productType.component === 'Lightbox' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_products_Lightbox_Lightbox__WEBPACK_IMPORTED_MODULE_7__["default"], {
           form: form,
           product: productType.id
         })
       })]
-    }, productType.id)), form.formState.isSubmitting && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
+    }, productType.id)), form.formState.isSubmitting && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
   });
 }
 
@@ -1601,6 +1622,8 @@ function ProductType({
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
+        // Sort data by ascending id
+        data.sort((a, b) => a.id - b.id);
         setProductTypes(data);
       } catch (error) {
         console.error('Error fetching product types:', error);
@@ -1662,9 +1685,15 @@ function ProductType({
                         if (post.acf.component === 'MonumentsAndPylons') {
                           form.setValue('hasMonumentsAndPylons', true);
                         }
+                        if (post.acf.component === 'ChannelLetters') {
+                          form.setValue('hasChannelLetters', true);
+                        }
                       } else {
                         if (post.acf.component === 'ADAWayfinding') {
                           form.setValue('hasADA', false);
+                        }
+                        if (post.acf.component === 'ChannelLetters') {
+                          form.setValue('hasChannelLetters', false);
                         }
                         if (post.acf.component === 'MonumentsAndPylons') {
                           form.setValue('hasMonumentsAndPylons', false);
@@ -1960,8 +1989,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _products_ADA_SidebarADA__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./products/ADA/SidebarADA */ "./themes/astralab/scripts/trello/components/products/ADA/SidebarADA.tsx");
 /* harmony import */ var _products_MonumentsAndPylons_SidebarMonuments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./products/MonumentsAndPylons/SidebarMonuments */ "./themes/astralab/scripts/trello/components/products/MonumentsAndPylons/SidebarMonuments.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _products_ChannelLetters_SidebarChannelLetters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./products/ChannelLetters/SidebarChannelLetters */ "./themes/astralab/scripts/trello/components/products/ChannelLetters/SidebarChannelLetters.tsx");
+/* harmony import */ var _products_DimensionalLetters_SidebarDimensionalLetters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./products/DimensionalLetters/SidebarDimensionalLetters */ "./themes/astralab/scripts/trello/components/products/DimensionalLetters/SidebarDimensionalLetters.tsx");
+/* harmony import */ var _products_Lightbox_SidebarLightbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./products/Lightbox/SidebarLightbox */ "./themes/astralab/scripts/trello/components/products/Lightbox/SidebarLightbox.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
 
 
 
@@ -1970,18 +2005,24 @@ function SidebarDetails({
   form,
   component
 }) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "mb-4",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
       className: "uppercase font-semibold text-base mb-1",
       dangerouslySetInnerHTML: {
         __html: title
       }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "pl-2",
-      children: [component === 'ADAWayfinding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_products_ADA_SidebarADA__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      children: [component === 'ADAWayfinding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_products_ADA_SidebarADA__WEBPACK_IMPORTED_MODULE_0__["default"], {
         form: form
-      }), component === 'MonumentsAndPylons' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_products_MonumentsAndPylons_SidebarMonuments__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }), component === 'MonumentsAndPylons' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_products_MonumentsAndPylons_SidebarMonuments__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        form: form
+      }), component === 'ChannelLetters' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_products_ChannelLetters_SidebarChannelLetters__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        form: form
+      }), component === 'DimensionalLetters' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_products_DimensionalLetters_SidebarDimensionalLetters__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        form: form
+      }), component === 'Lightbox' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_products_Lightbox_SidebarLightbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
         form: form
       })]
     })]
@@ -2648,7 +2689,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/trello/components/fields/TextField */ "./themes/astralab/scripts/trello/components/fields/TextField.tsx");
 /* harmony import */ var _trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/trello/components/DesignInspiration */ "./themes/astralab/scripts/trello/components/DesignInspiration.tsx");
 /* harmony import */ var _trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/trello/components/fields/ProductOptions */ "./themes/astralab/scripts/trello/components/fields/ProductOptions.tsx");
-/* harmony import */ var _SkeletonCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../SkeletonCard */ "./themes/astralab/scripts/trello/components/SkeletonCard.js");
+/* harmony import */ var _trello_components_SkeletonCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/trello/components/SkeletonCard */ "./themes/astralab/scripts/trello/components/SkeletonCard.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 
@@ -2696,10 +2737,10 @@ function ADAWayfinding({
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionItem, {
       value: product.toString(),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionTrigger, {
-        className: "bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4",
+        className: "uppercase bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4",
         children: loading ? 'Loading...' : processedProductType?.title?.rendered || 'No Data Available'
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionContent, {
-        children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_SkeletonCard__WEBPACK_IMPORTED_MODULE_6__.SkeletonCard, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_SkeletonCard__WEBPACK_IMPORTED_MODULE_6__.SkeletonCard, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "p-4 pt-0",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__["default"], {
             form: form,
@@ -2869,6 +2910,1034 @@ const ADASchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.discriminatedUnion('hasADA'
 
 /***/ }),
 
+/***/ "./themes/astralab/scripts/trello/components/products/ChannelLetters/ChannelLetters.tsx":
+/*!**********************************************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/products/ChannelLetters/ChannelLetters.tsx ***!
+  \**********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ChannelLetters)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/accordion */ "./themes/astralab/scripts/components/ui/accordion.tsx");
+/* harmony import */ var _trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/trello/components/fields/NumberSigns */ "./themes/astralab/scripts/trello/components/fields/NumberSigns.tsx");
+/* harmony import */ var _trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/trello/components/DesignInspiration */ "./themes/astralab/scripts/trello/components/DesignInspiration.tsx");
+/* harmony import */ var _trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/trello/components/fields/ProductOptions */ "./themes/astralab/scripts/trello/components/fields/ProductOptions.tsx");
+/* harmony import */ var _fields_TextField__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../fields/TextField */ "./themes/astralab/scripts/trello/components/fields/TextField.tsx");
+/* harmony import */ var _SkeletonCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../SkeletonCard */ "./themes/astralab/scripts/trello/components/SkeletonCard.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+
+
+
+
+
+
+
+
+function ChannelLetters({
+  form,
+  product
+}) {
+  const [productType, setProductType] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const numberOfSigns = form.watch('channelLetters.numberOfSigns');
+  const processedProductType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => productType, [productType]);
+  const types = processedProductType?.product_types_options?.find(item => item.name === 'Types');
+  const backer = processedProductType?.product_types_options?.find(item => item.name === 'Backer');
+  const mounting = processedProductType?.product_types_options?.find(item => item.name === 'Mounting');
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    async function fetchProductTypes() {
+      try {
+        setLoading(true);
+        const response = await fetch(`${astralab['product-types']}/${product}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setProductType(data || null); // Ensure null fallback if data is invalid
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching product type:', error);
+        setProductType(null); // Set null if fetching fails
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProductTypes();
+  }, [product]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.Accordion, {
+    type: "single",
+    collapsible: true,
+    defaultValue: product.toString(),
+    className: "border border-input border-solid rounded",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionItem, {
+      value: product.toString(),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionTrigger, {
+        className: "uppercase bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4",
+        children: loading ? 'Loading...' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+          dangerouslySetInnerHTML: {
+            __html: processedProductType?.title?.rendered || 'No Data Available'
+          }
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionContent, {
+        children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_SkeletonCard__WEBPACK_IMPORTED_MODULE_6__.SkeletonCard, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          className: "p-4 pt-0",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            form: form,
+            fieldName: "channelLetters.numberOfSigns"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+            className: "my-6",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "channelLetters.textAndContent",
+              label: "Sign Text & Content",
+              placeholder: "specific vendor for fabrication"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            className: "grid md:grid-cols-3 gap-6 mb-6",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "channelLetters.vendor",
+              label: "Vendor",
+              placeholder: "specific vendor for fabrication"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "channelLetters.wallDimension",
+              label: "Wall Dimension (WXH)"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "channelLetters.signDimension",
+              label: "Sign Dimension (WXH)"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "channelLetters.material",
+              label: "Material"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "channelLetters.trimCapColor",
+              label: "Trim Cap Color"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "channelLetters.faceColor",
+              label: "Face Color"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "channelLetters.returnColor",
+              label: "Return Color"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "channelLetters.returnDepth",
+              label: "Return Depth"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+            className: "mb-6",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__.ProductOptions, {
+              form: form,
+              options: types?.options || [],
+              formKey: "channelLetters.types",
+              optionTitle: "Types"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+            className: "mb-6",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__.ProductOptions, {
+              form: form,
+              options: backer?.options || [],
+              formKey: "channelLetters.backer",
+              optionTitle: "Backer"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+            className: "mb-6",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__.ProductOptions, {
+              form: form,
+              options: mounting?.options || [],
+              formKey: "channelLetters.mounting",
+              optionTitle: "Mounting"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            form: form,
+            fieldName: "channelLetters[designInspirations]",
+            options: processedProductType?.design_inspiration?.map(inspiration => ({
+              name: inspiration.name,
+              image: inspiration.image,
+              group: inspiration.group
+            })) || []
+          })]
+        })
+      })]
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./themes/astralab/scripts/trello/components/products/ChannelLetters/SidebarChannelLetters.tsx":
+/*!*****************************************************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/products/ChannelLetters/SidebarChannelLetters.tsx ***!
+  \*****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SidebarChannelLetters)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+
+function SidebarChannelLetters({
+  form
+}) {
+  var _channelLetters$numbe;
+  const channelLetters = form.watch('channelLetters');
+  const numberOfSigns = (_channelLetters$numbe = channelLetters?.numberOfSigns) !== null && _channelLetters$numbe !== void 0 ? _channelLetters$numbe : 0;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Number of Signs"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: numberOfSigns
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Sign Text & Content"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: channelLetters?.textAndContent || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Vendor"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: channelLetters?.vendor || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Wall Dimension"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: channelLetters?.wallDimension || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Sign Dimension"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: channelLetters?.signDimension || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Material"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: channelLetters?.material || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Trim Cap Color"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: channelLetters?.trimCapColor || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Face Color"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: channelLetters?.faceColor || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Return Color"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: channelLetters?.returnColor || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Return Depth"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: channelLetters?.returnDepth || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Types"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: channelLetters?.types?.join(', ')
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Backer"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: channelLetters?.backer?.join(', ')
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Mounting"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: channelLetters?.mounting?.join(', ')
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Design Inspiration"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: channelLetters?.designInspirations?.join(', ')
+      })]
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./themes/astralab/scripts/trello/components/products/ChannelLetters/schema.tsx":
+/*!**************************************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/products/ChannelLetters/schema.tsx ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ChannelLettersSchema: () => (/* binding */ ChannelLettersSchema)
+/* harmony export */ });
+/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
+
+const ChannelLettersSchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.discriminatedUnion('hasChannelLetters', [zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+  hasChannelLetters: zod__WEBPACK_IMPORTED_MODULE_0__.z.literal(true),
+  channelLetters: zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+    numberOfSigns: zod__WEBPACK_IMPORTED_MODULE_0__.z.string(),
+    textAndContent: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
+      message: 'Text and Content is required.'
+    }),
+    vendor: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
+      message: 'Vendor required.'
+    }),
+    wallDimension: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    signDimension: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    material: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    trimCapColor: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    faceColor: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    returnColor: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    returnDepth: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    types: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string()).min(1, {
+      message: 'Select atleast one type.'
+    }),
+    backer: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string()).min(1, {
+      message: 'Select atleast one backer.'
+    }),
+    mounting: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string()).min(1, {
+      message: 'Select atleast one mounting.'
+    }),
+    designInspirations: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string())
+  })
+}), zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+  hasChannelLetters: zod__WEBPACK_IMPORTED_MODULE_0__.z.literal(false)
+})]);
+
+/***/ }),
+
+/***/ "./themes/astralab/scripts/trello/components/products/DimensionalLetters/DimensionalLetters.tsx":
+/*!******************************************************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/products/DimensionalLetters/DimensionalLetters.tsx ***!
+  \******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ DimensionalLetters)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/accordion */ "./themes/astralab/scripts/components/ui/accordion.tsx");
+/* harmony import */ var _trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/trello/components/fields/NumberSigns */ "./themes/astralab/scripts/trello/components/fields/NumberSigns.tsx");
+/* harmony import */ var _trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/trello/components/DesignInspiration */ "./themes/astralab/scripts/trello/components/DesignInspiration.tsx");
+/* harmony import */ var _trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/trello/components/fields/ProductOptions */ "./themes/astralab/scripts/trello/components/fields/ProductOptions.tsx");
+/* harmony import */ var _trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/trello/components/fields/TextField */ "./themes/astralab/scripts/trello/components/fields/TextField.tsx");
+/* harmony import */ var _trello_components_SkeletonCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/trello/components/SkeletonCard */ "./themes/astralab/scripts/trello/components/SkeletonCard.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+
+
+
+
+
+
+
+
+function DimensionalLetters({
+  form,
+  product
+}) {
+  const [productType, setProductType] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const numberOfSigns = form.watch('dimensionalLetters.numberOfSigns');
+  const processedProductType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => productType, [productType]);
+  const types = processedProductType?.product_types_options?.find(item => item.name === 'Types');
+  const mounting = processedProductType?.product_types_options?.find(item => item.name === 'Mounting');
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    async function fetchProductTypes() {
+      try {
+        setLoading(true);
+        const response = await fetch(`${astralab['product-types']}/${product}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setProductType(data || null); // Ensure null fallback if data is invalid
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching product type:', error);
+        setProductType(null); // Set null if fetching fails
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProductTypes();
+  }, [product]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.Accordion, {
+    type: "single",
+    collapsible: true,
+    defaultValue: product.toString(),
+    className: "border border-input border-solid rounded",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionItem, {
+      value: product.toString(),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionTrigger, {
+        className: "uppercase bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4",
+        children: loading ? 'Loading...' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+          dangerouslySetInnerHTML: {
+            __html: processedProductType?.title?.rendered || 'No Data Available'
+          }
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionContent, {
+        children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_SkeletonCard__WEBPACK_IMPORTED_MODULE_6__.SkeletonCard, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          className: "p-4 pt-0",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            form: form,
+            fieldName: "dimensionalLetters.numberOfSigns"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            className: "my-6",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "dimensionalLetters.textAndContent",
+              label: "Sign Text & Content",
+              placeholder: "specific vendor for fabrication"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "dimensionalLetters.font",
+              label: "Font",
+              placeholder: "select font"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            className: "grid md:grid-cols-3 gap-6 mb-6",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "dimensionalLetters.vendor",
+              label: "Vendor",
+              placeholder: "specific vendor for fabrication"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "dimensionalLetters.wallDimension",
+              label: "Wall Dimension (WXH)"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "dimensionalLetters.signDimension",
+              label: "Sign Dimension (WXH)"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "dimensionalLetters.sides",
+              label: "Sides"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "dimensionalLetters.backPanel",
+              label: "Back Panel"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "dimensionalLetters.location",
+              label: "Location"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+            className: "mb-6",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__.ProductOptions, {
+              form: form,
+              options: types?.options || [],
+              formKey: "dimensionalLetters.types",
+              optionTitle: "Types"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+            className: "mb-6",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__.ProductOptions, {
+              form: form,
+              options: mounting?.options || [],
+              formKey: "dimensionalLetters.mounting",
+              optionTitle: "Mounting"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            form: form,
+            fieldName: "dimensionalLetters[designInspirations]",
+            options: processedProductType?.design_inspiration?.map(inspiration => ({
+              name: inspiration.name,
+              image: inspiration.image,
+              group: inspiration.group
+            })) || []
+          })]
+        })
+      })]
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./themes/astralab/scripts/trello/components/products/DimensionalLetters/SidebarDimensionalLetters.tsx":
+/*!*************************************************************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/products/DimensionalLetters/SidebarDimensionalLetters.tsx ***!
+  \*************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SidebarDimensionalLetters)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+
+function SidebarDimensionalLetters({
+  form
+}) {
+  var _dimensionalLetters$n;
+  const dimensionalLetters = form.watch('dimensionalLetters');
+  const numberOfSigns = (_dimensionalLetters$n = dimensionalLetters?.numberOfSigns) !== null && _dimensionalLetters$n !== void 0 ? _dimensionalLetters$n : 0;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Number of Signs"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: numberOfSigns
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Sign Text & Content"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: dimensionalLetters?.textAndContent || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Font"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: dimensionalLetters?.font || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Vendor"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: dimensionalLetters?.vendor || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Wall Dimension"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: dimensionalLetters?.wallDimension || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Sign Dimension"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: dimensionalLetters?.signDimension || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Sides"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: dimensionalLetters?.sides || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Back Panel"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: dimensionalLetters?.backPanel || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Location"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: dimensionalLetters?.location || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Types"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: dimensionalLetters?.types?.join(', ')
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Mounting"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: dimensionalLetters?.mounting?.join(', ')
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Design Inspiration"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: dimensionalLetters?.designInspirations?.join(', ')
+      })]
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./themes/astralab/scripts/trello/components/products/DimensionalLetters/schema.tsx":
+/*!******************************************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/products/DimensionalLetters/schema.tsx ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   DimensionalLettersSchema: () => (/* binding */ DimensionalLettersSchema)
+/* harmony export */ });
+/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
+
+const DimensionalLettersSchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.discriminatedUnion('hasDimensionalLetters', [zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+  hasDimensionalLetters: zod__WEBPACK_IMPORTED_MODULE_0__.z.literal(true),
+  dimensionalLetters: zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+    numberOfSigns: zod__WEBPACK_IMPORTED_MODULE_0__.z.string(),
+    textAndContent: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
+      message: 'Text and Content is required.'
+    }),
+    font: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
+      message: 'Font required.'
+    }),
+    vendor: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
+      message: 'Vendor required.'
+    }),
+    wallDimension: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    signDimension: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    sides: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    backPanel: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    location: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    types: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string()).min(1, {
+      message: 'Select atleast one type.'
+    }),
+    mounting: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string()).min(1, {
+      message: 'Select atleast one mounting.'
+    }),
+    designInspirations: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string())
+  })
+}), zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+  hasDimensionalLetters: zod__WEBPACK_IMPORTED_MODULE_0__.z.literal(false)
+})]);
+
+/***/ }),
+
+/***/ "./themes/astralab/scripts/trello/components/products/Lightbox/Lightbox.tsx":
+/*!**********************************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/products/Lightbox/Lightbox.tsx ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Lightbox)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/accordion */ "./themes/astralab/scripts/components/ui/accordion.tsx");
+/* harmony import */ var _trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/trello/components/fields/NumberSigns */ "./themes/astralab/scripts/trello/components/fields/NumberSigns.tsx");
+/* harmony import */ var _trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/trello/components/DesignInspiration */ "./themes/astralab/scripts/trello/components/DesignInspiration.tsx");
+/* harmony import */ var _trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/trello/components/fields/ProductOptions */ "./themes/astralab/scripts/trello/components/fields/ProductOptions.tsx");
+/* harmony import */ var _trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/trello/components/fields/TextField */ "./themes/astralab/scripts/trello/components/fields/TextField.tsx");
+/* harmony import */ var _trello_components_SkeletonCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/trello/components/SkeletonCard */ "./themes/astralab/scripts/trello/components/SkeletonCard.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+
+
+
+
+
+
+
+
+function Lightbox({
+  form,
+  product
+}) {
+  const [productType, setProductType] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const numberOfSigns = form.watch('lightbox.numberOfSigns');
+  const processedProductType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => productType, [productType]);
+  const types = processedProductType?.product_types_options?.find(item => item.name === 'Types');
+  const mounting = processedProductType?.product_types_options?.find(item => item.name === 'Mounting');
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    async function fetchProductTypes() {
+      try {
+        setLoading(true);
+        const response = await fetch(`${astralab['product-types']}/${product}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setProductType(data || null); // Ensure null fallback if data is invalid
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching product type:', error);
+        setProductType(null); // Set null if fetching fails
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProductTypes();
+  }, [product]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.Accordion, {
+    type: "single",
+    collapsible: true,
+    defaultValue: product.toString(),
+    className: "border border-input border-solid rounded",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionItem, {
+      value: product.toString(),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionTrigger, {
+        className: "uppercase bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4",
+        children: loading ? 'Loading...' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+          dangerouslySetInnerHTML: {
+            __html: processedProductType?.title?.rendered || 'No Data Available'
+          }
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionContent, {
+        children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_SkeletonCard__WEBPACK_IMPORTED_MODULE_6__.SkeletonCard, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          className: "p-4 pt-0",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            form: form,
+            fieldName: "lightbox.numberOfSigns"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            className: "my-6",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "lightbox.textAndContent",
+              label: "Sign Text & Content",
+              placeholder: "specific vendor for fabrication"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "lightbox.font",
+              label: "Font",
+              placeholder: "select font"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            className: "grid md:grid-cols-3 gap-6 mb-6",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "lightbox.wallDimension",
+              label: "Wall Dimension (WXH)"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "lightbox.signDimension",
+              label: "Sign Dimension (WXH)"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "lightbox.depth",
+              label: "Depth"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "lightbox.sides",
+              label: "Sides"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "lightbox.color",
+              label: "Color"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              form: form,
+              name: "lightbox.retainers",
+              label: "Retainers"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+            className: "mb-6",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__.ProductOptions, {
+              form: form,
+              options: types?.options || [],
+              formKey: "lightbox.types",
+              optionTitle: "Types"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+            className: "mb-6",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__.ProductOptions, {
+              form: form,
+              options: mounting?.options || [],
+              formKey: "lightbox.mounting",
+              optionTitle: "Mounting"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            form: form,
+            fieldName: "lightbox[designInspirations]",
+            options: processedProductType?.design_inspiration?.map(inspiration => ({
+              name: inspiration.name,
+              image: inspiration.image,
+              group: inspiration.group
+            })) || []
+          })]
+        })
+      })]
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./themes/astralab/scripts/trello/components/products/Lightbox/SidebarLightbox.tsx":
+/*!*****************************************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/products/Lightbox/SidebarLightbox.tsx ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SidebarLightbox)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+
+function SidebarLightbox({
+  form
+}) {
+  var _lightbox$numberOfSig;
+  const lightbox = form.watch('lightbox');
+  const numberOfSigns = (_lightbox$numberOfSig = lightbox?.numberOfSigns) !== null && _lightbox$numberOfSig !== void 0 ? _lightbox$numberOfSig : 0;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Number of Signs"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: numberOfSigns
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Sign Text & Content"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: lightbox?.textAndContent || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Font"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: lightbox?.font || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Wall Dimension"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: lightbox?.wallDimension || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Sign Dimension"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: lightbox?.signDimension || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Depth"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: lightbox?.depth || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Sides"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: lightbox?.sides || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Color"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: lightbox?.color || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Retainers"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: lightbox?.retainers || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Types"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: lightbox?.types?.join(', ')
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Mounting"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: lightbox?.mounting?.join(', ')
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Design Inspiration"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: lightbox?.designInspirations?.join(', ')
+      })]
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./themes/astralab/scripts/trello/components/products/Lightbox/schema.tsx":
+/*!********************************************************************************!*\
+  !*** ./themes/astralab/scripts/trello/components/products/Lightbox/schema.tsx ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   LightboxSchema: () => (/* binding */ LightboxSchema)
+/* harmony export */ });
+/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
+
+const LightboxSchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.discriminatedUnion('hasLightbox', [zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+  hasLightbox: zod__WEBPACK_IMPORTED_MODULE_0__.z.literal(true),
+  lightbox: zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+    numberOfSigns: zod__WEBPACK_IMPORTED_MODULE_0__.z.string(),
+    textAndContent: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
+      message: 'Text and Content is required.'
+    }),
+    font: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
+      message: 'Font required.'
+    }),
+    wallDimension: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    signDimension: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    depth: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    sides: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    color: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    retainers: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
+    types: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string()).min(1, {
+      message: 'Select atleast one type.'
+    }),
+    mounting: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string()).min(1, {
+      message: 'Select atleast one mounting.'
+    }),
+    designInspirations: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.string())
+  })
+}), zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+  hasLightbox: zod__WEBPACK_IMPORTED_MODULE_0__.z.literal(false)
+})]);
+
+/***/ }),
+
 /***/ "./themes/astralab/scripts/trello/components/products/MonumentsAndPylons/MonumentsAndPylons.tsx":
 /*!******************************************************************************************************!*\
   !*** ./themes/astralab/scripts/trello/components/products/MonumentsAndPylons/MonumentsAndPylons.tsx ***!
@@ -2886,8 +3955,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/trello/components/fields/NumberSigns */ "./themes/astralab/scripts/trello/components/fields/NumberSigns.tsx");
 /* harmony import */ var _trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/trello/components/DesignInspiration */ "./themes/astralab/scripts/trello/components/DesignInspiration.tsx");
 /* harmony import */ var _trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/trello/components/fields/ProductOptions */ "./themes/astralab/scripts/trello/components/fields/ProductOptions.tsx");
-/* harmony import */ var _fields_TextField__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../fields/TextField */ "./themes/astralab/scripts/trello/components/fields/TextField.tsx");
-/* harmony import */ var _SkeletonCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../SkeletonCard */ "./themes/astralab/scripts/trello/components/SkeletonCard.js");
+/* harmony import */ var _trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/trello/components/fields/TextField */ "./themes/astralab/scripts/trello/components/fields/TextField.tsx");
+/* harmony import */ var _trello_components_SkeletonCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/trello/components/SkeletonCard */ "./themes/astralab/scripts/trello/components/SkeletonCard.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 
@@ -2936,21 +4005,21 @@ function MonumentsAndPylons({
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionItem, {
       value: product.toString(),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionTrigger, {
-        className: "bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4",
+        className: "uppercase bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4",
         children: loading ? 'Loading...' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           dangerouslySetInnerHTML: {
             __html: processedProductType?.title?.rendered || 'No Data Available'
           }
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.AccordionContent, {
-        children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_SkeletonCard__WEBPACK_IMPORTED_MODULE_6__.SkeletonCard, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_SkeletonCard__WEBPACK_IMPORTED_MODULE_6__.SkeletonCard, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "p-4 pt-0",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__["default"], {
             form: form,
             fieldName: "monumentsAndPylons.numberOfSigns"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
             className: "my-6",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
               form: form,
               name: "monumentsAndPylons.textAndContent",
               label: "Sign Text & Content",
@@ -2958,28 +4027,28 @@ function MonumentsAndPylons({
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "grid md:grid-cols-3 gap-6 mb-6",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
               form: form,
               name: "monumentsAndPylons.vendor",
               label: "Vendor",
               placeholder: "specific vendor for fabrication"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
               form: form,
               name: "monumentsAndPylons.sides",
               label: "Sides"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
               form: form,
               name: "monumentsAndPylons.dimensions",
               label: "Dimensions"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
               form: form,
               name: "monumentsAndPylons.maxContentArea",
               label: "Maximum Content Area"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
               form: form,
               name: "monumentsAndPylons.minContentArea",
               label: "Minimun Content Area"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
               form: form,
               name: "monumentsAndPylons.maxGroundClearance",
               label: "Maximum Ground Clearance"
@@ -3197,40 +4266,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   formDefaultValues: () => (/* binding */ formDefaultValues),
 /* harmony export */   formSchema: () => (/* binding */ formSchema)
 /* harmony export */ });
-/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
+/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
 /* harmony import */ var _trello_components_products_ADA_schema__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/trello/components/products/ADA/schema */ "./themes/astralab/scripts/trello/components/products/ADA/schema.tsx");
 /* harmony import */ var _trello_components_products_MonumentsAndPylons_schema__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/trello/components/products/MonumentsAndPylons/schema */ "./themes/astralab/scripts/trello/components/products/MonumentsAndPylons/schema.tsx");
+/* harmony import */ var _trello_components_products_ChannelLetters_schema__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/trello/components/products/ChannelLetters/schema */ "./themes/astralab/scripts/trello/components/products/ChannelLetters/schema.tsx");
+/* harmony import */ var _components_products_DimensionalLetters_schema__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/products/DimensionalLetters/schema */ "./themes/astralab/scripts/trello/components/products/DimensionalLetters/schema.tsx");
+/* harmony import */ var _components_products_Lightbox_schema__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/products/Lightbox/schema */ "./themes/astralab/scripts/trello/components/products/Lightbox/schema.tsx");
 
 
 
-const formSchema = zod__WEBPACK_IMPORTED_MODULE_2__.z.object({
-  projectName: zod__WEBPACK_IMPORTED_MODULE_2__.z.string().min(2, {
+
+
+
+const formSchema = zod__WEBPACK_IMPORTED_MODULE_5__.z.object({
+  projectName: zod__WEBPACK_IMPORTED_MODULE_5__.z.string().min(2, {
     message: 'Project Name must contain at least 2 character(s)'
   }),
-  turnaroundTime: zod__WEBPACK_IMPORTED_MODULE_2__.z.string().nonempty({
+  turnaroundTime: zod__WEBPACK_IMPORTED_MODULE_5__.z.string().nonempty({
     message: 'Turnaround Time is required.'
   }),
-  designDetails: zod__WEBPACK_IMPORTED_MODULE_2__.z.string().nonempty({
+  designDetails: zod__WEBPACK_IMPORTED_MODULE_5__.z.string().nonempty({
     message: 'Design Details is required.'
   }),
-  projectDescription: zod__WEBPACK_IMPORTED_MODULE_2__.z.string().nonempty({
+  projectDescription: zod__WEBPACK_IMPORTED_MODULE_5__.z.string().nonempty({
     message: 'Project Description is required.'
   }),
-  layoutType: zod__WEBPACK_IMPORTED_MODULE_2__.z.string().nonempty({
+  layoutType: zod__WEBPACK_IMPORTED_MODULE_5__.z.string().nonempty({
     message: 'Layout Type is required.'
   }),
-  productTypes: zod__WEBPACK_IMPORTED_MODULE_2__.z.array(zod__WEBPACK_IMPORTED_MODULE_2__.z.object({
-    title: zod__WEBPACK_IMPORTED_MODULE_2__.z.string().nonempty(),
-    component: zod__WEBPACK_IMPORTED_MODULE_2__.z.string().nonempty(),
-    id: zod__WEBPACK_IMPORTED_MODULE_2__.z.number().positive()
+  productTypes: zod__WEBPACK_IMPORTED_MODULE_5__.z.array(zod__WEBPACK_IMPORTED_MODULE_5__.z.object({
+    title: zod__WEBPACK_IMPORTED_MODULE_5__.z.string().nonempty(),
+    component: zod__WEBPACK_IMPORTED_MODULE_5__.z.string().nonempty(),
+    id: zod__WEBPACK_IMPORTED_MODULE_5__.z.number().positive()
   })).optional(),
-  fileUpload: zod__WEBPACK_IMPORTED_MODULE_2__.z.array(zod__WEBPACK_IMPORTED_MODULE_2__.z.instanceof(File)).min(1, {
+  fileUpload: zod__WEBPACK_IMPORTED_MODULE_5__.z.array(zod__WEBPACK_IMPORTED_MODULE_5__.z.instanceof(File)).min(1, {
     message: 'Upload atleast 1 File.'
   })
 }).refine(data => data.productTypes ? data.productTypes.length > 0 : true, {
   message: 'Select at least one Product Type',
   path: ['productTypes']
-}).and(_trello_components_products_ADA_schema__WEBPACK_IMPORTED_MODULE_0__.ADASchema).and(_trello_components_products_MonumentsAndPylons_schema__WEBPACK_IMPORTED_MODULE_1__.MonumentsAndPylonsSchema);
+}).and(_trello_components_products_ADA_schema__WEBPACK_IMPORTED_MODULE_0__.ADASchema).and(_trello_components_products_MonumentsAndPylons_schema__WEBPACK_IMPORTED_MODULE_1__.MonumentsAndPylonsSchema).and(_trello_components_products_ChannelLetters_schema__WEBPACK_IMPORTED_MODULE_2__.ChannelLettersSchema).and(_components_products_DimensionalLetters_schema__WEBPACK_IMPORTED_MODULE_3__.DimensionalLettersSchema).and(_components_products_Lightbox_schema__WEBPACK_IMPORTED_MODULE_4__.LightboxSchema);
 const formDefaultValues = {
   projectName: '',
   turnaroundTime: '',
@@ -3240,7 +4315,10 @@ const formDefaultValues = {
   productTypes: [],
   fileUpload: [],
   hasADA: false,
-  hasMonumentsAndPylons: false
+  hasMonumentsAndPylons: false,
+  hasChannelLetters: false,
+  hasDimensionalLetters: false,
+  hasLightbox: false
 };
 
 

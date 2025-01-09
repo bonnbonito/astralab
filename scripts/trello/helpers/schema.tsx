@@ -2,6 +2,9 @@ import { z } from 'zod';
 
 import { ADASchema } from '@/trello/components/products/ADA/schema';
 import { MonumentsAndPylonsSchema } from '@/trello/components/products/MonumentsAndPylons/schema';
+import { ChannelLettersSchema } from '@/trello/components/products/ChannelLetters/schema';
+import { DimensionalLettersSchema } from '../components/products/DimensionalLetters/schema';
+import { LightboxSchema } from '../components/products/Lightbox/schema';
 
 const formSchema = z
 	.object({
@@ -36,7 +39,10 @@ const formSchema = z
 		path: ['productTypes'],
 	})
 	.and(ADASchema)
-	.and(MonumentsAndPylonsSchema);
+	.and(MonumentsAndPylonsSchema)
+	.and(ChannelLettersSchema)
+	.and(DimensionalLettersSchema)
+	.and(LightboxSchema);
 
 type FormSchema = z.infer<typeof formSchema>;
 
@@ -50,6 +56,9 @@ const formDefaultValues: FormSchema = {
 	fileUpload: [],
 	hasADA: false,
 	hasMonumentsAndPylons: false,
+	hasChannelLetters: false,
+	hasDimensionalLetters: false,
+	hasLightbox: false,
 };
 
 export { formDefaultValues, formSchema, type FormSchema };

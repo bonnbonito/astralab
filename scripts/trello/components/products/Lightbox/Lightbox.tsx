@@ -15,20 +15,20 @@ import TextField from '@/trello/components/fields/TextField';
 import { SkeletonCard } from '@/trello/components/SkeletonCard';
 import { ProductTypeDataProps } from '@/trello/helpers/types';
 
-interface MonumentsProps {
+interface LightboxProps {
 	form: UseFormReturn<FormSchema>;
 	product: number;
 }
 
 declare const astralab: Record<string, string>;
 
-export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
+export default function Lightbox({ form, product }: LightboxProps) {
 	const [productType, setProductType] = useState<ProductTypeDataProps | null>(
 		null
 	);
 	const [loading, setLoading] = useState(true);
 
-	const numberOfSigns = form.watch('monumentsAndPylons.numberOfSigns');
+	const numberOfSigns = form.watch('lightbox.numberOfSigns');
 
 	const processedProductType = useMemo(() => productType, [productType]);
 
@@ -36,8 +36,8 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 		(item) => item.name === 'Types'
 	);
 
-	const illuminations = processedProductType?.product_types_options?.find(
-		(item) => item.name === 'Illumination'
+	const mounting = processedProductType?.product_types_options?.find(
+		(item) => item.name === 'Mounting'
 	);
 
 	useEffect(() => {
@@ -87,51 +87,42 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 					) : (
 						<div className="p-4 pt-0">
 							{/* Render Number of Signs Input */}
-							<NumberSigns
-								form={form}
-								fieldName="monumentsAndPylons.numberOfSigns"
-							/>
+							<NumberSigns form={form} fieldName="lightbox.numberOfSigns" />
 
 							<div className="my-6">
 								<TextField
 									form={form}
-									name="monumentsAndPylons.textAndContent"
+									name="lightbox.textAndContent"
 									label="Sign Text & Content"
 									placeholder="specific vendor for fabrication"
+								/>
+
+								<TextField
+									form={form}
+									name="lightbox.font"
+									label="Font"
+									placeholder="select font"
 								/>
 							</div>
 
 							<div className="grid md:grid-cols-3 gap-6 mb-6">
 								<TextField
 									form={form}
-									name="monumentsAndPylons.vendor"
-									label="Vendor"
-									placeholder="specific vendor for fabrication"
+									name="lightbox.wallDimension"
+									label="Wall Dimension (WXH)"
 								/>
 								<TextField
 									form={form}
-									name="monumentsAndPylons.sides"
-									label="Sides"
+									name="lightbox.signDimension"
+									label="Sign Dimension (WXH)"
 								/>
+								<TextField form={form} name="lightbox.depth" label="Depth" />
+								<TextField form={form} name="lightbox.sides" label="Sides" />
+								<TextField form={form} name="lightbox.color" label="Color" />
 								<TextField
 									form={form}
-									name="monumentsAndPylons.dimensions"
-									label="Dimensions"
-								/>
-								<TextField
-									form={form}
-									name="monumentsAndPylons.maxContentArea"
-									label="Maximum Content Area"
-								/>
-								<TextField
-									form={form}
-									name="monumentsAndPylons.minContentArea"
-									label="Minimun Content Area"
-								/>
-								<TextField
-									form={form}
-									name="monumentsAndPylons.maxGroundClearance"
-									label="Maximum Ground Clearance"
+									name="lightbox.retainers"
+									label="Retainers"
 								/>
 							</div>
 
@@ -139,22 +130,23 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 								<ProductOptions
 									form={form}
 									options={types?.options || []}
-									formKey="monumentsAndPylons.types"
+									formKey="lightbox.types"
 									optionTitle="Types"
 								/>
 							</div>
+
 							<div className="mb-6">
 								<ProductOptions
 									form={form}
-									options={illuminations?.options || []}
-									formKey="monumentsAndPylons.illumination"
-									optionTitle="Illumination"
+									options={mounting?.options || []}
+									formKey="lightbox.mounting"
+									optionTitle="Mounting"
 								/>
 							</div>
 
 							<DesignInspiration
 								form={form}
-								fieldName="monumentsAndPylons[designInspirations]"
+								fieldName="lightbox[designInspirations]"
 								options={
 									processedProductType?.design_inspiration?.map(
 										(inspiration) => ({

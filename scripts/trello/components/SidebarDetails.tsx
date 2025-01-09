@@ -2,6 +2,9 @@ import { UseFormReturn } from 'react-hook-form';
 import { FormSchema } from '@/trello/helpers/schema';
 import SidebarADA from './products/ADA/SidebarADA';
 import SidebarMonuments from './products/MonumentsAndPylons/SidebarMonuments';
+import SidebarChannelLetters from './products/ChannelLetters/SidebarChannelLetters';
+import SidebarDimensionalLetters from './products/DimensionalLetters/SidebarDimensionalLetters';
+import SidebarLightbox from './products/Lightbox/SidebarLightbox';
 
 interface SidebarDetailsProps {
 	title: string;
@@ -23,6 +26,13 @@ export default function SidebarDetails({
 			<div className="pl-2">
 				{component === 'ADAWayfinding' && <SidebarADA form={form} />}
 				{component === 'MonumentsAndPylons' && <SidebarMonuments form={form} />}
+				{component === 'ChannelLetters' && (
+					<SidebarChannelLetters form={form} />
+				)}
+				{component === 'DimensionalLetters' && (
+					<SidebarDimensionalLetters form={form} />
+				)}
+				{component === 'Lightbox' && <SidebarLightbox form={form} />}
 			</div>
 		</div>
 	);

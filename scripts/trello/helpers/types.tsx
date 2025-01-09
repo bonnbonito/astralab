@@ -17,3 +17,23 @@ export interface Options {
 	layout_types: string[];
 	design_details: { name: string }[];
 }
+
+export interface ProductTypeDataProps {
+	title?: {
+		rendered: string;
+	};
+	component_field?: string;
+	id?: number;
+	product_types_options: {
+		name: string;
+		options: {
+			title: string;
+			image: string;
+		}[];
+	}[];
+	design_inspiration?: {
+		name: string;
+		image: string;
+		group: string;
+	}[];
+}

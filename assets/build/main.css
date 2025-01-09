@@ -845,9 +845,6 @@ video {
 #astralab .min-w-\[var\(--radix-select-trigger-width\)\] {
   min-width: var(--radix-select-trigger-width);
 }
-#astralab .max-w-\[310px\] {
-  max-width: 310px;
-}
 #astralab .max-w-\[500px\] {
   max-width: 500px;
 }
@@ -1026,6 +1023,10 @@ video {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
 }
+#astralab .border-green-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(22 163 74 / var(--tw-border-opacity, 1));
+}
 #astralab .border-input {
   border-color: hsl(var(--input));
 }
@@ -1034,10 +1035,6 @@ video {
 }
 #astralab .border-transparent {
   border-color: transparent;
-}
-#astralab .border-green-600 {
-  --tw-border-opacity: 1;
-  border-color: rgb(22 163 74 / var(--tw-border-opacity, 1));
 }
 #astralab .border-x-\[\#D2D2D2\] {
   --tw-border-opacity: 1;
@@ -1077,6 +1074,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
 }
+#astralab .bg-green-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 163 74 / var(--tw-bg-opacity, 1));
+}
 #astralab .bg-muted {
   background-color: hsl(var(--muted));
 }
@@ -1102,14 +1103,6 @@ video {
 #astralab .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}
-#astralab .bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
-}
-#astralab .bg-green-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(22 163 74 / var(--tw-bg-opacity, 1));
 }
 #astralab .bg-opacity-60 {
   --tw-bg-opacity: 0.6;
@@ -1958,20 +1951,16 @@ video {
     display: flex;
   }
 
-  #astralab .md\:max-w-\[420px\] {
-    max-width: 420px;
-  }
-
   #astralab .md\:max-w-\[310px\] {
     max-width: 310px;
   }
 
-  #astralab .md\:grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  #astralab .md\:max-w-\[420px\] {
+    max-width: 420px;
   }
 
-  #astralab .md\:grid-cols-\[45\%_1fr_1fr\] {
-    grid-template-columns: 45% 1fr 1fr;
+  #astralab .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   #astralab .md\:px-8 {

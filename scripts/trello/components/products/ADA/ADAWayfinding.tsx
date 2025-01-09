@@ -8,39 +8,11 @@ import {
 } from '@/components/ui/accordion';
 import NumberSigns from '@/trello/components/fields/NumberSigns';
 import TextField from '@/trello/components/fields/TextField';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
-import {
-	FormField,
-	FormItem,
-	FormLabel,
-	FormControl,
-	FormMessage,
-} from '@/components/ui/form';
 import { FormSchema } from '@/trello/helpers/schema';
 import DesignInspiration from '@/trello/components/DesignInspiration';
 import { ProductOptions } from '@/trello/components/fields/ProductOptions';
-import { SkeletonCard } from '../../SkeletonCard';
-
-interface ADAProductTypeData {
-	title?: {
-		rendered: string;
-	};
-	component_field?: string;
-	id?: number;
-	product_types_options: {
-		name: string;
-		options: {
-			title: string;
-			image: string;
-		}[];
-	}[];
-	design_inspiration?: {
-		name: string;
-		image: string;
-		group: string;
-	}[];
-}
+import { SkeletonCard } from '@/trello/components/SkeletonCard';
+import { ProductTypeDataProps } from '@/trello/helpers/types';
 
 interface ADAWayfindingProps {
 	form: UseFormReturn<FormSchema>;
@@ -50,7 +22,7 @@ interface ADAWayfindingProps {
 declare const astralab: Record<string, string>;
 
 export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
-	const [productType, setProductType] = useState<ADAProductTypeData | null>(
+	const [productType, setProductType] = useState<ProductTypeDataProps | null>(
 		null
 	);
 	const [loading, setLoading] = useState(true);
@@ -71,7 +43,7 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 				if (!response.ok) {
 					throw new Error(`HTTP error! Status: ${response.status}`);
 				}
-				const data: ADAProductTypeData = await response.json();
+				const data: ProductTypeDataProps = await response.json();
 				setProductType(data || null); // Ensure null fallback if data is invalid
 				console.log(data);
 			} catch (error) {
@@ -92,7 +64,7 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 			className="border border-input border-solid rounded"
 		>
 			<AccordionItem value={product.toString()}>
-				<AccordionTrigger className="bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4">
+				<AccordionTrigger className="uppercase bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4">
 					{loading
 						? 'Loading...'
 						: processedProductType?.title?.rendered || 'No Data Available'}

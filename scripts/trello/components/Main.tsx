@@ -5,6 +5,9 @@ import { FormSchema } from '@/trello/helpers/schema';
 import { UseFormReturn } from 'react-hook-form';
 import Loading from './Loading';
 import MonumentsAndPylons from './products/MonumentsAndPylons/MonumentsAndPylons';
+import ChannelLetters from './products/ChannelLetters/ChannelLetters';
+import DimensionalLetters from './products/DimensionalLetters/DimensionalLetters';
+import Lightbox from './products/Lightbox/Lightbox';
 
 export interface MainProps {
 	form: UseFormReturn<FormSchema>;
@@ -29,6 +32,22 @@ export default function Main({ form }: MainProps) {
 					{productType.component === 'MonumentsAndPylons' && (
 						<>
 							<MonumentsAndPylons form={form} product={productType.id} />
+						</>
+					)}
+					{productType.component === 'ChannelLetters' && (
+						<>
+							<ChannelLetters form={form} product={productType.id} />
+						</>
+					)}
+					{productType.component === 'DimensionalLetters' && (
+						<>
+							<DimensionalLetters form={form} product={productType.id} />
+						</>
+					)}
+
+					{productType.component === 'Lightbox' && (
+						<>
+							<Lightbox form={form} product={productType.id} />
 						</>
 					)}
 				</div>

@@ -33,6 +33,8 @@ export default function ProductType({ form }: ProductTypeProps) {
 					throw new Error(`HTTP error! Status: ${response.status}`);
 				}
 				const data = await response.json();
+				// Sort data by ascending id
+				data.sort((a: ProductType, b: ProductType) => a.id - b.id);
 				setProductTypes(data);
 			} catch (error) {
 				console.error('Error fetching product types:', error);
@@ -110,9 +112,16 @@ export default function ProductType({ form }: ProductTypeProps) {
 																			true
 																		);
 																	}
+
+																	if (post.acf.component === 'ChannelLetters') {
+																		form.setValue('hasChannelLetters', true);
+																	}
 																} else {
 																	if (post.acf.component === 'ADAWayfinding') {
 																		form.setValue('hasADA', false);
+																	}
+																	if (post.acf.component === 'ChannelLetters') {
+																		form.setValue('hasChannelLetters', false);
 																	}
 																	if (
 																		post.acf.component === 'MonumentsAndPylons'
