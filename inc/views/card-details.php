@@ -62,9 +62,9 @@
         <div><?php echo $sign['details']; ?></div>
         <?php endforeach; ?>
         <div class="font-semibold">TYPES</div>
-        <div><?php echo implode( ' ,', $ada['types'] ); ?></div>
+        <div><?php echo implode( ', ', $ada['types'] ); ?></div>
         <div class="font-semibold">DESIGN INSPIRATIONS</div>
-        <div><?php echo implode( ' ,', $ada['designInspirations'] ); ?></div>
+        <div><?php echo implode( ', ', $ada['designInspirations'] ); ?></div>
       </div>
     </div>
     <?php endif;
@@ -94,11 +94,11 @@
         <div class="font-semibold">MAX GROUND CLEARANCE</div>
         <div><?php echo $monuments['maxGroundClearance']; ?></div>
         <div class="font-semibold">TYPES</div>
-        <div><?php echo implode( ' ,', $monuments['types'] ); ?></div>
+        <div><?php echo implode( ', ', $monuments['types'] ); ?></div>
         <div class="font-semibold">ILLUMINATION</div>
-        <div><?php echo implode( ' ,', $monuments['illumination'] ); ?></div>
+        <div><?php echo implode( ', ', $monuments['illumination'] ); ?></div>
         <div class="font-semibold">DESIGN INSPIRATIONS</div>
-        <div><?php echo implode( ' ,', $monuments['designInspirations'] ); ?></div>
+        <div><?php echo implode( ', ', $monuments['designInspirations'] ); ?></div>
       </div>
     </div>
 
@@ -135,13 +135,13 @@
         <div class="font-semibold">RETURN DEPTH</div>
         <div><?php echo $channelLetters['returnDepth']; ?></div>
         <div class="font-semibold">TYPES</div>
-        <div><?php echo implode( ' ,', $channelLetters['types'] ); ?></div>
+        <div><?php echo implode( ', ', $channelLetters['types'] ); ?></div>
         <div class="font-semibold">BACKER</div>
-        <div><?php echo implode( ' ,', $channelLetters['backer'] ); ?></div>
+        <div><?php echo implode( ', ', $channelLetters['backer'] ); ?></div>
         <div class="font-semibold">MOUNTING</div>
-        <div><?php echo implode( ' ,', $channelLetters['mounting'] ); ?></div>
+        <div><?php echo implode( ', ', $channelLetters['mounting'] ); ?></div>
         <div class="font-semibold">DESIGN INSPIRATIONS</div>
-        <div><?php echo implode( ' ,', $channelLetters['designInspirations'] ); ?></div>
+        <div><?php echo implode( ', ', $channelLetters['designInspirations'] ); ?></div>
       </div>
     </div>
 
@@ -175,11 +175,11 @@
         <div class="font-semibold">LOCATION</div>
         <div><?php echo $dimensionalLetters['location']; ?></div>
         <div class="font-semibold">TYPES</div>
-        <div><?php echo implode( ' ,', $dimensionalLetters['types'] ); ?></div>
+        <div><?php echo implode( ', ', $dimensionalLetters['types'] ); ?></div>
         <div class="font-semibold">MOUNTING</div>
-        <div><?php echo implode( ' ,', $dimensionalLetters['mounting'] ); ?></div>
+        <div><?php echo implode( ', ', $dimensionalLetters['mounting'] ); ?></div>
         <div class="font-semibold">DESIGN INSPIRATIONS</div>
-        <div><?php echo implode( ' ,', $dimensionalLetters['designInspirations'] ); ?></div>
+        <div><?php echo implode( ', ', $dimensionalLetters['designInspirations'] ); ?></div>
       </div>
     </div>
 
@@ -212,11 +212,11 @@
         <div class="font-semibold">RETAINERS</div>
         <div><?php echo $lightbox['retainers']; ?></div>
         <div class="font-semibold">TYPES</div>
-        <div><?php echo implode( ' ,', $lightbox['types'] ); ?></div>
+        <div><?php echo implode( ', ', $lightbox['types'] ); ?></div>
         <div class="font-semibold">MOUNTING</div>
-        <div><?php echo implode( ' ,', $lightbox['mounting'] ); ?></div>
+        <div><?php echo implode( ', ', $lightbox['mounting'] ); ?></div>
         <div class="font-semibold">DESIGN INSPIRATIONS</div>
-        <div><?php echo implode( ' ,', $lightbox['designInspirations'] ); ?></div>
+        <div><?php echo implode( ', ', $lightbox['designInspirations'] ); ?></div>
       </div>
     </div>
 
