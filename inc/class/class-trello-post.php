@@ -61,17 +61,17 @@ class Trello_Post {
 			return;
 		}
 		?>
-<div class="wrap">
-  <h1>Trello Settings</h1>
-  <form method="post" action="options.php">
-    <?php
+		<div class="wrap">
+			<h1>Trello Settings</h1>
+			<form method="post" action="options.php">
+				<?php
 				settings_fields( 'astralab_trello_group' );
 				do_settings_sections( 'astralab-trello-settings' );
 				submit_button();
 				?>
-  </form>
-</div>
-<?php
+			</form>
+		</div>
+		<?php
 	}
 
 	/**
@@ -365,7 +365,7 @@ class Trello_Post {
 			}
 
 			// Start event block
-			$html .= '<div class="bg-white shadow-md border border-gray-200 rounded-lg p-4 mb-4">';
+			$html .= '<div class="flex gap-4"><div class="bg-white shadow-md flex-1 border border-gray-200 rounded-lg p-4 mb-4">';
 			$html .= '<div class="text-sm mb-2">' . $event_date . '</div>';
 
 			// Add type-specific details
@@ -387,7 +387,7 @@ class Trello_Post {
 				$html .= '</div>';
 			}
 
-			$html .= '</div>';
+			$html .= '</div><div class="min-w-[300px]"></div></div>';
 		}
 		$html .= '</div>';
 
@@ -440,42 +440,42 @@ class Trello_Post {
 
 			// Line Breaks
 			'/<br\s*\/?>/i',
-);
+		);
 
-$replace = array(
-// Headings
-'# $1',
-'## $1',
-'### $1',
+		$replace = array(
+			// Headings
+			'# $1',
+			'## $1',
+			'### $1',
 
-// Bold and Italic
-'**$1**',
-'**$1**',
-'_$1_',
-'_$1_',
+			// Bold and Italic
+			'**$1**',
+			'**$1**',
+			'_$1_',
+			'_$1_',
 
-// Links
-'[$2]($1)',
+			// Links
+			'[$2]($1)',
 
-// Unordered Lists
-"\n$1\n",
-'- $1',
+			// Unordered Lists
+			"\n$1\n",
+			'- $1',
 
-// Ordered Lists
-"\n$1\n",
-'1. $1',
+			// Ordered Lists
+			"\n$1\n",
+			'1. $1',
 
-// Paragraphs
-"\n$1\n",
+			// Paragraphs
+			"\n$1\n",
 
-// Line Breaks
-"\n",
-);
+			// Line Breaks
+			"\n",
+		);
 
-// Remove all other HTML tags
-$html = preg_replace( $search, $replace, $html );
-$html = strip_tags( $html );
+		// Remove all other HTML tags
+		$html = preg_replace( $search, $replace, $html );
+		$html = strip_tags( $html );
 
-return trim( $html );
-}
+		return trim( $html );
+	}
 }

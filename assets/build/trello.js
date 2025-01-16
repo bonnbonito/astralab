@@ -4406,7 +4406,7 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(() => {
     root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_OrderForm__WEBPACK_IMPORTED_MODULE_3__["default"], {}));
   }
 });
-async function submitForm(form, action, responseDiv, submitBtn) {
+async function submitForm(form, action, responseDiv) {
   try {
     const formData = new FormData(form);
     formData.append('action', action);
@@ -4454,17 +4454,9 @@ function comment_submit() {
       e.preventDefault(); // Prevent default form submission
       submitBtn.disabled = true;
       submitBtn.value = 'Submitting...';
-      await submitForm(form, 'handle_trello_comment_submission', responseDiv, submitBtn);
+      await submitForm(form, 'handle_trello_comment_submission', responseDiv);
     });
   }
-}
-function test_submit() {
-  const form = document.getElementById('trello-form');
-  const responseDiv = document.getElementById('trello-form-response');
-  form?.addEventListener('submit', function (e) {
-    e.preventDefault();
-    submitForm(form, 'handle_trello_form_submission', responseDiv);
-  });
 }
 
 /***/ }),

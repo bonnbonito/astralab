@@ -1,24 +1,24 @@
 <div <?php $card_id = get_post_meta( get_the_ID(), 'trello_card_id', true ); ?>>
-  <!-- Trello Comment Form -->
-  <form id="trello-comment-form" enctype="multipart/form-data" class="mt-20">
-    <?php wp_nonce_field( 'trello_form_action', 'trello_form_nonce' ); ?>
-    <input type="hidden" name="card_id" value="<?php echo esc_attr( $card_id ); ?>">
-    <div class="flex gap-4 items-center">
-      <textarea id="card_desc" name="card_desc" class="h-[100px] focus:border focus:border-solid focus:border-black"
-        required></textarea>
+	<!-- Trello Comment Form -->
+	<form id="trello-comment-form" enctype="multipart/form-data" class="mt-20">
+		<?php wp_nonce_field( 'trello_form_action', 'trello_form_nonce' ); ?>
+		<input type="hidden" name="card_id" value="<?php echo esc_attr( $card_id ); ?>">
+		<div class="flex gap-4 items-center">
+			<textarea id="card_desc" name="card_desc" class="h-[100px] focus:border focus:border-solid focus:border-black"
+				required></textarea>
 
-      <div class="min-w-[300px]">
-        <input id="submitBtn" type="submit" value="Send Comments"
-          class="w-full text-[#222] uppercase font-semibold text-base">
-      </div>
-    </div>
-
-
-  </form>
-  <div id="trello-comment-response"></div>
+			<div class="min-w-[300px]">
+				<input id="submitBtn" type="submit" value="Send Comment"
+					class="w-full text-[#222] uppercase font-semibold text-base">
+			</div>
+		</div>
 
 
-  <?php
+	</form>
+	<div id="trello-comment-response"></div>
+
+
+	<?php
 
 
 

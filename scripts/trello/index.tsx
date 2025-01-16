@@ -19,8 +19,7 @@ declare const trello_ajax_object: any;
 async function submitForm(
 	form: HTMLFormElement,
 	action: string,
-	responseDiv: HTMLElement,
-	submitBtn: HTMLElement
+	responseDiv: HTMLElement
 ) {
 	try {
 		const formData = new FormData(form);
@@ -82,24 +81,7 @@ function comment_submit() {
 			e.preventDefault(); // Prevent default form submission
 			submitBtn.disabled = true;
 			submitBtn.value = 'Submitting...';
-			await submitForm(
-				form,
-				'handle_trello_comment_submission',
-				responseDiv,
-				submitBtn
-			);
+			await submitForm(form, 'handle_trello_comment_submission', responseDiv);
 		});
 	}
-}
-
-function test_submit() {
-	const form = document.getElementById('trello-form') as HTMLFormElement;
-	const responseDiv = document.getElementById(
-		'trello-form-response'
-	) as HTMLElement;
-
-	form?.addEventListener('submit', function (e) {
-		e.preventDefault();
-		submitForm(form, 'handle_trello_form_submission', responseDiv);
-	});
 }
