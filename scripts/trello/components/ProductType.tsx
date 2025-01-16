@@ -116,7 +116,31 @@ export default function ProductType({ form }: ProductTypeProps) {
 																	if (post.acf.component === 'ChannelLetters') {
 																		form.setValue('hasChannelLetters', true);
 																	}
+
+																	if (post.acf.component === 'Lightbox') {
+																		form.setValue('hasLightbox', true);
+																	}
+
+																	if (
+																		post.acf.component === 'DimensionalLetters'
+																	) {
+																		form.setValue(
+																			'hasDimensionalLetters',
+																			true
+																		);
+																	}
 																} else {
+																	if (
+																		post.acf.component === 'DimensionalLetters'
+																	) {
+																		form.setValue(
+																			'hasDimensionalLetters',
+																			false
+																		);
+																	}
+																	if (post.acf.component === 'Lightbox') {
+																		form.setValue('hasLightbox', false);
+																	}
 																	if (post.acf.component === 'ADAWayfinding') {
 																		form.setValue('hasADA', false);
 																	}

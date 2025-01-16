@@ -1688,7 +1688,19 @@ function ProductType({
                         if (post.acf.component === 'ChannelLetters') {
                           form.setValue('hasChannelLetters', true);
                         }
+                        if (post.acf.component === 'Lightbox') {
+                          form.setValue('hasLightbox', true);
+                        }
+                        if (post.acf.component === 'DimensionalLetters') {
+                          form.setValue('hasDimensionalLetters', true);
+                        }
                       } else {
+                        if (post.acf.component === 'DimensionalLetters') {
+                          form.setValue('hasDimensionalLetters', false);
+                        }
+                        if (post.acf.component === 'Lightbox') {
+                          form.setValue('hasLightbox', false);
+                        }
                         if (post.acf.component === 'ADAWayfinding') {
                           form.setValue('hasADA', false);
                         }
@@ -1882,9 +1894,9 @@ function Sidebar({
     submitLabel = 'Order Placed';
   }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "md:max-w-[310px] w-full",
+    className: "md:max-w-[310px] w-full ",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "px-4 py-6 border border-input flex-1 rounded sticky top-12",
+      className: "px-4 py-6 border border-input flex-1 rounded sticky top-12 max-h-[80vh] overflow-y-auto",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
         className: "uppercase font-semibold text-lg",
         children: "Project Summary"
@@ -2587,25 +2599,30 @@ function TextField({
   name,
   label,
   placeholder = '',
-  rules
+  rules,
+  customClass
 }) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
-    control: form.control,
-    name: name,
-    rules: rules,
-    render: ({
-      field
-    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
-        className: "uppercase font-semibold text-base",
-        children: label
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_input__WEBPACK_IMPORTED_MODULE_1__.Input, {
-          placeholder: placeholder,
-          ...field,
-          value: typeof field.value === 'string' ? field.value : '' // Validate value type
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: customClass,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
+      control: form.control,
+      name: name,
+      rules: rules,
+      shouldUnregister: true,
+      render: ({
+        field
+      }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
+          className: "uppercase font-semibold text-base",
+          children: label
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_input__WEBPACK_IMPORTED_MODULE_1__.Input, {
+            placeholder: placeholder,
+            ...field,
+            value: typeof field.value === 'string' ? field.value : '' // Validate value type
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
+      })
     })
   });
 }
@@ -2719,7 +2736,6 @@ function ADAWayfinding({
         }
         const data = await response.json();
         setProductType(data || null); // Ensure null fallback if data is invalid
-        console.log(data);
       } catch (error) {
         console.error('Error fetching product type:', error);
         setProductType(null); // Set null if fetching fails
@@ -2729,6 +2745,15 @@ function ADAWayfinding({
     }
     fetchProductTypes();
   }, [product]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const currentValue = parseInt(numberOfSigns) || 0;
+    const formValues = form.getValues('ADA.signs') || [];
+    if (formValues.length > currentValue) {
+      // Remove excess form values
+      const updatedSigns = formValues.slice(0, currentValue);
+      form.setValue('ADA.signs', updatedSigns);
+    }
+  }, [numberOfSigns, form]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_1__.Accordion, {
     type: "single",
     collapsible: true,
@@ -2992,11 +3017,20 @@ function ChannelLetters({
             fieldName: "channelLetters.numberOfSigns"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
             className: "my-6",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
-              form: form,
-              name: "channelLetters.textAndContent",
-              label: "Sign Text & Content",
-              placeholder: "specific vendor for fabrication"
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+              className: "grid md:grid-cols-3 gap-6 mb-6",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                form: form,
+                name: "channelLetters.textAndContent",
+                label: "Sign Text & Content",
+                placeholder: "specific vendor for fabrication",
+                customClass: "md:col-span-2"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                form: form,
+                name: "channelLetters.font",
+                label: "Font",
+                placeholder: "select font"
+              })]
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "grid md:grid-cols-3 gap-6 mb-6",
@@ -3113,6 +3147,15 @@ function SidebarChannelLetters({
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         className: "text-xs",
         children: channelLetters?.textAndContent || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Font"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: channelLetters?.font || ''
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
       className: "grid grid-cols-2 gap-4 mb-1",
@@ -3251,6 +3294,9 @@ const ChannelLettersSchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.discriminatedUni
     vendor: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
       message: 'Vendor required.'
     }),
+    font: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
+      message: 'Vendor required.'
+    }),
     wallDimension: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
     signDimension: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
     material: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
@@ -3354,19 +3400,23 @@ function DimensionalLetters({
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__["default"], {
             form: form,
             fieldName: "dimensionalLetters.numberOfSigns"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
             className: "my-6",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
-              form: form,
-              name: "dimensionalLetters.textAndContent",
-              label: "Sign Text & Content",
-              placeholder: "specific vendor for fabrication"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
-              form: form,
-              name: "dimensionalLetters.font",
-              label: "Font",
-              placeholder: "select font"
-            })]
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+              className: "grid md:grid-cols-3 gap-6 mb-6",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                form: form,
+                name: "dimensionalLetters.textAndContent",
+                label: "Sign Text & Content",
+                placeholder: "specific vendor for fabrication",
+                customClass: "md:col-span-2"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                form: form,
+                name: "dimensionalLetters.font",
+                label: "Font",
+                placeholder: "select font"
+              })]
+            })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "grid md:grid-cols-3 gap-6 mb-6",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -3687,19 +3737,23 @@ function Lightbox({
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_2__["default"], {
             form: form,
             fieldName: "lightbox.numberOfSigns"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
             className: "my-6",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
-              form: form,
-              name: "lightbox.textAndContent",
-              label: "Sign Text & Content",
-              placeholder: "specific vendor for fabrication"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
-              form: form,
-              name: "lightbox.font",
-              label: "Font",
-              placeholder: "select font"
-            })]
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+              className: "grid md:grid-cols-3 gap-6 mb-6",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                form: form,
+                name: "lightbox.textAndContent",
+                label: "Sign Text & Content",
+                placeholder: "specific vendor for fabrication",
+                customClass: "md:col-span-2"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                form: form,
+                name: "lightbox.font",
+                label: "Font",
+                placeholder: "select font"
+              })]
+            })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "grid md:grid-cols-3 gap-6 mb-6",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -4345,17 +4399,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(() => {
-  test_submit();
   comment_submit();
   const orderForm = document.getElementById('orderForm');
   if (orderForm) {
     const root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(orderForm);
     root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_OrderForm__WEBPACK_IMPORTED_MODULE_3__["default"], {}));
-  } else {
-    console.error('Root element with id "test" not found');
   }
 });
-async function submitForm(form, action, responseDiv) {
+async function submitForm(form, action, responseDiv, submitBtn) {
   try {
     const formData = new FormData(form);
     formData.append('action', action);
@@ -4368,9 +4419,18 @@ async function submitForm(form, action, responseDiv) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
+    console.log(data);
     if (data.success) {
-      responseDiv.innerHTML = data.data || 'Success';
+      responseDiv.innerHTML = (data.data.message || 'Success') + '<br/>Reloading in 2...';
       form.reset();
+
+      // Countdown and reload
+      setTimeout(() => {
+        responseDiv.innerHTML = responseDiv.innerHTML.replace('2...', '1...');
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      }, 1000);
     } else {
       responseDiv.innerHTML = 'Error: ' + data.data;
     }
@@ -4388,10 +4448,15 @@ async function submitForm(form, action, responseDiv) {
 function comment_submit() {
   const form = document.getElementById('trello-comment-form');
   const responseDiv = document.getElementById('trello-comment-response');
-  form?.addEventListener('submit', function (e) {
-    e.preventDefault();
-    submitForm(form, 'handle_trello_comment_submission', responseDiv);
-  });
+  const submitBtn = form?.querySelector('#submitBtn');
+  if (submitBtn) {
+    form?.addEventListener('submit', async function (e) {
+      e.preventDefault(); // Prevent default form submission
+      submitBtn.disabled = true;
+      submitBtn.value = 'Submitting...';
+      await submitForm(form, 'handle_trello_comment_submission', responseDiv, submitBtn);
+    });
+  }
 }
 function test_submit() {
   const form = document.getElementById('trello-form');

@@ -45,7 +45,6 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 				}
 				const data: ProductTypeDataProps = await response.json();
 				setProductType(data || null); // Ensure null fallback if data is invalid
-				console.log(data);
 			} catch (error) {
 				console.error('Error fetching product type:', error);
 				setProductType(null); // Set null if fetching fails
@@ -55,6 +54,17 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 		}
 		fetchProductTypes();
 	}, [product]);
+
+	useEffect(() => {
+		const currentValue = parseInt(numberOfSigns) || 0;
+		const formValues = form.getValues('ADA.signs') || [];
+
+		if (formValues.length > currentValue) {
+			// Remove excess form values
+			const updatedSigns = formValues.slice(0, currentValue);
+			form.setValue('ADA.signs', updatedSigns);
+		}
+	}, [numberOfSigns, form]);
 
 	return (
 		<Accordion

@@ -54,7 +54,7 @@ class Trello_Backend {
 	 */
 	public function register_rest_routes() {
 		register_rest_route( 'astralab/v1', '/options', array(
-			'methods' => 'GET',
+			'methods' => \WP_REST_Server::READABLE,
 			'callback' => function () {
 				return get_fields( 'options' );
 			},
@@ -369,29 +369,34 @@ class Trello_Backend {
 		$user_line = '**User:** ' . ( ! empty( $full_name ) ? $full_name : 'N/A' );
 		$email_line = '**Email:** ' . ( ! empty( $email ) ? $email : 'N/A' );
 
+		$turn_around_time = $_POST['turnaroundTime'] ? $_POST['turnaroundTime'] : '';
+		$design_details = $_POST['designDetails'] ? $_POST['designDetails'] : '';
+		$description = $_POST['projectDescription'] ? $_POST['projectDescription'] : '';
+		$layout_type = $_POST['layoutType'] ? $_POST['layoutType'] : '';
+
 		// Build your project details as before...
 		$project_details = '<p><strong>Project Name:</strong> ' . $card_name . '</p>';
-		$project_details .= '<p><strong>Turnaround Time:</strong> ' . $_POST['turnaroundTime'] . '</p>';
-		$project_details .= '<p><strong>Design Details:</strong> ' . $_POST['designDetails'] . '</p>';
+		$project_details .= '<p><strong>Turnaround Time:</strong> ' . $turn_around_time . '</p>';
+		$project_details .= '<p><strong>Design Details:</strong> ' . $design_details . '</p>';
 		$project_details .= '<p><strong>Project Description:</strong></p>';
-		$project_details .= '<p>' . sanitize_textarea_field( $_POST['projectDescription'] ) . '</p>';
-		$project_details .= '<p><strong>Layout Type:</strong> ' . $_POST['layoutType'] . '</p>';
+		$project_details .= '<p>' . sanitize_textarea_field( $description ) . '</p>';
+		$project_details .= '<p><strong>Layout Type:</strong> ' . $layout_type . '</p>';
 		$project_details .= '<p><strong>Product Types:</strong></p>';
 
 		// --- ADA ---
-		$ada = $jsonData['ADA'];
-		if ( ! empty( $_POST["hasADA"] ) && $ada ) {
+		$ada = $jsonData['ADA'] ?? [];
+		if ( ! empty( $_POST["hasADA"] ) && ! empty( $ada ) ) {
 			$signs = $ada['signs'] ?? [];
 			$ada_types = $ada['types'] ?? [];
 			$ada_design = $ada['designInspirations'] ?? [];
 			$project_details .= '<h3><strong>ADA Wayfinding:</strong></h3>';
-			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . $ada['numberOfSigns'];
+			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $ada['numberOfSigns'] ?? '' );
 			foreach ( $signs as $index => $sign ) {
 				$no = $index + 1;
 				$project_details .= '<ul>';
-				$project_details .= "<li>No.$no Name: {$sign['name']}</li>";
-				$project_details .= "<li>No.$no Dimension: {$sign['dimension']}</li>";
-				$project_details .= "<li>No.$no Details: {$sign['details']}</li>";
+				$project_details .= "<li>No.$no Name: " . ( $sign['name'] ?? '' ) . "</li>";
+				$project_details .= "<li>No.$no Dimension: " . ( $sign['dimension'] ?? '' ) . "</li>";
+				$project_details .= "<li>No.$no Details: " . ( $sign['details'] ?? '' ) . "</li>";
 				$project_details .= '</ul>';
 			}
 			$project_details .= '</li>';
@@ -401,24 +406,96 @@ class Trello_Backend {
 		}
 
 		// --- Monuments & Pylons ---
-		$monuments = $jsonData['monumentsAndPylons'];
-		if ( ! empty( $_POST["hasMonumentsAndPylons"] ) && $monuments ) {
+		$monuments = $jsonData['monumentsAndPylons'] ?? [];
+		if ( ! empty( $_POST["hasMonumentsAndPylons"] ) && ! empty( $monuments ) ) {
 			$monuments_types = $monuments['types'] ?? [];
 			$monuments_design = $monuments['designInspirations'] ?? [];
 			$project_details .= '<h3><strong>Monuments & Pylons</strong></h3>';
-			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . $monuments['numberOfSigns'];
+			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $monuments['numberOfSigns'] ?? '' );
 			$project_details .= '<ul>';
-			$project_details .= "<li>Text & Content: {$monuments['textAndContent']}</li>";
-			$project_details .= "<li>Vendor: {$monuments['vendor']}</li>";
-			$project_details .= "<li>Sides: {$monuments['sides']}</li>";
-			$project_details .= "<li>Dimensions: {$monuments['dimensions']}</li>";
-			$project_details .= "<li>Maximum Content Area: {$monuments['maxContentArea']}</li>";
-			$project_details .= "<li>Minimum Content Area: {$monuments['minContentArea']}</li>";
-			$project_details .= "<li>Maximum Ground Clearance: {$monuments['maxGroundClearance']}</li>";
+			$project_details .= "<li>Text & Content: " . ( $monuments['textAndContent'] ?? '' ) . "</li>";
+			$project_details .= "<li>Vendor: " . ( $monuments['vendor'] ?? '' ) . "</li>";
+			$project_details .= "<li>Sides: " . ( $monuments['sides'] ?? '' ) . "</li>";
+			$project_details .= "<li>Dimensions: " . ( $monuments['dimensions'] ?? '' ) . "</li>";
+			$project_details .= "<li>Maximum Content Area: " . ( $monuments['maxContentArea'] ?? '' ) . "</li>";
+			$project_details .= "<li>Minimum Content Area: " . ( $monuments['minContentArea'] ?? '' ) . "</li>";
+			$project_details .= "<li>Maximum Ground Clearance: " . ( $monuments['maxGroundClearance'] ?? '' ) . "</li>";
 			$project_details .= '</ul>';
 			$project_details .= '</li>';
 			$project_details .= '<li><strong>Types:</strong> ' . implode( ", ", $monuments_types ) . '</li>';
 			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $monuments_design ) . '</li>';
+			$project_details .= '</ul>';
+		}
+
+		// --- Channel Letters ---
+		$channelLetters = $jsonData['channelLetters'] ?? [];
+		if ( ! empty( $_POST["channelLetters"] ) && ! empty( $channelLetters ) ) {
+			$channelLetters_types = $channelLetters['types'] ?? [];
+			$channelLetters_design = $channelLetters['designInspirations'] ?? [];
+			$project_details .= '<h3><strong>Channel Letters</strong></h3>';
+			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $channelLetters['numberOfSigns'] ?? '' );
+			$project_details .= '<ul>';
+			$project_details .= "<li>Text & Content: " . ( $channelLetters['textAndContent'] ?? '' ) . "</li>";
+			$project_details .= "<li>Vendor: " . ( $channelLetters['vendor'] ?? '' ) . "</li>";
+			$project_details .= "<li>Sides: " . ( $channelLetters['sides'] ?? '' ) . "</li>";
+			$project_details .= "<li>Dimensions: " . ( $channelLetters['dimensions'] ?? '' ) . "</li>";
+			$project_details .= "<li>Maximum Content Area: " . ( $channelLetters['maxContentArea'] ?? '' ) . "</li>";
+			$project_details .= "<li>Minimum Content Area: " . ( $channelLetters['minContentArea'] ?? '' ) . "</li>";
+			$project_details .= "<li>Maximum Ground Clearance: " . ( $channelLetters['maxGroundClearance'] ?? '' ) . "</li>";
+			$project_details .= '</ul>';
+			$project_details .= '</li>';
+			$project_details .= '<li><strong>Types:</strong> ' . implode( ", ", $channelLetters_types ) . '</li>';
+			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $channelLetters_design ) . '</li>';
+			$project_details .= '</ul>';
+		}
+
+		// --- Dimensional Letters ---
+		$dimensionalLetters = $jsonData['dimensionalLetters'] ?? [];
+		if ( ! empty( $_POST["dimensionalLetters"] ) && ! empty( $dimensionalLetters ) ) {
+			$dimensionalLetters_types = $dimensionalLetters['types'] ?? [];
+			$dimensionalLetters_design = $dimensionalLetters['designInspirations'] ?? [];
+			$dimensionalLetters_mounting = $dimensionalLetters['mounting'] ?? [];
+			$project_details .= '<h3><strong>Dimensional Letters</strong></h3>';
+			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $dimensionalLetters['numberOfSigns'] ?? '' );
+			$project_details .= '<ul>';
+			$project_details .= "<li>Text & Content: " . ( $dimensionalLetters['textAndContent'] ?? '' ) . "</li>";
+			$project_details .= "<li>Font: " . ( $dimensionalLetters['font'] ?? '' ) . "</li>";
+			$project_details .= "<li>Vendor: " . ( $dimensionalLetters['vendor'] ?? '' ) . "</li>";
+			$project_details .= "<li>Wall Dimension: " . ( $dimensionalLetters['wallDimension'] ?? '' ) . "</li>";
+			$project_details .= "<li>Sign Dimension: " . ( $dimensionalLetters['signDimension'] ?? '' ) . "</li>";
+			$project_details .= "<li>Sides: " . ( $dimensionalLetters['sides'] ?? '' ) . "</li>";
+			$project_details .= "<li>Back Panel: " . ( $dimensionalLetters['backPanel'] ?? '' ) . "</li>";
+			$project_details .= "<li>Location: " . ( $dimensionalLetters['location'] ?? '' ) . "</li>";
+			$project_details .= '</ul>';
+			$project_details .= '</li>';
+			$project_details .= '<li><strong>Types:</strong> ' . implode( ", ", $dimensionalLetters_types ) . '</li>';
+			$project_details .= '<li><strong>Mounting:</strong> ' . implode( ", ", $dimensionalLetters_mounting ) . '</li>';
+			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $dimensionalLetters_design ) . '</li>';
+			$project_details .= '</ul>';
+		}
+
+		// --- Lightbox ---
+		$lightbox = $jsonData['lightbox'] ?? [];
+		if ( ! empty( $_POST["lightbox"] ) && ! empty( $lightbox ) ) {
+			$lightbox_types = $lightbox['types'] ?? [];
+			$lightbox_design = $lightbox['designInspirations'] ?? [];
+			$lightbox_mounting = $lightbox['mounting'] ?? [];
+			$project_details .= '<h3><strong>Lightbox</strong></h3>';
+			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $lightbox['numberOfSigns'] ?? '' );
+			$project_details .= '<ul>';
+			$project_details .= "<li>Text & Content: " . ( $lightbox['textAndContent'] ?? '' ) . "</li>";
+			$project_details .= "<li>Font: " . ( $lightbox['font'] ?? '' ) . "</li>";
+			$project_details .= "<li>Wall Dimension: " . ( $lightbox['wallDimension'] ?? '' ) . "</li>";
+			$project_details .= "<li>Sign Dimension: " . ( $lightbox['signDimension'] ?? '' ) . "</li>";
+			$project_details .= "<li>Depth: " . ( $lightbox['depth'] ?? '' ) . "</li>";
+			$project_details .= "<li>Sides: " . ( $lightbox['sides'] ?? '' ) . "</li>";
+			$project_details .= "<li>Color: " . ( $lightbox['color'] ?? '' ) . "</li>";
+			$project_details .= "<li>Retainers: " . ( $lightbox['retainers'] ?? '' ) . "</li>";
+			$project_details .= '</ul>';
+			$project_details .= '</li>';
+			$project_details .= '<li><strong>Types:</strong> ' . implode( ", ", $lightbox_types ) . '</li>';
+			$project_details .= '<li><strong>Mounting:</strong> ' . implode( ", ", $lightbox_mounting ) . '</li>';
+			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $lightbox_design ) . '</li>';
 			$project_details .= '</ul>';
 		}
 
@@ -453,6 +530,15 @@ class Trello_Backend {
 		if ( isset( $card_body->id ) ) {
 			$card_id = $card_body->id;
 
+			// Get list name directly from the card response if available
+			$list_name = isset( $card_body->list->name ) ? $card_body->list->name : '';
+
+			// Fallback to API call only if list name isn't in card response
+			if ( empty( $list_name ) ) {
+				$list_response = $this->trello_api_request( 'GET', "lists/{$list_id}" );
+				$list_name = ! is_wp_error( $list_response ) && isset( $list_response['name'] ) ? $list_response['name'] : '';
+			}
+
 			// Create a trello_card post and set the author to the current user
 			$post_author = get_current_user_id();
 			$post_id = wp_insert_post(
@@ -465,10 +551,28 @@ class Trello_Backend {
 			);
 
 			if ( ! is_wp_error( $post_id ) && $post_id ) {
+
+				update_post_meta( $post_id, 'trello_project_name', $card_name );
+				update_post_meta( $post_id, 'trello_turnaround_time', $turn_around_time );
+				update_post_meta( $post_id, 'trello_design_details', $design_details );
+				update_post_meta( $post_id, 'trello_product_description', $description );
+				update_post_meta( $post_id, 'trello_layout_type', $layout_type );
+
+
+				update_post_meta( $post_id, 'product_ada', $ada );
+				update_post_meta( $post_id, 'product_monuments', $monuments );
+				update_post_meta( $post_id, 'product_channel_letters', $channelLetters );
+				update_post_meta( $post_id, 'product_dimensional_letters', $dimensionalLetters );
+				update_post_meta( $post_id, 'product_lightbox', $lightbox );
+
+
 				update_post_meta( $post_id, 'trello_card_id', $card_id );
 				update_post_meta( $post_id, 'trello_card_message', $project_details );
 				update_post_meta( $post_id, 'trello_card_user_name', $full_name );
 				update_post_meta( $post_id, 'trello_card_user_email', $email );
+				update_post_meta( $post_id, 'trello_card_list', $list_name );
+				update_post_meta( $post_id, 'trello_card_comment_from_admin', false );
+
 
 				/**
 				 * -- NEW STEP --

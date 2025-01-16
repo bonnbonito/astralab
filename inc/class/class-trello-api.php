@@ -122,9 +122,48 @@ class Trello_API {
 			);
 		}
 
+		$response_json = wp_json_encode( $response, JSON_UNESCAPED_SLASHES );
+
+		$response_data = json_decode( $response_json, true );
+
+		// Get the first action from the response array
+		$action_type = ! empty( $response_data[0]['type'] ) ? $response_data[0]['type'] : null;
+
+
+		// Save listAfter data if it exists
+		if ( $action_type === 'updateCard' ) {
+			$list_name = ! empty( $response_data[0]['data']['listAfter']['name'] ) ? $response_data[0]['data']['listAfter']['name'] : null;
+
+			if ( $list_name ) {
+				update_post_meta(
+					$post_id,
+					'trello_card_list',
+					sanitize_text_field( $list_name )
+				);
+			}
+		}
+
+		if ( $action_type === 'commentCard' ) {
+			$comment_count = count( array_filter( $response_data, function ($action) {
+				return isset( $action['type'] ) && $action['type'] === 'commentCard';
+			} ) );
+			update_post_meta( $post_id, 'trello_card_comment_count', $comment_count );
+		}
+
+
 		// Save actions to post meta and file.
-		update_post_meta( $post_id, 'trello_card_activities', wp_json_encode( $response, JSON_UNESCAPED_SLASHES ) );
+		update_post_meta( $post_id, 'trello_card_activities', $response_json );
+
+		//also update the post update date
+		wp_update_post( array(
+			'ID' => $post_id,
+			'post_modified' => current_time( 'mysql' ),
+			'post_modified_gmt' => current_time( 'mysql', true )
+		) );
+
 		$this->save_trello_actions_to_file( $card_id, $response );
+
+
 
 		return new \WP_REST_Response(
 			array(

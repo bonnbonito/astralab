@@ -22,26 +22,13 @@ class Shortcodes {
 	 * Class Constructor.
 	 */
 	public function __construct() {
+		add_shortcode( 'astralab_dashboard_test', array( $this, 'astralab_dashboard_test_shortcode' ) );
 		add_shortcode( 'astralab_dashboard', array( $this, 'astralab_dashboard_shortcode' ) );
 		add_shortcode( 'order_form', array( $this, 'order_form_shortcode' ) );
 	}
 
-	/**
-	 * Summary of order_form_shortcode
-	 * @param mixed $atts
-	 * @return bool|string
-	 */
-	public function order_form_shortcode() {
-
-		ob_start();
-		if ( is_user_logged_in() ) :
-			wp_enqueue_style( 'astralab/trello' );
-			wp_enqueue_script( 'astralab/trello' );
-			?>
-<div id="orderForm"></div>
-<?php
-		else :
-			?>
+	public function need_login() {
+		?>
 <div
   class="flex min-h-[400px] flex-col items-center justify-center space-y-8 p-12 bg-gradient-to-b from-background to-muted/20 rounded-lg shadow-sm">
   <div class="text-center space-y-4">
@@ -64,6 +51,47 @@ class Shortcodes {
   </div>
 </div>
 <?php
+	}
+
+	public function astralab_dashboard_shortcode() {
+		ob_start();
+
+		if ( is_user_logged_in() ) :
+			wp_enqueue_style( 'astralab/dashboard' );
+			wp_enqueue_script( 'astralab/dashboard' );
+			$current_user = wp_get_current_user();
+			$first_name = $current_user->first_name;
+			if ( empty( $first_name ) ) {
+				$first_name = $current_user->display_name;
+			}
+			?>
+<h5 class="uppercase text-[18px]">Client Portal</h5>
+<h3 class="uppercase text-[30px] font-semibold">Hi <?php echo $first_name; ?>,</h3>
+<div id="dashboardComponent"></div>
+<?php
+		else :
+			echo $this->need_login();
+		endif;
+
+		return ob_get_clean();
+	}
+
+	/**
+	 * Summary of order_form_shortcode
+	 * @param mixed $atts
+	 * @return bool|string
+	 */
+	public function order_form_shortcode() {
+
+		ob_start();
+		if ( is_user_logged_in() ) :
+			wp_enqueue_style( 'astralab/trello' );
+			wp_enqueue_script( 'astralab/trello' );
+			?>
+<div id="orderForm"></div>
+<?php
+		else :
+			echo $this->need_login();
 		endif;
 		return ob_get_clean();
 	}
@@ -75,7 +103,7 @@ class Shortcodes {
 	 *
 	 * @return string
 	 */
-	public function astralab_dashboard_shortcode( $atts ) {
+	public function astralab_dashboard_test_shortcode( $atts ) {
 		ob_start();
 		include_once ASTRALAB_DIR_PATH . '/inc/views/dashboard.php';
 		$output = ob_get_clean();

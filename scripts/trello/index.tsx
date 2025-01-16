@@ -5,15 +5,12 @@ import './style.scss';
 import OrderForm from './components/OrderForm';
 
 domReady(() => {
-	test_submit();
 	comment_submit();
 
 	const orderForm = document.getElementById('orderForm');
 	if (orderForm) {
 		const root = createRoot(orderForm);
 		root.render(<OrderForm />);
-	} else {
-		console.error('Root element with id "test" not found');
 	}
 });
 
@@ -22,7 +19,8 @@ declare const trello_ajax_object: any;
 async function submitForm(
 	form: HTMLFormElement,
 	action: string,
-	responseDiv: HTMLElement
+	responseDiv: HTMLElement,
+	submitBtn: HTMLElement
 ) {
 	try {
 		const formData = new FormData(form);
@@ -39,9 +37,21 @@ async function submitForm(
 		}
 
 		const data = await response.json();
+
+		console.log(data);
+
 		if (data.success) {
-			responseDiv.innerHTML = data.data || 'Success';
+			responseDiv.innerHTML =
+				(data.data.message || 'Success') + '<br/>Reloading in 2...';
 			form.reset();
+
+			// Countdown and reload
+			setTimeout(() => {
+				responseDiv.innerHTML = responseDiv.innerHTML.replace('2...', '1...');
+				setTimeout(() => {
+					window.location.reload();
+				}, 1000);
+			}, 1000);
 		} else {
 			responseDiv.innerHTML = 'Error: ' + data.data;
 		}
@@ -65,10 +75,21 @@ function comment_submit() {
 		'trello-comment-response'
 	) as HTMLElement;
 
-	form?.addEventListener('submit', function (e) {
-		e.preventDefault();
-		submitForm(form, 'handle_trello_comment_submission', responseDiv);
-	});
+	const submitBtn = form?.querySelector('#submitBtn') as HTMLInputElement;
+
+	if (submitBtn) {
+		form?.addEventListener('submit', async function (e) {
+			e.preventDefault(); // Prevent default form submission
+			submitBtn.disabled = true;
+			submitBtn.value = 'Submitting...';
+			await submitForm(
+				form,
+				'handle_trello_comment_submission',
+				responseDiv,
+				submitBtn
+			);
+		});
+	}
 }
 
 function test_submit() {

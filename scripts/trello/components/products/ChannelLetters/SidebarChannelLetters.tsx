@@ -23,6 +23,10 @@ export default function SidebarChannelLetters({
 				<div className="text-xs">{channelLetters?.textAndContent || ''}</div>
 			</div>
 			<div className="grid grid-cols-2 gap-4 mb-1">
+				<div className="uppercase font-semibold text-sm">Font</div>
+				<div className="text-xs">{channelLetters?.font || ''}</div>
+			</div>
+			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">Vendor</div>
 				<div className="text-xs">{channelLetters?.vendor || ''}</div>
 			</div>

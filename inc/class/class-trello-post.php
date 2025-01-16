@@ -65,10 +65,10 @@ class Trello_Post {
   <h1>Trello Settings</h1>
   <form method="post" action="options.php">
     <?php
-		settings_fields( 'astralab_trello_group' );
-		do_settings_sections( 'astralab-trello-settings' );
-		submit_button();
-		?>
+				settings_fields( 'astralab_trello_group' );
+				do_settings_sections( 'astralab-trello-settings' );
+				submit_button();
+				?>
   </form>
 </div>
 <?php
@@ -117,9 +117,9 @@ class Trello_Post {
 	}
 
 	public function sanitize_settings( $input ) {
-		$new_input                            = array();
-		$new_input['trello_api_key']          = isset( $input['trello_api_key'] ) ? sanitize_text_field( $input['trello_api_key'] ) : '';
-		$new_input['trello_api_token']        = isset( $input['trello_api_token'] ) ? sanitize_text_field( $input['trello_api_token'] ) : '';
+		$new_input = array();
+		$new_input['trello_api_key'] = isset( $input['trello_api_key'] ) ? sanitize_text_field( $input['trello_api_key'] ) : '';
+		$new_input['trello_api_token'] = isset( $input['trello_api_token'] ) ? sanitize_text_field( $input['trello_api_token'] ) : '';
 		$new_input['trello_webhook_callback'] = isset( $input['trello_webhook_callback'] ) ? esc_url_raw( $input['trello_webhook_callback'] ) : '';
 
 		return $new_input;
@@ -127,19 +127,19 @@ class Trello_Post {
 
 	public function render_api_key_field() {
 		$options = get_option( $this->option_name );
-		$value   = isset( $options['trello_api_key'] ) ? esc_attr( $options['trello_api_key'] ) : '';
+		$value = isset( $options['trello_api_key'] ) ? esc_attr( $options['trello_api_key'] ) : '';
 		echo "<input type='text' name='{$this->option_name}[trello_api_key]' value='{$value}' class='regular-text' />";
 	}
 
 	public function render_api_token_field() {
 		$options = get_option( $this->option_name );
-		$value   = isset( $options['trello_api_token'] ) ? esc_attr( $options['trello_api_token'] ) : '';
+		$value = isset( $options['trello_api_token'] ) ? esc_attr( $options['trello_api_token'] ) : '';
 		echo "<input type='text' name='{$this->option_name}[trello_api_token]' value='{$value}' class='regular-text' />";
 	}
 
 	public function render_webhook_callback_field() {
 		$options = get_option( $this->option_name );
-		$value   = isset( $options['trello_webhook_callback'] ) ? esc_url( $options['trello_webhook_callback'] ) : '';
+		$value = isset( $options['trello_webhook_callback'] ) ? esc_url( $options['trello_webhook_callback'] ) : '';
 		echo "<input type='url' name='{$this->option_name}[trello_webhook_callback]' value='{$value}' class='regular-text' placeholder='https://example.com/trello-webhook-handler' />";
 		echo "<p class='description'>Publicly accessible HTTPS URL for Trello to send webhook events.</p>";
 	}
@@ -199,24 +199,24 @@ class Trello_Post {
 	 */
 	public function register_trello_card_cpt() {
 		$labels = array(
-			'name'          => 'Trello Cards',
+			'name' => 'Trello Cards',
 			'singular_name' => 'Trello Card',
 		);
 
 		$args = array(
-			'labels'              => $labels,
-			'public'              => true,
-			'publicly_queryable'  => false,
-			'show_ui'             => true,
-			'show_in_menu'        => true,
-			'capability_type'     => 'post',
-			'hierarchical'        => false,
-			'menu_position'       => 20,
-			'menu_icon'           => 'dashicons-index-card',
-			'supports'            => array( 'title', 'author' ),
-			'has_archive'         => false,
+			'labels' => $labels,
+			'public' => true,
+			'publicly_queryable' => false,
+			'show_ui' => true,
+			'show_in_menu' => true,
+			'capability_type' => 'post',
+			'hierarchical' => false,
+			'menu_position' => 20,
+			'menu_icon' => 'dashicons-index-card',
+			'supports' => array( 'title', 'author' ),
+			'has_archive' => false,
 			'exclude_from_search' => true,
-			'rewrite'             => false,
+			'rewrite' => false,
 		);
 
 		register_post_type( 'trello-card', $args );
@@ -253,7 +253,7 @@ class Trello_Post {
 	 */
 	public function render_trello_card_activities_metabox( $post ) {
 		$trello_card_activities = get_post_meta( $post->ID, 'trello_card_activities', true );
-		$trello_card_id         = get_post_meta( $post->ID, 'trello_card_id', true );
+		$trello_card_id = get_post_meta( $post->ID, 'trello_card_id', true );
 
 		$upload_dir = wp_upload_dir();
 		$trello_dir = trailingslashit( $upload_dir['basedir'] ) . 'trello_actions/';
@@ -294,6 +294,22 @@ class Trello_Post {
 		} else {
 			echo '<p>No Trello Card ID found.</p>';
 		}
+
+		$card_list_name = get_post_meta( $post->ID, 'trello_card_list', true );
+		if ( ! empty( $card_list_name ) ) {
+			echo '<p><strong>List Name:</strong> ' . esc_html( $card_list_name ) . '</p>';
+		}
+
+		$card_comment_count = get_post_meta( $post->ID, 'trello_card_comment_count', true );
+
+		if ( ! empty( $card_comment_count ) ) {
+			echo '<p><strong>Comments:</strong> ' . esc_html( $card_comment_count ) . '</p>';
+		}
+
+		$post_modified = get_post_modified_time( 'F j, Y, g:i a', false, $post );
+		if ( ! empty( $post_modified ) ) {
+			echo '<p><strong>Last Modified:</strong> ' . esc_html( $post_modified ) . '</p>';
+		}
 	}
 
 	public function render_trello_card_attachments_metabox( $post ) {
@@ -328,26 +344,29 @@ class Trello_Post {
 		// Decode the JSON string into a PHP array
 		$data = json_decode( $json_data, true );
 
+		// Get the post author's display name
+		$post_author_id = get_post_field( 'post_author', get_the_ID() );
+		$author_display_name = get_the_author_meta( 'display_name', $post_author_id );
+
 		// Start building the timeline HTML
-		$html = '<div class="trello_timeline space-y-4">';
+		$html = '<div id="commentWrap" class="space-y-4">';
 		foreach ( $data as $event ) {
-			$event_date   = date( 'F j, Y, g:i a', strtotime( $event['date'] ) );
-			$event_type   = ucfirst( $event['type'] );
-			$member_name  = htmlspecialchars( $event['memberCreator']['fullName'] ?? 'Unknown' );
-			$card_name    = htmlspecialchars( $event['data']['card']['name'] ?? 'Unnamed Card' );
-			$list_before  = $event['data']['listBefore']['name'] ?? null;
-			$list_after   = $event['data']['listAfter']['name'] ?? null;
+			$event_date = date( 'F j, Y, g:i a', strtotime( $event['date'] ) );
+			$event_type = ucfirst( $event['type'] );
+			$member_name = htmlspecialchars( $event['memberCreator']['fullName'] ?? 'Unknown' );
+			$card_name = htmlspecialchars( $event['data']['card']['name'] ?? 'Unnamed Card' );
+			$list_before = $event['data']['listBefore']['name'] ?? null;
+			$list_after = $event['data']['listAfter']['name'] ?? null;
 			$comment_text = $event['data']['text'] ?? null;
-			$is_reply     = $event['appCreator'] ?? null;
+			$is_reply = $event['appCreator'] ?? null;
 			if ( null !== $comment_text ) {
 				$comment_text = str_replace( '# **Reply:**', '', $comment_text );
 				$comment_text = $this->convert_trello_markup_to_html( $comment_text );
 			}
 
 			// Start event block
-			$html .= '<div class="bg-white shadow-md border border-gray-200 rounded-lg p-4">';
-			$html .= '<div class="text-gray-600 text-sm mb-2">' . $event_date . '</div>';
-			$html .= '<div class="text-lg font-bold text-gray-800">' . $event_type . '</div>';
+			$html .= '<div class="bg-white shadow-md border border-gray-200 rounded-lg p-4 mb-4">';
+			$html .= '<div class="text-sm mb-2">' . $event_date . '</div>';
 
 			// Add type-specific details
 			if ( $list_before && $list_after ) {
@@ -360,11 +379,11 @@ class Trello_Post {
 			} elseif ( $comment_text ) {
 				$html .= '<div class="mt-2">';
 				if ( $is_reply ) {
-					$html .= '<span class="text-green-600 font-semibold">Client Reply:</span><br>';
+					$html .= '<h6 class="font-semibold uppercase mb-2 text-base text-black">' . $author_display_name . '</h6>';
 				} else {
-					$html .= '<span class="text-blue-600 font-semibold">Comment:</span><br>';
+					$html .= '<h6 class="font-semibold uppercase mb-2 text-base text-black">ASTRA LAB DESIGNER</h6>';
 				}
-				$html .= '<div class="mt-1 text-gray-800">' . wp_kses_post( $comment_text ) . '</div>';
+				$html .= '<div class="mt-1 pl-8">' . wp_kses_post( $comment_text ) . '</div>';
 				$html .= '</div>';
 			}
 

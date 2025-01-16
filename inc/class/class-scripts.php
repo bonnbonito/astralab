@@ -105,12 +105,12 @@ class Scripts {
 		wp_localize_script(
 			'astralab/trello',
 			'astralab',
-			array(
+			apply_filters( 'astralab_localized_scripts', array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
 				'nonce' => wp_create_nonce( 'astralab_nonce' ),
 				'options' => rest_url() . 'astralab/v1/options',
 				'product-types' => rest_url() . 'wp/v2/product-type'
-			)
+			) )
 		);
 	}
 }

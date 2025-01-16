@@ -33,12 +33,14 @@ spl_autoload_register( 'autoloader' );
 
 $instances = array(
 	'Scripts',
+	'Single_Card',
 	'Trello_Post',
 	'Trello_Frontend',
 	'Trello_Backend',
 	'Trello_API',
 	'Users',
 	'Shortcodes',
+	'Dashboard'
 );
 
 foreach ( $instances as $instance ) {
