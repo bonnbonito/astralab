@@ -97,7 +97,10 @@ export default function ProductType({ form }: ProductTypeProps) {
 																	post.acf.component
 																].fieldName as keyof FormSchema;
 
-																form.setValue(fieldName, Boolean(checked));
+																form.setValue(
+																	fieldName,
+																	checked ? true : false
+																);
 
 																const updatedProductTypes = checked
 																	? [

@@ -33,11 +33,6 @@ const formSchema = z
 		fileUpload: z.array(z.instanceof(File)).min(1, {
 			message: 'Upload atleast 1 File.',
 		}),
-		hasADA: z.boolean(),
-		hasMonumentsAndPylons: z.boolean(),
-		hasChannelLetters: z.boolean(),
-		hasDimensionalLetters: z.boolean(),
-		hasLightbox: z.boolean(),
 	})
 	.refine((data) => (data.productTypes ? data.productTypes.length > 0 : true), {
 		message: 'Select at least one Product Type',
