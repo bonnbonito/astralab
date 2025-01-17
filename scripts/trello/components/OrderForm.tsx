@@ -92,11 +92,15 @@ export default function OrderForm() {
 			const firstError = Object.entries(errors)[0];
 			const [fieldName, error] = firstError;
 
-			console.log(error);
+			console.log(errors);
+			// Get first error from nested error object
+			const firstErrorObj = Object.values(error)[0];
+			const errorMessage =
+				firstErrorObj?.message || 'Fill all the required fields.';
 
 			toast({
 				variant: 'destructive',
-				title: `${error.message || 'Fill all the required fields.'}`,
+				title: `${error.message || errorMessage}`,
 			});
 		}
 	}, [form.formState.errors, toast]);

@@ -11,8 +11,6 @@ export interface AstralabDashboard {
 		id: number;
 		title: string;
 		date: string;
-		date_updated: string;
-		url: string;
 		meta: {
 			trello_card_list?: string[];
 			trello_card_comment_count?: string[];

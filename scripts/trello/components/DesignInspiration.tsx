@@ -1,4 +1,9 @@
-import { FormField, FormItem, FormLabel } from '@/components/ui/form';
+import {
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from '@/components/ui/form';
 import { useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { FormSchema } from '@/trello/helpers/schema';
@@ -174,6 +179,7 @@ export default function DesignInspiration({
 								);
 							})}
 						</div>
+						<FormMessage />
 					</FormItem>
 				)}
 			/>

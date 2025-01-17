@@ -13,6 +13,7 @@ import DesignInspiration from '@/trello/components/DesignInspiration';
 import { ProductOptions } from '@/trello/components/fields/ProductOptions';
 import { SkeletonCard } from '@/trello/components/SkeletonCard';
 import { ProductTypeDataProps } from '@/trello/helpers/types';
+import Signs from './Signs';
 
 interface ADAWayfindingProps {
 	form: UseFormReturn<FormSchema>;
@@ -86,29 +87,9 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 						<div className="p-4 pt-0">
 							{/* Render Number of Signs Input */}
 							<NumberSigns form={form} fieldName="ADA.numberOfSigns" />
-							{numberOfSigns &&
-								Array.from({ length: Number(numberOfSigns) }, (_, index) => (
-									<div key={index} className="mt-4 grid md:grid-cols-3 gap-4">
-										<TextField
-											form={form}
-											name={`ADA.signs.${index}.name`}
-											label={`No.${index + 1} Name`}
-											placeholder={`Enter project name ${index + 1}`}
-										/>
-										<TextField
-											form={form}
-											name={`ADA.signs.${index}.dimension`}
-											label={`No. ${index + 1} Width x Height`}
-											placeholder={`Enter ${index + 1} dimensions`}
-										/>
-										<TextField
-											form={form}
-											name={`ADA.signs.${index}.details`}
-											label={`Sign ${index + 1} Details`}
-											placeholder={`Enter details for sign ${index + 1}`}
-										/>
-									</div>
-								))}
+							{numberOfSigns && (
+								<Signs form={form} numberOfSigns={numberOfSigns} />
+							)}
 
 							<ProductOptions
 								form={form}

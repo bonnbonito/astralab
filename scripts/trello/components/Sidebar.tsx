@@ -4,6 +4,8 @@ import { UseFormReturn } from 'react-hook-form';
 
 import { FormSchema } from '@/trello/helpers/schema';
 
+import { ComponentType } from '@/trello/helpers/defaults';
+
 interface SidebarProps {
 	form: UseFormReturn<FormSchema>;
 }
@@ -50,8 +52,6 @@ export default function Sidebar({ form }: SidebarProps) {
 					<div className="uppercase font-semibold text-sm">Layout Type</div>
 					<div className="text-xs">{watchedValues.layoutType}</div>
 				</div>
-
-				{/* File Uploads */}
 				<div className="grid grid-cols-2 gap-4 mb-1">
 					<div className="uppercase font-semibold text-sm">Uploads</div>
 					<div className="text-xs">
@@ -78,6 +78,8 @@ export default function Sidebar({ form }: SidebarProps) {
 								'title' in productObject &&
 								'component' in productObject
 							) {
+								const component = productObject.component as ComponentType;
+
 								return (
 									<SidebarDetails
 										title={
@@ -87,16 +89,11 @@ export default function Sidebar({ form }: SidebarProps) {
 										}
 										key={id}
 										form={form}
-										component={
-											typeof productObject.component === 'string'
-												? productObject.component
-												: ''
-										}
+										component={component}
 									/>
 								);
 							}
 
-							// Log and skip invalid entries
 							console.error(
 								`Invalid productObject for ID ${id}:`,
 								productObject

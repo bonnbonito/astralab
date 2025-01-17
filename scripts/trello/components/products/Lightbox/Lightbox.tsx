@@ -50,7 +50,6 @@ export default function Lightbox({ form, product }: LightboxProps) {
 				}
 				const data: ProductTypeDataProps = await response.json();
 				setProductType(data || null); // Ensure null fallback if data is invalid
-				console.log(data);
 			} catch (error) {
 				console.error('Error fetching product type:', error);
 				setProductType(null); // Set null if fetching fails

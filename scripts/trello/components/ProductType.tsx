@@ -9,7 +9,9 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Astralab, ProductTypeProps } from '../helpers/types';
+import { Astralab, ProductTypeProps } from '@/trello/helpers/types';
+import { COMPONENT_MAP } from '@/trello/helpers/defaults';
+import { FormSchema } from '@/trello/helpers/schema';
 
 declare const astralab: Astralab;
 
@@ -17,7 +19,7 @@ type ProductType = {
 	id: number;
 	title: { rendered: string };
 	featured_media_url: string;
-	acf: { component: string };
+	acf: { component: keyof typeof COMPONENT_MAP };
 };
 
 export default function ProductType({ form }: ProductTypeProps) {
@@ -76,7 +78,7 @@ export default function ProductType({ form }: ProductTypeProps) {
 											id: number;
 											title: { rendered: string };
 											featured_media_url: string;
-											acf: { component: string };
+											acf: { component: keyof typeof COMPONENT_MAP };
 										}) => {
 											const productTypeArray =
 												form.getValues('productTypes') || [];
@@ -91,80 +93,29 @@ export default function ProductType({ form }: ProductTypeProps) {
 															id={`prodtype-${post.id}`}
 															checked={isChecked}
 															onCheckedChange={(checked) => {
-																let updatedProductTypes = [...productTypeArray];
+																const fieldName = COMPONENT_MAP[
+																	post.acf.component
+																].fieldName as keyof FormSchema;
 
-																if (checked) {
-																	updatedProductTypes.push({
-																		title: post.title.rendered,
-																		component: post.acf.component,
-																		id: post.id,
-																	});
+																form.setValue(fieldName, Boolean(checked));
 
-																	if (post.acf.component === 'ADAWayfinding') {
-																		form.setValue('hasADA', true);
-																	}
-
-																	if (
-																		post.acf.component === 'MonumentsAndPylons'
-																	) {
-																		form.setValue(
-																			'hasMonumentsAndPylons',
-																			true
-																		);
-																	}
-
-																	if (post.acf.component === 'ChannelLetters') {
-																		form.setValue('hasChannelLetters', true);
-																	}
-
-																	if (post.acf.component === 'Lightbox') {
-																		form.setValue('hasLightbox', true);
-																	}
-
-																	if (
-																		post.acf.component === 'DimensionalLetters'
-																	) {
-																		form.setValue(
-																			'hasDimensionalLetters',
-																			true
-																		);
-																	}
-																} else {
-																	if (
-																		post.acf.component === 'DimensionalLetters'
-																	) {
-																		form.setValue(
-																			'hasDimensionalLetters',
-																			false
-																		);
-																	}
-																	if (post.acf.component === 'Lightbox') {
-																		form.setValue('hasLightbox', false);
-																	}
-																	if (post.acf.component === 'ADAWayfinding') {
-																		form.setValue('hasADA', false);
-																	}
-																	if (post.acf.component === 'ChannelLetters') {
-																		form.setValue('hasChannelLetters', false);
-																	}
-																	if (
-																		post.acf.component === 'MonumentsAndPylons'
-																	) {
-																		form.setValue(
-																			'hasMonumentsAndPylons',
-																			false
-																		);
-																	}
-																	updatedProductTypes =
-																		updatedProductTypes.filter(
+																const updatedProductTypes = checked
+																	? [
+																			...productTypeArray,
+																			{
+																				title: post.title.rendered,
+																				component: post.acf.component,
+																				id: post.id,
+																			},
+																	  ]
+																	: productTypeArray.filter(
 																			(item) => item.id !== post.id
-																		);
-																}
+																	  );
+
 																form.setValue(
 																	'productTypes',
 																	updatedProductTypes
 																);
-
 																form.trigger('productTypes');
 															}}
 															className="p-0 border-input border-solid bg-transparent"
