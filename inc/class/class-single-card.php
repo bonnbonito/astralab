@@ -29,6 +29,31 @@ class Single_Card {
 
 		add_action( 'kadence_single_before_inner_content', array( $this, 'single_card_title' ) );
 		add_shortcode( 'trello_client_name', array( $this, 'trello_client_name' ) );
+
+		add_action( 'template_redirect', array( $this, 'trello_card_redirect' ) );
+	}
+
+	public function trello_card_redirect() {
+		// Early return if not on a single trello card page
+		if ( ! is_singular( 'trello-card' ) ) {
+			return;
+		}
+
+		$post = get_post();
+
+		// Verify post exists and is the correct type
+		if ( ! $post || 'trello-card' !== $post->post_type ) {
+			wp_safe_redirect( home_url( '/dashboard' ) );
+			exit;
+		}
+
+		$current_user_id = get_current_user_id();
+
+		// Check if user is author or admin
+		if ( $current_user_id !== (int) $post->post_author && ! current_user_can( 'administrator' ) ) {
+			wp_safe_redirect( home_url( '/dashboard' ) );
+			exit;
+		}
 	}
 
 	public function show_trello_card_details() {
