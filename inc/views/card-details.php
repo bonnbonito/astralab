@@ -50,7 +50,7 @@
 			?>
     <div class="">
       <p class="uppercase text-lg mb-3">ADA WAYFINDING</p>
-      <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+      <div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
         <div class="font-semibold">NUMBER OF SIGNS</div>
         <div><?php echo $ada['numberOfSigns']; ?></div>
         <?php foreach ( $ada['signs'] as $index => $sign ) : ?>
@@ -76,7 +76,7 @@
 
     <div class="">
       <p class="uppercase text-lg mb-3">MONUMENTS & PYLONS</p>
-      <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+      <div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
         <div class="font-semibold">NUMBER OF SIGNS</div>
         <div><?php echo $monuments['numberOfSigns']; ?></div>
         <div class="font-semibold">SIGN TEXT & CONTEXT</div>
@@ -111,7 +111,7 @@
 
     <div class="">
       <p class="uppercase text-lg mb-3">CHANNEL LETTERS</p>
-      <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+      <div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
         <div class="font-semibold">NUMBER OF SIGNS</div>
         <div><?php echo $channelLetters['numberOfSigns']; ?></div>
         <div class="font-semibold">SIGN TEXT & CONTEXT</div>
@@ -155,7 +155,7 @@
 
     <div class="">
       <p class="uppercase text-lg mb-3">DIMENSIONAL LETTERS</p>
-      <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+      <div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
         <div class="font-semibold">NUMBER OF SIGNS</div>
         <div><?php echo $dimensionalLetters['numberOfSigns']; ?></div>
         <div class="font-semibold">SIGN TEXT & CONTEXT</div>
@@ -192,7 +192,7 @@
 
     <div class="">
       <p class="uppercase text-lg mb-3">LIGHTBOX</p>
-      <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+      <div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
         <div class="font-semibold">NUMBER OF SIGNS</div>
         <div><?php echo $lightbox['numberOfSigns']; ?></div>
         <div class="font-semibold">SIGN TEXT & CONTEXT</div>
