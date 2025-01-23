@@ -7,10 +7,10 @@ export const MonumentsAndPylonsSchema = z.discriminatedUnion(
 			hasMonumentsAndPylons: z.literal(true),
 			monumentsAndPylons: z.object({
 				numberOfSigns: z.string(),
-				types: z.array(z.string()).min(1, {
+				types: z.string().nonempty({
 					message: 'Select atleast one type.',
 				}),
-				illumination: z.array(z.string()).min(1, {
+				illumination: z.string().nonempty({
 					message: 'Select atleast one illumination.',
 				}),
 				textAndContent: z.string().nonempty({

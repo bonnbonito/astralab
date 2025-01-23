@@ -54,13 +54,11 @@ export default function SidebarDimensionalLetters({
 			</div>
 			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">Types</div>
-				<div className="text-xs">{dimensionalLetters?.types?.join(', ')}</div>
+				<div className="text-xs">{dimensionalLetters?.types}</div>
 			</div>
 			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">Mounting</div>
-				<div className="text-xs">
-					{dimensionalLetters?.mounting?.join(', ')}
-				</div>
+				<div className="text-xs">{dimensionalLetters?.mounting}</div>
 			</div>
 			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">

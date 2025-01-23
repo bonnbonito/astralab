@@ -21,13 +21,13 @@ export const ChannelLettersSchema = z.discriminatedUnion('hasChannelLetters', [
 			faceColor: z.string().nonempty(),
 			returnColor: z.string().nonempty(),
 			returnDepth: z.string().nonempty(),
-			types: z.array(z.string()).min(1, {
+			types: z.string().nonempty({
 				message: 'Select atleast one type.',
 			}),
-			backer: z.array(z.string()).min(1, {
+			backer: z.string().nonempty({
 				message: 'Select atleast one backer.',
 			}),
-			mounting: z.array(z.string()).min(1, {
+			mounting: z.string().nonempty({
 				message: 'Select atleast one mounting.',
 			}),
 			designInspirations: z.array(z.string()),

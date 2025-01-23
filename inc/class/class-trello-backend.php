@@ -195,11 +195,11 @@ class Trello_Backend {
 		$trello_list_id = get_user_meta( $user->ID, 'trello_list_id', true );
 
 		?>
-<h2>Create Trello Board</h2>
-<table class="form-table">
-  <tr>
-    <th scope="row"><label for="create_trello_board">Trello Board</label></th>
-    <?php
+		<h2>Create Trello Board</h2>
+		<table class="form-table">
+			<tr>
+				<th scope="row"><label for="create_trello_board">Trello Board</label></th>
+				<?php
 				if ( ! empty( $trello_board_id ) ) {
 					echo '<td>
 					<p><strong>Trello Board ID:</strong> ' . esc_html( $trello_board_id ) . ' <a href="' . esc_url( $trello_url ) . '" target="_blank">View Board</a></p>';
@@ -209,18 +209,18 @@ class Trello_Backend {
 					echo '</td>';
 				} else {
 					?>
-    <td>
-      <label for="create_trello_board">
-        <input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
-        Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
-      </label>
-    </td>
-    <?php
+					<td>
+						<label for="create_trello_board">
+							<input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
+							Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
+						</label>
+					</td>
+					<?php
 				}
 				?>
-  </tr>
-</table>
-<?php
+			</tr>
+		</table>
+		<?php
 	}
 
 	/**
@@ -317,6 +317,13 @@ class Trello_Backend {
 		}
 	}
 
+	public function array_to_string( $value ) {
+		if ( is_array( $value ) ) {
+			return implode( ', ', $value );
+		}
+		return $value;
+	}
+
 	public function astralab_form_submission() {
 		$nonce = $_POST['astralab_nonce'];
 		$user_id = get_current_user_id();
@@ -387,7 +394,7 @@ class Trello_Backend {
 		$ada = $jsonData['ADA'] ?? [];
 		if ( ! empty( $_POST["hasADA"] ) && ! empty( $ada ) ) {
 			$signs = $ada['signs'] ?? [];
-			$ada_types = $ada['types'] ?? [];
+			$ada_types = $this->array_to_string( $ada['types'] );
 			$ada_design = $ada['designInspirations'] ?? [];
 			$project_details .= '<h3><strong>ADA Wayfinding:</strong></h3>';
 			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $ada['numberOfSigns'] ?? '' );
@@ -400,7 +407,7 @@ class Trello_Backend {
 				$project_details .= '</ul>';
 			}
 			$project_details .= '</li>';
-			$project_details .= '<li><strong>Types:</strong> ' . implode( ", ", $ada_types ) . '</li>';
+			$project_details .= '<li><strong>Types:</strong> ' . $ada_types . '</li>';
 			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $ada_design ) . '</li>';
 			$project_details .= '</ul>';
 		}
@@ -408,8 +415,9 @@ class Trello_Backend {
 		// --- Monuments & Pylons ---
 		$monuments = $jsonData['monumentsAndPylons'] ?? [];
 		if ( ! empty( $_POST["hasMonumentsAndPylons"] ) && ! empty( $monuments ) ) {
-			$monuments_types = $monuments['types'] ?? [];
+			$monuments_types = $this->array_to_string( $monuments['types'] );
 			$monuments_design = $monuments['designInspirations'] ?? [];
+			$illumination = $this->array_to_string( $monuments['illumination'] );
 			$project_details .= '<h3><strong>Monuments & Pylons</strong></h3>';
 			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $monuments['numberOfSigns'] ?? '' );
 			$project_details .= '<ul>';
@@ -422,7 +430,8 @@ class Trello_Backend {
 			$project_details .= "<li>Maximum Ground Clearance: " . ( $monuments['maxGroundClearance'] ?? '' ) . "</li>";
 			$project_details .= '</ul>';
 			$project_details .= '</li>';
-			$project_details .= '<li><strong>Types:</strong> ' . implode( ", ", $monuments_types ) . '</li>';
+			$project_details .= '<li><strong>Types:</strong> ' . $monuments_types . '</li>';
+			$project_details .= '<li><strong>Illumination:</strong> ' . $illumination . '</li>';
 			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $monuments_design ) . '</li>';
 			$project_details .= '</ul>';
 		}
@@ -430,7 +439,9 @@ class Trello_Backend {
 		// --- Channel Letters ---
 		$channelLetters = $jsonData['channelLetters'] ?? [];
 		if ( ! empty( $_POST["channelLetters"] ) && ! empty( $channelLetters ) ) {
-			$channelLetters_types = $channelLetters['types'] ?? [];
+			$channelLetters_types = $this->array_to_string( $channelLetters['types'] );
+			$channelLetters_backer = $this->array_to_string( $channelLetters['backer'] );
+			$channelLetters_mounting = $this->array_to_string( $channelLetters['mounting'] );
 			$channelLetters_design = $channelLetters['designInspirations'] ?? [];
 			$project_details .= '<h3><strong>Channel Letters</strong></h3>';
 			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $channelLetters['numberOfSigns'] ?? '' );
@@ -444,7 +455,9 @@ class Trello_Backend {
 			$project_details .= "<li>Maximum Ground Clearance: " . ( $channelLetters['maxGroundClearance'] ?? '' ) . "</li>";
 			$project_details .= '</ul>';
 			$project_details .= '</li>';
-			$project_details .= '<li><strong>Types:</strong> ' . implode( ", ", $channelLetters_types ) . '</li>';
+			$project_details .= '<li><strong>Types:</strong> ' . $channelLetters_types . '</li>';
+			$project_details .= '<li><strong>Backer:</strong> ' . $channelLetters_backer . '</li>';
+			$project_details .= '<li><strong>Mounting:</strong> ' . $channelLetters_mounting . '</li>';
 			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $channelLetters_design ) . '</li>';
 			$project_details .= '</ul>';
 		}
@@ -452,9 +465,9 @@ class Trello_Backend {
 		// --- Dimensional Letters ---
 		$dimensionalLetters = $jsonData['dimensionalLetters'] ?? [];
 		if ( ! empty( $_POST["dimensionalLetters"] ) && ! empty( $dimensionalLetters ) ) {
-			$dimensionalLetters_types = $dimensionalLetters['types'] ?? [];
+			$dimensionalLetters_types = $this->array_to_string( $dimensionalLetters['types'] );
+			$dimensionalLetters_mounting = $this->array_to_string( $dimensionalLetters['mounting'] );
 			$dimensionalLetters_design = $dimensionalLetters['designInspirations'] ?? [];
-			$dimensionalLetters_mounting = $dimensionalLetters['mounting'] ?? [];
 			$project_details .= '<h3><strong>Dimensional Letters</strong></h3>';
 			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $dimensionalLetters['numberOfSigns'] ?? '' );
 			$project_details .= '<ul>';
@@ -468,8 +481,8 @@ class Trello_Backend {
 			$project_details .= "<li>Location: " . ( $dimensionalLetters['location'] ?? '' ) . "</li>";
 			$project_details .= '</ul>';
 			$project_details .= '</li>';
-			$project_details .= '<li><strong>Types:</strong> ' . implode( ", ", $dimensionalLetters_types ) . '</li>';
-			$project_details .= '<li><strong>Mounting:</strong> ' . implode( ", ", $dimensionalLetters_mounting ) . '</li>';
+			$project_details .= '<li><strong>Types:</strong> ' . $dimensionalLetters_types . '</li>';
+			$project_details .= '<li><strong>Mounting:</strong> ' . $dimensionalLetters_mounting . '</li>';
 			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $dimensionalLetters_design ) . '</li>';
 			$project_details .= '</ul>';
 		}
@@ -477,9 +490,9 @@ class Trello_Backend {
 		// --- Lightbox ---
 		$lightbox = $jsonData['lightbox'] ?? [];
 		if ( ! empty( $_POST["lightbox"] ) && ! empty( $lightbox ) ) {
-			$lightbox_types = $lightbox['types'] ?? [];
+			$lightbox_types = $this->array_to_string( $lightbox['types'] );
+			$lightbox_mounting = $this->array_to_string( $lightbox['mounting'] );
 			$lightbox_design = $lightbox['designInspirations'] ?? [];
-			$lightbox_mounting = $lightbox['mounting'] ?? [];
 			$project_details .= '<h3><strong>Lightbox</strong></h3>';
 			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $lightbox['numberOfSigns'] ?? '' );
 			$project_details .= '<ul>';
@@ -493,8 +506,8 @@ class Trello_Backend {
 			$project_details .= "<li>Retainers: " . ( $lightbox['retainers'] ?? '' ) . "</li>";
 			$project_details .= '</ul>';
 			$project_details .= '</li>';
-			$project_details .= '<li><strong>Types:</strong> ' . implode( ", ", $lightbox_types ) . '</li>';
-			$project_details .= '<li><strong>Mounting:</strong> ' . implode( ", ", $lightbox_mounting ) . '</li>';
+			$project_details .= '<li><strong>Types:</strong> ' . $lightbox_types . '</li>';
+			$project_details .= '<li><strong>Mounting:</strong> ' . $lightbox_mounting . '</li>';
 			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $lightbox_design ) . '</li>';
 			$project_details .= '</ul>';
 		}

@@ -41,7 +41,7 @@ export default function SidebarADA({ form }: SidebarADAProps) {
 			</div>
 			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">Types</div>
-				<div className="text-xs">{ADA?.types?.join(', ')}</div>
+				<div className="text-xs">{ADA?.types}</div>
 			</div>
 			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">

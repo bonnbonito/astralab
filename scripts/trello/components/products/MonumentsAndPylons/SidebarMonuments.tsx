@@ -60,13 +60,11 @@ export default function SidebarMonuments({ form }: SidebarMonumentsProps) {
 			</div>
 			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">Types</div>
-				<div className="text-xs">{monumentsAndPylons?.types?.join(', ')}</div>
+				<div className="text-xs">{monumentsAndPylons?.types}</div>
 			</div>
 			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">Illumination</div>
-				<div className="text-xs">
-					{monumentsAndPylons?.illumination?.join(', ')}
-				</div>
+				<div className="text-xs">{monumentsAndPylons?.illumination}</div>
 			</div>
 			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">

@@ -7,46 +7,15 @@ import {
 } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
-import { useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Astralab, ProductTypeProps } from '@/trello/helpers/types';
+import { ProductTypeProps } from '@/trello/helpers/types';
 import { COMPONENT_MAP } from '@/trello/helpers/defaults';
 import { FormSchema } from '@/trello/helpers/schema';
-
-declare const astralab: Astralab;
-
-type ProductType = {
-	id: number;
-	title: { rendered: string };
-	featured_media_url: string;
-	acf: { component: keyof typeof COMPONENT_MAP };
-};
+import { useProductTypes } from '@/trello/hooks/useProductTypes';
+import type { ProductType } from '@/trello/hooks/useProductTypes';
 
 export default function ProductType({ form }: ProductTypeProps) {
-	// Initialize productTypes with an empty array of the defined type
-	const [productTypes, setProductTypes] = useState<ProductType[]>([]);
-	const [loading, setLoading] = useState(true);
-
-	useEffect(() => {
-		async function fetchProductTypes() {
-			try {
-				const response = await fetch(astralab['product-types']);
-				if (!response.ok) {
-					throw new Error(`HTTP error! Status: ${response.status}`);
-				}
-				const data = await response.json();
-				// Sort data by ascending id
-				data.sort((a: ProductType, b: ProductType) => a.id - b.id);
-				setProductTypes(data);
-			} catch (error) {
-				console.error('Error fetching product types:', error);
-			} finally {
-				setLoading(false);
-			}
-		}
-
-		fetchProductTypes();
-	}, []);
+	const { productTypes, loading } = useProductTypes();
 
 	return (
 		<div className="border border-input px-4 py-6 mb-8 rounded">
@@ -89,6 +58,13 @@ export default function ProductType({ form }: ProductTypeProps) {
 											return (
 												<div key={`prodtype-${post.id}`}>
 													<div className="flex items-start justify-between gap-4">
+														<Label
+															htmlFor={`prodtype-${post.id}`}
+															className="cursor-pointer uppercase font-semibold text-sm"
+															dangerouslySetInnerHTML={{
+																__html: post.title.rendered,
+															}}
+														/>
 														<Checkbox
 															id={`prodtype-${post.id}`}
 															checked={isChecked}
@@ -122,13 +98,6 @@ export default function ProductType({ form }: ProductTypeProps) {
 																form.trigger('productTypes');
 															}}
 															className="p-0 border-input border-solid bg-transparent"
-														/>
-														<Label
-															htmlFor={`prodtype-${post.id}`}
-															className="cursor-pointer uppercase font-semibold text-sm"
-															dangerouslySetInnerHTML={{
-																__html: post.title.rendered,
-															}}
 														/>
 													</div>
 

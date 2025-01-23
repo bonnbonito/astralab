@@ -28,10 +28,10 @@ const lightboxBaseSchema = z.object({
 	retainers: z.string().nonempty({
 		message: 'Lightbox retainers is required.',
 	}),
-	types: z.array(z.string()).min(1, {
+	types: z.string().nonempty({
 		message: 'Select at least one Lightbox type.',
 	}),
-	mounting: z.array(z.string()).min(1, {
+	mounting: z.string().nonempty({
 		message: 'Select at least one Lightbox mounting.',
 	}),
 	designInspirations: z.array(z.string()).min(1, {

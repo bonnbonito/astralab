@@ -736,6 +736,8 @@ video {
   min-width: 8rem;
 }#astralab .min-w-\[var\(--radix-select-trigger-width\)\] {
   min-width: var(--radix-select-trigger-width);
+}#astralab .max-w-52 {
+  max-width: 13rem;
 }#astralab .max-w-\[500px\] {
   max-width: 500px;
 }#astralab .max-w-lg {
@@ -841,6 +843,8 @@ video {
   overflow-x: auto;
 }#astralab .overflow-y-auto {
   overflow-y: auto;
+}#astralab .text-ellipsis {
+  text-overflow: ellipsis;
 }#astralab .whitespace-nowrap {
   white-space: nowrap;
 }#astralab .rounded {

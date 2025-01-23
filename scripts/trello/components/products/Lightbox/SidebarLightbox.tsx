@@ -50,11 +50,11 @@ export default function SidebarLightbox({ form }: SidebarLightboxProps) {
 			</div>
 			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">Types</div>
-				<div className="text-xs">{lightbox?.types?.join(', ')}</div>
+				<div className="text-xs">{lightbox?.types}</div>
 			</div>
 			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">Mounting</div>
-				<div className="text-xs">{lightbox?.mounting?.join(', ')}</div>
+				<div className="text-xs">{lightbox?.mounting}</div>
 			</div>
 			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">

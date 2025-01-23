@@ -21,10 +21,10 @@ export const DimensionalLettersSchema = z.discriminatedUnion(
 				sides: z.string().nonempty(),
 				backPanel: z.string().nonempty(),
 				location: z.string().nonempty(),
-				types: z.array(z.string()).min(1, {
+				types: z.string().nonempty({
 					message: 'Select atleast one type.',
 				}),
-				mounting: z.array(z.string()).min(1, {
+				mounting: z.string().nonempty({
 					message: 'Select atleast one mounting.',
 				}),
 				designInspirations: z.array(z.string()),

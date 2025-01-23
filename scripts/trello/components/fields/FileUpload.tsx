@@ -43,7 +43,7 @@ export default function FileUpload({
 			control={form.control}
 			name="fileUpload"
 			render={({ field: { value, ...field } }) => (
-				<FormItem className="relative">
+				<FormItem className="relative grid">
 					<FormLabel className="uppercase font-semibold text-base">
 						Uploads
 					</FormLabel>
@@ -56,7 +56,7 @@ export default function FileUpload({
 							ref={fileInputRef}
 							multiple
 							onChange={handleFileChange}
-							className="inline-block bg-button border-0 !leading-[30px] relative cursor-pointer"
+							className="inline-block bg-button border-0 !leading-[30px] relative cursor-pointer max-w-52"
 						/>
 					</FormControl>
 					<div className="text-[0.8rem] text-muted-foreground">
