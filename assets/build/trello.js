@@ -20103,6 +20103,1968 @@ function createSidecarMedium(options) {
 
 /***/ }),
 
+/***/ "./node_modules/yet-another-react-lightbox/dist/index.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/yet-another-react-lightbox/dist/index.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ACTION_CLOSE: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_CLOSE),
+/* harmony export */   ACTION_NEXT: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_NEXT),
+/* harmony export */   ACTION_PREV: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_PREV),
+/* harmony export */   ACTION_SWIPE: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_SWIPE),
+/* harmony export */   ACTIVE_SLIDE_COMPLETE: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTIVE_SLIDE_COMPLETE),
+/* harmony export */   ACTIVE_SLIDE_ERROR: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTIVE_SLIDE_ERROR),
+/* harmony export */   ACTIVE_SLIDE_LOADING: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTIVE_SLIDE_LOADING),
+/* harmony export */   ACTIVE_SLIDE_PLAYING: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTIVE_SLIDE_PLAYING),
+/* harmony export */   CLASS_FLEX_CENTER: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.CLASS_FLEX_CENTER),
+/* harmony export */   CLASS_FULLSIZE: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.CLASS_FULLSIZE),
+/* harmony export */   CLASS_NO_SCROLL: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.CLASS_NO_SCROLL),
+/* harmony export */   CLASS_NO_SCROLL_PADDING: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.CLASS_NO_SCROLL_PADDING),
+/* harmony export */   CLASS_SLIDE_WRAPPER: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.CLASS_SLIDE_WRAPPER),
+/* harmony export */   CLASS_SLIDE_WRAPPER_INTERACTIVE: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.CLASS_SLIDE_WRAPPER_INTERACTIVE),
+/* harmony export */   Carousel: () => (/* binding */ Carousel),
+/* harmony export */   CarouselModule: () => (/* binding */ CarouselModule),
+/* harmony export */   CloseIcon: () => (/* binding */ CloseIcon),
+/* harmony export */   Controller: () => (/* binding */ Controller),
+/* harmony export */   ControllerContext: () => (/* binding */ ControllerContext),
+/* harmony export */   ControllerModule: () => (/* binding */ ControllerModule),
+/* harmony export */   DocumentContext: () => (/* binding */ DocumentContext),
+/* harmony export */   DocumentContextProvider: () => (/* binding */ DocumentContextProvider),
+/* harmony export */   ELEMENT_BUTTON: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.ELEMENT_BUTTON),
+/* harmony export */   ELEMENT_ICON: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.ELEMENT_ICON),
+/* harmony export */   EVENT_ON_KEY_DOWN: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_KEY_DOWN),
+/* harmony export */   EVENT_ON_KEY_UP: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_KEY_UP),
+/* harmony export */   EVENT_ON_POINTER_CANCEL: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_POINTER_CANCEL),
+/* harmony export */   EVENT_ON_POINTER_DOWN: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_POINTER_DOWN),
+/* harmony export */   EVENT_ON_POINTER_LEAVE: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_POINTER_LEAVE),
+/* harmony export */   EVENT_ON_POINTER_MOVE: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_POINTER_MOVE),
+/* harmony export */   EVENT_ON_POINTER_UP: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_POINTER_UP),
+/* harmony export */   EVENT_ON_WHEEL: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_WHEEL),
+/* harmony export */   ErrorIcon: () => (/* binding */ ErrorIcon),
+/* harmony export */   EventsContext: () => (/* binding */ EventsContext),
+/* harmony export */   EventsProvider: () => (/* binding */ EventsProvider),
+/* harmony export */   IMAGE_FIT_CONTAIN: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.IMAGE_FIT_CONTAIN),
+/* harmony export */   IMAGE_FIT_COVER: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.IMAGE_FIT_COVER),
+/* harmony export */   IconButton: () => (/* binding */ IconButton),
+/* harmony export */   ImageSlide: () => (/* binding */ ImageSlide),
+/* harmony export */   Lightbox: () => (/* binding */ Lightbox),
+/* harmony export */   LightboxDefaultProps: () => (/* binding */ LightboxDefaultProps),
+/* harmony export */   LightboxDispatchContext: () => (/* binding */ LightboxDispatchContext),
+/* harmony export */   LightboxPropsContext: () => (/* binding */ LightboxPropsContext),
+/* harmony export */   LightboxPropsProvider: () => (/* binding */ LightboxPropsProvider),
+/* harmony export */   LightboxRoot: () => (/* binding */ LightboxRoot),
+/* harmony export */   LightboxStateContext: () => (/* binding */ LightboxStateContext),
+/* harmony export */   LightboxStateProvider: () => (/* binding */ LightboxStateProvider),
+/* harmony export */   LoadingIcon: () => (/* binding */ LoadingIcon),
+/* harmony export */   MODULE_CAROUSEL: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_CAROUSEL),
+/* harmony export */   MODULE_CONTROLLER: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_CONTROLLER),
+/* harmony export */   MODULE_NAVIGATION: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_NAVIGATION),
+/* harmony export */   MODULE_NO_SCROLL: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_NO_SCROLL),
+/* harmony export */   MODULE_PORTAL: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_PORTAL),
+/* harmony export */   MODULE_ROOT: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_ROOT),
+/* harmony export */   MODULE_TOOLBAR: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_TOOLBAR),
+/* harmony export */   Navigation: () => (/* binding */ Navigation),
+/* harmony export */   NavigationButton: () => (/* binding */ NavigationButton),
+/* harmony export */   NavigationModule: () => (/* binding */ NavigationModule),
+/* harmony export */   NextIcon: () => (/* binding */ NextIcon),
+/* harmony export */   NoScroll: () => (/* binding */ NoScroll),
+/* harmony export */   NoScrollModule: () => (/* binding */ NoScrollModule),
+/* harmony export */   PLUGIN_CAPTIONS: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.PLUGIN_CAPTIONS),
+/* harmony export */   PLUGIN_COUNTER: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.PLUGIN_COUNTER),
+/* harmony export */   PLUGIN_DOWNLOAD: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.PLUGIN_DOWNLOAD),
+/* harmony export */   PLUGIN_FULLSCREEN: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.PLUGIN_FULLSCREEN),
+/* harmony export */   PLUGIN_INLINE: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.PLUGIN_INLINE),
+/* harmony export */   PLUGIN_SHARE: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.PLUGIN_SHARE),
+/* harmony export */   PLUGIN_SLIDESHOW: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.PLUGIN_SLIDESHOW),
+/* harmony export */   PLUGIN_THUMBNAILS: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.PLUGIN_THUMBNAILS),
+/* harmony export */   PLUGIN_ZOOM: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.PLUGIN_ZOOM),
+/* harmony export */   Portal: () => (/* binding */ Portal),
+/* harmony export */   PortalModule: () => (/* binding */ PortalModule),
+/* harmony export */   PreviousIcon: () => (/* binding */ PreviousIcon),
+/* harmony export */   Root: () => (/* binding */ Root),
+/* harmony export */   RootModule: () => (/* binding */ RootModule),
+/* harmony export */   SLIDE_STATUS_COMPLETE: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.SLIDE_STATUS_COMPLETE),
+/* harmony export */   SLIDE_STATUS_ERROR: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.SLIDE_STATUS_ERROR),
+/* harmony export */   SLIDE_STATUS_LOADING: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.SLIDE_STATUS_LOADING),
+/* harmony export */   SLIDE_STATUS_PLACEHOLDER: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.SLIDE_STATUS_PLACEHOLDER),
+/* harmony export */   SLIDE_STATUS_PLAYING: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.SLIDE_STATUS_PLAYING),
+/* harmony export */   SwipeState: () => (/* binding */ SwipeState),
+/* harmony export */   TimeoutsContext: () => (/* binding */ TimeoutsContext),
+/* harmony export */   TimeoutsProvider: () => (/* binding */ TimeoutsProvider),
+/* harmony export */   Toolbar: () => (/* binding */ Toolbar),
+/* harmony export */   ToolbarModule: () => (/* binding */ ToolbarModule),
+/* harmony export */   UNKNOWN_ACTION_TYPE: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.UNKNOWN_ACTION_TYPE),
+/* harmony export */   VK_ARROW_LEFT: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.VK_ARROW_LEFT),
+/* harmony export */   VK_ARROW_RIGHT: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.VK_ARROW_RIGHT),
+/* harmony export */   VK_ESCAPE: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.VK_ESCAPE),
+/* harmony export */   activeSlideStatus: () => (/* reexport safe */ _types_js__WEBPACK_IMPORTED_MODULE_2__.activeSlideStatus),
+/* harmony export */   addToolbarButton: () => (/* binding */ addToolbarButton),
+/* harmony export */   calculatePreload: () => (/* binding */ calculatePreload),
+/* harmony export */   cleanup: () => (/* binding */ cleanup),
+/* harmony export */   clsx: () => (/* binding */ clsx),
+/* harmony export */   composePrefix: () => (/* binding */ composePrefix),
+/* harmony export */   computeSlideRect: () => (/* binding */ computeSlideRect),
+/* harmony export */   createIcon: () => (/* binding */ createIcon),
+/* harmony export */   createIconDisabled: () => (/* binding */ createIconDisabled),
+/* harmony export */   createModule: () => (/* binding */ createModule),
+/* harmony export */   createNode: () => (/* binding */ createNode),
+/* harmony export */   cssClass: () => (/* binding */ cssClass),
+/* harmony export */   cssVar: () => (/* binding */ cssVar),
+/* harmony export */   "default": () => (/* binding */ Lightbox),
+/* harmony export */   devicePixelRatio: () => (/* binding */ devicePixelRatio),
+/* harmony export */   getSlide: () => (/* binding */ getSlide),
+/* harmony export */   getSlideIfPresent: () => (/* binding */ getSlideIfPresent),
+/* harmony export */   getSlideIndex: () => (/* binding */ getSlideIndex),
+/* harmony export */   getSlideKey: () => (/* binding */ getSlideKey),
+/* harmony export */   hasSlides: () => (/* binding */ hasSlides),
+/* harmony export */   hasWindow: () => (/* binding */ hasWindow),
+/* harmony export */   isImageFitCover: () => (/* binding */ isImageFitCover),
+/* harmony export */   isImageSlide: () => (/* binding */ isImageSlide),
+/* harmony export */   label: () => (/* binding */ label),
+/* harmony export */   makeComposePrefix: () => (/* binding */ makeComposePrefix),
+/* harmony export */   makeInertWhen: () => (/* binding */ makeInertWhen),
+/* harmony export */   makeUseContext: () => (/* binding */ makeUseContext),
+/* harmony export */   parseInt: () => (/* binding */ parseInt),
+/* harmony export */   parseLengthPercentage: () => (/* binding */ parseLengthPercentage),
+/* harmony export */   round: () => (/* binding */ round),
+/* harmony export */   setRef: () => (/* binding */ setRef),
+/* harmony export */   stopNavigationEventsPropagation: () => (/* binding */ stopNavigationEventsPropagation),
+/* harmony export */   useAnimation: () => (/* binding */ useAnimation),
+/* harmony export */   useContainerRect: () => (/* binding */ useContainerRect),
+/* harmony export */   useController: () => (/* binding */ useController),
+/* harmony export */   useDelay: () => (/* binding */ useDelay),
+/* harmony export */   useDocumentContext: () => (/* binding */ useDocumentContext),
+/* harmony export */   useEventCallback: () => (/* binding */ useEventCallback),
+/* harmony export */   useEvents: () => (/* binding */ useEvents),
+/* harmony export */   useForkRef: () => (/* binding */ useForkRef),
+/* harmony export */   useKeyboardNavigation: () => (/* binding */ useKeyboardNavigation),
+/* harmony export */   useLayoutEffect: () => (/* binding */ useLayoutEffect),
+/* harmony export */   useLightboxDispatch: () => (/* binding */ useLightboxDispatch),
+/* harmony export */   useLightboxProps: () => (/* binding */ useLightboxProps),
+/* harmony export */   useLightboxState: () => (/* binding */ useLightboxState),
+/* harmony export */   useLoseFocus: () => (/* binding */ useLoseFocus),
+/* harmony export */   useMotionPreference: () => (/* binding */ useMotionPreference),
+/* harmony export */   useNavigationState: () => (/* binding */ useNavigationState),
+/* harmony export */   usePointerEvents: () => (/* binding */ usePointerEvents),
+/* harmony export */   usePointerSwipe: () => (/* binding */ usePointerSwipe),
+/* harmony export */   usePreventWheelDefaults: () => (/* binding */ usePreventWheelDefaults),
+/* harmony export */   useRTL: () => (/* binding */ useRTL),
+/* harmony export */   useSensors: () => (/* binding */ useSensors),
+/* harmony export */   useThrottle: () => (/* binding */ useThrottle),
+/* harmony export */   useTimeouts: () => (/* binding */ useTimeouts),
+/* harmony export */   useWheelSwipe: () => (/* binding */ useWheelSwipe),
+/* harmony export */   withPlugins: () => (/* binding */ withPlugins)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var _types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./types.js */ "./node_modules/yet-another-react-lightbox/dist/types.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "react-dom");
+'use client';
+
+
+
+
+
+const cssPrefix$3 = "yarl__";
+function clsx(...classes) {
+    return [...classes].filter(Boolean).join(" ");
+}
+function cssClass(name) {
+    return `${cssPrefix$3}${name}`;
+}
+function cssVar(name) {
+    return `--${cssPrefix$3}${name}`;
+}
+function composePrefix(base, prefix) {
+    return `${base}${prefix ? `_${prefix}` : ""}`;
+}
+function makeComposePrefix(base) {
+    return (prefix) => composePrefix(base, prefix);
+}
+function label(labels, defaultLabel) {
+    var _a;
+    return (_a = labels === null || labels === void 0 ? void 0 : labels[defaultLabel]) !== null && _a !== void 0 ? _a : defaultLabel;
+}
+function cleanup(...cleaners) {
+    return () => {
+        cleaners.forEach((cleaner) => {
+            cleaner();
+        });
+    };
+}
+function makeUseContext(name, contextName, context) {
+    return () => {
+        const ctx = react__WEBPACK_IMPORTED_MODULE_0__.useContext(context);
+        if (!ctx) {
+            throw new Error(`${name} must be used within a ${contextName}.Provider`);
+        }
+        return ctx;
+    };
+}
+function hasWindow() {
+    return typeof window !== "undefined";
+}
+function round(value, decimals = 0) {
+    const factor = 10 ** decimals;
+    return Math.round((value + Number.EPSILON) * factor) / factor;
+}
+function isImageSlide(slide) {
+    return slide.type === undefined || slide.type === "image";
+}
+function isImageFitCover(image, imageFit) {
+    return image.imageFit === _types_js__WEBPACK_IMPORTED_MODULE_2__.IMAGE_FIT_COVER || (image.imageFit !== _types_js__WEBPACK_IMPORTED_MODULE_2__.IMAGE_FIT_CONTAIN && imageFit === _types_js__WEBPACK_IMPORTED_MODULE_2__.IMAGE_FIT_COVER);
+}
+function parseInt(value) {
+    return typeof value === "string" ? Number.parseInt(value, 10) : value;
+}
+function parseLengthPercentage(input) {
+    if (typeof input === "number") {
+        return { pixel: input };
+    }
+    if (typeof input === "string") {
+        const value = parseInt(input);
+        return input.endsWith("%") ? { percent: value } : { pixel: value };
+    }
+    return { pixel: 0 };
+}
+function computeSlideRect(containerRect, padding) {
+    const paddingValue = parseLengthPercentage(padding);
+    const paddingPixels = paddingValue.percent !== undefined ? (containerRect.width / 100) * paddingValue.percent : paddingValue.pixel;
+    return {
+        width: Math.max(containerRect.width - 2 * paddingPixels, 0),
+        height: Math.max(containerRect.height - 2 * paddingPixels, 0),
+    };
+}
+function devicePixelRatio() {
+    return (hasWindow() ? window === null || window === void 0 ? void 0 : window.devicePixelRatio : undefined) || 1;
+}
+function getSlideIndex(index, slidesCount) {
+    return slidesCount > 0 ? ((index % slidesCount) + slidesCount) % slidesCount : 0;
+}
+function hasSlides(slides) {
+    return slides.length > 0;
+}
+function getSlide(slides, index) {
+    return slides[getSlideIndex(index, slides.length)];
+}
+function getSlideIfPresent(slides, index) {
+    return hasSlides(slides) ? getSlide(slides, index) : undefined;
+}
+function getSlideKey(slide) {
+    return isImageSlide(slide) ? slide.src : undefined;
+}
+function addToolbarButton(toolbar, key, button) {
+    if (!button)
+        return toolbar;
+    const { buttons, ...restToolbar } = toolbar;
+    const index = buttons.findIndex((item) => item === key);
+    const buttonWithKey = react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(button) ? react__WEBPACK_IMPORTED_MODULE_0__.cloneElement(button, { key }, null) : button;
+    if (index >= 0) {
+        const result = [...buttons];
+        result.splice(index, 1, buttonWithKey);
+        return { buttons: result, ...restToolbar };
+    }
+    return { buttons: [buttonWithKey, ...buttons], ...restToolbar };
+}
+function stopNavigationEventsPropagation() {
+    const stopPropagation = (event) => {
+        event.stopPropagation();
+    };
+    return { onPointerDown: stopPropagation, onKeyDown: stopPropagation, onWheel: stopPropagation };
+}
+function calculatePreload(carousel, slides, minimum = 0) {
+    return Math.min(carousel.preload, Math.max(carousel.finite ? slides.length - 1 : Math.floor(slides.length / 2), minimum));
+}
+const isReact19 = Number(react__WEBPACK_IMPORTED_MODULE_0__.version.split(".")[0]) >= 19;
+function makeInertWhen(condition) {
+    const legacyValue = condition ? "" : undefined;
+    return { inert: isReact19 ? condition : legacyValue };
+}
+
+const LightboxDefaultProps = {
+    open: false,
+    close: () => { },
+    index: 0,
+    slides: [],
+    render: {},
+    plugins: [],
+    toolbar: { buttons: [_types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_CLOSE] },
+    labels: {},
+    animation: {
+        fade: 250,
+        swipe: 500,
+        easing: {
+            fade: "ease",
+            swipe: "ease-out",
+            navigation: "ease-in-out",
+        },
+    },
+    carousel: {
+        finite: false,
+        preload: 2,
+        padding: "16px",
+        spacing: "30%",
+        imageFit: _types_js__WEBPACK_IMPORTED_MODULE_2__.IMAGE_FIT_CONTAIN,
+        imageProps: {},
+    },
+    controller: {
+        ref: null,
+        focus: true,
+        aria: false,
+        touchAction: "none",
+        closeOnPullUp: false,
+        closeOnPullDown: false,
+        closeOnBackdropClick: false,
+        preventDefaultWheelX: true,
+        preventDefaultWheelY: false,
+    },
+    portal: {},
+    noScroll: {
+        disabled: false,
+    },
+    on: {},
+    styles: {},
+    className: "",
+};
+
+function createModule(name, component) {
+    return { name, component };
+}
+function createNode(module, children) {
+    return { module, children };
+}
+function traverseNode(node, target, apply) {
+    if (node.module.name === target) {
+        return apply(node);
+    }
+    if (node.children) {
+        return [
+            createNode(node.module, node.children.flatMap((n) => { var _a; return (_a = traverseNode(n, target, apply)) !== null && _a !== void 0 ? _a : []; })),
+        ];
+    }
+    return [node];
+}
+function traverse(nodes, target, apply) {
+    return nodes.flatMap((node) => { var _a; return (_a = traverseNode(node, target, apply)) !== null && _a !== void 0 ? _a : []; });
+}
+function withPlugins(root, plugins = [], augmentations = []) {
+    let config = root;
+    const contains = (target) => {
+        const nodes = [...config];
+        while (nodes.length > 0) {
+            const node = nodes.pop();
+            if ((node === null || node === void 0 ? void 0 : node.module.name) === target)
+                return true;
+            if (node === null || node === void 0 ? void 0 : node.children)
+                nodes.push(...node.children);
+        }
+        return false;
+    };
+    const addParent = (target, module) => {
+        if (target === "") {
+            config = [createNode(module, config)];
+            return;
+        }
+        config = traverse(config, target, (node) => [createNode(module, [node])]);
+    };
+    const append = (target, module) => {
+        config = traverse(config, target, (node) => [createNode(node.module, [createNode(module, node.children)])]);
+    };
+    const addChild = (target, module, precede) => {
+        config = traverse(config, target, (node) => {
+            var _a;
+            return [
+                createNode(node.module, [
+                    ...(precede ? [createNode(module)] : []),
+                    ...((_a = node.children) !== null && _a !== void 0 ? _a : []),
+                    ...(!precede ? [createNode(module)] : []),
+                ]),
+            ];
+        });
+    };
+    const addSibling = (target, module, precede) => {
+        config = traverse(config, target, (node) => [
+            ...(precede ? [createNode(module)] : []),
+            node,
+            ...(!precede ? [createNode(module)] : []),
+        ]);
+    };
+    const addModule = (module) => {
+        append(_types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_CONTROLLER, module);
+    };
+    const replace = (target, module) => {
+        config = traverse(config, target, (node) => [createNode(module, node.children)]);
+    };
+    const remove = (target) => {
+        config = traverse(config, target, (node) => node.children);
+    };
+    const augment = (augmentation) => {
+        augmentations.push(augmentation);
+    };
+    plugins.forEach((plugin) => {
+        plugin({
+            contains,
+            addParent,
+            append,
+            addChild,
+            addSibling,
+            addModule,
+            replace,
+            remove,
+            augment,
+        });
+    });
+    return {
+        config,
+        augmentation: (props) => augmentations.reduce((acc, augmentation) => augmentation(acc), props),
+    };
+}
+
+const DocumentContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext(null);
+const useDocumentContext = makeUseContext("useDocument", "DocumentContext", DocumentContext);
+function DocumentContextProvider({ nodeRef, children }) {
+    const context = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => {
+        const getOwnerDocument = (node) => { var _a; return ((_a = (node || nodeRef.current)) === null || _a === void 0 ? void 0 : _a.ownerDocument) || document; };
+        const getOwnerWindow = (node) => { var _a; return ((_a = getOwnerDocument(node)) === null || _a === void 0 ? void 0 : _a.defaultView) || window; };
+        return { getOwnerDocument, getOwnerWindow };
+    }, [nodeRef]);
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(DocumentContext.Provider, { value: context }, children);
+}
+
+const EventsContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext(null);
+const useEvents = makeUseContext("useEvents", "EventsContext", EventsContext);
+function EventsProvider({ children }) {
+    const [subscriptions] = react__WEBPACK_IMPORTED_MODULE_0__.useState({});
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => () => {
+        Object.keys(subscriptions).forEach((topic) => delete subscriptions[topic]);
+    }, [subscriptions]);
+    const context = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => {
+        const unsubscribe = (topic, callback) => {
+            var _a;
+            (_a = subscriptions[topic]) === null || _a === void 0 ? void 0 : _a.splice(0, subscriptions[topic].length, ...subscriptions[topic].filter((cb) => cb !== callback));
+        };
+        const subscribe = (topic, callback) => {
+            if (!subscriptions[topic]) {
+                subscriptions[topic] = [];
+            }
+            subscriptions[topic].push(callback);
+            return () => unsubscribe(topic, callback);
+        };
+        const publish = (...[topic, event]) => {
+            var _a;
+            (_a = subscriptions[topic]) === null || _a === void 0 ? void 0 : _a.forEach((callback) => callback(event));
+        };
+        return { publish, subscribe, unsubscribe };
+    }, [subscriptions]);
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(EventsContext.Provider, { value: context }, children);
+}
+
+const LightboxPropsContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext(null);
+const useLightboxProps = makeUseContext("useLightboxProps", "LightboxPropsContext", LightboxPropsContext);
+function LightboxPropsProvider({ children, ...props }) {
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(LightboxPropsContext.Provider, { value: props }, children);
+}
+
+const LightboxStateContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext(null);
+const useLightboxState = makeUseContext("useLightboxState", "LightboxStateContext", LightboxStateContext);
+const LightboxDispatchContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext(null);
+const useLightboxDispatch = makeUseContext("useLightboxDispatch", "LightboxDispatchContext", LightboxDispatchContext);
+function reducer(state, action) {
+    switch (action.type) {
+        case "swipe": {
+            const { slides } = state;
+            const increment = (action === null || action === void 0 ? void 0 : action.increment) || 0;
+            const globalIndex = state.globalIndex + increment;
+            const currentIndex = getSlideIndex(globalIndex, slides.length);
+            const currentSlide = getSlideIfPresent(slides, currentIndex);
+            const animation = increment || action.duration
+                ? {
+                    increment,
+                    duration: action.duration,
+                    easing: action.easing,
+                }
+                : undefined;
+            return { slides, currentIndex, globalIndex, currentSlide, animation };
+        }
+        case "update":
+            if (action.slides !== state.slides || action.index !== state.currentIndex) {
+                return {
+                    slides: action.slides,
+                    currentIndex: action.index,
+                    globalIndex: action.index,
+                    currentSlide: getSlideIfPresent(action.slides, action.index),
+                };
+            }
+            return state;
+        default:
+            throw new Error(_types_js__WEBPACK_IMPORTED_MODULE_2__.UNKNOWN_ACTION_TYPE);
+    }
+}
+function LightboxStateProvider({ slides, index, children }) {
+    const [state, dispatch] = react__WEBPACK_IMPORTED_MODULE_0__.useReducer(reducer, {
+        slides,
+        currentIndex: index,
+        globalIndex: index,
+        currentSlide: getSlideIfPresent(slides, index),
+    });
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+        dispatch({ type: "update", slides, index });
+    }, [slides, index]);
+    const context = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => ({ ...state, state, dispatch }), [state, dispatch]);
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(LightboxDispatchContext.Provider, { value: dispatch },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(LightboxStateContext.Provider, { value: context }, children)));
+}
+
+const TimeoutsContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext(null);
+const useTimeouts = makeUseContext("useTimeouts", "TimeoutsContext", TimeoutsContext);
+function TimeoutsProvider({ children }) {
+    const [timeouts] = react__WEBPACK_IMPORTED_MODULE_0__.useState([]);
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => () => {
+        timeouts.forEach((tid) => window.clearTimeout(tid));
+        timeouts.splice(0, timeouts.length);
+    }, [timeouts]);
+    const context = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => {
+        const removeTimeout = (id) => {
+            timeouts.splice(0, timeouts.length, ...timeouts.filter((tid) => tid !== id));
+        };
+        const setTimeout = (fn, delay) => {
+            const id = window.setTimeout(() => {
+                removeTimeout(id);
+                fn();
+            }, delay);
+            timeouts.push(id);
+            return id;
+        };
+        const clearTimeout = (id) => {
+            if (id !== undefined) {
+                removeTimeout(id);
+                window.clearTimeout(id);
+            }
+        };
+        return { setTimeout, clearTimeout };
+    }, [timeouts]);
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(TimeoutsContext.Provider, { value: context }, children);
+}
+
+const IconButton = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function IconButton({ label: label$1, className, icon: Icon, renderIcon, onClick, style, ...rest }, ref) {
+    const { styles, labels } = useLightboxProps();
+    const buttonLabel = label(labels, label$1);
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", { ref: ref, type: "button", title: buttonLabel, "aria-label": buttonLabel, className: clsx(cssClass(_types_js__WEBPACK_IMPORTED_MODULE_2__.ELEMENT_BUTTON), className), onClick: onClick, style: { ...style, ...styles.button }, ...rest }, renderIcon ? renderIcon() : react__WEBPACK_IMPORTED_MODULE_0__.createElement(Icon, { className: cssClass(_types_js__WEBPACK_IMPORTED_MODULE_2__.ELEMENT_ICON), style: styles.icon })));
+});
+
+function svgIcon(name, children) {
+    const icon = (props) => (react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", width: "24", height: "24", "aria-hidden": "true", focusable: "false", ...props }, children));
+    icon.displayName = name;
+    return icon;
+}
+function createIcon(name, glyph) {
+    return svgIcon(name, react__WEBPACK_IMPORTED_MODULE_0__.createElement("g", { fill: "currentColor" },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M0 0h24v24H0z", fill: "none" }),
+        glyph));
+}
+function createIconDisabled(name, glyph) {
+    return svgIcon(name, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("defs", null,
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement("mask", { id: "strike" },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M0 0h24v24H0z", fill: "white" }),
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M0 0L24 24", stroke: "black", strokeWidth: 4 }))),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M0.70707 2.121320L21.878680 23.292883", stroke: "currentColor", strokeWidth: 2 }),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("g", { fill: "currentColor", mask: "url(#strike)" },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M0 0h24v24H0z", fill: "none" }),
+            glyph)));
+}
+const CloseIcon = createIcon("Close", react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" }));
+const PreviousIcon = createIcon("Previous", react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" }));
+const NextIcon = createIcon("Next", react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" }));
+const LoadingIcon = createIcon("Loading", react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, Array.from({ length: 8 }).map((_, index, array) => (react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", { key: index, x1: "12", y1: "6.5", x2: "12", y2: "1.8", strokeLinecap: "round", strokeWidth: "2.6", stroke: "currentColor", strokeOpacity: (1 / array.length) * (index + 1), transform: `rotate(${(360 / array.length) * index}, 12, 12)` })))));
+const ErrorIcon = createIcon("Error", react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M21.9,21.9l-8.49-8.49l0,0L3.59,3.59l0,0L2.1,2.1L0.69,3.51L3,5.83V19c0,1.1,0.9,2,2,2h13.17l2.31,2.31L21.9,21.9z M5,18 l3.5-4.5l2.5,3.01L12.17,15l3,3H5z M21,18.17L5.83,3H19c1.1,0,2,0.9,2,2V18.17z" }));
+
+const useLayoutEffect = hasWindow() ? react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect : react__WEBPACK_IMPORTED_MODULE_0__.useEffect;
+
+function useMotionPreference() {
+    const [reduceMotion, setReduceMotion] = react__WEBPACK_IMPORTED_MODULE_0__.useState(false);
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+        var _a, _b;
+        const mediaQuery = (_a = window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, "(prefers-reduced-motion: reduce)");
+        setReduceMotion(mediaQuery === null || mediaQuery === void 0 ? void 0 : mediaQuery.matches);
+        const listener = (event) => setReduceMotion(event.matches);
+        (_b = mediaQuery === null || mediaQuery === void 0 ? void 0 : mediaQuery.addEventListener) === null || _b === void 0 ? void 0 : _b.call(mediaQuery, "change", listener);
+        return () => { var _a; return (_a = mediaQuery === null || mediaQuery === void 0 ? void 0 : mediaQuery.removeEventListener) === null || _a === void 0 ? void 0 : _a.call(mediaQuery, "change", listener); };
+    }, []);
+    return reduceMotion;
+}
+
+function currentTransformation(node) {
+    let x = 0;
+    let y = 0;
+    let z = 0;
+    const matrix = window.getComputedStyle(node).transform;
+    const matcher = matrix.match(/matrix.*\((.+)\)/);
+    if (matcher) {
+        const values = matcher[1].split(",").map(parseInt);
+        if (values.length === 6) {
+            x = values[4];
+            y = values[5];
+        }
+        else if (values.length === 16) {
+            x = values[12];
+            y = values[13];
+            z = values[14];
+        }
+    }
+    return { x, y, z };
+}
+function useAnimation(nodeRef, computeAnimation) {
+    const snapshot = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
+    const animation = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
+    const reduceMotion = useMotionPreference();
+    useLayoutEffect(() => {
+        var _a, _b, _c;
+        if (nodeRef.current && snapshot.current !== undefined && !reduceMotion) {
+            const { keyframes, duration, easing, onfinish } = computeAnimation(snapshot.current, nodeRef.current.getBoundingClientRect(), currentTransformation(nodeRef.current)) || {};
+            if (keyframes && duration) {
+                (_a = animation.current) === null || _a === void 0 ? void 0 : _a.cancel();
+                animation.current = undefined;
+                try {
+                    animation.current = (_c = (_b = nodeRef.current).animate) === null || _c === void 0 ? void 0 : _c.call(_b, keyframes, { duration, easing });
+                }
+                catch (err) {
+                    console.error(err);
+                }
+                if (animation.current) {
+                    animation.current.onfinish = () => {
+                        animation.current = undefined;
+                        onfinish === null || onfinish === void 0 ? void 0 : onfinish();
+                    };
+                }
+            }
+        }
+        snapshot.current = undefined;
+    });
+    return {
+        prepareAnimation: (currentSnapshot) => {
+            snapshot.current = currentSnapshot;
+        },
+        isAnimationPlaying: () => { var _a; return ((_a = animation.current) === null || _a === void 0 ? void 0 : _a.playState) === "running"; },
+    };
+}
+
+function useContainerRect() {
+    const containerRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+    const observerRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
+    const [containerRect, setContainerRect] = react__WEBPACK_IMPORTED_MODULE_0__.useState();
+    const setContainerRef = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((node) => {
+        containerRef.current = node;
+        if (observerRef.current) {
+            observerRef.current.disconnect();
+            observerRef.current = undefined;
+        }
+        const updateContainerRect = () => {
+            if (node) {
+                const styles = window.getComputedStyle(node);
+                const parse = (value) => parseFloat(value) || 0;
+                setContainerRect({
+                    width: Math.round(node.clientWidth - parse(styles.paddingLeft) - parse(styles.paddingRight)),
+                    height: Math.round(node.clientHeight - parse(styles.paddingTop) - parse(styles.paddingBottom)),
+                });
+            }
+            else {
+                setContainerRect(undefined);
+            }
+        };
+        updateContainerRect();
+        if (node && typeof ResizeObserver !== "undefined") {
+            observerRef.current = new ResizeObserver(updateContainerRect);
+            observerRef.current.observe(node);
+        }
+    }, []);
+    return { setContainerRef, containerRef, containerRect };
+}
+
+function useDelay() {
+    const timeoutId = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
+    const { setTimeout, clearTimeout } = useTimeouts();
+    return react__WEBPACK_IMPORTED_MODULE_0__.useCallback((callback, delay) => {
+        clearTimeout(timeoutId.current);
+        timeoutId.current = setTimeout(callback, delay > 0 ? delay : 0);
+    }, [setTimeout, clearTimeout]);
+}
+
+function useEventCallback(fn) {
+    const ref = react__WEBPACK_IMPORTED_MODULE_0__.useRef(fn);
+    useLayoutEffect(() => {
+        ref.current = fn;
+    });
+    return react__WEBPACK_IMPORTED_MODULE_0__.useCallback((...args) => { var _a; return (_a = ref.current) === null || _a === void 0 ? void 0 : _a.call(ref, ...args); }, []);
+}
+
+function setRef(ref, value) {
+    if (typeof ref === "function") {
+        ref(value);
+    }
+    else if (ref) {
+        ref.current = value;
+    }
+}
+function useForkRef(refA, refB) {
+    return react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => refA == null && refB == null
+        ? null
+        : (refValue) => {
+            setRef(refA, refValue);
+            setRef(refB, refValue);
+        }, [refA, refB]);
+}
+
+function useLoseFocus(focus, disabled = false) {
+    const focused = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
+    useLayoutEffect(() => {
+        if (disabled && focused.current) {
+            focused.current = false;
+            focus();
+        }
+    }, [disabled, focus]);
+    const onFocus = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => {
+        focused.current = true;
+    }, []);
+    const onBlur = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => {
+        focused.current = false;
+    }, []);
+    return { onFocus, onBlur };
+}
+
+function useRTL() {
+    const [isRTL, setIsRTL] = react__WEBPACK_IMPORTED_MODULE_0__.useState(false);
+    useLayoutEffect(() => {
+        setIsRTL(window.getComputedStyle(window.document.documentElement).direction === "rtl");
+    }, []);
+    return isRTL;
+}
+
+function useSensors() {
+    const [subscribers] = react__WEBPACK_IMPORTED_MODULE_0__.useState({});
+    const notifySubscribers = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((type, event) => {
+        var _a;
+        (_a = subscribers[type]) === null || _a === void 0 ? void 0 : _a.forEach((listener) => {
+            if (!event.isPropagationStopped())
+                listener(event);
+        });
+    }, [subscribers]);
+    const registerSensors = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => ({
+        onPointerDown: (event) => notifySubscribers(_types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_POINTER_DOWN, event),
+        onPointerMove: (event) => notifySubscribers(_types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_POINTER_MOVE, event),
+        onPointerUp: (event) => notifySubscribers(_types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_POINTER_UP, event),
+        onPointerLeave: (event) => notifySubscribers(_types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_POINTER_LEAVE, event),
+        onPointerCancel: (event) => notifySubscribers(_types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_POINTER_CANCEL, event),
+        onKeyDown: (event) => notifySubscribers(_types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_KEY_DOWN, event),
+        onKeyUp: (event) => notifySubscribers(_types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_KEY_UP, event),
+        onWheel: (event) => notifySubscribers(_types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_WHEEL, event),
+    }), [notifySubscribers]);
+    const subscribeSensors = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((type, callback) => {
+        if (!subscribers[type]) {
+            subscribers[type] = [];
+        }
+        subscribers[type].unshift(callback);
+        return () => {
+            const listeners = subscribers[type];
+            if (listeners) {
+                listeners.splice(0, listeners.length, ...listeners.filter((el) => el !== callback));
+            }
+        };
+    }, [subscribers]);
+    return { registerSensors, subscribeSensors };
+}
+
+function useThrottle(callback, delay) {
+    const lastCallbackTime = react__WEBPACK_IMPORTED_MODULE_0__.useRef(0);
+    const delayCallback = useDelay();
+    const executeCallback = useEventCallback((...args) => {
+        lastCallbackTime.current = Date.now();
+        callback(args);
+    });
+    return react__WEBPACK_IMPORTED_MODULE_0__.useCallback((...args) => {
+        delayCallback(() => {
+            executeCallback(args);
+        }, delay - (Date.now() - lastCallbackTime.current));
+    }, [delay, executeCallback, delayCallback]);
+}
+
+const slidePrefix = makeComposePrefix("slide");
+const slideImagePrefix = makeComposePrefix("slide_image");
+function ImageSlide({ slide: image, offset, render, rect, imageFit, imageProps, onClick, onLoad, onError, style, }) {
+    var _a, _b, _c, _d, _e, _f, _g;
+    const [status, setStatus] = react__WEBPACK_IMPORTED_MODULE_0__.useState(_types_js__WEBPACK_IMPORTED_MODULE_2__.SLIDE_STATUS_LOADING);
+    const { publish } = useEvents();
+    const { setTimeout } = useTimeouts();
+    const imageRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+        if (offset === 0) {
+            publish((0,_types_js__WEBPACK_IMPORTED_MODULE_2__.activeSlideStatus)(status));
+        }
+    }, [offset, status, publish]);
+    const handleLoading = useEventCallback((img) => {
+        ("decode" in img ? img.decode() : Promise.resolve())
+            .catch(() => { })
+            .then(() => {
+            if (!img.parentNode) {
+                return;
+            }
+            setStatus(_types_js__WEBPACK_IMPORTED_MODULE_2__.SLIDE_STATUS_COMPLETE);
+            setTimeout(() => {
+                onLoad === null || onLoad === void 0 ? void 0 : onLoad(img);
+            }, 0);
+        });
+    });
+    const setImageRef = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((img) => {
+        imageRef.current = img;
+        if (img === null || img === void 0 ? void 0 : img.complete) {
+            handleLoading(img);
+        }
+    }, [handleLoading]);
+    const handleOnLoad = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((event) => {
+        handleLoading(event.currentTarget);
+    }, [handleLoading]);
+    const handleOnError = useEventCallback(() => {
+        setStatus(_types_js__WEBPACK_IMPORTED_MODULE_2__.SLIDE_STATUS_ERROR);
+        onError === null || onError === void 0 ? void 0 : onError();
+    });
+    const cover = isImageFitCover(image, imageFit);
+    const nonInfinite = (value, fallback) => (Number.isFinite(value) ? value : fallback);
+    const maxWidth = nonInfinite(Math.max(...((_b = (_a = image.srcSet) === null || _a === void 0 ? void 0 : _a.map((x) => x.width)) !== null && _b !== void 0 ? _b : []).concat(image.width ? [image.width] : []).filter(Boolean)), ((_c = imageRef.current) === null || _c === void 0 ? void 0 : _c.naturalWidth) || 0);
+    const maxHeight = nonInfinite(Math.max(...((_e = (_d = image.srcSet) === null || _d === void 0 ? void 0 : _d.map((x) => x.height)) !== null && _e !== void 0 ? _e : []).concat(image.height ? [image.height] : []).filter(Boolean)), ((_f = imageRef.current) === null || _f === void 0 ? void 0 : _f.naturalHeight) || 0);
+    const defaultStyle = maxWidth && maxHeight
+        ? {
+            maxWidth: `min(${maxWidth}px, 100%)`,
+            maxHeight: `min(${maxHeight}px, 100%)`,
+        }
+        : {
+            maxWidth: "100%",
+            maxHeight: "100%",
+        };
+    const srcSet = (_g = image.srcSet) === null || _g === void 0 ? void 0 : _g.sort((a, b) => a.width - b.width).map((item) => `${item.src} ${item.width}w`).join(", ");
+    const estimateActualWidth = () => rect && !cover && image.width && image.height ? (rect.height / image.height) * image.width : Number.MAX_VALUE;
+    const sizes = srcSet && rect && hasWindow() ? `${Math.round(Math.min(estimateActualWidth(), rect.width))}px` : undefined;
+    const { style: imagePropsStyle, className: imagePropsClassName, ...restImageProps } = imageProps || {};
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", { ref: setImageRef, onLoad: handleOnLoad, onError: handleOnError, onClick: onClick, draggable: false, className: clsx(cssClass(slideImagePrefix()), cover && cssClass(slideImagePrefix("cover")), status !== _types_js__WEBPACK_IMPORTED_MODULE_2__.SLIDE_STATUS_COMPLETE && cssClass(slideImagePrefix("loading")), imagePropsClassName), style: { ...defaultStyle, ...style, ...imagePropsStyle }, ...restImageProps, alt: image.alt, sizes: sizes, srcSet: srcSet, src: image.src }),
+        status !== _types_js__WEBPACK_IMPORTED_MODULE_2__.SLIDE_STATUS_COMPLETE && (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: cssClass(slidePrefix(_types_js__WEBPACK_IMPORTED_MODULE_2__.SLIDE_STATUS_PLACEHOLDER)) },
+            status === _types_js__WEBPACK_IMPORTED_MODULE_2__.SLIDE_STATUS_LOADING &&
+                ((render === null || render === void 0 ? void 0 : render.iconLoading) ? (render.iconLoading()) : (react__WEBPACK_IMPORTED_MODULE_0__.createElement(LoadingIcon, { className: clsx(cssClass(_types_js__WEBPACK_IMPORTED_MODULE_2__.ELEMENT_ICON), cssClass(slidePrefix(_types_js__WEBPACK_IMPORTED_MODULE_2__.SLIDE_STATUS_LOADING))) }))),
+            status === _types_js__WEBPACK_IMPORTED_MODULE_2__.SLIDE_STATUS_ERROR &&
+                ((render === null || render === void 0 ? void 0 : render.iconError) ? (render.iconError()) : (react__WEBPACK_IMPORTED_MODULE_0__.createElement(ErrorIcon, { className: clsx(cssClass(_types_js__WEBPACK_IMPORTED_MODULE_2__.ELEMENT_ICON), cssClass(slidePrefix(_types_js__WEBPACK_IMPORTED_MODULE_2__.SLIDE_STATUS_ERROR))) })))))));
+}
+
+const LightboxRoot = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function LightboxRoot({ className, children, ...rest }, ref) {
+    const nodeRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(DocumentContextProvider, { nodeRef: nodeRef },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { ref: useForkRef(ref, nodeRef), className: clsx(cssClass("root"), className), ...rest }, children)));
+});
+
+var SwipeState;
+(function (SwipeState) {
+    SwipeState[SwipeState["NONE"] = 0] = "NONE";
+    SwipeState[SwipeState["SWIPE"] = 1] = "SWIPE";
+    SwipeState[SwipeState["PULL"] = 2] = "PULL";
+    SwipeState[SwipeState["ANIMATION"] = 3] = "ANIMATION";
+})(SwipeState || (SwipeState = {}));
+
+function usePointerEvents(subscribeSensors, onPointerDown, onPointerMove, onPointerUp, disabled) {
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => !disabled
+        ? cleanup(subscribeSensors(_types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_POINTER_DOWN, onPointerDown), subscribeSensors(_types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_POINTER_MOVE, onPointerMove), subscribeSensors(_types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_POINTER_UP, onPointerUp), subscribeSensors(_types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_POINTER_LEAVE, onPointerUp), subscribeSensors(_types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_POINTER_CANCEL, onPointerUp))
+        : () => { }, [subscribeSensors, onPointerDown, onPointerMove, onPointerUp, disabled]);
+}
+
+var Gesture;
+(function (Gesture) {
+    Gesture[Gesture["NONE"] = 0] = "NONE";
+    Gesture[Gesture["SWIPE"] = 1] = "SWIPE";
+    Gesture[Gesture["PULL"] = 2] = "PULL";
+})(Gesture || (Gesture = {}));
+const SWIPE_THRESHOLD = 30;
+function usePointerSwipe(subscribeSensors, isSwipeValid, containerWidth, swipeAnimationDuration, onSwipeStart, onSwipeProgress, onSwipeFinish, onSwipeCancel, pullUpEnabled, pullDownEnabled, onPullStart, onPullProgress, onPullFinish, onPullCancel) {
+    const offset = react__WEBPACK_IMPORTED_MODULE_0__.useRef(0);
+    const pointers = react__WEBPACK_IMPORTED_MODULE_0__.useRef([]);
+    const activePointer = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
+    const startTime = react__WEBPACK_IMPORTED_MODULE_0__.useRef(0);
+    const gesture = react__WEBPACK_IMPORTED_MODULE_0__.useRef(Gesture.NONE);
+    const clearPointer = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((event) => {
+        if (activePointer.current === event.pointerId) {
+            activePointer.current = undefined;
+            gesture.current = Gesture.NONE;
+        }
+        const currentPointers = pointers.current;
+        currentPointers.splice(0, currentPointers.length, ...currentPointers.filter((p) => p.pointerId !== event.pointerId));
+    }, []);
+    const addPointer = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((event) => {
+        clearPointer(event);
+        event.persist();
+        pointers.current.push(event);
+    }, [clearPointer]);
+    const onPointerDown = useEventCallback((event) => {
+        addPointer(event);
+    });
+    const exceedsPullThreshold = (value, threshold) => (pullDownEnabled && value > threshold) || (pullUpEnabled && value < -threshold);
+    const onPointerUp = useEventCallback((event) => {
+        if (pointers.current.find((x) => x.pointerId === event.pointerId) && activePointer.current === event.pointerId) {
+            const duration = Date.now() - startTime.current;
+            const currentOffset = offset.current;
+            if (gesture.current === Gesture.SWIPE) {
+                if (Math.abs(currentOffset) > 0.3 * containerWidth ||
+                    (Math.abs(currentOffset) > 5 && duration < swipeAnimationDuration)) {
+                    onSwipeFinish(currentOffset, duration);
+                }
+                else {
+                    onSwipeCancel(currentOffset);
+                }
+            }
+            else if (gesture.current === Gesture.PULL) {
+                if (exceedsPullThreshold(currentOffset, 2 * SWIPE_THRESHOLD)) {
+                    onPullFinish(currentOffset, duration);
+                }
+                else {
+                    onPullCancel(currentOffset);
+                }
+            }
+            offset.current = 0;
+            gesture.current = Gesture.NONE;
+        }
+        clearPointer(event);
+    });
+    const onPointerMove = useEventCallback((event) => {
+        const pointer = pointers.current.find((p) => p.pointerId === event.pointerId);
+        if (pointer) {
+            const isCurrentPointer = activePointer.current === event.pointerId;
+            if (event.buttons === 0) {
+                if (isCurrentPointer && offset.current !== 0) {
+                    onPointerUp(event);
+                }
+                else {
+                    clearPointer(pointer);
+                }
+                return;
+            }
+            const deltaX = event.clientX - pointer.clientX;
+            const deltaY = event.clientY - pointer.clientY;
+            if (activePointer.current === undefined) {
+                const startGesture = (newGesture) => {
+                    addPointer(event);
+                    activePointer.current = event.pointerId;
+                    startTime.current = Date.now();
+                    gesture.current = newGesture;
+                };
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > SWIPE_THRESHOLD && isSwipeValid(deltaX)) {
+                    startGesture(Gesture.SWIPE);
+                    onSwipeStart();
+                }
+                else if (Math.abs(deltaY) > Math.abs(deltaX) && exceedsPullThreshold(deltaY, SWIPE_THRESHOLD)) {
+                    startGesture(Gesture.PULL);
+                    onPullStart();
+                }
+            }
+            else if (isCurrentPointer) {
+                if (gesture.current === Gesture.SWIPE) {
+                    offset.current = deltaX;
+                    onSwipeProgress(deltaX);
+                }
+                else if (gesture.current === Gesture.PULL) {
+                    offset.current = deltaY;
+                    onPullProgress(deltaY);
+                }
+            }
+        }
+    });
+    usePointerEvents(subscribeSensors, onPointerDown, onPointerMove, onPointerUp);
+}
+
+function usePreventWheelDefaults({ preventDefaultWheelX, preventDefaultWheelY, }) {
+    const ref = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+    const listener = useEventCallback((event) => {
+        const horizontal = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+        if ((horizontal && preventDefaultWheelX) || (!horizontal && preventDefaultWheelY) || event.ctrlKey) {
+            event.preventDefault();
+        }
+    });
+    return react__WEBPACK_IMPORTED_MODULE_0__.useCallback((node) => {
+        var _a;
+        if (node) {
+            node.addEventListener("wheel", listener, { passive: false });
+        }
+        else {
+            (_a = ref.current) === null || _a === void 0 ? void 0 : _a.removeEventListener("wheel", listener);
+        }
+        ref.current = node;
+    }, [listener]);
+}
+
+function useWheelSwipe(swipeState, subscribeSensors, isSwipeValid, containerWidth, swipeAnimationDuration, onSwipeStart, onSwipeProgress, onSwipeFinish, onSwipeCancel) {
+    const offset = react__WEBPACK_IMPORTED_MODULE_0__.useRef(0);
+    const intent = react__WEBPACK_IMPORTED_MODULE_0__.useRef(0);
+    const intentCleanup = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
+    const resetCleanup = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
+    const wheelInertia = react__WEBPACK_IMPORTED_MODULE_0__.useRef(0);
+    const wheelInertiaCleanup = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
+    const startTime = react__WEBPACK_IMPORTED_MODULE_0__.useRef(0);
+    const { setTimeout, clearTimeout } = useTimeouts();
+    const cancelSwipeIntentCleanup = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => {
+        if (intentCleanup.current) {
+            clearTimeout(intentCleanup.current);
+            intentCleanup.current = undefined;
+        }
+    }, [clearTimeout]);
+    const cancelSwipeResetCleanup = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => {
+        if (resetCleanup.current) {
+            clearTimeout(resetCleanup.current);
+            resetCleanup.current = undefined;
+        }
+    }, [clearTimeout]);
+    const handleCleanup = useEventCallback(() => {
+        if (swipeState !== SwipeState.SWIPE) {
+            offset.current = 0;
+            startTime.current = 0;
+            cancelSwipeIntentCleanup();
+            cancelSwipeResetCleanup();
+        }
+    });
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(handleCleanup, [swipeState, handleCleanup]);
+    const handleCancelSwipe = useEventCallback((currentSwipeOffset) => {
+        resetCleanup.current = undefined;
+        if (offset.current === currentSwipeOffset) {
+            onSwipeCancel(offset.current);
+        }
+    });
+    const onWheel = useEventCallback((event) => {
+        if (event.ctrlKey) {
+            return;
+        }
+        if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
+            return;
+        }
+        const setWheelInertia = (inertia) => {
+            wheelInertia.current = inertia;
+            clearTimeout(wheelInertiaCleanup.current);
+            wheelInertiaCleanup.current =
+                inertia > 0
+                    ? setTimeout(() => {
+                        wheelInertia.current = 0;
+                        wheelInertiaCleanup.current = undefined;
+                    }, 300)
+                    : undefined;
+        };
+        if (swipeState === SwipeState.NONE) {
+            if (Math.abs(event.deltaX) <= 1.2 * Math.abs(wheelInertia.current)) {
+                setWheelInertia(event.deltaX);
+                return;
+            }
+            if (!isSwipeValid(-event.deltaX)) {
+                return;
+            }
+            intent.current += event.deltaX;
+            cancelSwipeIntentCleanup();
+            if (Math.abs(intent.current) > 30) {
+                intent.current = 0;
+                setWheelInertia(0);
+                startTime.current = Date.now();
+                onSwipeStart();
+            }
+            else {
+                const currentSwipeIntent = intent.current;
+                intentCleanup.current = setTimeout(() => {
+                    intentCleanup.current = undefined;
+                    if (currentSwipeIntent === intent.current) {
+                        intent.current = 0;
+                    }
+                }, swipeAnimationDuration);
+            }
+        }
+        else if (swipeState === SwipeState.SWIPE) {
+            let newSwipeOffset = offset.current - event.deltaX;
+            newSwipeOffset = Math.min(Math.abs(newSwipeOffset), containerWidth) * Math.sign(newSwipeOffset);
+            offset.current = newSwipeOffset;
+            onSwipeProgress(newSwipeOffset);
+            cancelSwipeResetCleanup();
+            if (Math.abs(newSwipeOffset) > 0.2 * containerWidth) {
+                setWheelInertia(event.deltaX);
+                onSwipeFinish(newSwipeOffset, Date.now() - startTime.current);
+                return;
+            }
+            resetCleanup.current = setTimeout(() => handleCancelSwipe(newSwipeOffset), 2 * swipeAnimationDuration);
+        }
+        else {
+            setWheelInertia(event.deltaX);
+        }
+    });
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => subscribeSensors(_types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_WHEEL, onWheel), [subscribeSensors, onWheel]);
+}
+
+const cssContainerPrefix = makeComposePrefix("container");
+const ControllerContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext(null);
+const useController = makeUseContext("useController", "ControllerContext", ControllerContext);
+function Controller({ children, ...props }) {
+    var _a;
+    const { carousel, animation, controller, on, styles, render } = props;
+    const { closeOnPullUp, closeOnPullDown, preventDefaultWheelX, preventDefaultWheelY } = controller;
+    const [toolbarWidth, setToolbarWidth] = react__WEBPACK_IMPORTED_MODULE_0__.useState();
+    const state = useLightboxState();
+    const dispatch = useLightboxDispatch();
+    const [swipeState, setSwipeState] = react__WEBPACK_IMPORTED_MODULE_0__.useState(SwipeState.NONE);
+    const swipeOffset = react__WEBPACK_IMPORTED_MODULE_0__.useRef(0);
+    const pullOffset = react__WEBPACK_IMPORTED_MODULE_0__.useRef(0);
+    const pullOpacity = react__WEBPACK_IMPORTED_MODULE_0__.useRef(1);
+    const { registerSensors, subscribeSensors } = useSensors();
+    const { subscribe, publish } = useEvents();
+    const cleanupAnimationIncrement = useDelay();
+    const cleanupSwipeOffset = useDelay();
+    const cleanupPullOffset = useDelay();
+    const { containerRef, setContainerRef, containerRect } = useContainerRect();
+    const handleContainerRef = useForkRef(usePreventWheelDefaults({ preventDefaultWheelX, preventDefaultWheelY }), setContainerRef);
+    const carouselRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+    const setCarouselRef = useForkRef(carouselRef, undefined);
+    const { getOwnerDocument } = useDocumentContext();
+    const isRTL = useRTL();
+    const rtl = (value) => (isRTL ? -1 : 1) * (typeof value === "number" ? value : 1);
+    const focus = useEventCallback(() => { var _a; return (_a = containerRef.current) === null || _a === void 0 ? void 0 : _a.focus(); });
+    const getLightboxProps = useEventCallback(() => props);
+    const getLightboxState = useEventCallback(() => state);
+    const prev = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((params) => publish(_types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_PREV, params), [publish]);
+    const next = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((params) => publish(_types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_NEXT, params), [publish]);
+    const close = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => publish(_types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_CLOSE), [publish]);
+    const isSwipeValid = (offset) => !(carousel.finite &&
+        ((rtl(offset) > 0 && state.currentIndex === 0) ||
+            (rtl(offset) < 0 && state.currentIndex === state.slides.length - 1)));
+    const setSwipeOffset = (offset) => {
+        var _a;
+        swipeOffset.current = offset;
+        (_a = containerRef.current) === null || _a === void 0 ? void 0 : _a.style.setProperty(cssVar("swipe_offset"), `${Math.round(offset)}px`);
+    };
+    const setPullOffset = (offset) => {
+        var _a, _b;
+        pullOffset.current = offset;
+        pullOpacity.current = (() => {
+            const threshold = 60;
+            const minOpacity = 0.5;
+            const offsetValue = (() => {
+                if (closeOnPullDown && offset > 0)
+                    return offset;
+                if (closeOnPullUp && offset < 0)
+                    return -offset;
+                return 0;
+            })();
+            return Math.min(Math.max(round(1 - (offsetValue / threshold) * (1 - minOpacity), 2), minOpacity), 1);
+        })();
+        (_a = containerRef.current) === null || _a === void 0 ? void 0 : _a.style.setProperty(cssVar("pull_offset"), `${Math.round(offset)}px`);
+        (_b = containerRef.current) === null || _b === void 0 ? void 0 : _b.style.setProperty(cssVar("pull_opacity"), `${pullOpacity.current}`);
+    };
+    const { prepareAnimation: preparePullAnimation } = useAnimation(carouselRef, (snapshot, rect, translate) => {
+        if (carouselRef.current && containerRect) {
+            return {
+                keyframes: [
+                    {
+                        transform: `translate(0, ${snapshot.rect.y - rect.y + translate.y}px)`,
+                        opacity: snapshot.opacity,
+                    },
+                    { transform: "translate(0, 0)", opacity: 1 },
+                ],
+                duration: snapshot.duration,
+                easing: animation.easing.fade,
+            };
+        }
+        return undefined;
+    });
+    const pull = (offset, cancel) => {
+        if (closeOnPullUp || closeOnPullDown) {
+            setPullOffset(offset);
+            let duration = 0;
+            if (carouselRef.current) {
+                duration = animation.fade * (cancel ? 2 : 1);
+                preparePullAnimation({
+                    rect: carouselRef.current.getBoundingClientRect(),
+                    opacity: pullOpacity.current,
+                    duration,
+                });
+            }
+            cleanupPullOffset(() => {
+                setPullOffset(0);
+                setSwipeState(SwipeState.NONE);
+            }, duration);
+            setSwipeState(SwipeState.ANIMATION);
+            if (!cancel) {
+                close();
+            }
+        }
+    };
+    const { prepareAnimation, isAnimationPlaying } = useAnimation(carouselRef, (snapshot, rect, translate) => {
+        var _a;
+        if (carouselRef.current && containerRect && ((_a = state.animation) === null || _a === void 0 ? void 0 : _a.duration)) {
+            const parsedSpacing = parseLengthPercentage(carousel.spacing);
+            const spacingValue = (parsedSpacing.percent ? (parsedSpacing.percent * containerRect.width) / 100 : parsedSpacing.pixel) || 0;
+            return {
+                keyframes: [
+                    {
+                        transform: `translate(${rtl(state.globalIndex - snapshot.index) * (containerRect.width + spacingValue) +
+                            snapshot.rect.x -
+                            rect.x +
+                            translate.x}px, 0)`,
+                    },
+                    { transform: "translate(0, 0)" },
+                ],
+                duration: state.animation.duration,
+                easing: state.animation.easing,
+            };
+        }
+        return undefined;
+    });
+    const swipe = useEventCallback((action) => {
+        var _a, _b;
+        const currentSwipeOffset = action.offset || 0;
+        const swipeDuration = !currentSwipeOffset ? ((_a = animation.navigation) !== null && _a !== void 0 ? _a : animation.swipe) : animation.swipe;
+        const swipeEasing = !currentSwipeOffset && !isAnimationPlaying() ? animation.easing.navigation : animation.easing.swipe;
+        let { direction } = action;
+        const count = (_b = action.count) !== null && _b !== void 0 ? _b : 1;
+        let newSwipeState = SwipeState.ANIMATION;
+        let newSwipeAnimationDuration = swipeDuration * count;
+        if (!direction) {
+            const containerWidth = containerRect === null || containerRect === void 0 ? void 0 : containerRect.width;
+            const elapsedTime = action.duration || 0;
+            const expectedTime = containerWidth
+                ? (swipeDuration / containerWidth) * Math.abs(currentSwipeOffset)
+                : swipeDuration;
+            if (count !== 0) {
+                if (elapsedTime < expectedTime) {
+                    newSwipeAnimationDuration =
+                        (newSwipeAnimationDuration / expectedTime) * Math.max(elapsedTime, expectedTime / 5);
+                }
+                else if (containerWidth) {
+                    newSwipeAnimationDuration =
+                        (swipeDuration / containerWidth) * (containerWidth - Math.abs(currentSwipeOffset));
+                }
+                direction = rtl(currentSwipeOffset) > 0 ? _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_PREV : _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_NEXT;
+            }
+            else {
+                newSwipeAnimationDuration = swipeDuration / 2;
+            }
+        }
+        let increment = 0;
+        if (direction === _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_PREV) {
+            if (isSwipeValid(rtl(1))) {
+                increment = -count;
+            }
+            else {
+                newSwipeState = SwipeState.NONE;
+                newSwipeAnimationDuration = swipeDuration;
+            }
+        }
+        else if (direction === _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_NEXT) {
+            if (isSwipeValid(rtl(-1))) {
+                increment = count;
+            }
+            else {
+                newSwipeState = SwipeState.NONE;
+                newSwipeAnimationDuration = swipeDuration;
+            }
+        }
+        newSwipeAnimationDuration = Math.round(newSwipeAnimationDuration);
+        cleanupSwipeOffset(() => {
+            setSwipeOffset(0);
+            setSwipeState(SwipeState.NONE);
+        }, newSwipeAnimationDuration);
+        if (carouselRef.current) {
+            prepareAnimation({
+                rect: carouselRef.current.getBoundingClientRect(),
+                index: state.globalIndex,
+            });
+        }
+        setSwipeState(newSwipeState);
+        publish(_types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_SWIPE, {
+            type: "swipe",
+            increment,
+            duration: newSwipeAnimationDuration,
+            easing: swipeEasing,
+        });
+    });
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+        var _a, _b;
+        if (((_a = state.animation) === null || _a === void 0 ? void 0 : _a.increment) && ((_b = state.animation) === null || _b === void 0 ? void 0 : _b.duration)) {
+            cleanupAnimationIncrement(() => dispatch({ type: "swipe", increment: 0 }), state.animation.duration);
+        }
+    }, [state.animation, dispatch, cleanupAnimationIncrement]);
+    const swipeParams = [
+        subscribeSensors,
+        isSwipeValid,
+        (containerRect === null || containerRect === void 0 ? void 0 : containerRect.width) || 0,
+        animation.swipe,
+        () => setSwipeState(SwipeState.SWIPE),
+        (offset) => setSwipeOffset(offset),
+        (offset, duration) => swipe({ offset, duration, count: 1 }),
+        (offset) => swipe({ offset, count: 0 }),
+    ];
+    const pullParams = [
+        () => {
+            if (closeOnPullDown) {
+                setSwipeState(SwipeState.PULL);
+            }
+        },
+        (offset) => setPullOffset(offset),
+        (offset) => pull(offset),
+        (offset) => pull(offset, true),
+    ];
+    usePointerSwipe(...swipeParams, closeOnPullUp, closeOnPullDown, ...pullParams);
+    useWheelSwipe(swipeState, ...swipeParams);
+    const focusOnMount = useEventCallback(() => {
+        if (controller.focus &&
+            getOwnerDocument().querySelector(`.${cssClass(_types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_PORTAL)} .${cssClass(cssContainerPrefix())}`)) {
+            focus();
+        }
+    });
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(focusOnMount, [focusOnMount]);
+    const onViewCallback = useEventCallback(() => {
+        var _a;
+        (_a = on.view) === null || _a === void 0 ? void 0 : _a.call(on, { index: state.currentIndex });
+    });
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(onViewCallback, [state.globalIndex, onViewCallback]);
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => cleanup(subscribe(_types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_PREV, (action) => swipe({ direction: _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_PREV, ...action })), subscribe(_types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_NEXT, (action) => swipe({ direction: _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_NEXT, ...action })), subscribe(_types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_SWIPE, (action) => dispatch(action))), [subscribe, swipe, dispatch]);
+    const context = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => ({
+        prev,
+        next,
+        close,
+        focus,
+        slideRect: containerRect ? computeSlideRect(containerRect, carousel.padding) : { width: 0, height: 0 },
+        containerRect: containerRect || { width: 0, height: 0 },
+        subscribeSensors,
+        containerRef,
+        setCarouselRef,
+        toolbarWidth,
+        setToolbarWidth,
+    }), [
+        prev,
+        next,
+        close,
+        focus,
+        subscribeSensors,
+        containerRect,
+        containerRef,
+        setCarouselRef,
+        toolbarWidth,
+        setToolbarWidth,
+        carousel.padding,
+    ]);
+    react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle(controller.ref, () => ({
+        prev,
+        next,
+        close,
+        focus,
+        getLightboxProps,
+        getLightboxState,
+    }), [prev, next, close, focus, getLightboxProps, getLightboxState]);
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { ref: handleContainerRef, className: clsx(cssClass(cssContainerPrefix()), cssClass(_types_js__WEBPACK_IMPORTED_MODULE_2__.CLASS_FLEX_CENTER)), style: {
+            ...(swipeState === SwipeState.SWIPE
+                ? { [cssVar("swipe_offset")]: `${Math.round(swipeOffset.current)}px` }
+                : null),
+            ...(swipeState === SwipeState.PULL
+                ? {
+                    [cssVar("pull_offset")]: `${Math.round(pullOffset.current)}px`,
+                    [cssVar("pull_opacity")]: `${pullOpacity.current}`,
+                }
+                : null),
+            ...(controller.touchAction !== "none" ? { [cssVar("controller_touch_action")]: controller.touchAction } : null),
+            ...styles.container,
+        }, ...(controller.aria ? { role: "presentation", "aria-live": "polite" } : null), tabIndex: -1, ...registerSensors }, containerRect && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(ControllerContext.Provider, { value: context },
+        children, (_a = render.controls) === null || _a === void 0 ? void 0 :
+        _a.call(render)))));
+}
+const ControllerModule = createModule(_types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_CONTROLLER, Controller);
+
+function cssPrefix$2(value) {
+    return composePrefix(_types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_CAROUSEL, value);
+}
+function cssSlidePrefix(value) {
+    return composePrefix("slide", value);
+}
+function CarouselSlide({ slide, offset }) {
+    const containerRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+    const { currentIndex } = useLightboxState();
+    const { slideRect, close, focus } = useController();
+    const { render, carousel: { imageFit, imageProps }, on: { click: onClick }, controller: { closeOnBackdropClick }, styles: { slide: style }, } = useLightboxProps();
+    const { getOwnerDocument } = useDocumentContext();
+    const offscreen = offset !== 0;
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+        var _a;
+        if (offscreen && ((_a = containerRef.current) === null || _a === void 0 ? void 0 : _a.contains(getOwnerDocument().activeElement))) {
+            focus();
+        }
+    }, [offscreen, focus, getOwnerDocument]);
+    const renderSlide = () => {
+        var _a, _b, _c, _d;
+        let rendered = (_a = render.slide) === null || _a === void 0 ? void 0 : _a.call(render, { slide, offset, rect: slideRect });
+        if (!rendered && isImageSlide(slide)) {
+            rendered = (react__WEBPACK_IMPORTED_MODULE_0__.createElement(ImageSlide, { slide: slide, offset: offset, render: render, rect: slideRect, imageFit: imageFit, imageProps: imageProps, onClick: !offscreen ? () => onClick === null || onClick === void 0 ? void 0 : onClick({ index: currentIndex }) : undefined }));
+        }
+        return rendered ? (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (_b = render.slideHeader) === null || _b === void 0 ? void 0 :
+            _b.call(render, { slide }),
+            ((_c = render.slideContainer) !== null && _c !== void 0 ? _c : (({ children }) => children))({ slide, children: rendered }), (_d = render.slideFooter) === null || _d === void 0 ? void 0 :
+            _d.call(render, { slide }))) : null;
+    };
+    const handleBackdropClick = (event) => {
+        const container = containerRef.current;
+        const target = event.target instanceof HTMLElement ? event.target : undefined;
+        if (closeOnBackdropClick &&
+            target &&
+            container &&
+            (target === container ||
+                (Array.from(container.children).find((x) => x === target) &&
+                    target.classList.contains(cssClass(_types_js__WEBPACK_IMPORTED_MODULE_2__.CLASS_SLIDE_WRAPPER))))) {
+            close();
+        }
+    };
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { ref: containerRef, className: clsx(cssClass(cssSlidePrefix()), !offscreen && cssClass(cssSlidePrefix("current")), cssClass(_types_js__WEBPACK_IMPORTED_MODULE_2__.CLASS_FLEX_CENTER)), ...makeInertWhen(offscreen), onClick: handleBackdropClick, style: style }, renderSlide()));
+}
+function Placeholder() {
+    const style = useLightboxProps().styles.slide;
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: cssClass("slide"), style: style });
+}
+function Carousel({ carousel }) {
+    const { slides, currentIndex, globalIndex } = useLightboxState();
+    const { setCarouselRef } = useController();
+    const spacingValue = parseLengthPercentage(carousel.spacing);
+    const paddingValue = parseLengthPercentage(carousel.padding);
+    const preload = calculatePreload(carousel, slides, 1);
+    const items = [];
+    if (hasSlides(slides)) {
+        for (let index = currentIndex - preload; index <= currentIndex + preload; index += 1) {
+            const slide = getSlide(slides, index);
+            const key = globalIndex - currentIndex + index;
+            const placeholder = carousel.finite && (index < 0 || index > slides.length - 1);
+            items.push(!placeholder
+                ? {
+                    key: [`${key}`, getSlideKey(slide)].filter(Boolean).join("|"),
+                    offset: index - currentIndex,
+                    slide,
+                }
+                : { key });
+        }
+    }
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { ref: setCarouselRef, className: clsx(cssClass(cssPrefix$2()), items.length > 0 && cssClass(cssPrefix$2("with_slides"))), style: {
+            [`${cssVar(cssPrefix$2("slides_count"))}`]: items.length,
+            [`${cssVar(cssPrefix$2("spacing_px"))}`]: spacingValue.pixel || 0,
+            [`${cssVar(cssPrefix$2("spacing_percent"))}`]: spacingValue.percent || 0,
+            [`${cssVar(cssPrefix$2("padding_px"))}`]: paddingValue.pixel || 0,
+            [`${cssVar(cssPrefix$2("padding_percent"))}`]: paddingValue.percent || 0,
+        } }, items.map(({ key, slide, offset }) => slide ? react__WEBPACK_IMPORTED_MODULE_0__.createElement(CarouselSlide, { key: key, slide: slide, offset: offset }) : react__WEBPACK_IMPORTED_MODULE_0__.createElement(Placeholder, { key: key }))));
+}
+const CarouselModule = createModule(_types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_CAROUSEL, Carousel);
+
+function useNavigationState() {
+    const { carousel } = useLightboxProps();
+    const { slides, currentIndex } = useLightboxState();
+    const prevDisabled = slides.length === 0 || (carousel.finite && currentIndex === 0);
+    const nextDisabled = slides.length === 0 || (carousel.finite && currentIndex === slides.length - 1);
+    return { prevDisabled, nextDisabled };
+}
+
+function useKeyboardNavigation(subscribeSensors) {
+    var _a;
+    const isRTL = useRTL();
+    const { publish } = useEvents();
+    const { animation } = useLightboxProps();
+    const { prevDisabled, nextDisabled } = useNavigationState();
+    const throttle = ((_a = animation.navigation) !== null && _a !== void 0 ? _a : animation.swipe) / 2;
+    const prev = useThrottle(() => publish(_types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_PREV), throttle);
+    const next = useThrottle(() => publish(_types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_NEXT), throttle);
+    const handleKeyDown = useEventCallback((event) => {
+        switch (event.key) {
+            case _types_js__WEBPACK_IMPORTED_MODULE_2__.VK_ESCAPE:
+                publish(_types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_CLOSE);
+                break;
+            case _types_js__WEBPACK_IMPORTED_MODULE_2__.VK_ARROW_LEFT:
+                if (!(isRTL ? nextDisabled : prevDisabled))
+                    (isRTL ? next : prev)();
+                break;
+            case _types_js__WEBPACK_IMPORTED_MODULE_2__.VK_ARROW_RIGHT:
+                if (!(isRTL ? prevDisabled : nextDisabled))
+                    (isRTL ? prev : next)();
+                break;
+            default:
+        }
+    });
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => subscribeSensors(_types_js__WEBPACK_IMPORTED_MODULE_2__.EVENT_ON_KEY_DOWN, handleKeyDown), [subscribeSensors, handleKeyDown]);
+}
+
+function NavigationButton({ label, icon, renderIcon, action, onClick, disabled, style }) {
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(IconButton, { label: label, icon: icon, renderIcon: renderIcon, className: cssClass(`navigation_${action}`), disabled: disabled, onClick: onClick, style: style, ...useLoseFocus(useController().focus, disabled) }));
+}
+function Navigation({ render: { buttonPrev, buttonNext, iconPrev, iconNext }, styles }) {
+    const { prev, next, subscribeSensors } = useController();
+    const { prevDisabled, nextDisabled } = useNavigationState();
+    useKeyboardNavigation(subscribeSensors);
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
+        buttonPrev ? (buttonPrev()) : (react__WEBPACK_IMPORTED_MODULE_0__.createElement(NavigationButton, { label: "Previous", action: _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_PREV, icon: PreviousIcon, renderIcon: iconPrev, style: styles.navigationPrev, disabled: prevDisabled, onClick: prev })),
+        buttonNext ? (buttonNext()) : (react__WEBPACK_IMPORTED_MODULE_0__.createElement(NavigationButton, { label: "Next", action: _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_NEXT, icon: NextIcon, renderIcon: iconNext, style: styles.navigationNext, disabled: nextDisabled, onClick: next }))));
+}
+const NavigationModule = createModule(_types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_NAVIGATION, Navigation);
+
+const noScroll = cssClass(_types_js__WEBPACK_IMPORTED_MODULE_2__.CLASS_NO_SCROLL);
+const noScrollPadding = cssClass(_types_js__WEBPACK_IMPORTED_MODULE_2__.CLASS_NO_SCROLL_PADDING);
+function isHTMLElement(element) {
+    return "style" in element;
+}
+function padScrollbar(element, padding, rtl) {
+    const styles = window.getComputedStyle(element);
+    const property = rtl ? "padding-left" : "padding-right";
+    const computedValue = rtl ? styles.paddingLeft : styles.paddingRight;
+    const originalValue = element.style.getPropertyValue(property);
+    element.style.setProperty(property, `${(parseInt(computedValue) || 0) + padding}px`);
+    return () => {
+        if (originalValue) {
+            element.style.setProperty(property, originalValue);
+        }
+        else {
+            element.style.removeProperty(property);
+        }
+    };
+}
+function NoScroll({ noScroll: { disabled }, children }) {
+    const rtl = useRTL();
+    const { getOwnerDocument, getOwnerWindow } = useDocumentContext();
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+        if (disabled)
+            return () => { };
+        const cleanup = [];
+        const ownerWindow = getOwnerWindow();
+        const { body, documentElement } = getOwnerDocument();
+        const scrollbar = Math.round(ownerWindow.innerWidth - documentElement.clientWidth);
+        if (scrollbar > 0) {
+            cleanup.push(padScrollbar(body, scrollbar, rtl));
+            const elements = body.getElementsByTagName("*");
+            for (let i = 0; i < elements.length; i += 1) {
+                const element = elements[i];
+                if (isHTMLElement(element) &&
+                    ownerWindow.getComputedStyle(element).getPropertyValue("position") === "fixed" &&
+                    !element.classList.contains(noScrollPadding)) {
+                    cleanup.push(padScrollbar(element, scrollbar, rtl));
+                }
+            }
+        }
+        body.classList.add(noScroll);
+        return () => {
+            body.classList.remove(noScroll);
+            cleanup.forEach((clean) => clean());
+        };
+    }, [rtl, disabled, getOwnerDocument, getOwnerWindow]);
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, children);
+}
+const NoScrollModule = createModule(_types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_NO_SCROLL, NoScroll);
+
+function cssPrefix$1(value) {
+    return composePrefix(_types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_PORTAL, value);
+}
+function setAttribute(element, attribute, value) {
+    const previousValue = element.getAttribute(attribute);
+    element.setAttribute(attribute, value);
+    return () => {
+        if (previousValue) {
+            element.setAttribute(attribute, previousValue);
+        }
+        else {
+            element.removeAttribute(attribute);
+        }
+    };
+}
+function Portal({ children, animation, styles, className, on, portal, close }) {
+    const [mounted, setMounted] = react__WEBPACK_IMPORTED_MODULE_0__.useState(false);
+    const [visible, setVisible] = react__WEBPACK_IMPORTED_MODULE_0__.useState(false);
+    const cleanup = react__WEBPACK_IMPORTED_MODULE_0__.useRef([]);
+    const restoreFocus = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+    const { setTimeout } = useTimeouts();
+    const { subscribe } = useEvents();
+    const reduceMotion = useMotionPreference();
+    const animationDuration = !reduceMotion ? animation.fade : 0;
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+        setMounted(true);
+        return () => {
+            setMounted(false);
+            setVisible(false);
+        };
+    }, []);
+    const handleCleanup = useEventCallback(() => {
+        cleanup.current.forEach((clean) => clean());
+        cleanup.current = [];
+    });
+    const handleClose = useEventCallback(() => {
+        var _a;
+        setVisible(false);
+        handleCleanup();
+        (_a = on.exiting) === null || _a === void 0 ? void 0 : _a.call(on);
+        setTimeout(() => {
+            var _a;
+            (_a = on.exited) === null || _a === void 0 ? void 0 : _a.call(on);
+            close();
+        }, animationDuration);
+    });
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => subscribe(_types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_CLOSE, handleClose), [subscribe, handleClose]);
+    const handleEnter = useEventCallback((node) => {
+        var _a, _b, _c;
+        node.scrollTop;
+        setVisible(true);
+        (_a = on.entering) === null || _a === void 0 ? void 0 : _a.call(on);
+        const elements = (_c = (_b = node.parentNode) === null || _b === void 0 ? void 0 : _b.children) !== null && _c !== void 0 ? _c : [];
+        for (let i = 0; i < elements.length; i += 1) {
+            const element = elements[i];
+            if (["TEMPLATE", "SCRIPT", "STYLE"].indexOf(element.tagName) === -1 && element !== node) {
+                cleanup.current.push(setAttribute(element, "inert", ""));
+                cleanup.current.push(setAttribute(element, "aria-hidden", "true"));
+            }
+        }
+        cleanup.current.push(() => {
+            var _a, _b;
+            (_b = (_a = restoreFocus.current) === null || _a === void 0 ? void 0 : _a.focus) === null || _b === void 0 ? void 0 : _b.call(_a);
+        });
+        setTimeout(() => {
+            var _a;
+            (_a = on.entered) === null || _a === void 0 ? void 0 : _a.call(on);
+        }, animationDuration);
+    });
+    const handleRef = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((node) => {
+        if (node) {
+            handleEnter(node);
+        }
+        else {
+            handleCleanup();
+        }
+    }, [handleEnter, handleCleanup]);
+    return mounted
+        ? (0,react_dom__WEBPACK_IMPORTED_MODULE_1__.createPortal)(react__WEBPACK_IMPORTED_MODULE_0__.createElement(LightboxRoot, { ref: handleRef, className: clsx(className, cssClass(cssPrefix$1()), cssClass(_types_js__WEBPACK_IMPORTED_MODULE_2__.CLASS_NO_SCROLL_PADDING), visible && cssClass(cssPrefix$1("open"))), role: "presentation", "aria-live": "polite", style: {
+                ...(animation.fade !== LightboxDefaultProps.animation.fade
+                    ? { [cssVar("fade_animation_duration")]: `${animationDuration}ms` }
+                    : null),
+                ...(animation.easing.fade !== LightboxDefaultProps.animation.easing.fade
+                    ? { [cssVar("fade_animation_timing_function")]: animation.easing.fade }
+                    : null),
+                ...styles.root,
+            }, onFocus: (event) => {
+                if (!restoreFocus.current) {
+                    restoreFocus.current = event.relatedTarget;
+                }
+            } }, children), portal.root || document.body)
+        : null;
+}
+const PortalModule = createModule(_types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_PORTAL, Portal);
+
+function Root({ children }) {
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, children);
+}
+const RootModule = createModule(_types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_ROOT, Root);
+
+function cssPrefix(value) {
+    return composePrefix(_types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_TOOLBAR, value);
+}
+function Toolbar({ toolbar: { buttons }, render: { buttonClose, iconClose }, styles }) {
+    const { close, setToolbarWidth } = useController();
+    const { setContainerRef, containerRect } = useContainerRect();
+    useLayoutEffect(() => {
+        setToolbarWidth(containerRect === null || containerRect === void 0 ? void 0 : containerRect.width);
+    }, [setToolbarWidth, containerRect === null || containerRect === void 0 ? void 0 : containerRect.width]);
+    const renderCloseButton = () => {
+        if (buttonClose)
+            return buttonClose();
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(IconButton, { key: _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_CLOSE, label: "Close", icon: CloseIcon, renderIcon: iconClose, onClick: close });
+    };
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { ref: setContainerRef, style: styles.toolbar, className: cssClass(cssPrefix()) }, buttons === null || buttons === void 0 ? void 0 : buttons.map((button) => (button === _types_js__WEBPACK_IMPORTED_MODULE_2__.ACTION_CLOSE ? renderCloseButton() : button))));
+}
+const ToolbarModule = createModule(_types_js__WEBPACK_IMPORTED_MODULE_2__.MODULE_TOOLBAR, Toolbar);
+
+function renderNode(node, props) {
+    var _a;
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(node.module.component, { key: node.module.name, ...props }, (_a = node.children) === null || _a === void 0 ? void 0 : _a.map((child) => renderNode(child, props)));
+}
+function mergeAnimation(defaultAnimation, animation = {}) {
+    const { easing: defaultAnimationEasing, ...restDefaultAnimation } = defaultAnimation;
+    const { easing, ...restAnimation } = animation;
+    return {
+        easing: { ...defaultAnimationEasing, ...easing },
+        ...restDefaultAnimation,
+        ...restAnimation,
+    };
+}
+function Lightbox({ carousel, animation, render, toolbar, controller, noScroll, on, plugins, slides, index, ...restProps }) {
+    const { animation: defaultAnimation, carousel: defaultCarousel, render: defaultRender, toolbar: defaultToolbar, controller: defaultController, noScroll: defaultNoScroll, on: defaultOn, slides: defaultSlides, index: defaultIndex, plugins: defaultPlugins, ...restDefaultProps } = LightboxDefaultProps;
+    const { config, augmentation } = withPlugins([
+        createNode(PortalModule, [
+            createNode(NoScrollModule, [
+                createNode(ControllerModule, [
+                    createNode(CarouselModule),
+                    createNode(ToolbarModule),
+                    createNode(NavigationModule),
+                ]),
+            ]),
+        ]),
+    ], plugins || defaultPlugins);
+    const props = augmentation({
+        animation: mergeAnimation(defaultAnimation, animation),
+        carousel: { ...defaultCarousel, ...carousel },
+        render: { ...defaultRender, ...render },
+        toolbar: { ...defaultToolbar, ...toolbar },
+        controller: { ...defaultController, ...controller },
+        noScroll: { ...defaultNoScroll, ...noScroll },
+        on: { ...defaultOn, ...on },
+        ...restDefaultProps,
+        ...restProps,
+    });
+    if (!props.open)
+        return null;
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(LightboxPropsProvider, { ...props },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(LightboxStateProvider, { slides: slides || defaultSlides, index: parseInt(index || defaultIndex) },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(TimeoutsProvider, null,
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(EventsProvider, null, renderNode(createNode(RootModule, config), props))))));
+}
+
+
+
+/***/ }),
+
+/***/ "./node_modules/yet-another-react-lightbox/dist/plugins/captions/index.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/yet-another-react-lightbox/dist/plugins/captions/index.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Captions)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../index.js */ "./node_modules/yet-another-react-lightbox/dist/index.js");
+/* harmony import */ var _types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../types.js */ "./node_modules/yet-another-react-lightbox/dist/types.js");
+
+
+
+
+const cssPrefix = (className) => (0,_index_js__WEBPACK_IMPORTED_MODULE_1__.cssClass)(`slide_${className}`);
+
+const defaultCaptionsProps = {
+    descriptionTextAlign: "start",
+    descriptionMaxLines: 3,
+    showToggle: false,
+    hidden: false,
+};
+const resolveCaptionsProps = (captions) => ({
+    ...defaultCaptionsProps,
+    ...captions,
+});
+function useCaptionsProps() {
+    const { captions } = (0,_index_js__WEBPACK_IMPORTED_MODULE_1__.useLightboxProps)();
+    return resolveCaptionsProps(captions);
+}
+
+const CaptionsContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext(null);
+const useCaptions = (0,_index_js__WEBPACK_IMPORTED_MODULE_1__.makeUseContext)("useCaptions", "CaptionsContext", CaptionsContext);
+function CaptionsContextProvider({ captions, children }) {
+    const { ref, hidden } = resolveCaptionsProps(captions);
+    const [visible, setVisible] = react__WEBPACK_IMPORTED_MODULE_0__.useState(!hidden);
+    const context = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => ({
+        visible,
+        show: () => setVisible(true),
+        hide: () => setVisible(false),
+    }), [visible]);
+    react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle(ref, () => context, [context]);
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(CaptionsContext.Provider, { value: context }, children);
+}
+
+function Title({ title }) {
+    const { toolbarWidth } = (0,_index_js__WEBPACK_IMPORTED_MODULE_1__.useController)();
+    const { styles } = (0,_index_js__WEBPACK_IMPORTED_MODULE_1__.useLightboxProps)();
+    const { visible } = useCaptions();
+    if (!visible)
+        return null;
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { style: styles.captionsTitleContainer, className: (0,_index_js__WEBPACK_IMPORTED_MODULE_1__.clsx)(cssPrefix("captions_container"), cssPrefix("title_container")) },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: cssPrefix("title"), style: {
+                ...(toolbarWidth ? { [(0,_index_js__WEBPACK_IMPORTED_MODULE_1__.cssVar)("toolbar_width")]: `${toolbarWidth}px` } : null),
+                ...styles.captionsTitle,
+            } }, title)));
+}
+
+function Description({ description }) {
+    const { descriptionTextAlign, descriptionMaxLines } = useCaptionsProps();
+    const { styles } = (0,_index_js__WEBPACK_IMPORTED_MODULE_1__.useLightboxProps)();
+    const { visible } = useCaptions();
+    if (!visible)
+        return null;
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { style: styles.captionsDescriptionContainer, className: (0,_index_js__WEBPACK_IMPORTED_MODULE_1__.clsx)(cssPrefix("captions_container"), cssPrefix("description_container")) },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: cssPrefix("description"), style: {
+                ...(descriptionTextAlign !== defaultCaptionsProps.descriptionTextAlign ||
+                    descriptionMaxLines !== defaultCaptionsProps.descriptionMaxLines
+                    ? {
+                        [(0,_index_js__WEBPACK_IMPORTED_MODULE_1__.cssVar)("slide_description_text_align")]: descriptionTextAlign,
+                        [(0,_index_js__WEBPACK_IMPORTED_MODULE_1__.cssVar)("slide_description_max_lines")]: descriptionMaxLines,
+                    }
+                    : null),
+                ...styles.captionsDescription,
+            } }, typeof description === "string"
+            ? description
+                .split("\n")
+                .flatMap((line, index) => [...(index > 0 ? [react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", { key: index })] : []), line])
+            : description)));
+}
+
+const captionsIcon = () => (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
+    react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { strokeWidth: 2, stroke: "currentColor", strokeLinejoin: "round", fill: "none", d: "M3 5l18 0l0 14l-18 0l0-14z" }),
+    react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M7 15h3c.55 0 1-.45 1-1v-1H9.5v.5h-2v-3h2v.5H11v-1c0-.55-.45-1-1-1H7c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm7 0h3c.55 0 1-.45 1-1v-1h-1.5v.5h-2v-3h2v.5H18v-1c0-.55-.45-1-1-1h-3c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1z" })));
+const CaptionsVisible = (0,_index_js__WEBPACK_IMPORTED_MODULE_1__.createIcon)("CaptionsVisible", captionsIcon());
+const CaptionsHidden = (0,_index_js__WEBPACK_IMPORTED_MODULE_1__.createIconDisabled)("CaptionsVisible", captionsIcon());
+function CaptionsButton() {
+    const { visible, show, hide } = useCaptions();
+    const { render } = (0,_index_js__WEBPACK_IMPORTED_MODULE_1__.useLightboxProps)();
+    if (render.buttonCaptions) {
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, render.buttonCaptions({ visible, show, hide }));
+    }
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_index_js__WEBPACK_IMPORTED_MODULE_1__.IconButton, { label: visible ? "Hide captions" : "Show captions", icon: visible ? CaptionsVisible : CaptionsHidden, renderIcon: visible ? render.iconCaptionsVisible : render.iconCaptionsHidden, onClick: visible ? hide : show }));
+}
+
+function Captions({ augment, addModule }) {
+    augment(({ captions: captionsProps, render: { slideFooter: renderFooter, ...restRender }, toolbar, ...restProps }) => {
+        const captions = resolveCaptionsProps(captionsProps);
+        return {
+            render: {
+                slideFooter: ({ slide }) => (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, renderFooter === null || renderFooter === void 0 ? void 0 :
+                    renderFooter({ slide }),
+                    slide.title && react__WEBPACK_IMPORTED_MODULE_0__.createElement(Title, { title: slide.title }),
+                    slide.description && react__WEBPACK_IMPORTED_MODULE_0__.createElement(Description, { description: slide.description }))),
+                ...restRender,
+            },
+            toolbar: (0,_index_js__WEBPACK_IMPORTED_MODULE_1__.addToolbarButton)(toolbar, _types_js__WEBPACK_IMPORTED_MODULE_2__.PLUGIN_CAPTIONS, captions.showToggle ? react__WEBPACK_IMPORTED_MODULE_0__.createElement(CaptionsButton, null) : null),
+            captions,
+            ...restProps,
+        };
+    });
+    addModule((0,_index_js__WEBPACK_IMPORTED_MODULE_1__.createModule)(_types_js__WEBPACK_IMPORTED_MODULE_2__.PLUGIN_CAPTIONS, CaptionsContextProvider));
+}
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/yet-another-react-lightbox/dist/types.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/yet-another-react-lightbox/dist/types.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ACTION_CLOSE: () => (/* binding */ ACTION_CLOSE),
+/* harmony export */   ACTION_NEXT: () => (/* binding */ ACTION_NEXT),
+/* harmony export */   ACTION_PREV: () => (/* binding */ ACTION_PREV),
+/* harmony export */   ACTION_SWIPE: () => (/* binding */ ACTION_SWIPE),
+/* harmony export */   ACTIVE_SLIDE_COMPLETE: () => (/* binding */ ACTIVE_SLIDE_COMPLETE),
+/* harmony export */   ACTIVE_SLIDE_ERROR: () => (/* binding */ ACTIVE_SLIDE_ERROR),
+/* harmony export */   ACTIVE_SLIDE_LOADING: () => (/* binding */ ACTIVE_SLIDE_LOADING),
+/* harmony export */   ACTIVE_SLIDE_PLAYING: () => (/* binding */ ACTIVE_SLIDE_PLAYING),
+/* harmony export */   CLASS_FLEX_CENTER: () => (/* binding */ CLASS_FLEX_CENTER),
+/* harmony export */   CLASS_FULLSIZE: () => (/* binding */ CLASS_FULLSIZE),
+/* harmony export */   CLASS_NO_SCROLL: () => (/* binding */ CLASS_NO_SCROLL),
+/* harmony export */   CLASS_NO_SCROLL_PADDING: () => (/* binding */ CLASS_NO_SCROLL_PADDING),
+/* harmony export */   CLASS_SLIDE_WRAPPER: () => (/* binding */ CLASS_SLIDE_WRAPPER),
+/* harmony export */   CLASS_SLIDE_WRAPPER_INTERACTIVE: () => (/* binding */ CLASS_SLIDE_WRAPPER_INTERACTIVE),
+/* harmony export */   ELEMENT_BUTTON: () => (/* binding */ ELEMENT_BUTTON),
+/* harmony export */   ELEMENT_ICON: () => (/* binding */ ELEMENT_ICON),
+/* harmony export */   EVENT_ON_KEY_DOWN: () => (/* binding */ EVENT_ON_KEY_DOWN),
+/* harmony export */   EVENT_ON_KEY_UP: () => (/* binding */ EVENT_ON_KEY_UP),
+/* harmony export */   EVENT_ON_POINTER_CANCEL: () => (/* binding */ EVENT_ON_POINTER_CANCEL),
+/* harmony export */   EVENT_ON_POINTER_DOWN: () => (/* binding */ EVENT_ON_POINTER_DOWN),
+/* harmony export */   EVENT_ON_POINTER_LEAVE: () => (/* binding */ EVENT_ON_POINTER_LEAVE),
+/* harmony export */   EVENT_ON_POINTER_MOVE: () => (/* binding */ EVENT_ON_POINTER_MOVE),
+/* harmony export */   EVENT_ON_POINTER_UP: () => (/* binding */ EVENT_ON_POINTER_UP),
+/* harmony export */   EVENT_ON_WHEEL: () => (/* binding */ EVENT_ON_WHEEL),
+/* harmony export */   IMAGE_FIT_CONTAIN: () => (/* binding */ IMAGE_FIT_CONTAIN),
+/* harmony export */   IMAGE_FIT_COVER: () => (/* binding */ IMAGE_FIT_COVER),
+/* harmony export */   MODULE_CAROUSEL: () => (/* binding */ MODULE_CAROUSEL),
+/* harmony export */   MODULE_CONTROLLER: () => (/* binding */ MODULE_CONTROLLER),
+/* harmony export */   MODULE_NAVIGATION: () => (/* binding */ MODULE_NAVIGATION),
+/* harmony export */   MODULE_NO_SCROLL: () => (/* binding */ MODULE_NO_SCROLL),
+/* harmony export */   MODULE_PORTAL: () => (/* binding */ MODULE_PORTAL),
+/* harmony export */   MODULE_ROOT: () => (/* binding */ MODULE_ROOT),
+/* harmony export */   MODULE_TOOLBAR: () => (/* binding */ MODULE_TOOLBAR),
+/* harmony export */   PLUGIN_CAPTIONS: () => (/* binding */ PLUGIN_CAPTIONS),
+/* harmony export */   PLUGIN_COUNTER: () => (/* binding */ PLUGIN_COUNTER),
+/* harmony export */   PLUGIN_DOWNLOAD: () => (/* binding */ PLUGIN_DOWNLOAD),
+/* harmony export */   PLUGIN_FULLSCREEN: () => (/* binding */ PLUGIN_FULLSCREEN),
+/* harmony export */   PLUGIN_INLINE: () => (/* binding */ PLUGIN_INLINE),
+/* harmony export */   PLUGIN_SHARE: () => (/* binding */ PLUGIN_SHARE),
+/* harmony export */   PLUGIN_SLIDESHOW: () => (/* binding */ PLUGIN_SLIDESHOW),
+/* harmony export */   PLUGIN_THUMBNAILS: () => (/* binding */ PLUGIN_THUMBNAILS),
+/* harmony export */   PLUGIN_ZOOM: () => (/* binding */ PLUGIN_ZOOM),
+/* harmony export */   SLIDE_STATUS_COMPLETE: () => (/* binding */ SLIDE_STATUS_COMPLETE),
+/* harmony export */   SLIDE_STATUS_ERROR: () => (/* binding */ SLIDE_STATUS_ERROR),
+/* harmony export */   SLIDE_STATUS_LOADING: () => (/* binding */ SLIDE_STATUS_LOADING),
+/* harmony export */   SLIDE_STATUS_PLACEHOLDER: () => (/* binding */ SLIDE_STATUS_PLACEHOLDER),
+/* harmony export */   SLIDE_STATUS_PLAYING: () => (/* binding */ SLIDE_STATUS_PLAYING),
+/* harmony export */   UNKNOWN_ACTION_TYPE: () => (/* binding */ UNKNOWN_ACTION_TYPE),
+/* harmony export */   VK_ARROW_LEFT: () => (/* binding */ VK_ARROW_LEFT),
+/* harmony export */   VK_ARROW_RIGHT: () => (/* binding */ VK_ARROW_RIGHT),
+/* harmony export */   VK_ESCAPE: () => (/* binding */ VK_ESCAPE),
+/* harmony export */   activeSlideStatus: () => (/* binding */ activeSlideStatus)
+/* harmony export */ });
+const MODULE_CAROUSEL = "carousel";
+const MODULE_CONTROLLER = "controller";
+const MODULE_NAVIGATION = "navigation";
+const MODULE_NO_SCROLL = "no-scroll";
+const MODULE_PORTAL = "portal";
+const MODULE_ROOT = "root";
+const MODULE_TOOLBAR = "toolbar";
+const PLUGIN_CAPTIONS = "captions";
+const PLUGIN_COUNTER = "counter";
+const PLUGIN_DOWNLOAD = "download";
+const PLUGIN_FULLSCREEN = "fullscreen";
+const PLUGIN_INLINE = "inline";
+const PLUGIN_SHARE = "share";
+const PLUGIN_SLIDESHOW = "slideshow";
+const PLUGIN_THUMBNAILS = "thumbnails";
+const PLUGIN_ZOOM = "zoom";
+const SLIDE_STATUS_LOADING = "loading";
+const SLIDE_STATUS_PLAYING = "playing";
+const SLIDE_STATUS_ERROR = "error";
+const SLIDE_STATUS_COMPLETE = "complete";
+const SLIDE_STATUS_PLACEHOLDER = "placeholder";
+const activeSlideStatus = (status) => `active-slide-${status}`;
+const ACTIVE_SLIDE_LOADING = activeSlideStatus(SLIDE_STATUS_LOADING);
+const ACTIVE_SLIDE_PLAYING = activeSlideStatus(SLIDE_STATUS_PLAYING);
+const ACTIVE_SLIDE_ERROR = activeSlideStatus(SLIDE_STATUS_ERROR);
+const ACTIVE_SLIDE_COMPLETE = activeSlideStatus(SLIDE_STATUS_COMPLETE);
+const CLASS_FULLSIZE = "fullsize";
+const CLASS_FLEX_CENTER = "flex_center";
+const CLASS_NO_SCROLL = "no_scroll";
+const CLASS_NO_SCROLL_PADDING = "no_scroll_padding";
+const CLASS_SLIDE_WRAPPER = "slide_wrapper";
+const CLASS_SLIDE_WRAPPER_INTERACTIVE = "slide_wrapper_interactive";
+const ACTION_PREV = "prev";
+const ACTION_NEXT = "next";
+const ACTION_SWIPE = "swipe";
+const ACTION_CLOSE = "close";
+const EVENT_ON_POINTER_DOWN = "onPointerDown";
+const EVENT_ON_POINTER_MOVE = "onPointerMove";
+const EVENT_ON_POINTER_UP = "onPointerUp";
+const EVENT_ON_POINTER_LEAVE = "onPointerLeave";
+const EVENT_ON_POINTER_CANCEL = "onPointerCancel";
+const EVENT_ON_KEY_DOWN = "onKeyDown";
+const EVENT_ON_KEY_UP = "onKeyUp";
+const EVENT_ON_WHEEL = "onWheel";
+const VK_ESCAPE = "Escape";
+const VK_ARROW_LEFT = "ArrowLeft";
+const VK_ARROW_RIGHT = "ArrowRight";
+const ELEMENT_BUTTON = "button";
+const ELEMENT_ICON = "icon";
+const IMAGE_FIT_CONTAIN = "contain";
+const IMAGE_FIT_COVER = "cover";
+const UNKNOWN_ACTION_TYPE = "Unknown action type";
+
+
+
+
+/***/ }),
+
 /***/ "./node_modules/zod/lib/index.mjs":
 /*!****************************************!*\
   !*** ./node_modules/zod/lib/index.mjs ***!
@@ -25689,13 +27651,11 @@ function DesignInspiration({
   options = [],
   fieldName
 }) {
-  const [tab, selectTab] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('Basic');
+  const [tab, selectTab] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(options[0]?.name || '');
   const isCurrent = (current, state) => {
     return current === state;
   };
-  function groupExists(groupName) {
-    return options.some(item => item.group === groupName);
-  }
+  console.log(options);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
     className: "mt-6",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
@@ -25707,71 +27667,57 @@ function DesignInspiration({
           children: "Design Inspiration"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           className: "mt-2 flex no-wrap justify-between border-b-[#D2D2D2] border-b uppercase overflow-x-auto",
-          children: [groupExists('Basic') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-            className: `px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${isCurrent('Basic', tab) ? 'border-t-[#D2D2D2] border-x-[#D2D2D2]' : 'border-transparent border-b-0'}`,
-            onClick: () => selectTab('Basic'),
-            children: "Basic"
-          }), groupExists('Modern') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-            className: `px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${isCurrent('Modern', tab) ? 'border-t-[#D2D2D2] border-x-[#D2D2D2]' : 'border-transparent border-b-0'}`,
-            onClick: () => selectTab('Modern'),
-            children: "Modern"
-          }), groupExists('Decorative') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-            className: `px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${isCurrent('Decorative', tab) ? 'border-t-[#D2D2D2] border-x-[#D2D2D2]' : 'border-transparent border-b-0'}`,
-            onClick: () => selectTab('Decorative'),
-            children: "Decorative"
-          }), groupExists('Corporate') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-            className: `px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${isCurrent('Corporate', tab) ? 'border-t-[#D2D2D2] border-x-[#D2D2D2]' : 'border-transparent border-b-0'}`,
-            onClick: () => selectTab('Corporate'),
-            children: "Corporate"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-            className: `px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${isCurrent('Classic', tab) ? 'border-t-[#D2D2D2] border-x-[#D2D2D2]' : 'border-transparent border-b-0'}`,
-            onClick: () => selectTab('Classic'),
-            children: "Classic"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+          children: [options.map((option, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            className: `px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${isCurrent(option.name, tab) ? 'border-t-[#D2D2D2] border-x-[#D2D2D2]' : 'border-transparent border-b-0'}`,
+            onClick: () => selectTab(option.name),
+            children: option.name
+          }, `${fieldName}-tab-${index}`)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
             className: `px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${isCurrent('All', tab) ? 'border-t-[#D2D2D2] border-x-[#D2D2D2]' : 'border-transparent border-b-0'}`,
             onClick: () => selectTab('All'),
             children: "All"
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
           className: "mt-4 grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(195px,1fr))] gap-4",
-          children: options.map((option, index) => {
-            const designArray = form.getValues(fieldName) || [];
-            const isChecked = designArray.some(item => item === option.name);
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-              className: tab === option.group || tab === 'All' ? '' : 'hidden',
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                "data-tooltip-id": `${fieldName}-${index}`,
-                "data-tooltip-content": option.name,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_components_ui_label__WEBPACK_IMPORTED_MODULE_3__.Label, {
-                  htmlFor: `${fieldName}-${index}`,
-                  className: "cursor-pointer uppercase font-medium text-sm relative",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                    className: "flex items-start justify-between gap-4",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_checkbox__WEBPACK_IMPORTED_MODULE_2__.Checkbox, {
-                      id: `${fieldName}-${index}`,
-                      checked: isChecked,
-                      onCheckedChange: checked => {
-                        let updatedDesigns = [...designArray];
-                        if (checked) {
-                          updatedDesigns.push(option.name);
-                        } else {
-                          updatedDesigns = updatedDesigns.filter(item => item !== option.name);
-                        }
-                        form.setValue(fieldName, updatedDesigns);
-                        form.trigger(fieldName);
-                      },
-                      className: "p-0 border-input border-solid bg-transparent ml-auto absolute top-2 right-2 bg-white rounded-full"
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
-                    src: option.image || 'placeholder-image-url',
-                    alt: option.name,
-                    className: "object-cover rounded-md w-full aspect-[4/3]"
-                  })]
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_tooltip__WEBPACK_IMPORTED_MODULE_5__.Tooltip, {
-                id: `${fieldName}-${index}`
-              })]
-            }, `${fieldName}-${index}`);
+          children: options.map((option, optionIndex) => {
+            return option.images.map((image, imageIndex) => {
+              const designArray = form.getValues(fieldName) || [];
+              const isChecked = designArray.includes(image.title);
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                className: tab === option.name || tab === 'All' ? '' : 'hidden',
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  "data-tooltip-id": `${fieldName}-${optionIndex}-${imageIndex}`,
+                  "data-tooltip-content": image.title,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_components_ui_label__WEBPACK_IMPORTED_MODULE_3__.Label, {
+                    htmlFor: `${fieldName}-${optionIndex}-${imageIndex}`,
+                    className: "cursor-pointer uppercase font-medium text-sm relative",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                      className: "flex items-start justify-between gap-4",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_checkbox__WEBPACK_IMPORTED_MODULE_2__.Checkbox, {
+                        id: `${fieldName}-${optionIndex}-${imageIndex}`,
+                        checked: isChecked,
+                        onCheckedChange: checked => {
+                          let updatedDesigns = [...designArray];
+                          if (checked) {
+                            updatedDesigns.push(image.title);
+                          } else {
+                            updatedDesigns = updatedDesigns.filter(item => item !== image.title);
+                          }
+                          form.setValue(fieldName, updatedDesigns);
+                          form.trigger(fieldName);
+                        },
+                        className: "p-0 border-input border-solid bg-transparent ml-auto absolute top-2 right-2 bg-white rounded-full"
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+                      src: image.url,
+                      alt: image.title,
+                      className: "object-cover rounded-md w-full aspect-[4/3]"
+                    })]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_tooltip__WEBPACK_IMPORTED_MODULE_5__.Tooltip, {
+                  id: `${fieldName}-${optionIndex}-${imageIndex}`
+                })]
+              }, `${fieldName}-${optionIndex}-${imageIndex}`);
+            });
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
       })
@@ -26626,6 +28572,70 @@ function FileUpload({
 
 /***/ }),
 
+/***/ "./scripts/trello/components/fields/LayoutImage.tsx":
+/*!**********************************************************!*\
+  !*** ./scripts/trello/components/fields/LayoutImage.tsx ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ LayoutImage)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var yet_another_react_lightbox__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! yet-another-react-lightbox */ "./node_modules/yet-another-react-lightbox/dist/index.js");
+/* harmony import */ var yet_another_react_lightbox_plugins_captions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! yet-another-react-lightbox/plugins/captions */ "./node_modules/yet-another-react-lightbox/dist/plugins/captions/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+
+function LayoutImage({
+  image,
+  title
+}) {
+  const [isOpen, setIsOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  console.log(image);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "relative",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(yet_another_react_lightbox__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      open: isOpen,
+      close: () => setIsOpen(false),
+      controller: {
+        closeOnPullDown: true,
+        closeOnBackdropClick: true
+      },
+      slides: [{
+        src: image,
+        title: title
+      }],
+      render: {
+        buttonPrev: () => null,
+        buttonNext: () => null
+      },
+      carousel: {
+        swipe: false,
+        finite: true
+      },
+      plugins: [yet_another_react_lightbox_plugins_captions__WEBPACK_IMPORTED_MODULE_3__["default"]],
+      captions: {
+        showToggle: true,
+        descriptionTextAlign: 'center'
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+      src: image,
+      alt: "Layout Image",
+      className: "object-cover mb-2 w-full aspect-[4/3] cursor-pointer",
+      onClick: () => setIsOpen(true)
+    })]
+  });
+}
+
+/***/ }),
+
 /***/ "./scripts/trello/components/fields/LayoutType.tsx":
 /*!*********************************************************!*\
   !*** ./scripts/trello/components/fields/LayoutType.tsx ***!
@@ -26641,8 +28651,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ui_skeleton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/skeleton */ "./scripts/components/ui/skeleton.tsx");
 /* harmony import */ var _components_ui_label__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/label */ "./scripts/components/ui/label.tsx");
 /* harmony import */ var _components_ui_radio_group__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/ui/radio-group */ "./scripts/components/ui/radio-group.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _LayoutImage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./LayoutImage */ "./scripts/trello/components/fields/LayoutImage.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -26653,70 +28665,65 @@ function LayoutType({
   loading,
   layoutTypeOptions
 }) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
     control: form.control,
     name: "layoutType",
     render: ({
       field
-    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
+    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
         className: "font-semibold text-base",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
           className: "mb-0 uppercase",
           children: "Layout Type"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
           className: "text-xs font-light ",
-          children: ["more details on layout type. ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+          children: ["more details on layout type. ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
             href: "#",
             children: "CLICK HERE"
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_radio_group__WEBPACK_IMPORTED_MODULE_3__.RadioGroup, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_radio_group__WEBPACK_IMPORTED_MODULE_3__.RadioGroup, {
           value: field.value,
           onValueChange: value => field.onChange(value),
           className: "grid grid-cols-[repeat(auto-fill,minmax(190px,1fr))] gap-4",
           children: loading ? Array.from({
             length: 4
-          }).map((_, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          }).map((_, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
             className: "flex flex-col space-y-3 h-[167px]",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_skeleton__WEBPACK_IMPORTED_MODULE_1__.Skeleton, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_skeleton__WEBPACK_IMPORTED_MODULE_1__.Skeleton, {
               className: "h-[125px] w-full rounded-xl"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
               className: "space-y-2",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_skeleton__WEBPACK_IMPORTED_MODULE_1__.Skeleton, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_skeleton__WEBPACK_IMPORTED_MODULE_1__.Skeleton, {
                 className: "h-4 w-full"
               })
             })]
-          }, index)) : layoutTypeOptions.length > 0 ? layoutTypeOptions.map((option, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          }, index)) : layoutTypeOptions.length > 0 ? layoutTypeOptions.map((option, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
               className: "flex items-center gap-2 mb-1",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_radio_group__WEBPACK_IMPORTED_MODULE_3__.RadioGroupItem, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_radio_group__WEBPACK_IMPORTED_MODULE_3__.RadioGroupItem, {
                 className: "p-0 bg-transparent border-input border-solid",
                 value: option.title,
                 id: `layout-${index}`
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_label__WEBPACK_IMPORTED_MODULE_2__.Label, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_label__WEBPACK_IMPORTED_MODULE_2__.Label, {
                 htmlFor: `layout-${index}`,
                 className: "cursor-pointer",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
                   className: "text-sm font-semibold",
                   children: option.title
                 })
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_label__WEBPACK_IMPORTED_MODULE_2__.Label, {
-              htmlFor: `layout-${index}`,
-              className: "cursor-pointer",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-                src: option.image.url,
-                alt: option.title,
-                className: "object-cover mb-2 w-full aspect-[4/3]"
-              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_LayoutImage__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              image: option.image.url,
+              title: option.title
             })]
-          }, index)) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+          }, index)) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
             children: "No options available"
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
     })
   });
 }
@@ -27114,6 +29121,7 @@ function ADAWayfinding({
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
+        console.log(data);
         setProductType(data || null); // Ensure null fallback if data is invalid
       } catch (error) {
         console.error('Error fetching product type:', error);
@@ -27161,9 +29169,11 @@ function ADAWayfinding({
             form: form,
             fieldName: "ADA[designInspirations]",
             options: processedProductType?.design_inspiration?.map(inspiration => ({
-              name: inspiration.name,
-              image: inspiration.image,
-              group: inspiration.group
+              name: inspiration.title,
+              images: inspiration.images.map(image => ({
+                url: image.url,
+                title: image.title
+              }))
             })) || []
           })]
         })
@@ -27508,9 +29518,11 @@ function ChannelLetters({
             form: form,
             fieldName: "channelLetters[designInspirations]",
             options: processedProductType?.design_inspiration?.map(inspiration => ({
-              name: inspiration.name,
-              image: inspiration.image,
-              group: inspiration.group
+              name: inspiration.title,
+              images: inspiration.images.map(image => ({
+                url: image.url,
+                title: image.title
+              }))
             })) || []
           })]
         })
@@ -27877,9 +29889,11 @@ function DimensionalLetters({
             form: form,
             fieldName: "dimensionalLetters[designInspirations]",
             options: processedProductType?.design_inspiration?.map(inspiration => ({
-              name: inspiration.name,
-              image: inspiration.image,
-              group: inspiration.group
+              name: inspiration.title,
+              images: inspiration.images.map(image => ({
+                url: image.url,
+                title: image.title
+              }))
             })) || []
           })]
         })
@@ -28212,9 +30226,11 @@ function Lightbox({
             form: form,
             fieldName: "lightbox[designInspirations]",
             options: processedProductType?.design_inspiration?.map(inspiration => ({
-              name: inspiration.name,
-              image: inspiration.image,
-              group: inspiration.group
+              name: inspiration.title,
+              images: inspiration.images.map(image => ({
+                url: image.url,
+                title: image.title
+              }))
             })) || []
           })]
         })
@@ -28555,9 +30571,11 @@ function MonumentsAndPylons({
             form: form,
             fieldName: "monumentsAndPylons[designInspirations]",
             options: processedProductType?.design_inspiration?.map(inspiration => ({
-              name: inspiration.name,
-              image: inspiration.image,
-              group: inspiration.group
+              name: inspiration.title,
+              images: inspiration.images.map(image => ({
+                url: image.url,
+                title: image.title
+              }))
             })) || []
           })]
         })

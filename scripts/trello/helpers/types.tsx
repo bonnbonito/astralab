@@ -32,8 +32,10 @@ export interface ProductTypeDataProps {
 		}[];
 	}[];
 	design_inspiration?: {
-		name: string;
-		image: string;
-		group: string;
+		title: string;
+		images: {
+			url: string;
+			title: string;
+		}[];
 	}[];
 }

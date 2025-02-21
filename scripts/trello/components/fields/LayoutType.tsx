@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { UseFormReturn } from 'react-hook-form';
 import { FormSchema } from '@/trello/helpers/schema';
+import LayoutImage from './LayoutImage';
 
 interface LayoutOption {
 	title: string;
@@ -75,16 +76,10 @@ export default function LayoutType({
 												</span>
 											</Label>
 										</div>
-										<Label
-											htmlFor={`layout-${index}`}
-											className="cursor-pointer"
-										>
-											<img
-												src={option.image.url}
-												alt={option.title}
-												className="object-cover mb-2 w-full aspect-[4/3]"
-											/>
-										</Label>
+										<LayoutImage
+											image={option.image.url}
+											title={option.title}
+										/>
 									</div>
 								))
 							) : (

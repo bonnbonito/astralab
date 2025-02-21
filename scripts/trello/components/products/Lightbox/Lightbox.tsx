@@ -151,9 +151,11 @@ export default function Lightbox({ form, product }: LightboxProps) {
 								options={
 									processedProductType?.design_inspiration?.map(
 										(inspiration) => ({
-											name: inspiration.name,
-											image: inspiration.image,
-											group: inspiration.group,
+											name: inspiration.title,
+											images: inspiration.images.map((image) => ({
+												url: image.url,
+												title: image.title,
+											})),
 										})
 									) || []
 								}

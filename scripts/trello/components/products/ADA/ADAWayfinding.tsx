@@ -7,7 +7,6 @@ import {
 	AccordionTrigger,
 } from '@/components/ui/accordion';
 import NumberSigns from '@/trello/components/fields/NumberSigns';
-import TextField from '@/trello/components/fields/TextField';
 import { FormSchema } from '@/trello/helpers/schema';
 import DesignInspiration from '@/trello/components/DesignInspiration';
 import { ProductOptions } from '@/trello/components/fields/ProductOptions';
@@ -45,6 +44,7 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 					throw new Error(`HTTP error! Status: ${response.status}`);
 				}
 				const data: ProductTypeDataProps = await response.json();
+				console.log(data);
 				setProductType(data || null); // Ensure null fallback if data is invalid
 			} catch (error) {
 				console.error('Error fetching product type:', error);
@@ -104,9 +104,11 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 								options={
 									processedProductType?.design_inspiration?.map(
 										(inspiration) => ({
-											name: inspiration.name,
-											image: inspiration.image,
-											group: inspiration.group,
+											name: inspiration.title,
+											images: inspiration.images.map((image) => ({
+												url: image.url,
+												title: image.title,
+											})),
 										})
 									) || []
 								}

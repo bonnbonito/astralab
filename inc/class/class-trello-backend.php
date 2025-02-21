@@ -108,7 +108,7 @@ class Trello_Backend {
 				'get_callback' => function ($object) {
 					$post_id = $object['id'];
 					if ( $post_id ) {
-						return get_field( 'design_inspiration', $post_id );
+						return get_field( 'design_inspiration_group', $post_id );
 					}
 					return null;
 				},
