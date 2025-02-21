@@ -12,6 +12,7 @@ import { Label } from '@/components/ui/label';
 
 import 'react-tooltip/dist/react-tooltip.css';
 import { Tooltip } from 'react-tooltip';
+import { decodeHTMLEntities } from '@/lib/utils';
 
 interface ImageData {
 	title: string;
@@ -37,8 +38,6 @@ export default function DesignInspiration({
 	const isCurrent = (current: string, state: string): boolean => {
 		return current === state;
 	};
-
-	console.log(options);
 
 	return (
 		<div className="mt-6">
@@ -91,7 +90,7 @@ export default function DesignInspiration({
 										>
 											<div
 												data-tooltip-id={`${fieldName}-${optionIndex}-${imageIndex}`}
-												data-tooltip-content={image.title}
+												data-tooltip-content={decodeHTMLEntities(image.title)}
 											>
 												<Label
 													htmlFor={`${fieldName}-${optionIndex}-${imageIndex}`}

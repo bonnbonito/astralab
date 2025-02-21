@@ -7727,7 +7727,8 @@ function useToast() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   cn: () => (/* binding */ cn)
+/* harmony export */   cn: () => (/* binding */ cn),
+/* harmony export */   decodeHTMLEntities: () => (/* binding */ decodeHTMLEntities)
 /* harmony export */ });
 /* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.mjs");
 /* harmony import */ var tailwind_merge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tailwind-merge */ "./node_modules/tailwind-merge/dist/bundle-mjs.mjs");
@@ -7736,6 +7737,11 @@ __webpack_require__.r(__webpack_exports__);
 function cn(...inputs) {
   return (0,tailwind_merge__WEBPACK_IMPORTED_MODULE_1__.twMerge)((0,clsx__WEBPACK_IMPORTED_MODULE_0__.clsx)(inputs));
 }
+const decodeHTMLEntities = text => {
+  const textarea = document.createElement('textarea');
+  textarea.innerHTML = text;
+  return textarea.value;
+};
 
 /***/ }),
 

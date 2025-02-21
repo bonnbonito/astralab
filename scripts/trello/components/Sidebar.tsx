@@ -6,6 +6,8 @@ import { FormSchema } from '@/trello/helpers/schema';
 
 import { ComponentType } from '@/trello/helpers/defaults';
 
+import { decodeHTMLEntities } from '@/lib/utils';
+
 interface SidebarProps {
 	form: UseFormReturn<FormSchema>;
 }
@@ -94,7 +96,7 @@ export default function Sidebar({ form }: SidebarProps) {
 									<SidebarDetails
 										title={
 											typeof productObject.title === 'string'
-												? productObject.title
+												? decodeHTMLEntities(productObject.title)
 												: 'Untitled Product'
 										}
 										key={id}

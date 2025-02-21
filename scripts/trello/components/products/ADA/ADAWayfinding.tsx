@@ -1,18 +1,12 @@
 import { useState, useEffect, useMemo } from 'react';
 import { UseFormReturn } from 'react-hook-form';
-import {
-	Accordion,
-	AccordionContent,
-	AccordionItem,
-	AccordionTrigger,
-} from '@/components/ui/accordion';
 import NumberSigns from '@/trello/components/fields/NumberSigns';
 import { FormSchema } from '@/trello/helpers/schema';
 import DesignInspiration from '@/trello/components/DesignInspiration';
 import { ProductOptions } from '@/trello/components/fields/ProductOptions';
-import { SkeletonCard } from '@/trello/components/SkeletonCard';
 import { ProductTypeDataProps } from '@/trello/helpers/types';
 import Signs from './Signs';
+import AccordionProductType from '@/trello/components/AccordionProductType';
 
 interface ADAWayfindingProps {
 	form: UseFormReturn<FormSchema>;
@@ -44,7 +38,6 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 					throw new Error(`HTTP error! Status: ${response.status}`);
 				}
 				const data: ProductTypeDataProps = await response.json();
-				console.log(data);
 				setProductType(data || null); // Ensure null fallback if data is invalid
 			} catch (error) {
 				console.error('Error fetching product type:', error);
@@ -68,55 +61,37 @@ export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
 	}, [numberOfSigns, form]);
 
 	return (
-		<Accordion
-			type="single"
-			collapsible
-			defaultValue={product.toString()}
-			className="border border-input border-solid rounded"
+		<AccordionProductType
+			product={product}
+			loading={loading}
+			title={processedProductType?.title?.rendered}
 		>
-			<AccordionItem value={product.toString()}>
-				<AccordionTrigger className="uppercase bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4">
-					{loading
-						? 'Loading...'
-						: processedProductType?.title?.rendered || 'No Data Available'}
-				</AccordionTrigger>
-				<AccordionContent>
-					{loading ? (
-						<SkeletonCard />
-					) : (
-						<div className="p-4 pt-0">
-							{/* Render Number of Signs Input */}
-							<NumberSigns form={form} fieldName="ADA.numberOfSigns" />
-							{numberOfSigns && (
-								<Signs form={form} numberOfSigns={numberOfSigns} />
-							)}
+			<div className="p-4 pt-0">
+				{/* Render Number of Signs Input */}
+				<NumberSigns form={form} fieldName="ADA.numberOfSigns" />
+				{numberOfSigns && <Signs form={form} numberOfSigns={numberOfSigns} />}
 
-							<ProductOptions
-								form={form}
-								options={types?.options || []}
-								formKey="ADA.types"
-								optionTitle="Types"
-							/>
+				<ProductOptions
+					form={form}
+					options={types?.options || []}
+					formKey="ADA.types"
+					optionTitle="Types"
+				/>
 
-							<DesignInspiration
-								form={form}
-								fieldName="ADA[designInspirations]"
-								options={
-									processedProductType?.design_inspiration?.map(
-										(inspiration) => ({
-											name: inspiration.title,
-											images: inspiration.images.map((image) => ({
-												url: image.url,
-												title: image.title,
-											})),
-										})
-									) || []
-								}
-							/>
-						</div>
-					)}
-				</AccordionContent>
-			</AccordionItem>
-		</Accordion>
+				<DesignInspiration
+					form={form}
+					fieldName="ADA[designInspirations]"
+					options={
+						processedProductType?.design_inspiration?.map((inspiration) => ({
+							name: inspiration.title,
+							images: inspiration.images.map((image) => ({
+								url: image.url,
+								title: image.title,
+							})),
+						})) || []
+					}
+				/>
+			</div>
+		</AccordionProductType>
 	);
 }

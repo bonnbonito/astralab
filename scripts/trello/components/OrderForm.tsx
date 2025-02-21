@@ -103,19 +103,19 @@ export default function OrderForm() {
 			}
 		} catch (error) {
 			console.error('Submission Error:', error);
-			// Log the full error object
-			if (error.response) {
-				console.error('Error Response:', error.response);
-				console.error('Error Response Data:', error.response.data);
+			const err = error as { response?: { data?: { message?: string } } };
+
+			if (err.response) {
+				console.error('Error Response:', err.response);
+				console.error('Error Response Data:', err.response.data);
 			}
 
 			toast({
 				variant: 'destructive',
 				title: 'Error',
 				description:
-					error.response?.data?.message ||
-					error.message ||
-					'Failed to submit order',
+					err.response?.data?.message ||
+					(error instanceof Error ? error.message : 'Failed to submit order'),
 			});
 		}
 	};
