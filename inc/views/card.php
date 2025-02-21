@@ -8,6 +8,14 @@
 				required></textarea>
 
 			<div class="min-w-[300px]">
+
+				<input type="file" name="comment_attachment" id="comment_attachment" class="block w-full text-sm text-slate-500
+					file:mr-4 file:py-2 file:px-4
+					file:rounded file:border-0
+					file:text-sm file:font-semibold
+					file:bg-[#9F9F9F] file:text-white
+					hover:file:bg-[#8a8a8a]">
+
 				<input id="submitBtn" type="submit" value="Send Comment"
 					class="w-full text-[#222] uppercase font-semibold text-base">
 			</div>

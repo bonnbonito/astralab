@@ -8,11 +8,8 @@ export const ChannelLettersSchema = z.discriminatedUnion('hasChannelLetters', [
 			textAndContent: z.string().nonempty({
 				message: 'Text and Content is required.',
 			}),
-			vendor: z.string().nonempty({
-				message: 'Vendor required.',
-			}),
 			font: z.string().nonempty({
-				message: 'Vendor required.',
+				message: 'Font required.',
 			}),
 			wallDimension: z.string().nonempty(),
 			signDimension: z.string().nonempty(),

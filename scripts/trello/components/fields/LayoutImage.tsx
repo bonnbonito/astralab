@@ -9,7 +9,6 @@ interface LayoutImageProps {
 
 export default function LayoutImage({ image, title }: LayoutImageProps) {
 	const [isOpen, setIsOpen] = useState(false);
-	console.log(image);
 	return (
 		<div className="relative">
 			<Lightbox

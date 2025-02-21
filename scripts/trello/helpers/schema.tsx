@@ -33,6 +33,7 @@ const formSchema = z
 		fileUpload: z.array(z.instanceof(File)).min(1, {
 			message: 'Upload atleast 1 File.',
 		}),
+		bulkOrderFile: z.instanceof(File).optional(),
 	})
 	.refine((data) => (data.productTypes ? data.productTypes.length > 0 : true), {
 		message: 'Select at least one Product Type',
@@ -54,6 +55,7 @@ const formDefaultValues: FormSchema = {
 	layoutType: '',
 	productTypes: [],
 	fileUpload: [],
+	bulkOrderFile: undefined,
 	hasADA: false,
 	hasMonumentsAndPylons: false,
 	hasChannelLetters: false,

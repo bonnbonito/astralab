@@ -325,411 +325,525 @@ class Trello_Backend {
 	}
 
 	public function astralab_form_submission() {
-		$nonce = $_POST['astralab_nonce'];
-		$user_id = get_current_user_id();
+		try {
+			// Verify nonce first
+			if ( ! isset( $_POST['astralab_nonce'] ) || ! wp_verify_nonce( $_POST['astralab_nonce'], 'astralab_nonce' ) ) {
+				throw new \Exception( 'Invalid security token' );
+			}
 
-		$return['post'] = $_POST;
-		$return['file'] = $_FILES['fileUpload'];
-		$return['user'] = $user_id;
-		$post = $_POST;
+			// Log incoming request data
+			error_log( 'Incoming Form Data: ' . print_r( $_POST, true ) );
+			error_log( 'Incoming Files: ' . print_r( $_FILES, true ) );
 
-		//check astralab_nonce
-		if ( ! wp_verify_nonce( $nonce, 'astralab_nonce' ) ) {
-			wp_send_json_error(
-				array(
-					'message' => 'Invalid nonce verification',
-					'post' => $_POST
-				)
-			);
-		}
+			// Check if files were uploaded
+			if ( ! empty( $_FILES ) ) {
+				foreach ( $_FILES as $key => $file ) {
+					if ( is_array( $file['error'] ) ) {
+						foreach ( $file['error'] as $index => $error ) {
+							if ( $error !== UPLOAD_ERR_OK ) {
+								error_log( "File upload error for {$key}[{$index}]: " . $this->get_file_error_message( $error ) );
+							}
+						}
+					} else if ( $file['error'] !== UPLOAD_ERR_OK ) {
+						error_log( "File upload error for {$key}: " . $this->get_file_error_message( $file['error'] ) );
+					}
+				}
+			}
 
-		$options = get_option( $this->option_name );
-		$api_key = isset( $options['trello_api_key'] ) ? $options['trello_api_key'] : '';
-		$api_token = isset( $options['trello_api_token'] ) ? $options['trello_api_token'] : '';
-		$list_id = get_user_meta( $user_id, 'trello_list_id', true );
+			$return['post'] = $_POST;
+			$return['file'] = $_FILES['fileUpload'];
+			$return['bulkFile'] = $_FILES['bulkOrderFile'];
+			$return['user'] = get_current_user_id();
+			$post = $_POST;
 
-		if ( empty( $api_key ) ) {
-			wp_send_json_error( 'Trello API credentials not set.' );
-		}
+			$options = get_option( $this->option_name );
+			$api_key = isset( $options['trello_api_key'] ) ? $options['trello_api_key'] : '';
+			$api_token = isset( $options['trello_api_token'] ) ? $options['trello_api_token'] : '';
+			$list_id = get_user_meta( get_current_user_id(), 'trello_list_id', true );
 
-		if ( empty( $api_token ) ) {
-			wp_send_json_error( 'Trello API Token not set' );
-		}
+			if ( empty( $api_key ) ) {
+				throw new \Exception( 'Trello API credentials not set.' );
+			}
 
-		if ( empty( $list_id ) ) {
-			wp_send_json_error( 'Trello List ID not set.' );
-		}
+			if ( empty( $api_token ) ) {
+				throw new \Exception( 'Trello API Token not set' );
+			}
 
-		$card_name = sanitize_text_field( $_POST['projectName'] );
+			if ( empty( $list_id ) ) {
+				throw new \Exception( 'Trello List ID not set.' );
+			}
 
-		$user = wp_get_current_user();
-		if ( $user && $user->ID ) {
-			$full_name = $user->display_name;
-			$email = $user->user_email;
-		} else {
-			$full_name = 'Guest';
-			$email = 'N/A';
-		}
+			$card_name = sanitize_text_field( $_POST['projectName'] );
 
-		$jsonData = json_decode( json_encode( $_POST ), true );
+			$user = wp_get_current_user();
+			if ( $user && $user->ID ) {
+				$full_name = $user->display_name;
+				$email = $user->user_email;
+			} else {
+				$full_name = 'Guest';
+				$email = 'N/A';
+			}
 
-		$user_line = '**User:** ' . ( ! empty( $full_name ) ? $full_name : 'N/A' );
-		$email_line = '**Email:** ' . ( ! empty( $email ) ? $email : 'N/A' );
+			$jsonData = json_decode( json_encode( $_POST ), true );
 
-		$turn_around_time = $_POST['turnaroundTime'] ? $_POST['turnaroundTime'] : '';
-		$design_details = $_POST['designDetails'] ? $_POST['designDetails'] : '';
-		$description = $_POST['projectDescription'] ? $_POST['projectDescription'] : '';
-		$layout_type = $_POST['layoutType'] ? $_POST['layoutType'] : '';
+			$user_line = '**User:** ' . ( ! empty( $full_name ) ? $full_name : 'N/A' );
+			$email_line = '**Email:** ' . ( ! empty( $email ) ? $email : 'N/A' );
 
-		// Build your project details as before...
-		$project_details = '<p><strong>Project Name:</strong> ' . $card_name . '</p>';
-		$project_details .= '<p><strong>Turnaround Time:</strong> ' . $turn_around_time . '</p>';
-		$project_details .= '<p><strong>Design Details:</strong> ' . $design_details . '</p>';
-		$project_details .= '<p><strong>Project Description:</strong></p>';
-		$project_details .= '<p>' . sanitize_textarea_field( $description ) . '</p>';
-		$project_details .= '<p><strong>Layout Type:</strong> ' . $layout_type . '</p>';
-		$project_details .= '<p><strong>Product Types:</strong></p>';
+			$turn_around_time = $_POST['turnaroundTime'] ? $_POST['turnaroundTime'] : '';
+			$design_details = $_POST['designDetails'] ? $_POST['designDetails'] : '';
+			$description = $_POST['projectDescription'] ? $_POST['projectDescription'] : '';
+			$layout_type = $_POST['layoutType'] ? $_POST['layoutType'] : '';
 
-		// --- ADA ---
-		$ada = $jsonData['ADA'] ?? [];
-		if ( ! empty( $_POST["hasADA"] ) && ! empty( $ada ) ) {
-			$signs = $ada['signs'] ?? [];
-			$ada_types = $this->array_to_string( $ada['types'] );
-			$ada_design = $ada['designInspirations'] ?? [];
-			$project_details .= '<h3><strong>ADA Wayfinding:</strong></h3>';
-			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $ada['numberOfSigns'] ?? '' );
-			foreach ( $signs as $index => $sign ) {
-				$no = $index + 1;
-				$project_details .= '<ul>';
-				$project_details .= "<li>No.$no Name: " . ( $sign['name'] ?? '' ) . "</li>";
-				$project_details .= "<li>No.$no Dimension: " . ( $sign['dimension'] ?? '' ) . "</li>";
-				$project_details .= "<li>No.$no Details: " . ( $sign['details'] ?? '' ) . "</li>";
+			// Build your project details as before...
+			$project_details = '<p><strong>Project Name:</strong> ' . $card_name . '</p>';
+			$project_details .= '<p><strong>Turnaround Time:</strong> ' . $turn_around_time . '</p>';
+			$project_details .= '<p><strong>Design Details:</strong> ' . $design_details . '</p>';
+			$project_details .= '<p><strong>Project Description:</strong></p>';
+			$project_details .= '<p>' . sanitize_textarea_field( $description ) . '</p>';
+			$project_details .= '<p><strong>Layout Type:</strong> ' . $layout_type . '</p>';
+			$project_details .= '<p><strong>Product Types:</strong></p>';
+
+			// --- ADA ---
+			$ada = $jsonData['ADA'] ?? [];
+			if ( ! empty( $_POST["hasADA"] ) && ! empty( $ada ) ) {
+				$signs = json_decode( $ada['signs'], true ) ?? [];  // Decode the JSON string
+				$ada_types = $this->array_to_string( $ada['types'] );
+				$ada_design = $ada['designInspirations'] ?? [];
+				$project_details .= '<h3><strong>ADA Wayfinding:</strong></h3>';
+				$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $ada['numberOfSigns'] ?? '' );
+
+				foreach ( $signs as $index => $sign ) {
+					$no = $index + 1;
+					$project_details .= '<ul>';
+					$project_details .= "<li>No.$no Name: " . ( $sign['name'] ?? '' ) . "</li>";
+					$project_details .= "<li>No.$no Dimension: " . ( $sign['dimension'] ?? '' ) . "</li>";
+					$project_details .= "<li>No.$no Details: " . ( $sign['details'] ?? '' ) . "</li>";
+					$project_details .= '</ul>';
+				}
+				$project_details .= '</li>';
+				$project_details .= '<li><strong>Types:</strong> ' . $ada_types . '</li>';
+				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $ada_design ) . '</li>';
 				$project_details .= '</ul>';
 			}
-			$project_details .= '</li>';
-			$project_details .= '<li><strong>Types:</strong> ' . $ada_types . '</li>';
-			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $ada_design ) . '</li>';
-			$project_details .= '</ul>';
-		}
 
-		// --- Monuments & Pylons ---
-		$monuments = $jsonData['monumentsAndPylons'] ?? [];
-		if ( ! empty( $_POST["hasMonumentsAndPylons"] ) && ! empty( $monuments ) ) {
-			$monuments_types = $this->array_to_string( $monuments['types'] );
-			$monuments_design = $monuments['designInspirations'] ?? [];
-			$illumination = $this->array_to_string( $monuments['illumination'] );
-			$project_details .= '<h3><strong>Monuments & Pylons</strong></h3>';
-			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $monuments['numberOfSigns'] ?? '' );
-			$project_details .= '<ul>';
-			$project_details .= "<li>Text & Content: " . ( $monuments['textAndContent'] ?? '' ) . "</li>";
-			$project_details .= "<li>Vendor: " . ( $monuments['vendor'] ?? '' ) . "</li>";
-			$project_details .= "<li>Sides: " . ( $monuments['sides'] ?? '' ) . "</li>";
-			$project_details .= "<li>Dimensions: " . ( $monuments['dimensions'] ?? '' ) . "</li>";
-			$project_details .= "<li>Maximum Content Area: " . ( $monuments['maxContentArea'] ?? '' ) . "</li>";
-			$project_details .= "<li>Minimum Content Area: " . ( $monuments['minContentArea'] ?? '' ) . "</li>";
-			$project_details .= "<li>Maximum Ground Clearance: " . ( $monuments['maxGroundClearance'] ?? '' ) . "</li>";
-			$project_details .= '</ul>';
-			$project_details .= '</li>';
-			$project_details .= '<li><strong>Types:</strong> ' . $monuments_types . '</li>';
-			$project_details .= '<li><strong>Illumination:</strong> ' . $illumination . '</li>';
-			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $monuments_design ) . '</li>';
-			$project_details .= '</ul>';
-		}
-
-		// --- Channel Letters ---
-		$channelLetters = $jsonData['channelLetters'] ?? [];
-		if ( ! empty( $_POST["channelLetters"] ) && ! empty( $channelLetters ) ) {
-			$channelLetters_types = $this->array_to_string( $channelLetters['types'] );
-			$channelLetters_backer = $this->array_to_string( $channelLetters['backer'] );
-			$channelLetters_mounting = $this->array_to_string( $channelLetters['mounting'] );
-			$channelLetters_design = $channelLetters['designInspirations'] ?? [];
-			$project_details .= '<h3><strong>Channel Letters</strong></h3>';
-			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $channelLetters['numberOfSigns'] ?? '' );
-			$project_details .= '<ul>';
-			$project_details .= "<li>Text & Content: " . ( $channelLetters['textAndContent'] ?? '' ) . "</li>";
-			$project_details .= "<li>Vendor: " . ( $channelLetters['vendor'] ?? '' ) . "</li>";
-			$project_details .= "<li>Sides: " . ( $channelLetters['sides'] ?? '' ) . "</li>";
-			$project_details .= "<li>Dimensions: " . ( $channelLetters['dimensions'] ?? '' ) . "</li>";
-			$project_details .= "<li>Maximum Content Area: " . ( $channelLetters['maxContentArea'] ?? '' ) . "</li>";
-			$project_details .= "<li>Minimum Content Area: " . ( $channelLetters['minContentArea'] ?? '' ) . "</li>";
-			$project_details .= "<li>Maximum Ground Clearance: " . ( $channelLetters['maxGroundClearance'] ?? '' ) . "</li>";
-			$project_details .= '</ul>';
-			$project_details .= '</li>';
-			$project_details .= '<li><strong>Types:</strong> ' . $channelLetters_types . '</li>';
-			$project_details .= '<li><strong>Backer:</strong> ' . $channelLetters_backer . '</li>';
-			$project_details .= '<li><strong>Mounting:</strong> ' . $channelLetters_mounting . '</li>';
-			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $channelLetters_design ) . '</li>';
-			$project_details .= '</ul>';
-		}
-
-		// --- Dimensional Letters ---
-		$dimensionalLetters = $jsonData['dimensionalLetters'] ?? [];
-		if ( ! empty( $_POST["dimensionalLetters"] ) && ! empty( $dimensionalLetters ) ) {
-			$dimensionalLetters_types = $this->array_to_string( $dimensionalLetters['types'] );
-			$dimensionalLetters_mounting = $this->array_to_string( $dimensionalLetters['mounting'] );
-			$dimensionalLetters_design = $dimensionalLetters['designInspirations'] ?? [];
-			$project_details .= '<h3><strong>Dimensional Letters</strong></h3>';
-			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $dimensionalLetters['numberOfSigns'] ?? '' );
-			$project_details .= '<ul>';
-			$project_details .= "<li>Text & Content: " . ( $dimensionalLetters['textAndContent'] ?? '' ) . "</li>";
-			$project_details .= "<li>Font: " . ( $dimensionalLetters['font'] ?? '' ) . "</li>";
-			$project_details .= "<li>Vendor: " . ( $dimensionalLetters['vendor'] ?? '' ) . "</li>";
-			$project_details .= "<li>Wall Dimension: " . ( $dimensionalLetters['wallDimension'] ?? '' ) . "</li>";
-			$project_details .= "<li>Sign Dimension: " . ( $dimensionalLetters['signDimension'] ?? '' ) . "</li>";
-			$project_details .= "<li>Sides: " . ( $dimensionalLetters['sides'] ?? '' ) . "</li>";
-			$project_details .= "<li>Back Panel: " . ( $dimensionalLetters['backPanel'] ?? '' ) . "</li>";
-			$project_details .= "<li>Location: " . ( $dimensionalLetters['location'] ?? '' ) . "</li>";
-			$project_details .= '</ul>';
-			$project_details .= '</li>';
-			$project_details .= '<li><strong>Types:</strong> ' . $dimensionalLetters_types . '</li>';
-			$project_details .= '<li><strong>Mounting:</strong> ' . $dimensionalLetters_mounting . '</li>';
-			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $dimensionalLetters_design ) . '</li>';
-			$project_details .= '</ul>';
-		}
-
-		// --- Lightbox ---
-		$lightbox = $jsonData['lightbox'] ?? [];
-		if ( ! empty( $_POST["lightbox"] ) && ! empty( $lightbox ) ) {
-			$lightbox_types = $this->array_to_string( $lightbox['types'] );
-			$lightbox_mounting = $this->array_to_string( $lightbox['mounting'] );
-			$lightbox_design = $lightbox['designInspirations'] ?? [];
-			$project_details .= '<h3><strong>Lightbox</strong></h3>';
-			$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $lightbox['numberOfSigns'] ?? '' );
-			$project_details .= '<ul>';
-			$project_details .= "<li>Text & Content: " . ( $lightbox['textAndContent'] ?? '' ) . "</li>";
-			$project_details .= "<li>Font: " . ( $lightbox['font'] ?? '' ) . "</li>";
-			$project_details .= "<li>Wall Dimension: " . ( $lightbox['wallDimension'] ?? '' ) . "</li>";
-			$project_details .= "<li>Sign Dimension: " . ( $lightbox['signDimension'] ?? '' ) . "</li>";
-			$project_details .= "<li>Depth: " . ( $lightbox['depth'] ?? '' ) . "</li>";
-			$project_details .= "<li>Sides: " . ( $lightbox['sides'] ?? '' ) . "</li>";
-			$project_details .= "<li>Color: " . ( $lightbox['color'] ?? '' ) . "</li>";
-			$project_details .= "<li>Retainers: " . ( $lightbox['retainers'] ?? '' ) . "</li>";
-			$project_details .= '</ul>';
-			$project_details .= '</li>';
-			$project_details .= '<li><strong>Types:</strong> ' . $lightbox_types . '</li>';
-			$project_details .= '<li><strong>Mounting:</strong> ' . $lightbox_mounting . '</li>';
-			$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $lightbox_design ) . '</li>';
-			$project_details .= '</ul>';
-		}
-
-		$converter = new HtmlConverter();
-		$markdown = $converter->convert( $project_details );
-
-		// Combine user_line, email_line, and the converted HTML details
-		$md_desc = $user_line . "\n" . $email_line . "\n\n" . $markdown;
-
-		// --- Create the Trello card ---
-		$card_url = 'https://api.trello.com/1/cards';
-		$card_args = array(
-			'key' => $api_key,
-			'token' => $api_token,
-			'idList' => $list_id,
-			'name' => $card_name,
-			'desc' => $md_desc, // initial description
-		);
-		$card_response = wp_remote_post(
-			$card_url,
-			array(
-				'body' => $card_args,
-			)
-		);
-
-		if ( is_wp_error( $card_response ) ) {
-			wp_send_json_error( 'Error creating card: ' . $card_response->get_error_message() );
-		}
-
-		$card_body = json_decode( wp_remote_retrieve_body( $card_response ) );
-
-		if ( isset( $card_body->id ) ) {
-			$card_id = $card_body->id;
-
-			// Get list name directly from the card response if available
-			$list_name = isset( $card_body->list->name ) ? $card_body->list->name : '';
-
-			// Fallback to API call only if list name isn't in card response
-			if ( empty( $list_name ) ) {
-				$list_response = $this->trello_api_request( 'GET', "lists/{$list_id}" );
-				$list_name = ! is_wp_error( $list_response ) && isset( $list_response['name'] ) ? $list_response['name'] : '';
+			// --- Monuments & Pylons ---
+			$monuments = $jsonData['monumentsAndPylons'] ?? [];
+			if ( ! empty( $_POST["hasMonumentsAndPylons"] ) && ! empty( $monuments ) ) {
+				$monuments_types = $this->array_to_string( $monuments['types'] );
+				$monuments_design = $monuments['designInspirations'] ?? [];
+				$illumination = $this->array_to_string( $monuments['illumination'] );
+				$project_details .= '<h3><strong>Monuments & Pylons</strong></h3>';
+				$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $monuments['numberOfSigns'] ?? '' );
+				$project_details .= '<ul>';
+				$project_details .= "<li>Text & Content: " . ( $monuments['textAndContent'] ?? '' ) . "</li>";
+				$project_details .= "<li>Vendor: " . ( $monuments['vendor'] ?? '' ) . "</li>";
+				$project_details .= "<li>Sides: " . ( $monuments['sides'] ?? '' ) . "</li>";
+				$project_details .= "<li>Dimensions: " . ( $monuments['dimensions'] ?? '' ) . "</li>";
+				$project_details .= "<li>Maximum Content Area: " . ( $monuments['maxContentArea'] ?? '' ) . "</li>";
+				$project_details .= "<li>Minimum Content Area: " . ( $monuments['minContentArea'] ?? '' ) . "</li>";
+				$project_details .= "<li>Maximum Ground Clearance: " . ( $monuments['maxGroundClearance'] ?? '' ) . "</li>";
+				$project_details .= '</ul>';
+				$project_details .= '</li>';
+				$project_details .= '<li><strong>Types:</strong> ' . $monuments_types . '</li>';
+				$project_details .= '<li><strong>Illumination:</strong> ' . $illumination . '</li>';
+				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $monuments_design ) . '</li>';
+				$project_details .= '</ul>';
 			}
 
-			// Create a trello_card post and set the author to the current user
-			$post_author = get_current_user_id();
-			$post_id = wp_insert_post(
+			// --- Channel Letters ---
+			$channelLetters = $jsonData['channelLetters'] ?? [];
+			if ( ! empty( $_POST["channelLetters"] ) && ! empty( $channelLetters ) ) {
+				$channelLetters_types = $this->array_to_string( $channelLetters['types'] );
+				$channelLetters_backer = $this->array_to_string( $channelLetters['backer'] );
+				$channelLetters_mounting = $this->array_to_string( $channelLetters['mounting'] );
+				$channelLetters_design = $channelLetters['designInspirations'] ?? [];
+				$project_details .= '<h3><strong>Channel Letters</strong></h3>';
+				$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $channelLetters['numberOfSigns'] ?? '' );
+				$project_details .= '<ul>';
+				$project_details .= "<li>Text & Content: " . ( $channelLetters['textAndContent'] ?? '' ) . "</li>";
+				$project_details .= "<li>Vendor: " . ( $channelLetters['vendor'] ?? '' ) . "</li>";
+				$project_details .= "<li>Sides: " . ( $channelLetters['sides'] ?? '' ) . "</li>";
+				$project_details .= "<li>Dimensions: " . ( $channelLetters['dimensions'] ?? '' ) . "</li>";
+				$project_details .= "<li>Maximum Content Area: " . ( $channelLetters['maxContentArea'] ?? '' ) . "</li>";
+				$project_details .= "<li>Minimum Content Area: " . ( $channelLetters['minContentArea'] ?? '' ) . "</li>";
+				$project_details .= "<li>Maximum Ground Clearance: " . ( $channelLetters['maxGroundClearance'] ?? '' ) . "</li>";
+				$project_details .= '</ul>';
+				$project_details .= '</li>';
+				$project_details .= '<li><strong>Types:</strong> ' . $channelLetters_types . '</li>';
+				$project_details .= '<li><strong>Backer:</strong> ' . $channelLetters_backer . '</li>';
+				$project_details .= '<li><strong>Mounting:</strong> ' . $channelLetters_mounting . '</li>';
+				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $channelLetters_design ) . '</li>';
+				$project_details .= '</ul>';
+			}
+
+			// --- Dimensional Letters ---
+			$dimensionalLetters = $jsonData['dimensionalLetters'] ?? [];
+			if ( ! empty( $_POST["dimensionalLetters"] ) && ! empty( $dimensionalLetters ) ) {
+				$dimensionalLetters_types = $this->array_to_string( $dimensionalLetters['types'] );
+				$dimensionalLetters_mounting = $this->array_to_string( $dimensionalLetters['mounting'] );
+				$dimensionalLetters_design = $dimensionalLetters['designInspirations'] ?? [];
+				$project_details .= '<h3><strong>Dimensional Letters</strong></h3>';
+				$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $dimensionalLetters['numberOfSigns'] ?? '' );
+				$project_details .= '<ul>';
+				$project_details .= "<li>Text & Content: " . ( $dimensionalLetters['textAndContent'] ?? '' ) . "</li>";
+				$project_details .= "<li>Font: " . ( $dimensionalLetters['font'] ?? '' ) . "</li>";
+				$project_details .= "<li>Vendor: " . ( $dimensionalLetters['vendor'] ?? '' ) . "</li>";
+				$project_details .= "<li>Wall Dimension: " . ( $dimensionalLetters['wallDimension'] ?? '' ) . "</li>";
+				$project_details .= "<li>Sign Dimension: " . ( $dimensionalLetters['signDimension'] ?? '' ) . "</li>";
+				$project_details .= "<li>Sides: " . ( $dimensionalLetters['sides'] ?? '' ) . "</li>";
+				$project_details .= "<li>Back Panel: " . ( $dimensionalLetters['backPanel'] ?? '' ) . "</li>";
+				$project_details .= "<li>Location: " . ( $dimensionalLetters['location'] ?? '' ) . "</li>";
+				$project_details .= '</ul>';
+				$project_details .= '</li>';
+				$project_details .= '<li><strong>Types:</strong> ' . $dimensionalLetters_types . '</li>';
+				$project_details .= '<li><strong>Mounting:</strong> ' . $dimensionalLetters_mounting . '</li>';
+				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $dimensionalLetters_design ) . '</li>';
+				$project_details .= '</ul>';
+			}
+
+			// --- Lightbox ---
+			$lightbox = $jsonData['lightbox'] ?? [];
+			if ( ! empty( $_POST["lightbox"] ) && ! empty( $lightbox ) ) {
+				$lightbox_types = $this->array_to_string( $lightbox['types'] );
+				$lightbox_mounting = $this->array_to_string( $lightbox['mounting'] );
+				$lightbox_design = $lightbox['designInspirations'] ?? [];
+				$project_details .= '<h3><strong>Lightbox</strong></h3>';
+				$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $lightbox['numberOfSigns'] ?? '' );
+				$project_details .= '<ul>';
+				$project_details .= "<li>Text & Content: " . ( $lightbox['textAndContent'] ?? '' ) . "</li>";
+				$project_details .= "<li>Font: " . ( $lightbox['font'] ?? '' ) . "</li>";
+				$project_details .= "<li>Wall Dimension: " . ( $lightbox['wallDimension'] ?? '' ) . "</li>";
+				$project_details .= "<li>Sign Dimension: " . ( $lightbox['signDimension'] ?? '' ) . "</li>";
+				$project_details .= "<li>Depth: " . ( $lightbox['depth'] ?? '' ) . "</li>";
+				$project_details .= "<li>Sides: " . ( $lightbox['sides'] ?? '' ) . "</li>";
+				$project_details .= "<li>Color: " . ( $lightbox['color'] ?? '' ) . "</li>";
+				$project_details .= "<li>Retainers: " . ( $lightbox['retainers'] ?? '' ) . "</li>";
+				$project_details .= '</ul>';
+				$project_details .= '</li>';
+				$project_details .= '<li><strong>Types:</strong> ' . $lightbox_types . '</li>';
+				$project_details .= '<li><strong>Mounting:</strong> ' . $lightbox_mounting . '</li>';
+				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $lightbox_design ) . '</li>';
+				$project_details .= '</ul>';
+			}
+
+			$converter = new HtmlConverter();
+			$markdown = $converter->convert( $project_details );
+
+			// Combine user_line, email_line, and the converted HTML details
+			$md_desc = $user_line . "\n" . $email_line . "\n\n" . $markdown;
+
+			// --- Create the Trello card ---
+			$card_url = 'https://api.trello.com/1/cards';
+			$card_args = array(
+				'key' => $api_key,
+				'token' => $api_token,
+				'idList' => $list_id,
+				'name' => $card_name,
+				'desc' => $md_desc, // initial description
+			);
+			$card_response = wp_remote_post(
+				$card_url,
 				array(
-					'post_type' => 'trello-card',
-					'post_title' => $card_name,
-					'post_status' => 'publish',
-					'post_author' => $post_author,
+					'body' => $card_args,
 				)
 			);
 
-			if ( ! is_wp_error( $post_id ) && $post_id ) {
+			if ( is_wp_error( $card_response ) ) {
+				throw new \Exception( 'Error creating card: ' . $card_response->get_error_message() );
+			}
 
-				update_post_meta( $post_id, 'trello_project_name', $card_name );
-				update_post_meta( $post_id, 'trello_turnaround_time', $turn_around_time );
-				update_post_meta( $post_id, 'trello_design_details', $design_details );
-				update_post_meta( $post_id, 'trello_product_description', $description );
-				update_post_meta( $post_id, 'trello_layout_type', $layout_type );
+			$card_body = json_decode( wp_remote_retrieve_body( $card_response ) );
 
+			if ( isset( $card_body->id ) ) {
+				$card_id = $card_body->id;
 
-				update_post_meta( $post_id, 'product_ada', $ada );
-				update_post_meta( $post_id, 'product_monuments', $monuments );
-				update_post_meta( $post_id, 'product_channel_letters', $channelLetters );
-				update_post_meta( $post_id, 'product_dimensional_letters', $dimensionalLetters );
-				update_post_meta( $post_id, 'product_lightbox', $lightbox );
+				// Get list name directly from the card response if available
+				$list_name = isset( $card_body->list->name ) ? $card_body->list->name : '';
 
+				// Fallback to API call only if list name isn't in card response
+				if ( empty( $list_name ) ) {
+					$list_response = $this->trello_api_request( 'GET', "lists/{$list_id}" );
+					$list_name = ! is_wp_error( $list_response ) && isset( $list_response['name'] ) ? $list_response['name'] : '';
+				}
 
-				update_post_meta( $post_id, 'trello_card_id', $card_id );
-				update_post_meta( $post_id, 'trello_card_message', $project_details );
-				update_post_meta( $post_id, 'trello_card_user_name', $full_name );
-				update_post_meta( $post_id, 'trello_card_user_email', $email );
-				update_post_meta( $post_id, 'trello_card_list', $list_name );
-				update_post_meta( $post_id, 'trello_card_comment_from_admin', false );
-
-
-				/**
-				 * -- NEW STEP --
-				 * Build the admin edit URL and prepend it to the existing Trello card description.
-				 */
-				$edit_url = admin_url( 'post.php?post=' . $post_id . '&action=edit' );
-
-				// Prepend the link to what Trello currently has (i.e., $card_body->desc).
-				// This ensures we do NOT overwrite the existing description.
-				$desc_with_edit_link = "**WP Edit URL:** [Edit Post]({$edit_url})\n\n" . $card_body->desc;
-
-				// Make a second request to Trello to update the card’s description
-				$update_url = "https://api.trello.com/1/cards/{$card_id}";
-				$update_args = array(
-					'key' => $api_key,
-					'token' => $api_token,
-					'desc' => $desc_with_edit_link, // updated desc with link on top
-				);
-
-				$update_response = wp_remote_request(
-					$update_url,
+				// Create a trello_card post and set the author to the current user
+				$post_author = get_current_user_id();
+				$post_id = wp_insert_post(
 					array(
-						'method' => 'PUT',
-						'body' => $update_args,
+						'post_type' => 'trello-card',
+						'post_title' => $card_name,
+						'post_status' => 'publish',
+						'post_author' => $post_author,
 					)
 				);
 
-				// Optional: check if there's an error from the update call
-				if ( is_wp_error( $update_response ) ) {
-					error_log( 'Error updating card description with edit URL: ' . $update_response->get_error_message() );
-				}
-			}
+				if ( ! is_wp_error( $post_id ) && $post_id ) {
 
-			// Handle multiple file uploads
-			if ( ! empty( $_FILES['fileUpload']['name'][0] ) ) {
-				$uploadedfiles = $_FILES['fileUpload'];
-				$file_count = count( $uploadedfiles['name'] );
-				$errors = array();
-				$success_count = 0;
+					update_post_meta( $post_id, 'trello_project_name', $card_name );
+					update_post_meta( $post_id, 'trello_turnaround_time', $turn_around_time );
+					update_post_meta( $post_id, 'trello_design_details', $design_details );
+					update_post_meta( $post_id, 'trello_product_description', $description );
+					update_post_meta( $post_id, 'trello_layout_type', $layout_type );
 
-				for ( $i = 0; $i < $file_count; $i++ ) {
-					$file_name = sanitize_file_name( $uploadedfiles['name'][ $i ] );
-					$file_type = $uploadedfiles['type'][ $i ];
-					$file_tmp_name = $uploadedfiles['tmp_name'][ $i ];
-					$file_error = $uploadedfiles['error'][ $i ];
-					$file_size = $uploadedfiles['size'][ $i ];
 
-					// Check for upload errors
-					if ( $file_error !== UPLOAD_ERR_OK ) {
-						$errors[] = 'Error uploading file: ' . $file_name;
-						continue;
-					}
+					update_post_meta( $post_id, 'product_ada', $ada );
+					update_post_meta( $post_id, 'product_monuments', $monuments );
+					update_post_meta( $post_id, 'product_channel_letters', $channelLetters );
+					update_post_meta( $post_id, 'product_dimensional_letters', $dimensionalLetters );
+					update_post_meta( $post_id, 'product_lightbox', $lightbox );
 
-					// Validate file size if needed
-					$max_file_size = 10 * 1024 * 1024; // 10 MB
-					if ( $file_size > $max_file_size ) {
-						$errors[] = 'File size exceeds limit for file: ' . $file_name;
-						continue;
-					}
 
-					// Prepare the file for upload to Trello
-					$file_data = array(
-						'file' => new \CURLFile( $file_tmp_name, $file_type, $file_name ),
+					update_post_meta( $post_id, 'trello_card_id', $card_id );
+					update_post_meta( $post_id, 'trello_card_message', $project_details );
+					update_post_meta( $post_id, 'trello_card_user_name', $full_name );
+					update_post_meta( $post_id, 'trello_card_user_email', $email );
+					update_post_meta( $post_id, 'trello_card_list', $list_name );
+					update_post_meta( $post_id, 'trello_card_comment_from_admin', false );
+
+
+					/**
+					 * -- NEW STEP --
+					 * Build the admin edit URL and prepend it to the existing Trello card description.
+					 */
+					$edit_url = admin_url( 'post.php?post=' . $post_id . '&action=edit' );
+
+					// Prepend the link to what Trello currently has (i.e., $card_body->desc).
+					// This ensures we do NOT overwrite the existing description.
+					$desc_with_edit_link = "**WP Edit URL:** [Edit Post]({$edit_url})\n\n" . $card_body->desc;
+
+					// Make a second request to Trello to update the card's description
+					$update_url = "https://api.trello.com/1/cards/{$card_id}";
+					$update_args = array(
 						'key' => $api_key,
 						'token' => $api_token,
+						'desc' => $desc_with_edit_link, // updated desc with link on top
 					);
 
-					// Attach the file to the Trello card
-					$attachment_url = "https://api.trello.com/1/cards/{$card_id}/attachments";
-					$ch = curl_init();
-					curl_setopt( $ch, CURLOPT_URL, $attachment_url );
-					curl_setopt( $ch, CURLOPT_POST, 1 );
-					curl_setopt( $ch, CURLOPT_POSTFIELDS, $file_data );
-					curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+					$update_response = wp_remote_request(
+						$update_url,
+						array(
+							'method' => 'PUT',
+							'body' => $update_args,
+						)
+					);
 
-					$attachment_response = curl_exec( $ch );
-					$attachment_error = curl_error( $ch );
-					curl_close( $ch );
-
-					if ( $attachment_error ) {
-						$errors[] = 'Error uploading attachment for file ' . $file_name . ': ' . $attachment_error;
-						continue;
+					// Optional: check if there's an error from the update call
+					if ( is_wp_error( $update_response ) ) {
+						error_log( 'Error updating card description with edit URL: ' . $update_response->get_error_message() );
 					}
+				}
 
-					$attachment_data = json_decode( $attachment_response, true );
-					if ( $attachment_data && isset( $attachment_data['id'] ) ) {
-						$attachment_info = array(
-							'trello_id' => $attachment_data['id'],
-							'name' => $file_name,
-							'url' => $attachment_data['url'] ?? '',
-							'date' => current_time( 'mysql' ),
-						);
+				// Handle multiple file uploads
+				if ( ! empty( $_FILES['fileUpload']['name'][0] ) || ! empty( $_FILES['bulkOrderFile']['name'] ) ) {
+					$errors = array();
+					$success_count = 0;
 
-						// Get existing attachments or initialize empty array
-						$existing_attachments = get_post_meta( $post_id, 'trello_card_attachments', true );
-						if ( ! is_array( $existing_attachments ) ) {
-							$existing_attachments = array();
+					// Handle regular file uploads
+					if ( ! empty( $_FILES['fileUpload']['name'][0] ) ) {
+						$uploadedfiles = $_FILES['fileUpload'];
+						$file_count = count( $uploadedfiles['name'] );
+
+						for ( $i = 0; $i < $file_count; $i++ ) {
+							$file_name = sanitize_file_name( $uploadedfiles['name'][ $i ] );
+							$file_type = $uploadedfiles['type'][ $i ];
+							$file_tmp_name = $uploadedfiles['tmp_name'][ $i ];
+							$file_error = $uploadedfiles['error'][ $i ];
+							$file_size = $uploadedfiles['size'][ $i ];
+
+							// Check for upload errors
+							if ( $file_error !== UPLOAD_ERR_OK ) {
+								$errors[] = 'Error uploading file: ' . $file_name;
+								continue;
+							}
+
+							// Validate file size if needed
+							$max_file_size = 10 * 1024 * 1024; // 10 MB
+							if ( $file_size > $max_file_size ) {
+								$errors[] = 'File size exceeds limit for file: ' . $file_name;
+								continue;
+							}
+
+							// Prepare the file for upload to Trello
+							$file_data = array(
+								'file' => new \CURLFile( $file_tmp_name, $file_type, $file_name ),
+								'key' => $api_key,
+								'token' => $api_token,
+							);
+
+							// Attach the file to the Trello card
+							$attachment_url = "https://api.trello.com/1/cards/{$card_id}/attachments";
+							$ch = curl_init();
+							curl_setopt( $ch, CURLOPT_URL, $attachment_url );
+							curl_setopt( $ch, CURLOPT_POST, 1 );
+							curl_setopt( $ch, CURLOPT_POSTFIELDS, $file_data );
+							curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+
+							$attachment_response = curl_exec( $ch );
+							$attachment_error = curl_error( $ch );
+							curl_close( $ch );
+
+							if ( $attachment_error ) {
+								$errors[] = 'Error uploading attachment for file ' . $file_name . ': ' . $attachment_error;
+								continue;
+							}
+
+							$attachment_data = json_decode( $attachment_response, true );
+							if ( $attachment_data && isset( $attachment_data['id'] ) ) {
+								$attachment_info = array(
+									'trello_id' => $attachment_data['id'],
+									'name' => $file_name,
+									'url' => $attachment_data['url'] ?? '',
+									'date' => current_time( 'mysql' ),
+								);
+
+								// Get existing attachments or initialize empty array
+								$existing_attachments = get_post_meta( $post_id, 'trello_card_attachments', true );
+								if ( ! is_array( $existing_attachments ) ) {
+									$existing_attachments = array();
+								}
+
+								// Add new attachment
+								$existing_attachments[] = $attachment_info;
+
+								// Update post meta with all attachments
+								update_post_meta( $post_id, 'trello_card_attachments', $existing_attachments );
+							}
+
+							++$success_count;
 						}
-
-						// Add new attachment
-						$existing_attachments[] = $attachment_info;
-
-						// Update post meta with all attachments
-						update_post_meta( $post_id, 'trello_card_attachments', $existing_attachments );
 					}
 
-					++$success_count;
-				}
+					// Handle bulk order file
+					if ( ! empty( $_FILES['bulkOrderFile']['name'] ) ) {
+						$bulk_file = $_FILES['bulkOrderFile'];
+						$file_name = sanitize_file_name( $bulk_file['name'] );
+						$file_type = $bulk_file['type'];
+						$file_tmp_name = $bulk_file['tmp_name'];
+						$file_error = $bulk_file['error'];
+						$file_size = $bulk_file['size'];
 
-				$webhook_result = $this->register_trello_webhook( $card_id, "Monitoring {$card_name}" );
-				if ( is_wp_error( $webhook_result ) ) {
-					error_log( 'Error creating Trello webhook: ' . $webhook_result->get_error_message() );
-				} elseif ( isset( $webhook_result['id'] ) && ! is_wp_error( $post_id ) && $post_id ) {
-					update_post_meta( $post_id, 'trello_webhook_id', $webhook_result['id'] );
-				}
+						// Check for upload errors
+						if ( $file_error !== UPLOAD_ERR_OK ) {
+							$errors[] = 'Error uploading bulk order file: ' . $file_name;
+						} else {
+							// Validate file size if needed
+							$max_file_size = 10 * 1024 * 1024; // 10 MB
+							if ( $file_size > $max_file_size ) {
+								$errors[] = 'Bulk order file size exceeds limit: ' . $file_name;
+							} else {
+								// Prepare the file for upload to Trello
+								$file_data = array(
+									'file' => new \CURLFile( $file_tmp_name, $file_type, $file_name ),
+									'key' => $api_key,
+									'token' => $api_token,
+								);
 
-				// Generate response message
-				if ( $success_count > 0 && empty( $errors ) ) {
-					wp_send_json_success( array(
-						'message' => 'Card created and all files attached successfully!',
-					) );
-				} elseif ( $success_count > 0 && ! empty( $errors ) ) {
-					$error_messages = implode( '<br>', $errors );
-					wp_send_json_success( "Card created. Successfully attached $success_count files.<br>Errors:<br>$error_messages" );
+								// Attach the file to the Trello card
+								$attachment_url = "https://api.trello.com/1/cards/{$card_id}/attachments";
+								$ch = curl_init();
+								curl_setopt( $ch, CURLOPT_URL, $attachment_url );
+								curl_setopt( $ch, CURLOPT_POST, 1 );
+								curl_setopt( $ch, CURLOPT_POSTFIELDS, $file_data );
+								curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+
+								$attachment_response = curl_exec( $ch );
+								$attachment_error = curl_error( $ch );
+								curl_close( $ch );
+
+								if ( $attachment_error ) {
+									$errors[] = 'Error uploading bulk order file ' . $file_name . ': ' . $attachment_error;
+								} else {
+									$attachment_data = json_decode( $attachment_response, true );
+									if ( $attachment_data && isset( $attachment_data['id'] ) ) {
+										$attachment_info = array(
+											'trello_id' => $attachment_data['id'],
+											'name' => $file_name,
+											'url' => $attachment_data['url'] ?? '',
+											'date' => current_time( 'mysql' ),
+											'type' => 'bulk_order',
+										);
+
+										// Get existing attachments or initialize empty array
+										$existing_attachments = get_post_meta( $post_id, 'trello_card_attachments', true );
+										if ( ! is_array( $existing_attachments ) ) {
+											$existing_attachments = array();
+										}
+
+										// Add new attachment
+										$existing_attachments[] = $attachment_info;
+
+										// Update post meta with all attachments
+										update_post_meta( $post_id, 'trello_card_attachments', $existing_attachments );
+										$success_count++;
+									}
+								}
+							}
+						}
+					}
+
+					$webhook_result = $this->register_trello_webhook( $card_id, "Monitoring {$card_name}" );
+					if ( is_wp_error( $webhook_result ) ) {
+						error_log( 'Error creating Trello webhook: ' . $webhook_result->get_error_message() );
+					} elseif ( isset( $webhook_result['id'] ) && ! is_wp_error( $post_id ) && $post_id ) {
+						update_post_meta( $post_id, 'trello_webhook_id', $webhook_result['id'] );
+					}
+
+					// Generate response message
+					if ( $success_count > 0 && empty( $errors ) ) {
+						wp_send_json_success( array(
+							'message' => 'Card created and all files attached successfully!',
+						) );
+					} elseif ( $success_count > 0 && ! empty( $errors ) ) {
+						$error_messages = implode( '<br>', $errors );
+						wp_send_json_success( "Card created. Successfully attached $success_count files.<br>Errors:<br>$error_messages" );
+					} else {
+						$error_messages = implode( '<br>', $errors );
+						wp_send_json_error( "Card created but failed to attach files.<br>Errors:<br>$error_messages" );
+					}
+
 				} else {
-					$error_messages = implode( '<br>', $errors );
-					wp_send_json_error( "Card created but failed to attach files.<br>Errors:<br>$error_messages" );
-				}
+					// No files uploaded; still try to register a webhook
+					$webhook_result = $this->register_trello_webhook( $card_id, "Monitoring {$card_name}" );
+					if ( is_wp_error( $webhook_result ) ) {
+						error_log( 'Error creating Trello webhook: ' . $webhook_result->get_error_message() );
+					} elseif ( isset( $webhook_result['id'] ) && ! is_wp_error( $post_id ) && $post_id ) {
+						update_post_meta( $post_id, 'trello_webhook_id', $webhook_result['id'] );
+					}
 
+					wp_send_json_success( 'Card created successfully!' );
+				}
 			} else {
-				// No files uploaded; still try to register a webhook
-				$webhook_result = $this->register_trello_webhook( $card_id, "Monitoring {$card_name}" );
-				if ( is_wp_error( $webhook_result ) ) {
-					error_log( 'Error creating Trello webhook: ' . $webhook_result->get_error_message() );
-				} elseif ( isset( $webhook_result['id'] ) && ! is_wp_error( $post_id ) && $post_id ) {
-					update_post_meta( $post_id, 'trello_webhook_id', $webhook_result['id'] );
-				}
-
-				wp_send_json_success( 'Card created successfully!' );
+				throw new \Exception( 'Error creating card.' );
 			}
-		} else {
-			wp_send_json_error( 'Error creating card.' );
+		} catch (\Exception $e) {
+			error_log( 'Trello Form Submission Error: ' . $e->getMessage() );
+			wp_send_json_error( [ 
+				'message' => $e->getMessage(),
+				'trace' => $e->getTraceAsString()
+			] );
 		}
 
 		wp_die();
+	}
+
+	private function get_file_error_message( $code ) {
+		switch ( $code ) {
+			case UPLOAD_ERR_INI_SIZE:
+				return 'The uploaded file exceeds the upload_max_filesize directive in php.ini';
+			case UPLOAD_ERR_FORM_SIZE:
+				return 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form';
+			case UPLOAD_ERR_PARTIAL:
+				return 'The uploaded file was only partially uploaded';
+			case UPLOAD_ERR_NO_FILE:
+				return 'No file was uploaded';
+			case UPLOAD_ERR_NO_TMP_DIR:
+				return 'Missing a temporary folder';
+			case UPLOAD_ERR_CANT_WRITE:
+				return 'Failed to write file to disk';
+			case UPLOAD_ERR_EXTENSION:
+				return 'A PHP extension stopped the file upload';
+			default:
+				return 'Unknown upload error';
+		}
 	}
 }

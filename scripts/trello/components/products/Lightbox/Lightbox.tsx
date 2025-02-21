@@ -94,7 +94,7 @@ export default function Lightbox({ form, product }: LightboxProps) {
 										form={form}
 										name="lightbox.textAndContent"
 										label="Sign Text & Content"
-										placeholder="specific vendor for fabrication"
+										placeholder="Text & Content"
 										customClass="md:col-span-2"
 									/>
 									<TextField

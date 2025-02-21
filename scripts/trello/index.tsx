@@ -26,6 +26,8 @@ async function submitForm(
 		formData.append('action', action);
 		formData.append('trello_form_nonce', trello_ajax_object.trello_form_nonce);
 
+		console.log(formData);
+
 		const response = await fetch(trello_ajax_object.ajax_url, {
 			method: 'POST',
 			body: formData,
@@ -36,8 +38,6 @@ async function submitForm(
 		}
 
 		const data = await response.json();
-
-		console.log(data);
 
 		if (data.success) {
 			responseDiv.innerHTML =
@@ -53,6 +53,7 @@ async function submitForm(
 			}, 1000);
 		} else {
 			responseDiv.innerHTML = 'Error: ' + data.data;
+			console.log(data);
 		}
 	} catch (error) {
 		// Narrow the error type

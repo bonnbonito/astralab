@@ -5,6 +5,7 @@ import DesignDetails from './fields/DesignDetails';
 import ProjectDescription from './fields/ProjectDescription';
 import LayoutType from './fields/LayoutType';
 import FileUpload from './fields/FileUpload';
+import BulkOrders from './fields/BulkOrders';
 import { Astralab, Options } from '../helpers/types';
 import { UseFormReturn } from 'react-hook-form';
 import { FormSchema } from '@/trello/helpers/schema';
@@ -98,6 +99,7 @@ export default function ProjectDetails({ form }: ProjectDetailsProps) {
 
 			<div className="mb-6 relative">
 				<FileUpload form={form} />
+				<BulkOrders form={form} />
 			</div>
 		</div>
 	);

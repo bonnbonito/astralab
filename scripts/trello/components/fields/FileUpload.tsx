@@ -5,12 +5,17 @@ import {
 	FormLabel,
 	FormControl,
 	FormMessage,
-	FormDescription,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { FormSchema } from '@/trello/helpers/schema';
 import { useRef, useEffect } from 'react';
 import { UseFormReturn } from 'react-hook-form';
+
+const getButtonText = (files?: File[]) => {
+	if (!files?.length) return 'Upload Files';
+	const fileCount = files.length;
+	return `Selected ${fileCount} ${fileCount === 1 ? 'file' : 'files'}`;
+};
 
 export default function FileUpload({
 	form,
@@ -36,6 +41,10 @@ export default function FileUpload({
 		}
 	};
 
+	const handleButtonClick = () => {
+		fileInputRef.current?.click();
+	};
+
 	const fileUpload = form.watch('fileUpload');
 
 	return (
@@ -43,29 +52,47 @@ export default function FileUpload({
 			control={form.control}
 			name="fileUpload"
 			render={({ field: { value, ...field } }) => (
-				<FormItem className="relative grid">
+				<FormItem className="relative grid gap-2">
 					<FormLabel className="uppercase font-semibold text-base">
 						Uploads
 					</FormLabel>
 					<FormControl>
-						<Input
-							{...field}
-							id="fileUpload"
-							value={undefined}
-							type="file"
-							ref={fileInputRef}
-							multiple
-							onChange={handleFileChange}
-							className="inline-block bg-button border-0 !leading-[30px] relative cursor-pointer max-w-52"
-						/>
+						<div className="space-y-4">
+							<Button
+								type="button"
+								variant="outline"
+								onClick={handleButtonClick}
+								className="inline-block bg-button border-0 relative cursor-pointer max-w-52 w-full font-semibold uppercase hover:bg-[#9F9F9F] hover:text-white"
+							>
+								{getButtonText(fileUpload)}
+							</Button>
+							<Input
+								{...field}
+								id="fileUpload"
+								value={undefined}
+								type="file"
+								ref={fileInputRef}
+								multiple
+								onChange={handleFileChange}
+								className="hidden"
+							/>
+							{fileUpload?.length > 0 && (
+								<div className="text-[0.8rem] text-muted-foreground">
+									<ul className="space-y-1">
+										{fileUpload.map((file, index) => (
+											<li key={index}>{file.name}</li>
+										))}
+									</ul>
+								</div>
+							)}
+							<p className="text-[#868686] text-sm">
+								Please upload logos, designs, branding guides, site photos,
+								inspiration, and other relevant files to help us understand your
+								project. Multiple file uploads are allowed.
+							</p>
+						</div>
 					</FormControl>
-					<div className="text-[0.8rem] text-muted-foreground">
-						<ul>
-							{fileUpload?.map((file, index) => (
-								<li key={index}>{file.name}</li>
-							))}
-						</ul>
-					</div>
+					<FormMessage />
 				</FormItem>
 			)}
 		/>

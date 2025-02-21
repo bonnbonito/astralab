@@ -101,7 +101,7 @@ export default function DimensionalLetters({
 										form={form}
 										name="dimensionalLetters.textAndContent"
 										label="Sign Text & Content"
-										placeholder="specific vendor for fabrication"
+										placeholder="Text and Content"
 										customClass="md:col-span-2"
 									/>
 									<TextField
@@ -114,12 +114,6 @@ export default function DimensionalLetters({
 							</div>
 
 							<div className="grid md:grid-cols-3 gap-6 mb-6">
-								<TextField
-									form={form}
-									name="dimensionalLetters.vendor"
-									label="Vendor"
-									placeholder="specific vendor for fabrication"
-								/>
 								<TextField
 									form={form}
 									name="dimensionalLetters.wallDimension"

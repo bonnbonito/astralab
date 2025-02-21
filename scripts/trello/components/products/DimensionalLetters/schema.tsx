@@ -13,9 +13,6 @@ export const DimensionalLettersSchema = z.discriminatedUnion(
 				font: z.string().nonempty({
 					message: 'Font required.',
 				}),
-				vendor: z.string().nonempty({
-					message: 'Vendor required.',
-				}),
 				wallDimension: z.string().nonempty(),
 				signDimension: z.string().nonempty(),
 				sides: z.string().nonempty(),

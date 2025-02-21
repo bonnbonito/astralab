@@ -7468,6 +7468,534 @@ var Close = ToastClose;
 
 /***/ }),
 
+/***/ "./node_modules/@radix-ui/react-tooltip/dist/index.mjs":
+/*!*************************************************************!*\
+  !*** ./node_modules/@radix-ui/react-tooltip/dist/index.mjs ***!
+  \*************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Arrow: () => (/* binding */ Arrow2),
+/* harmony export */   Content: () => (/* binding */ Content2),
+/* harmony export */   Portal: () => (/* binding */ Portal),
+/* harmony export */   Provider: () => (/* binding */ Provider),
+/* harmony export */   Root: () => (/* binding */ Root3),
+/* harmony export */   Tooltip: () => (/* binding */ Tooltip),
+/* harmony export */   TooltipArrow: () => (/* binding */ TooltipArrow),
+/* harmony export */   TooltipContent: () => (/* binding */ TooltipContent),
+/* harmony export */   TooltipPortal: () => (/* binding */ TooltipPortal),
+/* harmony export */   TooltipProvider: () => (/* binding */ TooltipProvider),
+/* harmony export */   TooltipTrigger: () => (/* binding */ TooltipTrigger),
+/* harmony export */   Trigger: () => (/* binding */ Trigger),
+/* harmony export */   createTooltipScope: () => (/* binding */ createTooltipScope)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var _radix_ui_primitive__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @radix-ui/primitive */ "./node_modules/@radix-ui/primitive/dist/index.mjs");
+/* harmony import */ var _radix_ui_react_compose_refs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @radix-ui/react-compose-refs */ "./node_modules/@radix-ui/react-compose-refs/dist/index.mjs");
+/* harmony import */ var _radix_ui_react_context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @radix-ui/react-context */ "./node_modules/@radix-ui/react-context/dist/index.mjs");
+/* harmony import */ var _radix_ui_react_dismissable_layer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @radix-ui/react-dismissable-layer */ "./node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs");
+/* harmony import */ var _radix_ui_react_id__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @radix-ui/react-id */ "./node_modules/@radix-ui/react-id/dist/index.mjs");
+/* harmony import */ var _radix_ui_react_popper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @radix-ui/react-popper */ "./node_modules/@radix-ui/react-popper/dist/index.mjs");
+/* harmony import */ var _radix_ui_react_portal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @radix-ui/react-portal */ "./node_modules/@radix-ui/react-portal/dist/index.mjs");
+/* harmony import */ var _radix_ui_react_presence__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @radix-ui/react-presence */ "./node_modules/@radix-ui/react-presence/dist/index.mjs");
+/* harmony import */ var _radix_ui_react_primitive__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @radix-ui/react-primitive */ "./node_modules/@radix-ui/react-primitive/dist/index.mjs");
+/* harmony import */ var _radix_ui_react_slot__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @radix-ui/react-slot */ "./node_modules/@radix-ui/react-slot/dist/index.mjs");
+/* harmony import */ var _radix_ui_react_use_controllable_state__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @radix-ui/react-use-controllable-state */ "./node_modules/@radix-ui/react-use-controllable-state/dist/index.mjs");
+/* harmony import */ var _radix_ui_react_visually_hidden__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @radix-ui/react-visually-hidden */ "./node_modules/@radix-ui/react-visually-hidden/dist/index.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+"use client";
+
+// packages/react/tooltip/src/tooltip.tsx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var [createTooltipContext, createTooltipScope] = (0,_radix_ui_react_context__WEBPACK_IMPORTED_MODULE_2__.createContextScope)("Tooltip", [
+  _radix_ui_react_popper__WEBPACK_IMPORTED_MODULE_3__.createPopperScope
+]);
+var usePopperScope = (0,_radix_ui_react_popper__WEBPACK_IMPORTED_MODULE_3__.createPopperScope)();
+var PROVIDER_NAME = "TooltipProvider";
+var DEFAULT_DELAY_DURATION = 700;
+var TOOLTIP_OPEN = "tooltip.open";
+var [TooltipProviderContextProvider, useTooltipProviderContext] = createTooltipContext(PROVIDER_NAME);
+var TooltipProvider = (props) => {
+  const {
+    __scopeTooltip,
+    delayDuration = DEFAULT_DELAY_DURATION,
+    skipDelayDuration = 300,
+    disableHoverableContent = false,
+    children
+  } = props;
+  const [isOpenDelayed, setIsOpenDelayed] = react__WEBPACK_IMPORTED_MODULE_0__.useState(true);
+  const isPointerInTransitRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(false);
+  const skipDelayTimerRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(0);
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+    const skipDelayTimer = skipDelayTimerRef.current;
+    return () => window.clearTimeout(skipDelayTimer);
+  }, []);
+  return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
+    TooltipProviderContextProvider,
+    {
+      scope: __scopeTooltip,
+      isOpenDelayed,
+      delayDuration,
+      onOpen: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => {
+        window.clearTimeout(skipDelayTimerRef.current);
+        setIsOpenDelayed(false);
+      }, []),
+      onClose: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => {
+        window.clearTimeout(skipDelayTimerRef.current);
+        skipDelayTimerRef.current = window.setTimeout(
+          () => setIsOpenDelayed(true),
+          skipDelayDuration
+        );
+      }, [skipDelayDuration]),
+      isPointerInTransitRef,
+      onPointerInTransitChange: react__WEBPACK_IMPORTED_MODULE_0__.useCallback((inTransit) => {
+        isPointerInTransitRef.current = inTransit;
+      }, []),
+      disableHoverableContent,
+      children
+    }
+  );
+};
+TooltipProvider.displayName = PROVIDER_NAME;
+var TOOLTIP_NAME = "Tooltip";
+var [TooltipContextProvider, useTooltipContext] = createTooltipContext(TOOLTIP_NAME);
+var Tooltip = (props) => {
+  const {
+    __scopeTooltip,
+    children,
+    open: openProp,
+    defaultOpen = false,
+    onOpenChange,
+    disableHoverableContent: disableHoverableContentProp,
+    delayDuration: delayDurationProp
+  } = props;
+  const providerContext = useTooltipProviderContext(TOOLTIP_NAME, props.__scopeTooltip);
+  const popperScope = usePopperScope(__scopeTooltip);
+  const [trigger, setTrigger] = react__WEBPACK_IMPORTED_MODULE_0__.useState(null);
+  const contentId = (0,_radix_ui_react_id__WEBPACK_IMPORTED_MODULE_4__.useId)();
+  const openTimerRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(0);
+  const disableHoverableContent = disableHoverableContentProp ?? providerContext.disableHoverableContent;
+  const delayDuration = delayDurationProp ?? providerContext.delayDuration;
+  const wasOpenDelayedRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(false);
+  const [open = false, setOpen] = (0,_radix_ui_react_use_controllable_state__WEBPACK_IMPORTED_MODULE_5__.useControllableState)({
+    prop: openProp,
+    defaultProp: defaultOpen,
+    onChange: (open2) => {
+      if (open2) {
+        providerContext.onOpen();
+        document.dispatchEvent(new CustomEvent(TOOLTIP_OPEN));
+      } else {
+        providerContext.onClose();
+      }
+      onOpenChange?.(open2);
+    }
+  });
+  const stateAttribute = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => {
+    return open ? wasOpenDelayedRef.current ? "delayed-open" : "instant-open" : "closed";
+  }, [open]);
+  const handleOpen = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => {
+    window.clearTimeout(openTimerRef.current);
+    openTimerRef.current = 0;
+    wasOpenDelayedRef.current = false;
+    setOpen(true);
+  }, [setOpen]);
+  const handleClose = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => {
+    window.clearTimeout(openTimerRef.current);
+    openTimerRef.current = 0;
+    setOpen(false);
+  }, [setOpen]);
+  const handleDelayedOpen = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => {
+    window.clearTimeout(openTimerRef.current);
+    openTimerRef.current = window.setTimeout(() => {
+      wasOpenDelayedRef.current = true;
+      setOpen(true);
+      openTimerRef.current = 0;
+    }, delayDuration);
+  }, [delayDuration, setOpen]);
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+    return () => {
+      if (openTimerRef.current) {
+        window.clearTimeout(openTimerRef.current);
+        openTimerRef.current = 0;
+      }
+    };
+  }, []);
+  return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_radix_ui_react_popper__WEBPACK_IMPORTED_MODULE_3__.Root, { ...popperScope, children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
+    TooltipContextProvider,
+    {
+      scope: __scopeTooltip,
+      contentId,
+      open,
+      stateAttribute,
+      trigger,
+      onTriggerChange: setTrigger,
+      onTriggerEnter: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => {
+        if (providerContext.isOpenDelayed) handleDelayedOpen();
+        else handleOpen();
+      }, [providerContext.isOpenDelayed, handleDelayedOpen, handleOpen]),
+      onTriggerLeave: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => {
+        if (disableHoverableContent) {
+          handleClose();
+        } else {
+          window.clearTimeout(openTimerRef.current);
+          openTimerRef.current = 0;
+        }
+      }, [handleClose, disableHoverableContent]),
+      onOpen: handleOpen,
+      onClose: handleClose,
+      disableHoverableContent,
+      children
+    }
+  ) });
+};
+Tooltip.displayName = TOOLTIP_NAME;
+var TRIGGER_NAME = "TooltipTrigger";
+var TooltipTrigger = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeTooltip, ...triggerProps } = props;
+    const context = useTooltipContext(TRIGGER_NAME, __scopeTooltip);
+    const providerContext = useTooltipProviderContext(TRIGGER_NAME, __scopeTooltip);
+    const popperScope = usePopperScope(__scopeTooltip);
+    const ref = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+    const composedRefs = (0,_radix_ui_react_compose_refs__WEBPACK_IMPORTED_MODULE_6__.useComposedRefs)(forwardedRef, ref, context.onTriggerChange);
+    const isPointerDownRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(false);
+    const hasPointerMoveOpenedRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(false);
+    const handlePointerUp = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => isPointerDownRef.current = false, []);
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+      return () => document.removeEventListener("pointerup", handlePointerUp);
+    }, [handlePointerUp]);
+    return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_radix_ui_react_popper__WEBPACK_IMPORTED_MODULE_3__.Anchor, { asChild: true, ...popperScope, children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
+      _radix_ui_react_primitive__WEBPACK_IMPORTED_MODULE_7__.Primitive.button,
+      {
+        "aria-describedby": context.open ? context.contentId : void 0,
+        "data-state": context.stateAttribute,
+        ...triggerProps,
+        ref: composedRefs,
+        onPointerMove: (0,_radix_ui_primitive__WEBPACK_IMPORTED_MODULE_8__.composeEventHandlers)(props.onPointerMove, (event) => {
+          if (event.pointerType === "touch") return;
+          if (!hasPointerMoveOpenedRef.current && !providerContext.isPointerInTransitRef.current) {
+            context.onTriggerEnter();
+            hasPointerMoveOpenedRef.current = true;
+          }
+        }),
+        onPointerLeave: (0,_radix_ui_primitive__WEBPACK_IMPORTED_MODULE_8__.composeEventHandlers)(props.onPointerLeave, () => {
+          context.onTriggerLeave();
+          hasPointerMoveOpenedRef.current = false;
+        }),
+        onPointerDown: (0,_radix_ui_primitive__WEBPACK_IMPORTED_MODULE_8__.composeEventHandlers)(props.onPointerDown, () => {
+          isPointerDownRef.current = true;
+          document.addEventListener("pointerup", handlePointerUp, { once: true });
+        }),
+        onFocus: (0,_radix_ui_primitive__WEBPACK_IMPORTED_MODULE_8__.composeEventHandlers)(props.onFocus, () => {
+          if (!isPointerDownRef.current) context.onOpen();
+        }),
+        onBlur: (0,_radix_ui_primitive__WEBPACK_IMPORTED_MODULE_8__.composeEventHandlers)(props.onBlur, context.onClose),
+        onClick: (0,_radix_ui_primitive__WEBPACK_IMPORTED_MODULE_8__.composeEventHandlers)(props.onClick, context.onClose)
+      }
+    ) });
+  }
+);
+TooltipTrigger.displayName = TRIGGER_NAME;
+var PORTAL_NAME = "TooltipPortal";
+var [PortalProvider, usePortalContext] = createTooltipContext(PORTAL_NAME, {
+  forceMount: void 0
+});
+var TooltipPortal = (props) => {
+  const { __scopeTooltip, forceMount, children, container } = props;
+  const context = useTooltipContext(PORTAL_NAME, __scopeTooltip);
+  return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(PortalProvider, { scope: __scopeTooltip, forceMount, children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_radix_ui_react_presence__WEBPACK_IMPORTED_MODULE_9__.Presence, { present: forceMount || context.open, children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_radix_ui_react_portal__WEBPACK_IMPORTED_MODULE_10__.Portal, { asChild: true, container, children }) }) });
+};
+TooltipPortal.displayName = PORTAL_NAME;
+var CONTENT_NAME = "TooltipContent";
+var TooltipContent = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
+  (props, forwardedRef) => {
+    const portalContext = usePortalContext(CONTENT_NAME, props.__scopeTooltip);
+    const { forceMount = portalContext.forceMount, side = "top", ...contentProps } = props;
+    const context = useTooltipContext(CONTENT_NAME, props.__scopeTooltip);
+    return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_radix_ui_react_presence__WEBPACK_IMPORTED_MODULE_9__.Presence, { present: forceMount || context.open, children: context.disableHoverableContent ? /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TooltipContentImpl, { side, ...contentProps, ref: forwardedRef }) : /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TooltipContentHoverable, { side, ...contentProps, ref: forwardedRef }) });
+  }
+);
+var TooltipContentHoverable = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((props, forwardedRef) => {
+  const context = useTooltipContext(CONTENT_NAME, props.__scopeTooltip);
+  const providerContext = useTooltipProviderContext(CONTENT_NAME, props.__scopeTooltip);
+  const ref = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  const composedRefs = (0,_radix_ui_react_compose_refs__WEBPACK_IMPORTED_MODULE_6__.useComposedRefs)(forwardedRef, ref);
+  const [pointerGraceArea, setPointerGraceArea] = react__WEBPACK_IMPORTED_MODULE_0__.useState(null);
+  const { trigger, onClose } = context;
+  const content = ref.current;
+  const { onPointerInTransitChange } = providerContext;
+  const handleRemoveGraceArea = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => {
+    setPointerGraceArea(null);
+    onPointerInTransitChange(false);
+  }, [onPointerInTransitChange]);
+  const handleCreateGraceArea = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(
+    (event, hoverTarget) => {
+      const currentTarget = event.currentTarget;
+      const exitPoint = { x: event.clientX, y: event.clientY };
+      const exitSide = getExitSideFromRect(exitPoint, currentTarget.getBoundingClientRect());
+      const paddedExitPoints = getPaddedExitPoints(exitPoint, exitSide);
+      const hoverTargetPoints = getPointsFromRect(hoverTarget.getBoundingClientRect());
+      const graceArea = getHull([...paddedExitPoints, ...hoverTargetPoints]);
+      setPointerGraceArea(graceArea);
+      onPointerInTransitChange(true);
+    },
+    [onPointerInTransitChange]
+  );
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+    return () => handleRemoveGraceArea();
+  }, [handleRemoveGraceArea]);
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+    if (trigger && content) {
+      const handleTriggerLeave = (event) => handleCreateGraceArea(event, content);
+      const handleContentLeave = (event) => handleCreateGraceArea(event, trigger);
+      trigger.addEventListener("pointerleave", handleTriggerLeave);
+      content.addEventListener("pointerleave", handleContentLeave);
+      return () => {
+        trigger.removeEventListener("pointerleave", handleTriggerLeave);
+        content.removeEventListener("pointerleave", handleContentLeave);
+      };
+    }
+  }, [trigger, content, handleCreateGraceArea, handleRemoveGraceArea]);
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+    if (pointerGraceArea) {
+      const handleTrackPointerGrace = (event) => {
+        const target = event.target;
+        const pointerPosition = { x: event.clientX, y: event.clientY };
+        const hasEnteredTarget = trigger?.contains(target) || content?.contains(target);
+        const isPointerOutsideGraceArea = !isPointInPolygon(pointerPosition, pointerGraceArea);
+        if (hasEnteredTarget) {
+          handleRemoveGraceArea();
+        } else if (isPointerOutsideGraceArea) {
+          handleRemoveGraceArea();
+          onClose();
+        }
+      };
+      document.addEventListener("pointermove", handleTrackPointerGrace);
+      return () => document.removeEventListener("pointermove", handleTrackPointerGrace);
+    }
+  }, [trigger, content, pointerGraceArea, onClose, handleRemoveGraceArea]);
+  return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TooltipContentImpl, { ...props, ref: composedRefs });
+});
+var [VisuallyHiddenContentContextProvider, useVisuallyHiddenContentContext] = createTooltipContext(TOOLTIP_NAME, { isInside: false });
+var TooltipContentImpl = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      __scopeTooltip,
+      children,
+      "aria-label": ariaLabel,
+      onEscapeKeyDown,
+      onPointerDownOutside,
+      ...contentProps
+    } = props;
+    const context = useTooltipContext(CONTENT_NAME, __scopeTooltip);
+    const popperScope = usePopperScope(__scopeTooltip);
+    const { onClose } = context;
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+      document.addEventListener(TOOLTIP_OPEN, onClose);
+      return () => document.removeEventListener(TOOLTIP_OPEN, onClose);
+    }, [onClose]);
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+      if (context.trigger) {
+        const handleScroll = (event) => {
+          const target = event.target;
+          if (target?.contains(context.trigger)) onClose();
+        };
+        window.addEventListener("scroll", handleScroll, { capture: true });
+        return () => window.removeEventListener("scroll", handleScroll, { capture: true });
+      }
+    }, [context.trigger, onClose]);
+    return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
+      _radix_ui_react_dismissable_layer__WEBPACK_IMPORTED_MODULE_11__.DismissableLayer,
+      {
+        asChild: true,
+        disableOutsidePointerEvents: false,
+        onEscapeKeyDown,
+        onPointerDownOutside,
+        onFocusOutside: (event) => event.preventDefault(),
+        onDismiss: onClose,
+        children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(
+          _radix_ui_react_popper__WEBPACK_IMPORTED_MODULE_3__.Content,
+          {
+            "data-state": context.stateAttribute,
+            ...popperScope,
+            ...contentProps,
+            ref: forwardedRef,
+            style: {
+              ...contentProps.style,
+              // re-namespace exposed content custom properties
+              ...{
+                "--radix-tooltip-content-transform-origin": "var(--radix-popper-transform-origin)",
+                "--radix-tooltip-content-available-width": "var(--radix-popper-available-width)",
+                "--radix-tooltip-content-available-height": "var(--radix-popper-available-height)",
+                "--radix-tooltip-trigger-width": "var(--radix-popper-anchor-width)",
+                "--radix-tooltip-trigger-height": "var(--radix-popper-anchor-height)"
+              }
+            },
+            children: [
+              /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_radix_ui_react_slot__WEBPACK_IMPORTED_MODULE_12__.Slottable, { children }),
+              /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(VisuallyHiddenContentContextProvider, { scope: __scopeTooltip, isInside: true, children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_radix_ui_react_visually_hidden__WEBPACK_IMPORTED_MODULE_13__.Root, { id: context.contentId, role: "tooltip", children: ariaLabel || children }) })
+            ]
+          }
+        )
+      }
+    );
+  }
+);
+TooltipContent.displayName = CONTENT_NAME;
+var ARROW_NAME = "TooltipArrow";
+var TooltipArrow = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeTooltip, ...arrowProps } = props;
+    const popperScope = usePopperScope(__scopeTooltip);
+    const visuallyHiddenContentContext = useVisuallyHiddenContentContext(
+      ARROW_NAME,
+      __scopeTooltip
+    );
+    return visuallyHiddenContentContext.isInside ? null : /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_radix_ui_react_popper__WEBPACK_IMPORTED_MODULE_3__.Arrow, { ...popperScope, ...arrowProps, ref: forwardedRef });
+  }
+);
+TooltipArrow.displayName = ARROW_NAME;
+function getExitSideFromRect(point, rect) {
+  const top = Math.abs(rect.top - point.y);
+  const bottom = Math.abs(rect.bottom - point.y);
+  const right = Math.abs(rect.right - point.x);
+  const left = Math.abs(rect.left - point.x);
+  switch (Math.min(top, bottom, right, left)) {
+    case left:
+      return "left";
+    case right:
+      return "right";
+    case top:
+      return "top";
+    case bottom:
+      return "bottom";
+    default:
+      throw new Error("unreachable");
+  }
+}
+function getPaddedExitPoints(exitPoint, exitSide, padding = 5) {
+  const paddedExitPoints = [];
+  switch (exitSide) {
+    case "top":
+      paddedExitPoints.push(
+        { x: exitPoint.x - padding, y: exitPoint.y + padding },
+        { x: exitPoint.x + padding, y: exitPoint.y + padding }
+      );
+      break;
+    case "bottom":
+      paddedExitPoints.push(
+        { x: exitPoint.x - padding, y: exitPoint.y - padding },
+        { x: exitPoint.x + padding, y: exitPoint.y - padding }
+      );
+      break;
+    case "left":
+      paddedExitPoints.push(
+        { x: exitPoint.x + padding, y: exitPoint.y - padding },
+        { x: exitPoint.x + padding, y: exitPoint.y + padding }
+      );
+      break;
+    case "right":
+      paddedExitPoints.push(
+        { x: exitPoint.x - padding, y: exitPoint.y - padding },
+        { x: exitPoint.x - padding, y: exitPoint.y + padding }
+      );
+      break;
+  }
+  return paddedExitPoints;
+}
+function getPointsFromRect(rect) {
+  const { top, right, bottom, left } = rect;
+  return [
+    { x: left, y: top },
+    { x: right, y: top },
+    { x: right, y: bottom },
+    { x: left, y: bottom }
+  ];
+}
+function isPointInPolygon(point, polygon) {
+  const { x, y } = point;
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const xi = polygon[i].x;
+    const yi = polygon[i].y;
+    const xj = polygon[j].x;
+    const yj = polygon[j].y;
+    const intersect = yi > y !== yj > y && x < (xj - xi) * (y - yi) / (yj - yi) + xi;
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+function getHull(points) {
+  const newPoints = points.slice();
+  newPoints.sort((a, b) => {
+    if (a.x < b.x) return -1;
+    else if (a.x > b.x) return 1;
+    else if (a.y < b.y) return -1;
+    else if (a.y > b.y) return 1;
+    else return 0;
+  });
+  return getHullPresorted(newPoints);
+}
+function getHullPresorted(points) {
+  if (points.length <= 1) return points.slice();
+  const upperHull = [];
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    while (upperHull.length >= 2) {
+      const q = upperHull[upperHull.length - 1];
+      const r = upperHull[upperHull.length - 2];
+      if ((q.x - r.x) * (p.y - r.y) >= (q.y - r.y) * (p.x - r.x)) upperHull.pop();
+      else break;
+    }
+    upperHull.push(p);
+  }
+  upperHull.pop();
+  const lowerHull = [];
+  for (let i = points.length - 1; i >= 0; i--) {
+    const p = points[i];
+    while (lowerHull.length >= 2) {
+      const q = lowerHull[lowerHull.length - 1];
+      const r = lowerHull[lowerHull.length - 2];
+      if ((q.x - r.x) * (p.y - r.y) >= (q.y - r.y) * (p.x - r.x)) lowerHull.pop();
+      else break;
+    }
+    lowerHull.push(p);
+  }
+  lowerHull.pop();
+  if (upperHull.length === 1 && lowerHull.length === 1 && upperHull[0].x === lowerHull[0].x && upperHull[0].y === lowerHull[0].y) {
+    return upperHull;
+  } else {
+    return upperHull.concat(lowerHull);
+  }
+}
+var Provider = TooltipProvider;
+var Root3 = Tooltip;
+var Trigger = TooltipTrigger;
+var Portal = TooltipPortal;
+var Content2 = TooltipContent;
+var Arrow2 = TooltipArrow;
+
+//# sourceMappingURL=index.mjs.map
+
+
+/***/ }),
+
 /***/ "./node_modules/@radix-ui/react-use-callback-ref/dist/index.mjs":
 /*!**********************************************************************!*\
   !*** ./node_modules/@radix-ui/react-use-callback-ref/dist/index.mjs ***!
@@ -27435,6 +27963,52 @@ function Toaster() {
 
 /***/ }),
 
+/***/ "./scripts/components/ui/tooltip.tsx":
+/*!*******************************************!*\
+  !*** ./scripts/components/ui/tooltip.tsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Tooltip: () => (/* binding */ Tooltip),
+/* harmony export */   TooltipContent: () => (/* binding */ TooltipContent),
+/* harmony export */   TooltipProvider: () => (/* binding */ TooltipProvider),
+/* harmony export */   TooltipTrigger: () => (/* binding */ TooltipTrigger)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _radix_ui_react_tooltip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @radix-ui/react-tooltip */ "./node_modules/@radix-ui/react-tooltip/dist/index.mjs");
+/* harmony import */ var _lib_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/lib/utils */ "./scripts/lib/utils.ts");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+'use client';
+
+
+
+
+
+const TooltipProvider = _radix_ui_react_tooltip__WEBPACK_IMPORTED_MODULE_3__.Provider;
+const Tooltip = _radix_ui_react_tooltip__WEBPACK_IMPORTED_MODULE_3__.Root;
+const TooltipTrigger = _radix_ui_react_tooltip__WEBPACK_IMPORTED_MODULE_3__.Trigger;
+const TooltipContent = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(({
+  className,
+  sideOffset = 4,
+  ...props
+}, ref) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_radix_ui_react_tooltip__WEBPACK_IMPORTED_MODULE_3__.Portal, {
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_radix_ui_react_tooltip__WEBPACK_IMPORTED_MODULE_3__.Content, {
+    ref: ref,
+    sideOffset: sideOffset,
+    className: (0,_lib_utils__WEBPACK_IMPORTED_MODULE_1__.cn)('z-50 overflow-hidden rounded-md bg-primary px-3 py-1.5 text-xs text-primary-foreground animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2', className),
+    ...props
+  })
+}));
+TooltipContent.displayName = _radix_ui_react_tooltip__WEBPACK_IMPORTED_MODULE_3__.Content.displayName;
+
+
+/***/ }),
+
 /***/ "./scripts/hooks/use-toast.ts":
 /*!************************************!*\
   !*** ./scripts/hooks/use-toast.ts ***!
@@ -27861,18 +28435,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ OrderForm)
 /* harmony export */ });
 /* harmony import */ var _hookform_resolvers_zod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @hookform/resolvers/zod */ "./node_modules/@hookform/resolvers/zod/dist/zod.mjs");
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var _trello_helpers_schema__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/trello/helpers/schema */ "./scripts/trello/helpers/schema.tsx");
 /* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/form */ "./scripts/components/ui/form.tsx");
 /* harmony import */ var _Sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Sidebar */ "./scripts/trello/components/Sidebar.tsx");
 /* harmony import */ var _Main__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Main */ "./scripts/trello/components/Main.tsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _components_ui_toaster__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/ui/toaster */ "./scripts/components/ui/toaster.tsx");
 /* harmony import */ var _hooks_use_toast__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/hooks/use-toast */ "./scripts/hooks/use-toast.ts");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _components_ui_tooltip__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/components/ui/tooltip */ "./scripts/components/ui/tooltip.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__);
 'use client';
 
 
@@ -27886,8 +28461,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function OrderForm() {
-  const form = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_9__.useForm)({
+  const form = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_10__.useForm)({
     resolver: (0,_hookform_resolvers_zod__WEBPACK_IMPORTED_MODULE_0__.zodResolver)(_trello_helpers_schema__WEBPACK_IMPORTED_MODULE_1__.formSchema),
     defaultValues: _trello_helpers_schema__WEBPACK_IMPORTED_MODULE_1__.formDefaultValues
   });
@@ -27896,52 +28472,72 @@ function OrderForm() {
   } = (0,_hooks_use_toast__WEBPACK_IMPORTED_MODULE_6__.useToast)();
   const appendToFormData = (formData, key, value) => {
     if (value instanceof File) {
-      // Handle file uploads
+      // Handle single file upload for bulkOrderFile
       formData.append(key, value, value.name);
+    } else if (Array.isArray(value) && value[0] instanceof File) {
+      // Handle multiple file uploads for fileUpload
+      value.forEach((file, index) => {
+        formData.append(`${key}[${index}]`, file, file.name);
+      });
     } else if (Array.isArray(value)) {
       // Handle arrays
       value.forEach((item, index) => {
         if (typeof item === 'object' && item !== null) {
-          appendToFormData(formData, `${key}[${index}]`, item);
+          Object.entries(item).forEach(([itemKey, itemValue]) => {
+            formData.append(`${key}[${index}][${itemKey}]`, typeof itemValue === 'object' ? JSON.stringify(itemValue) : itemValue);
+          });
         } else {
           formData.append(`${key}[${index}]`, item);
         }
       });
     } else if (typeof value === 'object' && value !== null) {
-      // Handle nested objects
-      for (const subKey in value) {
-        if (value.hasOwnProperty(subKey)) {
-          appendToFormData(formData, `${key}[${subKey}]`, value[subKey]);
-        }
-      }
+      // Handle objects
+      Object.entries(value).forEach(([objKey, objValue]) => {
+        formData.append(`${key}[${objKey}]`, typeof objValue === 'object' ? JSON.stringify(objValue) : objValue);
+      });
     } else {
-      // Handle simple key-value pairs
+      // Handle primitive values
       formData.append(key, value);
     }
   };
   const onSubmit = async data => {
-    const formData = new FormData();
-    formData.append('action', 'astralab_form_submission');
-    formData.append('astralab_nonce', astralab.nonce);
-
-    // Append all data to FormData
-    Object.entries(data).forEach(([key, value]) => {
-      appendToFormData(formData, key, value);
-    });
     try {
-      const response = await axios__WEBPACK_IMPORTED_MODULE_10__["default"].post(astralab.ajax_url, formData);
-      if (response.data.success === true) {
-        console.log('Success:', response.data);
-        form.reset();
+      const formData = new FormData();
+      formData.append('astralab_nonce', astralab.nonce);
+
+      // Append each field to FormData
+      Object.entries(data).forEach(([key, value]) => {
+        appendToFormData(formData, key, value);
+      });
+      const response = await axios__WEBPACK_IMPORTED_MODULE_11__["default"].post(astralab.ajax_url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        params: {
+          action: 'astralab_form_submission'
+        }
+      });
+      if (response.data.success) {
         toast({
-          variant: 'success',
-          title: 'Order placed successfully'
+          title: 'Success',
+          description: response.data.data?.message || 'Order placed successfully!'
         });
+        form.reset();
       } else {
-        console.error('Error:', response.data);
+        throw new Error(response.data.data || 'Failed to submit order');
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Submission Error:', error);
+      // Log the full error object
+      if (error.response) {
+        console.error('Error Response:', error.response);
+        console.error('Error Response Data:', error.response.data);
+      }
+      toast({
+        variant: 'destructive',
+        title: 'Error',
+        description: error.response?.data?.message || error.message || 'Failed to submit order'
+      });
     }
   };
   (0,react__WEBPACK_IMPORTED_MODULE_7__.useEffect)(() => {
@@ -27960,19 +28556,22 @@ function OrderForm() {
       });
     }
   }, [form.formState.errors, toast]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_2__.Form, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_2__.Form, {
       ...form,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("form", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("form", {
         onSubmit: form.handleSubmit(onSubmit),
         className: "md:flex gap-9",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Main__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          form: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Sidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_ui_tooltip__WEBPACK_IMPORTED_MODULE_8__.TooltipProvider, {
+          delayDuration: 100,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Main__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            form: form
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Sidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
           form: form
         })]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ui_toaster__WEBPACK_IMPORTED_MODULE_5__.Toaster, {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_ui_toaster__WEBPACK_IMPORTED_MODULE_5__.Toaster, {})]
   });
 }
 
@@ -28109,8 +28708,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fields_ProjectDescription__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./fields/ProjectDescription */ "./scripts/trello/components/fields/ProjectDescription.tsx");
 /* harmony import */ var _fields_LayoutType__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./fields/LayoutType */ "./scripts/trello/components/fields/LayoutType.tsx");
 /* harmony import */ var _fields_FileUpload__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./fields/FileUpload */ "./scripts/trello/components/fields/FileUpload.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _fields_BulkOrders__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./fields/BulkOrders */ "./scripts/trello/components/fields/BulkOrders.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
+
 
 
 
@@ -28169,38 +28770,40 @@ function ProjectDetails({
     return item;
   });
   const designDetailsOptions = typedOptions?.design_details || [];
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
     className: "border border-input px-4 py-6 mb-8 rounded",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
       className: "grid grid-cols-1 lg:grid-cols-[45%_1fr_1fr] gap-4 mb-6",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_ProjectName__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_fields_ProjectName__WEBPACK_IMPORTED_MODULE_1__["default"], {
         form: form
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TurnaroundTime__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_fields_TurnaroundTime__WEBPACK_IMPORTED_MODULE_2__["default"], {
         form: form,
         turnaroundTimeOptions: turnaroundTimeOptions,
         loading: loading
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_DesignDetails__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_fields_DesignDetails__WEBPACK_IMPORTED_MODULE_3__["default"], {
         form: form,
         designDetailsOptions: designDetailsOptions,
         loading: loading
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       className: "mb-6",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_ProjectDescription__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_fields_ProjectDescription__WEBPACK_IMPORTED_MODULE_4__["default"], {
         form: form
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       className: "mb-6",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_LayoutType__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_fields_LayoutType__WEBPACK_IMPORTED_MODULE_5__["default"], {
         form: form,
         layoutTypeOptions: layoutTypeOptions,
         loading: loading
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
       className: "mb-6 relative",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_FileUpload__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_fields_FileUpload__WEBPACK_IMPORTED_MODULE_6__["default"], {
         form: form
-      })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_fields_BulkOrders__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        form: form
+      })]
     })]
   });
 }
@@ -28301,6 +28904,18 @@ function Sidebar({
             children: watchedValues.fileUpload?.map((file, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
               children: file.name
             }, index))
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "grid grid-cols-2 gap-4 mb-1",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "uppercase font-semibold text-sm",
+          children: "Bulk Order"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "text-xs",
+          children: watchedValues.bulkOrderFile && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            className: "truncate block",
+            children: watchedValues.bulkOrderFile.name
           })
         })]
       }), hasProductTypes && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -28433,6 +29048,103 @@ const SkeletonCard = () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_M
 
 /***/ }),
 
+/***/ "./scripts/trello/components/fields/BulkOrders.tsx":
+/*!*********************************************************!*\
+  !*** ./scripts/trello/components/fields/BulkOrders.tsx ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ BulkOrders)
+/* harmony export */ });
+/* harmony import */ var _components_ui_button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/ui/button */ "./scripts/components/ui/button.tsx");
+/* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/form */ "./scripts/components/ui/form.tsx");
+/* harmony import */ var _components_ui_input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/input */ "./scripts/components/ui/input.tsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+
+
+function BulkOrders({
+  form
+}) {
+  const fileInputRef = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)(null);
+  const bulkOrderFile = form.watch('bulkOrderFile');
+  const handleFileChange = event => {
+    const files = event.target.files;
+    if (files?.length) {
+      form.setValue('bulkOrderFile', files[0], {
+        shouldValidate: true,
+        shouldDirty: true
+      });
+    }
+  };
+  const handleUploadClick = () => {
+    fileInputRef.current?.click();
+  };
+  const getButtonText = () => {
+    return bulkOrderFile ? bulkOrderFile.name : 'Upload Sheet';
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    className: "mt-8",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+      className: "uppercase font-semibold text-base mb-2",
+      children: "BULK ORDERS"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "flex items-center gap-3",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_button__WEBPACK_IMPORTED_MODULE_0__.Button, {
+        type: "button",
+        variant: "outline",
+        className: "bg-[#9F9F9F] text-white hover:bg-[#8a8a8a] uppercase font-semibold max-w-52 w-full",
+        children: "Download Sheet"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        className: "text-sm text-muted-foreground",
+        children: "then"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormField, {
+        control: form.control,
+        name: "bulkOrderFile",
+        render: ({
+          field: {
+            value,
+            ...field
+          }
+        }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormItem, {
+          className: "flex-1",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormControl, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_button__WEBPACK_IMPORTED_MODULE_0__.Button, {
+                type: "button",
+                variant: "outline",
+                onClick: handleUploadClick,
+                className: "inline-block bg-button border-0 relative cursor-pointer max-w-52 w-full font-semibold uppercase hover:bg-[#9F9F9F] hover:text-white truncate",
+                children: getButtonText()
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_input__WEBPACK_IMPORTED_MODULE_2__.Input, {
+                ...field,
+                type: "file",
+                ref: fileInputRef,
+                onChange: handleFileChange,
+                className: "hidden",
+                accept: ".xlsx,.xls,.csv"
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormMessage, {})]
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+      className: "text-[#868686] text-sm mt-2",
+      children: "For bulk orders, please download the sheet, fill it out, and upload the sheet for processing."
+    })]
+  });
+}
+
+/***/ }),
+
 /***/ "./scripts/trello/components/fields/DesignDetails.tsx":
 /*!************************************************************!*\
   !*** ./scripts/trello/components/fields/DesignDetails.tsx ***!
@@ -28503,23 +29215,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ FileUpload)
 /* harmony export */ });
-/* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/ui/form */ "./scripts/components/ui/form.tsx");
-/* harmony import */ var _components_ui_input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/input */ "./scripts/components/ui/input.tsx");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_ui_button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/ui/button */ "./scripts/components/ui/button.tsx");
+/* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/form */ "./scripts/components/ui/form.tsx");
+/* harmony import */ var _components_ui_input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/input */ "./scripts/components/ui/input.tsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
+
+const getButtonText = files => {
+  if (!files?.length) return 'Upload Files';
+  const fileCount = files.length;
+  return `Selected ${fileCount} ${fileCount === 1 ? 'file' : 'files'}`;
+};
 function FileUpload({
   form
 }) {
-  const fileInputRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
+  const fileInputRef = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)(null);
 
   // Handle form reset in useEffect to properly manage side effects
-  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
     if (form.formState.isSubmitted && fileInputRef.current) {
       fileInputRef.current.value = '';
     }
@@ -28533,8 +29252,11 @@ function FileUpload({
       });
     }
   };
+  const handleButtonClick = () => {
+    fileInputRef.current?.click();
+  };
   const fileUpload = form.watch('fileUpload');
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormField, {
     control: form.control,
     name: "fileUpload",
     render: ({
@@ -28542,30 +29264,43 @@ function FileUpload({
         value,
         ...field
       }
-    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
-      className: "relative grid",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
+    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormItem, {
+      className: "relative grid gap-2",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
         className: "uppercase font-semibold text-base",
         children: "Uploads"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_input__WEBPACK_IMPORTED_MODULE_1__.Input, {
-          ...field,
-          id: "fileUpload",
-          value: undefined,
-          type: "file",
-          ref: fileInputRef,
-          multiple: true,
-          onChange: handleFileChange,
-          className: "inline-block bg-button border-0 !leading-[30px] relative cursor-pointer max-w-52"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormControl, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "space-y-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_button__WEBPACK_IMPORTED_MODULE_0__.Button, {
+            type: "button",
+            variant: "outline",
+            onClick: handleButtonClick,
+            className: "inline-block bg-button border-0 relative cursor-pointer max-w-52 w-full font-semibold uppercase hover:bg-[#9F9F9F] hover:text-white",
+            children: getButtonText(fileUpload)
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_input__WEBPACK_IMPORTED_MODULE_2__.Input, {
+            ...field,
+            id: "fileUpload",
+            value: undefined,
+            type: "file",
+            ref: fileInputRef,
+            multiple: true,
+            onChange: handleFileChange,
+            className: "hidden"
+          }), fileUpload?.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "text-[0.8rem] text-muted-foreground",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
+              className: "space-y-1",
+              children: fileUpload.map((file, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+                children: file.name
+              }, index))
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+            className: "text-[#868686] text-sm",
+            children: "Please upload logos, designs, branding guides, site photos, inspiration, and other relevant files to help us understand your project. Multiple file uploads are allowed."
+          })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "text-[0.8rem] text-muted-foreground",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
-          children: fileUpload?.map((file, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
-            children: file.name
-          }, index))
-        })
-      })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormMessage, {})]
     })
   });
 }
@@ -28598,7 +29333,6 @@ function LayoutImage({
   title
 }) {
   const [isOpen, setIsOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  console.log(image);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "relative",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(yet_another_react_lightbox__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -28652,8 +29386,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ui_label__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/label */ "./scripts/components/ui/label.tsx");
 /* harmony import */ var _components_ui_radio_group__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/ui/radio-group */ "./scripts/components/ui/radio-group.tsx");
 /* harmony import */ var _LayoutImage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./LayoutImage */ "./scripts/trello/components/fields/LayoutImage.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_ui_tooltip__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/ui/tooltip */ "./scripts/components/ui/tooltip.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -28665,65 +29401,79 @@ function LayoutType({
   loading,
   layoutTypeOptions
 }) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
     control: form.control,
     name: "layoutType",
     render: ({
       field
-    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
+    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
         className: "font-semibold text-base",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
           className: "mb-0 uppercase",
           children: "Layout Type"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
           className: "text-xs font-light ",
-          children: ["more details on layout type. ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+          children: ["more details on layout type. ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
             href: "#",
             children: "CLICK HERE"
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_radio_group__WEBPACK_IMPORTED_MODULE_3__.RadioGroup, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_radio_group__WEBPACK_IMPORTED_MODULE_3__.RadioGroup, {
           value: field.value,
           onValueChange: value => field.onChange(value),
           className: "grid grid-cols-[repeat(auto-fill,minmax(190px,1fr))] gap-4",
           children: loading ? Array.from({
             length: 4
-          }).map((_, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          }).map((_, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             className: "flex flex-col space-y-3 h-[167px]",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_skeleton__WEBPACK_IMPORTED_MODULE_1__.Skeleton, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_skeleton__WEBPACK_IMPORTED_MODULE_1__.Skeleton, {
               className: "h-[125px] w-full rounded-xl"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
               className: "space-y-2",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_skeleton__WEBPACK_IMPORTED_MODULE_1__.Skeleton, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_skeleton__WEBPACK_IMPORTED_MODULE_1__.Skeleton, {
                 className: "h-4 w-full"
               })
             })]
-          }, index)) : layoutTypeOptions.length > 0 ? layoutTypeOptions.map((option, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-              className: "flex items-center gap-2 mb-1",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_radio_group__WEBPACK_IMPORTED_MODULE_3__.RadioGroupItem, {
-                className: "p-0 bg-transparent border-input border-solid",
-                value: option.title,
-                id: `layout-${index}`
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_label__WEBPACK_IMPORTED_MODULE_2__.Label, {
-                htmlFor: `layout-${index}`,
-                className: "cursor-pointer",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                  className: "text-sm font-semibold",
-                  children: option.title
+          }, index)) : layoutTypeOptions.length > 0 ? layoutTypeOptions.map((option, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_components_ui_tooltip__WEBPACK_IMPORTED_MODULE_5__.Tooltip, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_tooltip__WEBPACK_IMPORTED_MODULE_5__.TooltipTrigger, {
+                asChild: true,
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                    className: "flex items-center gap-2 mb-1",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_radio_group__WEBPACK_IMPORTED_MODULE_3__.RadioGroupItem, {
+                      className: "p-0 bg-transparent border-input border-solid",
+                      value: option.title,
+                      id: `layout-${index}`
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_label__WEBPACK_IMPORTED_MODULE_2__.Label, {
+                      htmlFor: `layout-${index}`,
+                      className: "cursor-pointer",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                        className: "text-sm font-semibold",
+                        children: option.title
+                      })
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_LayoutImage__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                    image: option.image.url,
+                    title: option.title
+                  })]
+                })
+              }), option.content && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_tooltip__WEBPACK_IMPORTED_MODULE_5__.TooltipContent, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  className: "text-base",
+                  dangerouslySetInnerHTML: {
+                    __html: option.content
+                  }
                 })
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_LayoutImage__WEBPACK_IMPORTED_MODULE_4__["default"], {
-              image: option.image.url,
-              title: option.title
-            })]
-          }, index)) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+            })
+          }, index)) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
             children: "No options available"
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
     })
   });
 }
@@ -29445,7 +30195,7 @@ function ChannelLetters({
                 form: form,
                 name: "channelLetters.textAndContent",
                 label: "Sign Text & Content",
-                placeholder: "specific vendor for fabrication",
+                placeholder: "Text & Content for fabrication",
                 customClass: "md:col-span-2"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
                 form: form,
@@ -29457,11 +30207,6 @@ function ChannelLetters({
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "grid md:grid-cols-3 gap-6 mb-6",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
-              form: form,
-              name: "channelLetters.vendor",
-              label: "Vendor",
-              placeholder: "specific vendor for fabrication"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
               form: form,
               name: "channelLetters.wallDimension",
               label: "Wall Dimension (WXH)"
@@ -29715,11 +30460,8 @@ const ChannelLettersSchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.discriminatedUni
     textAndContent: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
       message: 'Text and Content is required.'
     }),
-    vendor: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
-      message: 'Vendor required.'
-    }),
     font: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
-      message: 'Vendor required.'
+      message: 'Font required.'
     }),
     wallDimension: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
     signDimension: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
@@ -29832,7 +30574,7 @@ function DimensionalLetters({
                 form: form,
                 name: "dimensionalLetters.textAndContent",
                 label: "Sign Text & Content",
-                placeholder: "specific vendor for fabrication",
+                placeholder: "Text and Content",
                 customClass: "md:col-span-2"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
                 form: form,
@@ -29844,11 +30586,6 @@ function DimensionalLetters({
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "grid md:grid-cols-3 gap-6 mb-6",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
-              form: form,
-              name: "dimensionalLetters.vendor",
-              label: "Vendor",
-              placeholder: "specific vendor for fabrication"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
               form: form,
               name: "dimensionalLetters.wallDimension",
               label: "Wall Dimension (WXH)"
@@ -29956,15 +30693,6 @@ function SidebarDimensionalLetters({
       className: "grid grid-cols-2 gap-4 mb-1",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         className: "uppercase font-semibold text-sm",
-        children: "Vendor"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-        className: "text-xs",
-        children: dimensionalLetters?.vendor || ''
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      className: "grid grid-cols-2 gap-4 mb-1",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-        className: "uppercase font-semibold text-sm",
         children: "Wall Dimension"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         className: "text-xs",
@@ -30061,9 +30789,6 @@ const DimensionalLettersSchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.discriminate
     }),
     font: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
       message: 'Font required.'
-    }),
-    vendor: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
-      message: 'Vendor required.'
     }),
     wallDimension: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
     signDimension: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
@@ -30170,7 +30895,7 @@ function Lightbox({
                 form: form,
                 name: "lightbox.textAndContent",
                 label: "Sign Text & Content",
-                placeholder: "specific vendor for fabrication",
+                placeholder: "Text & Content",
                 customClass: "md:col-span-2"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
                 form: form,
@@ -30521,16 +31246,11 @@ function MonumentsAndPylons({
               form: form,
               name: "monumentsAndPylons.textAndContent",
               label: "Sign Text & Content",
-              placeholder: "specific vendor for fabrication"
+              placeholder: "Text & Content"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "grid md:grid-cols-3 gap-6 mb-6",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
-              form: form,
-              name: "monumentsAndPylons.vendor",
-              label: "Vendor",
-              placeholder: "specific vendor for fabrication"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_trello_components_fields_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
               form: form,
               name: "monumentsAndPylons.sides",
               label: "Sides"
@@ -30624,15 +31344,6 @@ function SidebarMonuments({
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         className: "text-xs",
         children: monumentsAndPylons?.textAndContent || ''
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      className: "grid grid-cols-2 gap-4 mb-1",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-        className: "uppercase font-semibold text-sm",
-        children: "Vendor"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-        className: "text-xs",
-        children: monumentsAndPylons?.vendor || ''
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
       className: "grid grid-cols-2 gap-4 mb-1",
@@ -30737,9 +31448,6 @@ const MonumentsAndPylonsSchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.discriminate
     }),
     textAndContent: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
       message: 'Text and Content is required.'
-    }),
-    vendor: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
-      message: 'Vendor required.'
     }),
     sides: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
     dimensions: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty(),
@@ -30871,7 +31579,8 @@ const formSchema = zod__WEBPACK_IMPORTED_MODULE_5__.z.object({
   })).optional(),
   fileUpload: zod__WEBPACK_IMPORTED_MODULE_5__.z.array(zod__WEBPACK_IMPORTED_MODULE_5__.z.instanceof(File)).min(1, {
     message: 'Upload atleast 1 File.'
-  })
+  }),
+  bulkOrderFile: zod__WEBPACK_IMPORTED_MODULE_5__.z.instanceof(File).optional()
 }).refine(data => data.productTypes ? data.productTypes.length > 0 : true, {
   message: 'Select at least one Product Type',
   path: ['productTypes']
@@ -30884,6 +31593,7 @@ const formDefaultValues = {
   layoutType: '',
   productTypes: [],
   fileUpload: [],
+  bulkOrderFile: undefined,
   hasADA: false,
   hasMonumentsAndPylons: false,
   hasChannelLetters: false,
@@ -30970,6 +31680,7 @@ async function submitForm(form, action, responseDiv) {
     const formData = new FormData(form);
     formData.append('action', action);
     formData.append('trello_form_nonce', trello_ajax_object.trello_form_nonce);
+    console.log(formData);
     const response = await fetch(trello_ajax_object.ajax_url, {
       method: 'POST',
       body: formData
@@ -30978,7 +31689,6 @@ async function submitForm(form, action, responseDiv) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    console.log(data);
     if (data.success) {
       responseDiv.innerHTML = (data.data.message || 'Success') + '<br/>Reloading in 2...';
       form.reset();
@@ -30992,6 +31702,7 @@ async function submitForm(form, action, responseDiv) {
       }, 1000);
     } else {
       responseDiv.innerHTML = 'Error: ' + data.data;
+      console.log(data);
     }
   } catch (error) {
     // Narrow the error type

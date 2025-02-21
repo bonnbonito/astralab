@@ -97,17 +97,11 @@ export default function MonumentsAndPylons({ form, product }: MonumentsProps) {
 									form={form}
 									name="monumentsAndPylons.textAndContent"
 									label="Sign Text & Content"
-									placeholder="specific vendor for fabrication"
+									placeholder="Text & Content"
 								/>
 							</div>
 
 							<div className="grid md:grid-cols-3 gap-6 mb-6">
-								<TextField
-									form={form}
-									name="monumentsAndPylons.vendor"
-									label="Vendor"
-									placeholder="specific vendor for fabrication"
-								/>
 								<TextField
 									form={form}
 									name="monumentsAndPylons.sides"

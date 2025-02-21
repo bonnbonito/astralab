@@ -102,7 +102,7 @@ export default function ChannelLetters({ form, product }: ChannelLettersProps) {
 										form={form}
 										name="channelLetters.textAndContent"
 										label="Sign Text & Content"
-										placeholder="specific vendor for fabrication"
+										placeholder="Text & Content for fabrication"
 										customClass="md:col-span-2"
 									/>
 									<TextField
@@ -115,12 +115,6 @@ export default function ChannelLetters({ form, product }: ChannelLettersProps) {
 							</div>
 
 							<div className="grid md:grid-cols-3 gap-6 mb-6">
-								<TextField
-									form={form}
-									name="channelLetters.vendor"
-									label="Vendor"
-									placeholder="specific vendor for fabrication"
-								/>
 								<TextField
 									form={form}
 									name="channelLetters.wallDimension"

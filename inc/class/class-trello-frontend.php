@@ -49,6 +49,11 @@ class Trello_Frontend {
 		// Get the Trello card ID and comment text from the form
 		$card_id = sanitize_text_field( $_POST['card_id'] );
 		$card_desc = sanitize_textarea_field( $_POST['card_desc'] );
+		$comment_attachment = isset( $_FILES['comment_attachment']['name'] ) ? $_FILES['comment_attachment'] : null;
+
+
+
+
 
 		if ( empty( $card_id ) || empty( $card_desc ) ) {
 			wp_send_json_error( array( 'message' => 'Card ID or Comment is missing.' ) );
@@ -69,6 +74,43 @@ class Trello_Frontend {
 
 		if ( empty( $api_key ) || empty( $api_token ) ) {
 			wp_send_json_error( array( 'message' => 'Trello API credentials are not configured.' ) );
+		}
+
+		if ( ! empty( $comment_attachment['tmp_name'] ) ) {
+			$upload_url = 'https://api.trello.com/1/cards/' . $card_id . '/attachments';
+
+			$ch = curl_init();
+			curl_setopt( $ch, CURLOPT_URL, $upload_url . '?key=' . $api_key . '&token=' . $api_token );
+			curl_setopt( $ch, CURLOPT_POST, true );
+			curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+			curl_setopt( $ch, CURLOPT_POSTFIELDS, array(
+				'file' => new \CURLFile(
+					$comment_attachment['tmp_name'],
+					$comment_attachment['type'],
+					$comment_attachment['name']
+				)
+			) );
+
+			$attachment_response = curl_exec( $ch );
+			$curl_error = curl_error( $ch );
+			curl_close( $ch );
+
+			if ( $curl_error ) {
+				error_log( 'Trello attachment upload error: ' . $curl_error );
+				wp_send_json_error( 'Error uploading attachment: ' . $curl_error );
+			}
+
+			// Decode the attachment response to get the URL
+			$attachment_data = json_decode( $attachment_response, true );
+
+			error_log( 'Trello attachment data: ' . print_r( $attachment_data, true ) );
+
+			if ( isset( $attachment_data['url'] ) ) {
+				// Add the attachment URL to the card description
+				$card_desc .= "\n\n**Attachment:** [" . $comment_attachment['name'] . "](" . $attachment_data['url'] . ")";
+			}
+
+			error_log( 'Trello attachment response: ' . print_r( $attachment_response, true ) );
 		}
 
 		// API endpoint to add a comment

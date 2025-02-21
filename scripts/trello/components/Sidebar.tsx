@@ -65,6 +65,16 @@ export default function Sidebar({ form }: SidebarProps) {
 							)}
 					</div>
 				</div>
+				<div className="grid grid-cols-2 gap-4 mb-1">
+					<div className="uppercase font-semibold text-sm">Bulk Order</div>
+					<div className="text-xs">
+						{watchedValues.bulkOrderFile && (
+							<span className="truncate block">
+								{watchedValues.bulkOrderFile.name}
+							</span>
+						)}
+					</div>
+				</div>
 
 				{/* Product Types */}
 				{hasProductTypes && (

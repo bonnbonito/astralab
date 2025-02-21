@@ -11,10 +11,16 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { UseFormReturn } from 'react-hook-form';
 import { FormSchema } from '@/trello/helpers/schema';
 import LayoutImage from './LayoutImage';
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 interface LayoutOption {
 	title: string;
 	image: { url: string };
+	content?: string;
 }
 
 interface LayoutTypeProps {
@@ -61,25 +67,41 @@ export default function LayoutType({
 							) : layoutTypeOptions.length > 0 ? (
 								layoutTypeOptions.map((option, index) => (
 									<div key={index}>
-										<div className="flex items-center gap-2 mb-1">
-											<RadioGroupItem
-												className="p-0 bg-transparent border-input border-solid"
-												value={option.title}
-												id={`layout-${index}`}
-											/>
-											<Label
-												htmlFor={`layout-${index}`}
-												className="cursor-pointer"
-											>
-												<span className="text-sm font-semibold">
-													{option.title}
-												</span>
-											</Label>
-										</div>
-										<LayoutImage
-											image={option.image.url}
-											title={option.title}
-										/>
+										<Tooltip>
+											<TooltipTrigger asChild>
+												<div>
+													<div className="flex items-center gap-2 mb-1">
+														<RadioGroupItem
+															className="p-0 bg-transparent border-input border-solid"
+															value={option.title}
+															id={`layout-${index}`}
+														/>
+														<Label
+															htmlFor={`layout-${index}`}
+															className="cursor-pointer"
+														>
+															<span className="text-sm font-semibold">
+																{option.title}
+															</span>
+														</Label>
+													</div>
+													<LayoutImage
+														image={option.image.url}
+														title={option.title}
+													/>
+												</div>
+											</TooltipTrigger>
+											{option.content && (
+												<TooltipContent>
+													<div
+														className="text-base"
+														dangerouslySetInnerHTML={{
+															__html: option.content,
+														}}
+													></div>
+												</TooltipContent>
+											)}
+										</Tooltip>
 									</div>
 								))
 							) : (

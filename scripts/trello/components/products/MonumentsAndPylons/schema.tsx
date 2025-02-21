@@ -16,9 +16,6 @@ export const MonumentsAndPylonsSchema = z.discriminatedUnion(
 				textAndContent: z.string().nonempty({
 					message: 'Text and Content is required.',
 				}),
-				vendor: z.string().nonempty({
-					message: 'Vendor required.',
-				}),
 				sides: z.string().nonempty(),
 				dimensions: z.string().nonempty(),
 				maxContentArea: z.string().nonempty(),

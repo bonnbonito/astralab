@@ -23,10 +23,6 @@ export default function SidebarMonuments({ form }: SidebarMonumentsProps) {
 				</div>
 			</div>
 			<div className="grid grid-cols-2 gap-4 mb-1">
-				<div className="uppercase font-semibold text-sm">Vendor</div>
-				<div className="text-xs">{monumentsAndPylons?.vendor || ''}</div>
-			</div>
-			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">Sides</div>
 				<div className="text-xs">{monumentsAndPylons?.sides || ''}</div>
 			</div>

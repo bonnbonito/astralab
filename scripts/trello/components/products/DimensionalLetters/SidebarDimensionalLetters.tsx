@@ -29,10 +29,6 @@ export default function SidebarDimensionalLetters({
 				<div className="text-xs">{dimensionalLetters?.font || ''}</div>
 			</div>
 			<div className="grid grid-cols-2 gap-4 mb-1">
-				<div className="uppercase font-semibold text-sm">Vendor</div>
-				<div className="text-xs">{dimensionalLetters?.vendor || ''}</div>
-			</div>
-			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">Wall Dimension</div>
 				<div className="text-xs">{dimensionalLetters?.wallDimension || ''}</div>
 			</div>
