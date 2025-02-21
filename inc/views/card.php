@@ -9,12 +9,20 @@
 
 			<div class="min-w-[300px]">
 
-				<input type="file" name="comment_attachment" id="comment_attachment" class="block w-full text-sm text-slate-500
-					file:mr-4 file:py-2 file:px-4
-					file:rounded file:border-0
-					file:text-sm file:font-semibold
-					file:bg-[#9F9F9F] file:text-white
-					hover:file:bg-[#8a8a8a]">
+				<input type="file" name="comment_attachment" id="comment_attachment" class="hidden">
+
+				<button type="button" id="fileSelectBtn" class="block w-full text-base
+						py-2 px-4 mb-4
+						uppercase
+						rounded
+						button
+						font-semibold
+						text-[#222222]
+						truncate">
+					Upload File
+				</button>
+
+
 
 				<input id="submitBtn" type="submit" value="Send Comment"
 					class="w-full text-[#222] uppercase font-semibold text-base">
@@ -24,6 +32,25 @@
 
 	</form>
 	<div id="trello-comment-response"></div>
+	<script>
+		document.addEventListener('DOMContentLoaded', function ()
+		{
+			const fileBtn = document.getElementById('fileSelectBtn');
+			const fileInput = document.getElementById('comment_attachment');
+
+			fileBtn.addEventListener('click', function (e)
+			{
+				e.preventDefault();
+				fileInput.click();
+			});
+
+			fileInput.addEventListener('change', function ()
+			{
+				const file = this.files[0];
+				fileBtn.textContent = file ? file.name : 'Choose File';
+			});
+		});
+	</script>
 
 
 	<?php

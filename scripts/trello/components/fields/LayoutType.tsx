@@ -94,7 +94,7 @@ export default function LayoutType({
 											{option.content && (
 												<TooltipContent>
 													<div
-														className="text-base"
+														className="text-base max-w-[300px] p-4 *:text-white"
 														dangerouslySetInnerHTML={{
 															__html: option.content,
 														}}

@@ -12,10 +12,14 @@
 	$product_ada = get_post_meta( $post_id, 'product_ada', true );
 	$product_monuments = get_post_meta( $post_id, 'product_monuments', true );
 
+	$fileSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+  <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 0 0-4.242 0l-7 7a3 3 0 0 0 4.241 4.243h.001l.497-.5a.75.75 0 0 1 1.064 1.057l-.498.501-.002.002a4.5 4.5 0 0 1-6.364-6.364l7-7a4.5 4.5 0 0 1 6.368 6.36l-3.455 3.553A2.625 2.625 0 1 1 9.52 9.52l3.45-3.451a.75.75 0 1 1 1.061 1.06l-3.45 3.451a1.125 1.125 0 0 0 1.587 1.595l3.454-3.553a3 3 0 0 0 0-4.242Z" clip-rule="evenodd" />
+</svg>';
+
 	$attachments = [];
 	if ( $trello_card_attachments ) {
 		foreach ( $trello_card_attachments as $attachment ) {
-			$attachments[] = '<a href="' . $attachment['url'] . '" target="_blank">' . $attachment['name'] . '</a>';
+			$attachments[] = '<a class="text-sm rounded border border-gray-300 p-2 flex items-center gap-2 hover:bg-gray-100 hover:border-gray-400 transition-all duration-300" href="' . $attachment['url'] . '" target="_blank">' . $fileSvg . $attachment['name'] . '</a>';
 		}
 	}
 
@@ -35,7 +39,7 @@
 			<div class="font-semibold">LAYOUT TYPE</div>
 			<div><?php echo $trello_layout_type; ?></div>
 			<div class="font-semibold">UPLOADS</div>
-			<div><?php echo implode( ', ', $attachments ); ?></div>
+			<div class="flex flex-wrap gap-2"><?php echo implode( ' ', $attachments ); ?></div>
 		</div>
 	</div>
 

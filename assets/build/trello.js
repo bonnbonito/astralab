@@ -29516,7 +29516,7 @@ function LayoutType({
                 })
               }), option.content && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_tooltip__WEBPACK_IMPORTED_MODULE_5__.TooltipContent, {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                  className: "text-base",
+                  className: "text-base max-w-[300px] p-4 *:text-white",
                   dangerouslySetInnerHTML: {
                     __html: option.content
                   }

@@ -716,6 +716,14 @@ video {
 #astralab .aspect-square {
   aspect-ratio: 1 / 1;
 }
+#astralab .size-6 {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+#astralab .size-5 {
+  width: 1.25rem;
+  height: 1.25rem;
+}
 #astralab .h-10 {
   height: 2.5rem;
 }
@@ -839,6 +847,9 @@ video {
 #astralab .max-w-lg {
   max-width: 32rem;
 }
+#astralab .max-w-\[300px\] {
+  max-width: 300px;
+}
 #astralab .flex-1 {
   flex: 1 1 0%;
 }
@@ -905,6 +916,9 @@ video {
 }
 #astralab .flex-col-reverse {
   flex-direction: column-reverse;
+}
+#astralab .flex-wrap {
+  flex-wrap: wrap;
 }
 #astralab .items-start {
   align-items: flex-start;
@@ -1062,6 +1076,10 @@ video {
 }
 #astralab .border-transparent {
   border-color: transparent;
+}
+#astralab .border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
 }
 #astralab .border-x-\[\#D2D2D2\] {
   --tw-border-opacity: 1;
@@ -1301,6 +1319,9 @@ video {
   font-size: 0.75rem;
   line-height: 1rem;
 }
+#astralab .text-\[12px\] {
+  font-size: 12px;
+}
 #astralab .font-bold {
   font-weight: 700;
 }
@@ -1395,6 +1416,10 @@ video {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
+#astralab .text-\[\#222222\] {
+  --tw-text-opacity: 1;
+  color: rgb(34 34 34 / var(--tw-text-opacity, 1));
+}
 #astralab .underline-offset-4 {
   text-underline-offset: 4px;
 }
@@ -1474,6 +1499,9 @@ video {
 #astralab .duration-200 {
   transition-duration: 200ms;
 }
+#astralab .duration-300 {
+  transition-duration: 300ms;
+}
 @keyframes enter {
 
   from {
@@ -1505,6 +1533,9 @@ video {
 }
 #astralab .duration-200 {
   animation-duration: 200ms;
+}
+#astralab .duration-300 {
+  animation-duration: 300ms;
 }
 .box {
   border: 1px solid #999;
@@ -1549,6 +1580,11 @@ video {
   75% {
     clip-path: inset(0 0 0 98%);
   }
+}
+
+#astralab :is(.\*\:text-white > *) {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
 #astralab .file\:mr-4::file-selector-button {
@@ -1612,6 +1648,11 @@ video {
   color: hsl(var(--muted-foreground));
 }
 
+#astralab .hover\:border-gray-400:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity, 1));
+}
+
 #astralab .hover\:bg-\[\#8a8a8a\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(138 138 138 / var(--tw-bg-opacity, 1));
@@ -1654,6 +1695,11 @@ video {
 
 #astralab .hover\:bg-secondary\/80:hover {
   background-color: hsl(var(--secondary) / 0.8);
+}
+
+#astralab .hover\:bg-gray-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
 }
 
 #astralab .hover\:text-accent-foreground:hover {
