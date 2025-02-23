@@ -1,12 +1,15 @@
 import { FormSchema } from '@/trello/helpers/schema';
-import { UseFormReturn } from 'react-hook-form';
+import { UseFormReturn, useWatch } from 'react-hook-form';
 
 interface SidebarADAProps {
 	form: UseFormReturn<FormSchema>;
 }
 
 export default function SidebarADA({ form }: SidebarADAProps) {
-	const ADA = form.watch('ADA');
+	const ADA = useWatch({
+		control: form.control,
+		name: 'ADA',
+	});
 	const numberOfSigns = ADA?.numberOfSigns ?? 0;
 	const signs = ADA?.signs;
 	return (
@@ -47,7 +50,11 @@ export default function SidebarADA({ form }: SidebarADAProps) {
 				<div className="uppercase font-semibold text-sm">
 					Design Inspiration
 				</div>
-				<div className="text-xs">{ADA?.designInspirations?.join(', ')}</div>
+				<div className="text-xs">
+					{ADA?.designInspirations
+						?.map((inspiration) => `${inspiration.title}`)
+						.join(', ')}
+				</div>
 			</div>
 		</>
 	);

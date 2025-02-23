@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import SidebarDetails from './SidebarDetails';
-import { UseFormReturn } from 'react-hook-form';
+import { UseFormReturn, useWatch } from 'react-hook-form';
 
 import { FormSchema } from '@/trello/helpers/schema';
 
@@ -13,9 +13,49 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ form }: SidebarProps) {
-	const watchedValues = form.watch();
-	const productTypes = watchedValues.productTypes || {};
-	const hasProductTypes = Object.keys(productTypes).length > 0;
+	const turnaroundTime = useWatch({
+		control: form.control,
+		name: 'turnaroundTime',
+	});
+
+	const designDetails = useWatch({
+		control: form.control,
+		name: 'designDetails',
+	});
+
+	const projectDescription = useWatch({
+		control: form.control,
+		name: 'projectDescription',
+	});
+
+	const layoutType = useWatch({
+		control: form.control,
+		name: 'layoutType',
+	});
+
+	const productTypes = useWatch({
+		control: form.control,
+		name: 'productTypes',
+	});
+
+	const hasProductTypes = productTypes
+		? Object.keys(productTypes).length > 0
+		: false;
+
+	const fileUpload = useWatch({
+		control: form.control,
+		name: 'fileUpload',
+	});
+
+	const bulkOrderFile = useWatch({
+		control: form.control,
+		name: 'bulkOrderFile',
+	});
+
+	const projectNameVal = useWatch({
+		control: form.control,
+		name: 'projectName',
+	});
 
 	let submitLabel = 'Place Order';
 	if (form.formState.isSubmitting) {
@@ -34,46 +74,43 @@ export default function Sidebar({ form }: SidebarProps) {
 				{/* General Project Details */}
 				<div className="grid grid-cols-2 gap-4 mb-1">
 					<div className="uppercase font-semibold text-sm">Project Name</div>
-					<div className="text-xs">{watchedValues.projectName}</div>
+					<div className="text-xs">{projectNameVal}</div>
 				</div>
 				<div className="grid grid-cols-2 gap-4 mb-1">
 					<div className="uppercase font-semibold text-sm">Turnaround Time</div>
-					<div className="text-xs">{watchedValues.turnaroundTime}</div>
+					<div className="text-xs">{turnaroundTime}</div>
 				</div>
 				<div className="grid grid-cols-2 gap-4 mb-1">
 					<div className="uppercase font-semibold text-sm">Design Details</div>
-					<div className="text-xs">{watchedValues.designDetails}</div>
+					<div className="text-xs">{designDetails}</div>
 				</div>
 				<div className="grid grid-cols-2 gap-4 mb-1">
 					<div className="uppercase font-semibold text-sm">
 						Project Description
 					</div>
-					<div className="text-xs">{watchedValues.projectDescription}</div>
+					<div className="text-xs">{projectDescription}</div>
 				</div>
 				<div className="grid grid-cols-2 gap-4 mb-1">
 					<div className="uppercase font-semibold text-sm">Layout Type</div>
-					<div className="text-xs">{watchedValues.layoutType}</div>
+					<div className="text-xs">{layoutType}</div>
 				</div>
 				<div className="grid grid-cols-2 gap-4 mb-1">
 					<div className="uppercase font-semibold text-sm">Uploads</div>
 					<div className="text-xs">
-						{watchedValues.fileUpload &&
-							watchedValues.fileUpload?.length > 0 && (
-								<ul>
-									{watchedValues.fileUpload?.map((file, index) => (
-										<li key={index}>{file.name}</li>
-									))}
-								</ul>
-							)}
+						{fileUpload && fileUpload?.length > 0 && (
+							<ul>
+								{fileUpload?.map((file, index) => (
+									<li key={index}>{file.name}</li>
+								))}
+							</ul>
+						)}
 					</div>
 				</div>
 				<div className="grid grid-cols-2 gap-4 mb-1">
 					<div className="uppercase font-semibold text-sm">Bulk Order</div>
 					<div className="text-xs">
-						{watchedValues.bulkOrderFile && (
-							<span className="truncate block">
-								{watchedValues.bulkOrderFile.name}
-							</span>
+						{bulkOrderFile && (
+							<span className="truncate block">{bulkOrderFile.name}</span>
 						)}
 					</div>
 				</div>
@@ -83,35 +120,36 @@ export default function Sidebar({ form }: SidebarProps) {
 					<div className="mt-4">
 						<h5 className="uppercase font-semibold text-lg">Product Types</h5>
 
-						{Object.entries(productTypes).map(([id, productObject], index) => {
-							if (
-								typeof productObject === 'object' &&
-								productObject !== null &&
-								'title' in productObject &&
-								'component' in productObject
-							) {
-								const component = productObject.component as ComponentType;
+						{productTypes &&
+							Object.entries(productTypes).map(([id, productObject], index) => {
+								if (
+									typeof productObject === 'object' &&
+									productObject !== null &&
+									'title' in productObject &&
+									'component' in productObject
+								) {
+									const component = productObject.component as ComponentType;
 
-								return (
-									<SidebarDetails
-										title={
-											typeof productObject.title === 'string'
-												? decodeHTMLEntities(productObject.title)
-												: 'Untitled Product'
-										}
-										key={id}
-										form={form}
-										component={component}
-									/>
+									return (
+										<SidebarDetails
+											title={
+												typeof productObject.title === 'string'
+													? decodeHTMLEntities(productObject.title)
+													: 'Untitled Product'
+											}
+											key={id}
+											form={form}
+											component={component}
+										/>
+									);
+								}
+
+								console.error(
+									`Invalid productObject for ID ${id}:`,
+									productObject
 								);
-							}
-
-							console.error(
-								`Invalid productObject for ID ${id}:`,
-								productObject
-							);
-							return null;
-						})}
+								return null;
+							})}
 					</div>
 				)}
 

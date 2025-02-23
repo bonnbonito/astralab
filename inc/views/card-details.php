@@ -57,7 +57,11 @@
 				<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
 					<div class="font-semibold">NUMBER OF SIGNS</div>
 					<div><?php echo $ada['numberOfSigns']; ?></div>
-					<?php foreach ( $ada['signs'] as $index => $sign ) : ?>
+					<?php
+					$ada_signs_json = $ada['signs'];
+					$ada_signs = json_decode( stripslashes( $ada_signs_json ), true );
+					?>
+					<?php foreach ( $ada_signs as $index => $sign ) : ?>
 						<div class="font-semibold pl-2">NO.<?php echo $index + 1; ?> NAME</div>
 						<div><?php echo $sign['name']; ?></div>
 						<div class="font-semibold pl-2">NO.<?php echo $index + 1; ?> DIMENSION</div>
@@ -66,9 +70,25 @@
 						<div><?php echo $sign['details']; ?></div>
 					<?php endforeach; ?>
 					<div class="font-semibold">TYPES</div>
-					<div><?php echo $ada['types']; ?></div>
+					<div>
+						<?php echo is_array( $ada['types'] ) ? implode( ', ', $ada['types'] ) : $ada['types']; ?>
+					</div>
 					<div class="font-semibold">DESIGN INSPIRATIONS</div>
-					<div><?php echo implode( ', ', $ada['designInspirations'] ); ?></div>
+					<?php
+					$ada_design = [];
+					if ( ! empty( $ada['designInspirations'] ) ) {
+						$ada_inspirations_json = $ada['designInspirations'];
+						$ada_inspirations = json_decode( stripslashes( $ada_inspirations_json ), true );
+						if ( is_array( $ada_inspirations ) ) {
+							foreach ( $ada_inspirations as $ada_inspiration ) {
+								if ( isset( $ada_inspiration['url'] ) && isset( $ada_inspiration['title'] ) ) {
+									$ada_design[] = '<a href="' . esc_url( $ada_inspiration['url'] ) . '">' . esc_html( $ada_inspiration['title'] ) . '</a>';
+								}
+							}
+						}
+					}
+					?>
+					<div><?php echo implode( ', ', $ada_design ); ?></div>
 				</div>
 			</div>
 		<?php endif;
@@ -85,8 +105,6 @@
 					<div><?php echo $monuments['numberOfSigns']; ?></div>
 					<div class="font-semibold">SIGN TEXT & CONTEXT</div>
 					<div><?php echo $monuments['textAndContent']; ?></div>
-					<div class="font-semibold">VENDOR</div>
-					<div><?php echo $monuments['vendor']; ?></div>
 					<div class="font-semibold">SIDES</div>
 					<div><?php echo $monuments['sides']; ?></div>
 					<div class="font-semibold">DIMENSIONS</div>
@@ -98,11 +116,26 @@
 					<div class="font-semibold">MAX GROUND CLEARANCE</div>
 					<div><?php echo $monuments['maxGroundClearance']; ?></div>
 					<div class="font-semibold">TYPES</div>
-					<div><?php echo implode( ', ', $monuments['types'] ); ?></div>
+					<div><?php echo is_array( $monuments['types'] ) ? implode( ', ', $monuments['types'] ) : $monuments['types']; ?>
+					</div>
 					<div class="font-semibold">ILLUMINATION</div>
 					<div><?php echo implode( ', ', $monuments['illumination'] ); ?></div>
 					<div class="font-semibold">DESIGN INSPIRATIONS</div>
-					<div><?php echo implode( ', ', $monuments['designInspirations'] ); ?></div>
+					<?php
+					$monuments_design = [];
+					if ( ! empty( $monuments['designInspirations'] ) ) {
+						$monuments_inspirations_json = $monuments['designInspirations'];
+						$monuments_inspirations = json_decode( stripslashes( $monuments_inspirations_json ), true );
+						if ( is_array( $monuments_inspirations ) ) {
+							foreach ( $monuments_inspirations as $monuments_inspiration ) {
+								if ( isset( $monuments_inspiration['url'] ) && isset( $monuments_inspiration['title'] ) ) {
+									$monuments_design[] = '<a href="' . esc_url( $monuments_inspiration['url'] ) . '">' . esc_html( $monuments_inspiration['title'] ) . '</a>';
+								}
+							}
+						}
+					}
+					?>
+					<div><?php echo implode( ', ', $monuments_design ); ?></div>
 				</div>
 			</div>
 
@@ -122,8 +155,6 @@
 					<div><?php echo $channelLetters['textAndContent']; ?></div>
 					<div class="font-semibold">FONT</div>
 					<div><?php echo $channelLetters['font'] ?? ''; ?></div>
-					<div class="font-semibold">VENDOR</div>
-					<div><?php echo $channelLetters['vendor']; ?></div>
 					<div class="font-semibold">WALL DIMENSION</div>
 					<div><?php echo $channelLetters['wallDimension']; ?></div>
 					<div class="font-semibold">SIGN DIMENSION</div>
@@ -139,13 +170,29 @@
 					<div class="font-semibold">RETURN DEPTH</div>
 					<div><?php echo $channelLetters['returnDepth']; ?></div>
 					<div class="font-semibold">TYPES</div>
-					<div><?php echo implode( ', ', $channelLetters['types'] ); ?></div>
+					<div>
+						<?php echo is_array( $channelLetters['types'] ) ? implode( ', ', $channelLetters['types'] ) : $channelLetters['types']; ?>
+					</div>
 					<div class="font-semibold">BACKER</div>
 					<div><?php echo implode( ', ', $channelLetters['backer'] ); ?></div>
 					<div class="font-semibold">MOUNTING</div>
 					<div><?php echo implode( ', ', $channelLetters['mounting'] ); ?></div>
 					<div class="font-semibold">DESIGN INSPIRATIONS</div>
-					<div><?php echo implode( ', ', $channelLetters['designInspirations'] ); ?></div>
+					<?php
+					$channel_design = [];
+					if ( ! empty( $channelLetters['designInspirations'] ) ) {
+						$channel_inspirations_json = $channelLetters['designInspirations'];
+						$channel_inspirations = json_decode( stripslashes( $channel_inspirations_json ), true );
+						if ( is_array( $channel_inspirations ) ) {
+							foreach ( $channel_inspirations as $channel_inspiration ) {
+								if ( isset( $channel_inspiration['url'] ) && isset( $channel_inspiration['title'] ) ) {
+									$channel_design[] = '<a href="' . esc_url( $channel_inspiration['url'] ) . '">' . esc_html( $channel_inspiration['title'] ) . '</a>';
+								}
+							}
+						}
+					}
+					?>
+					<div><?php echo implode( ', ', $channel_design ); ?></div>
 				</div>
 			</div>
 
@@ -166,8 +213,6 @@
 					<div><?php echo $dimensionalLetters['textAndContent']; ?></div>
 					<div class="font-semibold">FONT</div>
 					<div><?php echo $dimensionalLetters['font'] ?? ''; ?></div>
-					<div class="font-semibold">VENDOR</div>
-					<div><?php echo $dimensionalLetters['vendor']; ?></div>
 					<div class="font-semibold">WALL DIMENSION</div>
 					<div><?php echo $dimensionalLetters['wallDimension']; ?></div>
 					<div class="font-semibold">SIGN DIMENSION</div>
@@ -179,11 +224,27 @@
 					<div class="font-semibold">LOCATION</div>
 					<div><?php echo $dimensionalLetters['location']; ?></div>
 					<div class="font-semibold">TYPES</div>
-					<div><?php echo implode( ', ', $dimensionalLetters['types'] ); ?></div>
+					<div>
+						<?php echo is_array( $dimensionalLetters['types'] ) ? implode( ', ', $dimensionalLetters['types'] ) : $dimensionalLetters['types']; ?>
+					</div>
 					<div class="font-semibold">MOUNTING</div>
 					<div><?php echo implode( ', ', $dimensionalLetters['mounting'] ); ?></div>
 					<div class="font-semibold">DESIGN INSPIRATIONS</div>
-					<div><?php echo implode( ', ', $dimensionalLetters['designInspirations'] ); ?></div>
+					<?php
+					$dimensional_design = [];
+					if ( ! empty( $dimensionalLetters['designInspirations'] ) ) {
+						$dimensional_inspirations_json = $dimensionalLetters['designInspirations'];
+						$dimensional_inspirations = json_decode( stripslashes( $dimensional_inspirations_json ), true );
+						if ( is_array( $dimensional_inspirations ) ) {
+							foreach ( $dimensional_inspirations as $dimensional_inspiration ) {
+								if ( isset( $dimensional_inspiration['url'] ) && isset( $dimensional_inspiration['title'] ) ) {
+									$dimensional_design[] = '<a href="' . esc_url( $dimensional_inspiration['url'] ) . '">' . esc_html( $dimensional_inspiration['title'] ) . '</a>';
+								}
+							}
+						}
+					}
+					?>
+					<div><?php echo implode( ', ', $dimensional_design ); ?></div>
 				</div>
 			</div>
 
@@ -216,18 +277,62 @@
 					<div class="font-semibold">RETAINERS</div>
 					<div><?php echo $lightbox['retainers']; ?></div>
 					<div class="font-semibold">TYPES</div>
-					<div><?php echo implode( ', ', $lightbox['types'] ); ?></div>
+					<div><?php echo is_array( $lightbox['types'] ) ? implode( ', ', $lightbox['types'] ) : $lightbox['types']; ?>
+					</div>
 					<div class="font-semibold">MOUNTING</div>
-					<div><?php echo implode( ', ', $lightbox['mounting'] ); ?></div>
+
+					<div><?php echo $lightbox['mounting']; ?></div>
 					<div class="font-semibold">DESIGN INSPIRATIONS</div>
-					<div><?php echo implode( ', ', $lightbox['designInspirations'] ); ?></div>
+					<?php
+					$lightbox_design = [];
+					if ( ! empty( $lightbox['designInspirations'] ) ) {
+						$lightbox_inspirations_json = $lightbox['designInspirations'];
+						$lightbox_inspirations = json_decode( stripslashes( $lightbox_inspirations_json ), true );
+						if ( is_array( $lightbox_inspirations ) ) {
+							foreach ( $lightbox_inspirations as $lightbox_inspiration ) {
+								if ( isset( $lightbox_inspiration['url'] ) && isset( $lightbox_inspiration['title'] ) ) {
+									$lightbox_design[] = '<a href="' . esc_url( $lightbox_inspiration['url'] ) . '">' . esc_html( $lightbox_inspiration['title'] ) . '</a>';
+								}
+							}
+						}
+					}
+					?>
+					<div><?php echo implode( ', ', $lightbox_design ); ?></div>
 				</div>
 			</div>
 
 			<?php
 		endif;
 
+		$customJob = get_post_meta( $post_id, 'product_custom_job', true );
+		if ( $customJob ) :
+			?>
 
+			<div class="">
+				<p class="uppercase text-lg mb-3">CUSTOM JOB</p>
+				<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
+					<div class="font-semibold">DESCRIPTION</div>
+					<div><?php echo $customJob['description']; ?></div>
+					<div class="font-semibold">DESIGN INSPIRATIONS</div>
+					<?php
+					$custom_design = [];
+					if ( ! empty( $customJob['designInspirations'] ) ) {
+						$custom_inspirations_json = $customJob['designInspirations'];
+						$custom_inspirations = json_decode( stripslashes( $custom_inspirations_json ), true );
+						if ( is_array( $custom_inspirations ) ) {
+							foreach ( $custom_inspirations as $custom_inspiration ) {
+								if ( isset( $custom_inspiration['url'] ) && isset( $custom_inspiration['title'] ) ) {
+									$custom_design[] = '<a href="' . esc_url( $custom_inspiration['url'] ) . '">' . esc_html( $custom_inspiration['title'] ) . '</a>';
+								}
+							}
+						}
+					}
+					?>
+					<div><?php echo implode( ', ', $custom_design ); ?></div>
+				</div>
+			</div>
+			<?php
+		endif;
 
 		?>
 

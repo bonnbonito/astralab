@@ -17,9 +17,16 @@ export const ADASchema = z.discriminatedUnion('hasADA', [
 			types: z.string().nonempty({
 				message: 'Select atleast one type.',
 			}),
-			designInspirations: z.array(z.string()).min(1, {
-				message: 'Select atleast one inspiration',
-			}),
+			designInspirations: z
+				.array(
+					z.object({
+						title: z.string(),
+						url: z.string(),
+					})
+				)
+				.min(1, {
+					message: 'Select atleast one inspiration',
+				}),
 		}),
 	}),
 	z.object({ hasADA: z.literal(false) }),

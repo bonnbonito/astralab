@@ -17,6 +17,7 @@ import { decodeHTMLEntities } from '@/lib/utils';
 interface ImageData {
 	title: string;
 	url: string;
+	form?: string;
 }
 
 interface OptionType {
@@ -77,9 +78,15 @@ export default function DesignInspiration({
 						<div className="mt-4 grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(195px,1fr))] gap-4">
 							{options.map((option, optionIndex) => {
 								return option.images.map((image, imageIndex) => {
-									const designArray: string[] =
-										form.getValues(fieldName as any) || [];
-									const isChecked = designArray.includes(image.title);
+									const designArray: (
+										| string
+										| { title: string; url: string }
+									)[] = form.getValues(fieldName as any) || [];
+									const isChecked = designArray.some((item) =>
+										typeof item === 'string'
+											? item === image.title
+											: item.title === image.title
+									);
 
 									return (
 										<div
@@ -104,10 +111,16 @@ export default function DesignInspiration({
 																let updatedDesigns = [...designArray];
 
 																if (checked) {
-																	updatedDesigns.push(image.title);
+																	updatedDesigns.push({
+																		title: image.title,
+																		url: image.url,
+																	});
 																} else {
 																	updatedDesigns = updatedDesigns.filter(
-																		(item) => item !== image.title
+																		(item) =>
+																			typeof item === 'string'
+																				? item !== image.title
+																				: item.title !== image.title
 																	);
 																}
 																form.setValue(

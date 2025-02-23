@@ -24,7 +24,16 @@ export const DimensionalLettersSchema = z.discriminatedUnion(
 				mounting: z.string().nonempty({
 					message: 'Select atleast one mounting.',
 				}),
-				designInspirations: z.array(z.string()),
+				designInspirations: z
+					.array(
+						z.object({
+							title: z.string(),
+							url: z.string(),
+						})
+					)
+					.min(1, {
+						message: 'Select atleast one inspiration',
+					}),
 			}),
 		}),
 		z.object({ hasDimensionalLetters: z.literal(false) }),

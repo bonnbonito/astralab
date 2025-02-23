@@ -34,9 +34,16 @@ const lightboxBaseSchema = z.object({
 	mounting: z.string().nonempty({
 		message: 'Select at least one Lightbox mounting.',
 	}),
-	designInspirations: z.array(z.string()).min(1, {
-		message: 'Select at least one Lightbox design inspiration.',
-	}),
+	designInspirations: z
+		.array(
+			z.object({
+				title: z.string(),
+				url: z.string(),
+			})
+		)
+		.min(1, {
+			message: 'Select atleast one inspiration',
+		}),
 });
 
 export const LightboxSchema = z.discriminatedUnion('hasLightbox', [

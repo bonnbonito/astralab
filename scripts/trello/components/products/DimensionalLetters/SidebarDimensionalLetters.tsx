@@ -61,7 +61,9 @@ export default function SidebarDimensionalLetters({
 					Design Inspiration
 				</div>
 				<div className="text-xs">
-					{dimensionalLetters?.designInspirations?.join(', ')}
+					{dimensionalLetters?.designInspirations
+						?.map((inspiration) => `${inspiration.title}`)
+						.join(', ')}
 				</div>
 			</div>
 		</>

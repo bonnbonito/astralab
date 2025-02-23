@@ -21,7 +21,16 @@ export const MonumentsAndPylonsSchema = z.discriminatedUnion(
 				maxContentArea: z.string().nonempty(),
 				minContentArea: z.string().nonempty(),
 				maxGroundClearance: z.string().nonempty(),
-				designInspirations: z.array(z.string()),
+				designInspirations: z
+					.array(
+						z.object({
+							title: z.string(),
+							url: z.string(),
+						})
+					)
+					.min(1, {
+						message: 'Select atleast one inspiration',
+					}),
 			}),
 		}),
 		z.object({ hasMonumentsAndPylons: z.literal(false) }),

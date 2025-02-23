@@ -352,7 +352,7 @@ class Trello_Backend {
 
 			$return['post'] = $_POST;
 			$return['file'] = $_FILES['fileUpload'];
-			$return['bulkFile'] = $_FILES['bulkOrderFile'];
+			$return['bulkFile'] = $_FILES['bulkOrderFile']['name'];
 			$return['user'] = get_current_user_id();
 			$post = $_POST;
 
@@ -406,11 +406,25 @@ class Trello_Backend {
 			// --- ADA ---
 			$ada = $jsonData['ADA'] ?? [];
 			if ( ! empty( $_POST["hasADA"] ) && ! empty( $ada ) ) {
-				$signs = json_decode( $ada['signs'], true ) ?? [];  // Decode the JSON string
+				$signs = json_decode( stripslashes( $ada['signs'] ), true ) ?? [];  // Decode the JSON string
 				$ada_types = $this->array_to_string( $ada['types'] );
-				$ada_design = $ada['designInspirations'] ?? [];
+				$ada_design = [];
+
+				if ( ! empty( $ada['designInspirations'] ) ) {
+					$ada_inspirations_json = $ada['designInspirations'];
+					$ada_inspirations = json_decode( stripslashes( $ada_inspirations_json ), true );
+					if ( is_array( $ada_inspirations ) ) {
+						foreach ( $ada_inspirations as $ada_inspiration ) {
+							if ( isset( $ada_inspiration['url'] ) && isset( $ada_inspiration['title'] ) ) {
+								$ada_design[] = '<a href="' . esc_url( $ada_inspiration['url'] ) . '">' . esc_html( $ada_inspiration['title'] ) . '</a>';
+							}
+						}
+					}
+				}
+
 				$project_details .= '<h3><strong>ADA Wayfinding:</strong></h3>';
 				$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $ada['numberOfSigns'] ?? '' );
+
 
 				foreach ( $signs as $index => $sign ) {
 					$no = $index + 1;
@@ -430,7 +444,21 @@ class Trello_Backend {
 			$monuments = $jsonData['monumentsAndPylons'] ?? [];
 			if ( ! empty( $_POST["hasMonumentsAndPylons"] ) && ! empty( $monuments ) ) {
 				$monuments_types = $this->array_to_string( $monuments['types'] );
-				$monuments_design = $monuments['designInspirations'] ?? [];
+
+				$monuments_design = [];
+
+				if ( ! empty( $monuments['designInspirations'] ) ) {
+					$monuments_inspirations_json = $monuments['designInspirations'];
+					$monuments_inspirations = json_decode( stripslashes( $monuments_inspirations_json ), true );
+					if ( is_array( $monuments_inspirations ) ) {
+						foreach ( $monuments_inspirations as $monuments_inspiration ) {
+							if ( isset( $monuments_inspiration['url'] ) && isset( $monuments_inspiration['title'] ) ) {
+								$monuments_design[] = '<a href="' . esc_url( $monuments_inspiration['url'] ) . '">' . esc_html( $monuments_inspiration['title'] ) . '</a>';
+							}
+						}
+					}
+				}
+
 				$illumination = $this->array_to_string( $monuments['illumination'] );
 				$project_details .= '<h3><strong>Monuments & Pylons</strong></h3>';
 				$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $monuments['numberOfSigns'] ?? '' );
@@ -456,7 +484,22 @@ class Trello_Backend {
 				$channelLetters_types = $this->array_to_string( $channelLetters['types'] );
 				$channelLetters_backer = $this->array_to_string( $channelLetters['backer'] );
 				$channelLetters_mounting = $this->array_to_string( $channelLetters['mounting'] );
-				$channelLetters_design = $channelLetters['designInspirations'] ?? [];
+				$channelLetters_design = [];
+
+				if ( ! empty( $channelLetters['designInspirations'] ) ) {
+					$channelLetters_inspirations_json = $channelLetters['designInspirations'];
+					$channelLetters_inspirations = json_decode( stripslashes( $channelLetters_inspirations_json ), true );
+					if ( is_array( $channelLetters_inspirations ) ) {
+						foreach ( $channelLetters_inspirations as $channelLetters_inspiration ) {
+							if ( isset( $channelLetters_inspiration['url'] ) && isset( $channelLetters_inspiration['title'] ) ) {
+								$channelLetters_design[] = '<a href="' . esc_url( $channelLetters_inspiration['url'] ) . '">' . esc_html( $channelLetters_inspiration['title'] ) . '</a>';
+							}
+						}
+					}
+				}
+
+
+
 				$project_details .= '<h3><strong>Channel Letters</strong></h3>';
 				$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $channelLetters['numberOfSigns'] ?? '' );
 				$project_details .= '<ul>';
@@ -481,7 +524,20 @@ class Trello_Backend {
 			if ( ! empty( $_POST["dimensionalLetters"] ) && ! empty( $dimensionalLetters ) ) {
 				$dimensionalLetters_types = $this->array_to_string( $dimensionalLetters['types'] );
 				$dimensionalLetters_mounting = $this->array_to_string( $dimensionalLetters['mounting'] );
-				$dimensionalLetters_design = $dimensionalLetters['designInspirations'] ?? [];
+				$dimensionalLetters_design = [];
+
+				if ( ! empty( $dimensionalLetters['designInspirations'] ) ) {
+					$dimensionalLetters_inspirations_json = $dimensionalLetters['designInspirations'];
+					$dimensionalLetters_inspirations = json_decode( stripslashes( $dimensionalLetters_inspirations_json ), true );
+					if ( is_array( $dimensionalLetters_inspirations ) ) {
+						foreach ( $dimensionalLetters_inspirations as $dimensionalLetters_inspiration ) {
+							if ( isset( $dimensionalLetters_inspiration['url'] ) && isset( $dimensionalLetters_inspiration['title'] ) ) {
+								$dimensionalLetters_design[] = '<a href="' . esc_url( $dimensionalLetters_inspiration['url'] ) . '">' . esc_html( $dimensionalLetters_inspiration['title'] ) . '</a>';
+							}
+						}
+					}
+				}
+
 				$project_details .= '<h3><strong>Dimensional Letters</strong></h3>';
 				$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $dimensionalLetters['numberOfSigns'] ?? '' );
 				$project_details .= '<ul>';
@@ -506,7 +562,21 @@ class Trello_Backend {
 			if ( ! empty( $_POST["lightbox"] ) && ! empty( $lightbox ) ) {
 				$lightbox_types = $this->array_to_string( $lightbox['types'] );
 				$lightbox_mounting = $this->array_to_string( $lightbox['mounting'] );
-				$lightbox_design = $lightbox['designInspirations'] ?? [];
+				$lightbox_design = [];
+
+				if ( ! empty( $lightbox['designInspirations'] ) ) {
+					$lightbox_inspirations_json = $lightbox['designInspirations'];
+					$lightbox_inspirations = json_decode( stripslashes( $lightbox_inspirations_json ), true );
+					if ( is_array( $lightbox_inspirations ) ) {
+						foreach ( $lightbox_inspirations as $lightbox_inspiration ) {
+							if ( isset( $lightbox_inspiration['url'] ) && isset( $lightbox_inspiration['title'] ) ) {
+								$lightbox_design[] = '<a href="' . esc_url( $lightbox_inspiration['url'] ) . '">' . esc_html( $lightbox_inspiration['title'] ) . '</a>';
+							}
+						}
+					}
+				}
+
+
 				$project_details .= '<h3><strong>Lightbox</strong></h3>';
 				$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $lightbox['numberOfSigns'] ?? '' );
 				$project_details .= '<ul>';
@@ -524,6 +594,28 @@ class Trello_Backend {
 				$project_details .= '<li><strong>Mounting:</strong> ' . $lightbox_mounting . '</li>';
 				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $lightbox_design ) . '</li>';
 				$project_details .= '</ul>';
+			}
+
+			// --- Custom Job ---
+			$customJob = $jsonData['customJob'] ?? [];
+			if ( ! empty( $_POST["customJob"] ) && ! empty( $customJob ) ) {
+				$customJob_design = [];
+				if ( ! empty( $customJob['designInspirations'] ) ) {
+					$customJob_design = array();
+					$inspirations_json = $customJob['designInspirations'];
+					$inspirations = json_decode( stripslashes( $inspirations_json ), true );
+					if ( is_array( $inspirations ) ) {
+						foreach ( $inspirations as $inspiration ) {
+							if ( isset( $inspiration['url'] ) && isset( $inspiration['title'] ) ) {
+								$customJob_design[] = '<a href="' . esc_url( $inspiration['url'] ) . '">' . esc_html( $inspiration['title'] ) . '</a>';
+							}
+						}
+					}
+				}
+
+				$project_details .= '<h3><strong>Custom Job</strong></h3>';
+				$project_details .= '<p><strong>Description:</strong></p><p>' . ( $customJob['description'] ?? '' ) . '</p>';
+				$project_details .= '<p><strong>Design Inspiration:</strong> ' . implode( ", ", $customJob_design ) . '</p>';
 			}
 
 			$converter = new HtmlConverter();

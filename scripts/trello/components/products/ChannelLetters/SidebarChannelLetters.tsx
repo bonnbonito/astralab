@@ -1,5 +1,5 @@
 import { FormSchema } from '@/trello/helpers/schema';
-import { UseFormReturn } from 'react-hook-form';
+import { UseFormReturn, useWatch } from 'react-hook-form';
 
 interface SidebarChannelLettersProps {
 	form: UseFormReturn<FormSchema>;
@@ -8,7 +8,10 @@ interface SidebarChannelLettersProps {
 export default function SidebarChannelLetters({
 	form,
 }: SidebarChannelLettersProps) {
-	const channelLetters = form.watch('channelLetters');
+	const channelLetters = useWatch({
+		control: form.control,
+		name: 'channelLetters',
+	});
 	const numberOfSigns = channelLetters?.numberOfSigns ?? 0;
 	return (
 		<>
@@ -25,10 +28,6 @@ export default function SidebarChannelLetters({
 			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">Font</div>
 				<div className="text-xs">{channelLetters?.font || ''}</div>
-			</div>
-			<div className="grid grid-cols-2 gap-4 mb-1">
-				<div className="uppercase font-semibold text-sm">Vendor</div>
-				<div className="text-xs">{channelLetters?.vendor || ''}</div>
 			</div>
 			<div className="grid grid-cols-2 gap-4 mb-1">
 				<div className="uppercase font-semibold text-sm">Wall Dimension</div>
@@ -75,7 +74,9 @@ export default function SidebarChannelLetters({
 					Design Inspiration
 				</div>
 				<div className="text-xs">
-					{channelLetters?.designInspirations?.join(', ')}
+					{channelLetters?.designInspirations
+						?.map((inspiration) => `${inspiration.title}`)
+						.join(', ')}
 				</div>
 			</div>
 		</>

@@ -67,7 +67,9 @@ export default function SidebarMonuments({ form }: SidebarMonumentsProps) {
 					Design Inspiration
 				</div>
 				<div className="text-xs">
-					{monumentsAndPylons?.designInspirations?.join(', ')}
+					{monumentsAndPylons?.designInspirations
+						?.map((inspiration) => `${inspiration.title}`)
+						.join(', ')}
 				</div>
 			</div>
 		</>

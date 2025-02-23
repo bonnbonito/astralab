@@ -2,19 +2,22 @@ import ProjectDetails from './ProjectDetails';
 import ProjectType from './ProductType';
 import ADAWayfinding from './products/ADA/ADAWayfinding';
 import { FormSchema } from '@/trello/helpers/schema';
-import { UseFormReturn } from 'react-hook-form';
+import { UseFormReturn, useWatch } from 'react-hook-form';
 import Loading from './Loading';
 import MonumentsAndPylons from './products/MonumentsAndPylons/MonumentsAndPylons';
 import ChannelLetters from './products/ChannelLetters/ChannelLetters';
 import DimensionalLetters from './products/DimensionalLetters/DimensionalLetters';
 import Lightbox from './products/Lightbox/Lightbox';
-
+import CustomJob from './products/CustomJob/CustomJob';
 export interface MainProps {
 	form: UseFormReturn<FormSchema>;
 }
 
 export default function Main({ form }: MainProps) {
-	const productTypes = form.watch('productTypes');
+	const productTypes = useWatch({
+		control: form.control,
+		name: 'productTypes',
+	});
 	return (
 		<div className="flex-1 w-full relative">
 			<ProjectDetails form={form} />
@@ -48,6 +51,12 @@ export default function Main({ form }: MainProps) {
 					{productType.component === 'Lightbox' && (
 						<>
 							<Lightbox form={form} product={productType.id} />
+						</>
+					)}
+
+					{productType.component === 'CustomJob' && (
+						<>
+							<CustomJob form={form} product={productType.id} />
 						</>
 					)}
 				</div>

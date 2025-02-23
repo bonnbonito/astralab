@@ -66,11 +66,7 @@ export default function NumberSigns({
 							</FormControl>
 							<FormMessage />
 						</FormItem>
-						<div className="col-span-2">
-							<p>
-								Size Template - Download the template to upload multiple orders
-							</p>
-						</div>
+						<div className="col-span-2"></div>
 					</div>
 				</div>
 			)}

@@ -61,7 +61,9 @@ export default function SidebarLightbox({ form }: SidebarLightboxProps) {
 					Design Inspiration
 				</div>
 				<div className="text-xs">
-					{lightbox?.designInspirations?.join(', ')}
+					{lightbox?.designInspirations
+						?.map((inspiration) => `${inspiration.title}`)
+						.join(', ')}
 				</div>
 			</div>
 		</>

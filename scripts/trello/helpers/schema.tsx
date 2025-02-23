@@ -5,7 +5,7 @@ import { MonumentsAndPylonsSchema } from '@/trello/components/products/Monuments
 import { ChannelLettersSchema } from '@/trello/components/products/ChannelLetters/schema';
 import { DimensionalLettersSchema } from '../components/products/DimensionalLetters/schema';
 import { LightboxSchema } from '../components/products/Lightbox/schema';
-
+import { CustomJobSchema } from '../components/products/CustomJob/schema';
 const formSchema = z
 	.object({
 		projectName: z.string().min(2, {
@@ -43,7 +43,8 @@ const formSchema = z
 	.and(MonumentsAndPylonsSchema)
 	.and(ChannelLettersSchema)
 	.and(DimensionalLettersSchema)
-	.and(LightboxSchema);
+	.and(LightboxSchema)
+	.and(CustomJobSchema);
 
 type FormSchema = z.infer<typeof formSchema>;
 
@@ -61,6 +62,7 @@ const formDefaultValues: FormSchema = {
 	hasChannelLetters: false,
 	hasDimensionalLetters: false,
 	hasLightbox: false,
+	hasCustomJob: false,
 };
 
 export { formDefaultValues, formSchema, type FormSchema };

@@ -32,6 +32,11 @@ export default function OrderForm() {
 	const { toast } = useToast();
 
 	const appendToFormData = (formData: FormData, key: string, value: any) => {
+		/** if value undefined, continue */
+		if (value === undefined) {
+			return;
+		}
+
 		if (value instanceof File) {
 			// Handle single file upload for bulkOrderFile
 			formData.append(key, value, value.name);
@@ -42,6 +47,7 @@ export default function OrderForm() {
 			});
 		} else if (Array.isArray(value)) {
 			// Handle arrays
+
 			value.forEach((item, index) => {
 				if (typeof item === 'object' && item !== null) {
 					Object.entries(item).forEach(([itemKey, itemValue]) => {
@@ -82,6 +88,8 @@ export default function OrderForm() {
 				appendToFormData(formData, key, value);
 			});
 
+			console.log(data);
+
 			const response = await axios.post(astralab.ajax_url, formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data',
@@ -98,6 +106,10 @@ export default function OrderForm() {
 						response.data.data?.message || 'Order placed successfully!',
 				});
 				form.reset();
+				/** redirect to dashboard after 3 seconds */
+				setTimeout(() => {
+					window.location.href = '/dashboard';
+				}, 3000);
 			} else {
 				throw new Error(response.data.data || 'Failed to submit order');
 			}
