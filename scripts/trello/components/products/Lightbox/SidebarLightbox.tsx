@@ -1,12 +1,11 @@
-import { FormSchema } from '@/trello/helpers/schema';
-import { UseFormReturn } from 'react-hook-form';
+import { useWatch } from 'react-hook-form';
+import { FormType } from '@/trello/helpers/types';
 
-interface SidebarLightboxProps {
-	form: UseFormReturn<FormSchema>;
-}
-
-export default function SidebarLightbox({ form }: SidebarLightboxProps) {
-	const lightbox = form.watch('lightbox');
+export default function SidebarLightbox({ form }: FormType) {
+	const lightbox = useWatch({
+		control: form.control,
+		name: 'lightbox',
+	});
 	const numberOfSigns = lightbox?.numberOfSigns ?? 0;
 	return (
 		<>

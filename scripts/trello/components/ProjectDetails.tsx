@@ -6,13 +6,7 @@ import ProjectDescription from './fields/ProjectDescription';
 import LayoutType from './fields/LayoutType';
 import FileUpload from './fields/FileUpload';
 import BulkOrders from './fields/BulkOrders';
-import { Astralab, Options } from '../helpers/types';
-import { UseFormReturn } from 'react-hook-form';
-import { FormSchema } from '@/trello/helpers/schema';
-
-interface ProjectDetailsProps {
-	form: UseFormReturn<FormSchema>;
-}
+import { Astralab, Options, FormType } from '../helpers/types';
 
 declare const astralab: Astralab;
 
@@ -22,7 +16,7 @@ const defaultOptions: Options = {
 	design_details: [],
 };
 
-export default function ProjectDetails({ form }: ProjectDetailsProps) {
+export default function ProjectDetails({ form }: FormType) {
 	const [options, setOptions] = useState(null);
 	const [loading, setLoading] = useState(true);
 

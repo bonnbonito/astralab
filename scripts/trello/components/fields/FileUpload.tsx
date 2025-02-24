@@ -9,19 +9,15 @@ import {
 import { Input } from '@/components/ui/input';
 import { FormSchema } from '@/trello/helpers/schema';
 import { useRef, useEffect } from 'react';
-import { UseFormReturn } from 'react-hook-form';
-
+import { useWatch } from 'react-hook-form';
+import { FormType } from '@/trello/helpers/types';
 const getButtonText = (files?: File[]) => {
 	if (!files?.length) return 'Upload Files';
 	const fileCount = files.length;
 	return `Selected ${fileCount} ${fileCount === 1 ? 'file' : 'files'}`;
 };
 
-export default function FileUpload({
-	form,
-}: {
-	form: UseFormReturn<FormSchema>;
-}) {
+export default function FileUpload({ form }: FormType) {
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	// Handle form reset in useEffect to properly manage side effects
@@ -45,7 +41,10 @@ export default function FileUpload({
 		fileInputRef.current?.click();
 	};
 
-	const fileUpload = form.watch('fileUpload');
+	const fileUpload = useWatch({
+		control: form.control,
+		name: 'fileUpload',
+	});
 
 	return (
 		<FormField

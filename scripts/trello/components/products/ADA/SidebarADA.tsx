@@ -1,23 +1,21 @@
-import { FormSchema } from '@/trello/helpers/schema';
-import { UseFormReturn, useWatch } from 'react-hook-form';
+import { useWatch } from 'react-hook-form';
+import { FormType } from '@/trello/helpers/types';
 
-interface SidebarADAProps {
-	form: UseFormReturn<FormSchema>;
-}
-
-export default function SidebarADA({ form }: SidebarADAProps) {
+export default function SidebarADA({ form }: FormType) {
 	const ADA = useWatch({
 		control: form.control,
 		name: 'ADA',
 	});
-	const numberOfSigns = ADA?.numberOfSigns ?? 0;
+	const numberOfSigns = ADA?.numberOfSigns;
 	const signs = ADA?.signs;
 	return (
 		<>
-			<div className="grid grid-cols-2 gap-4 mb-1">
-				<div className="uppercase font-semibold text-sm">Number of Signs</div>
-				<div className="text-xs">{numberOfSigns}</div>
-			</div>
+			{numberOfSigns && (
+				<div className="grid grid-cols-2 gap-4 mb-1">
+					<div className="uppercase font-semibold text-sm">Number of Signs</div>
+					<div className="text-xs">{numberOfSigns}</div>
+				</div>
+			)}
 			<div className="pl-4 max-h-[72px] overflow-y-auto">
 				{signs?.map((sign, index) => (
 					<div key={`adaSign-${index}`}>

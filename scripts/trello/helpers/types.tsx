@@ -8,8 +8,13 @@ export interface Astralab {
 	options: string;
 }
 
-export interface ProductTypeProps {
+export interface FormType {
 	form: UseFormReturn<FormSchema>;
+}
+
+export interface ProductProps {
+	form: UseFormReturn<FormSchema>;
+	product: number;
 }
 
 export interface Options {

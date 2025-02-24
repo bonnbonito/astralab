@@ -1,19 +1,16 @@
 import ProjectDetails from './ProjectDetails';
 import ProjectType from './ProductType';
 import ADAWayfinding from './products/ADA/ADAWayfinding';
-import { FormSchema } from '@/trello/helpers/schema';
-import { UseFormReturn, useWatch } from 'react-hook-form';
+import { useWatch } from 'react-hook-form';
 import Loading from './Loading';
 import MonumentsAndPylons from './products/MonumentsAndPylons/MonumentsAndPylons';
 import ChannelLetters from './products/ChannelLetters/ChannelLetters';
 import DimensionalLetters from './products/DimensionalLetters/DimensionalLetters';
 import Lightbox from './products/Lightbox/Lightbox';
 import CustomJob from './products/CustomJob/CustomJob';
-export interface MainProps {
-	form: UseFormReturn<FormSchema>;
-}
+import { FormType } from '@/trello/helpers/types';
 
-export default function Main({ form }: MainProps) {
+export default function Main({ form }: FormType) {
 	const productTypes = useWatch({
 		control: form.control,
 		name: 'productTypes',

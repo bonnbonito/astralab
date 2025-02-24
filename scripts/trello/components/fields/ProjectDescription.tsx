@@ -6,14 +6,9 @@ import {
 	FormMessage,
 } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
-import { FormSchema } from '@/trello/helpers/schema';
-import { UseFormReturn } from 'react-hook-form';
+import { FormType } from '@/trello/helpers/types';
 
-interface ProjectDescriptionProps {
-	form: UseFormReturn<FormSchema>;
-}
-
-export default function ProjectDescription({ form }: ProjectDescriptionProps) {
+export default function ProjectDescription({ form }: FormType) {
 	return (
 		<FormField
 			control={form.control}

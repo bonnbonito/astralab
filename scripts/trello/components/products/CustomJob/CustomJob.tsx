@@ -1,19 +1,13 @@
 import { useState, useEffect, useMemo } from 'react';
-import { UseFormReturn } from 'react-hook-form';
-import { FormSchema } from '@/trello/helpers/schema';
 import DesignInspiration from '@/trello/components/DesignInspiration';
-import { ProductTypeDataProps } from '@/trello/helpers/types';
+import { ProductProps, ProductTypeDataProps } from '@/trello/helpers/types';
 import AccordionProductType from '@/trello/components/AccordionProductType';
 import Textarea from '@/trello/components/fields/Textarea';
+import { Astralab } from '@/trello/helpers/types';
 
-interface CustomJobProps {
-	form: UseFormReturn<FormSchema>;
-	product: number;
-}
+declare const astralab: Astralab;
 
-declare const astralab: Record<string, string>;
-
-export default function CustomJob({ form, product }: CustomJobProps) {
+export default function CustomJob({ form, product }: ProductProps) {
 	const [productType, setProductType] = useState<ProductTypeDataProps | null>(
 		null
 	);

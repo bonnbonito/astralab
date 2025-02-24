@@ -1,12 +1,11 @@
-import { FormSchema } from '@/trello/helpers/schema';
-import { UseFormReturn } from 'react-hook-form';
+import { useWatch } from 'react-hook-form';
+import { FormType } from '@/trello/helpers/types';
 
-interface SidebarMonumentsProps {
-	form: UseFormReturn<FormSchema>;
-}
-
-export default function SidebarMonuments({ form }: SidebarMonumentsProps) {
-	const monumentsAndPylons = form.watch('monumentsAndPylons');
+export default function SidebarMonuments({ form }: FormType) {
+	const monumentsAndPylons = useWatch({
+		control: form.control,
+		name: 'monumentsAndPylons',
+	});
 	const numberOfSigns = monumentsAndPylons?.numberOfSigns ?? 0;
 	return (
 		<>

@@ -8,13 +8,12 @@ import {
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ProductTypeProps } from '@/trello/helpers/types';
+import { FormType } from '@/trello/helpers/types';
 import { COMPONENT_MAP } from '@/trello/helpers/defaults';
-import { FormSchema } from '@/trello/helpers/schema';
 import { useProductTypes } from '@/trello/hooks/useProductTypes';
-import type { ProductType } from '@/trello/hooks/useProductTypes';
+import { FormSchema } from '../helpers/schema';
 
-export default function ProductType({ form }: ProductTypeProps) {
+export default function ProductType({ form }: FormType) {
 	const { productTypes, loading } = useProductTypes();
 
 	return (

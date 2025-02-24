@@ -1,17 +1,13 @@
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { COMPONENT_MAP } from '@/trello/helpers/defaults';
-import { FormSchema } from '@/trello/helpers/schema';
-import { UseFormReturn } from 'react-hook-form';
 import { memo } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useProductTypes } from '../hooks/useProductTypes';
+import { FormType } from '@/trello/helpers/types';
+import { FormSchema } from '@/trello/helpers/schema';
 
-interface ProductTypeItemProps {
-	form: UseFormReturn<FormSchema>;
-}
-
-function ProductTypeItem({ form }: ProductTypeItemProps) {
+function ProductTypeItem({ form }: FormType) {
 	const { productTypes, loading } = useProductTypes();
 	return (
 		<div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-6">

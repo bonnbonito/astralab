@@ -1,27 +1,25 @@
 import { useState, useEffect, useMemo } from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import { useWatch } from 'react-hook-form';
 import NumberSigns from '@/trello/components/fields/NumberSigns';
-import { FormSchema } from '@/trello/helpers/schema';
 import DesignInspiration from '@/trello/components/DesignInspiration';
 import { ProductOptions } from '@/trello/components/fields/ProductOptions';
-import { ProductTypeDataProps } from '@/trello/helpers/types';
+import { ProductProps, ProductTypeDataProps } from '@/trello/helpers/types';
 import Signs from './Signs';
 import AccordionProductType from '@/trello/components/AccordionProductType';
+import { Astralab } from '@/trello/helpers/types';
 
-interface ADAWayfindingProps {
-	form: UseFormReturn<FormSchema>;
-	product: number;
-}
+declare const astralab: Astralab;
 
-declare const astralab: Record<string, string>;
-
-export default function ADAWayfinding({ form, product }: ADAWayfindingProps) {
+export default function ADAWayfinding({ form, product }: ProductProps) {
 	const [productType, setProductType] = useState<ProductTypeDataProps | null>(
 		null
 	);
 	const [loading, setLoading] = useState(true);
 
-	const numberOfSigns = form.watch('ADA.numberOfSigns');
+	const numberOfSigns = useWatch({
+		control: form.control,
+		name: 'ADA.numberOfSigns',
+	});
 
 	const processedProductType = useMemo(() => productType, [productType]);
 

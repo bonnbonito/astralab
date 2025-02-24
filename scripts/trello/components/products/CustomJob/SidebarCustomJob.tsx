@@ -1,11 +1,7 @@
-import { FormSchema } from '@/trello/helpers/schema';
-import { UseFormReturn, useWatch } from 'react-hook-form';
+import { useWatch } from 'react-hook-form';
+import { FormType } from '@/trello/helpers/types';
 
-interface SidebarCustomJobProps {
-	form: UseFormReturn<FormSchema>;
-}
-
-export default function SidebarCustomJob({ form }: SidebarCustomJobProps) {
+export default function SidebarCustomJob({ form }: FormType) {
 	const customJob = useWatch({
 		control: form.control,
 		name: 'customJob',

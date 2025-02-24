@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Astralab } from '@/trello/helpers/types';
 import { COMPONENT_MAP } from '@/trello/helpers/defaults';
+import { Astralab } from '@/trello/helpers/types';
 
 declare const astralab: Astralab;
 

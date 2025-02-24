@@ -6,17 +6,16 @@ import {
 	FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { FormSchema } from '@/trello/helpers/schema';
 import { useRef } from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import { useWatch } from 'react-hook-form';
+import { FormType } from '@/trello/helpers/types';
 
-export default function BulkOrders({
-	form,
-}: {
-	form: UseFormReturn<FormSchema>;
-}) {
+export default function BulkOrders({ form }: FormType) {
 	const fileInputRef = useRef<HTMLInputElement>(null);
-	const bulkOrderFile = form.watch('bulkOrderFile');
+	const bulkOrderFile = useWatch({
+		control: form.control,
+		name: 'bulkOrderFile',
+	});
 
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const files = event.target.files;

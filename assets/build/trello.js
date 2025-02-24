@@ -29175,8 +29175,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ui_input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/input */ "./scripts/components/ui/input.tsx");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -29186,7 +29188,10 @@ function BulkOrders({
   form
 }) {
   const fileInputRef = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)(null);
-  const bulkOrderFile = form.watch('bulkOrderFile');
+  const bulkOrderFile = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_5__.useWatch)({
+    control: form.control,
+    name: 'bulkOrderFile'
+  });
   const handleFileChange = event => {
     const files = event.target.files;
     if (files?.length) {
@@ -29331,8 +29336,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ui_input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/input */ "./scripts/components/ui/input.tsx");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -29366,7 +29373,10 @@ function FileUpload({
   const handleButtonClick = () => {
     fileInputRef.current?.click();
   };
-  const fileUpload = form.watch('fileUpload');
+  const fileUpload = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_5__.useWatch)({
+    control: form.control,
+    name: 'fileUpload'
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormField, {
     control: form.control,
     name: "fileUpload",
@@ -29998,6 +30008,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var _trello_components_fields_NumberSigns__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/trello/components/fields/NumberSigns */ "./scripts/trello/components/fields/NumberSigns.tsx");
 /* harmony import */ var _trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/trello/components/DesignInspiration */ "./scripts/trello/components/DesignInspiration.tsx");
 /* harmony import */ var _trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/trello/components/fields/ProductOptions */ "./scripts/trello/components/fields/ProductOptions.tsx");
@@ -30012,13 +30023,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function ADAWayfinding({
   form,
   product
 }) {
   const [productType, setProductType] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
-  const numberOfSigns = form.watch('ADA.numberOfSigns');
+  const numberOfSigns = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_7__.useWatch)({
+    control: form.control,
+    name: 'ADA.numberOfSigns'
+  });
   const processedProductType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => productType, [productType]);
   const types = processedProductType?.product_types_options?.find(item => item.name === 'Types');
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
@@ -30102,15 +30117,14 @@ __webpack_require__.r(__webpack_exports__);
 function SidebarADA({
   form
 }) {
-  var _ADA$numberOfSigns;
   const ADA = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_1__.useWatch)({
     control: form.control,
     name: 'ADA'
   });
-  const numberOfSigns = (_ADA$numberOfSigns = ADA?.numberOfSigns) !== null && _ADA$numberOfSigns !== void 0 ? _ADA$numberOfSigns : 0;
+  const numberOfSigns = ADA?.numberOfSigns;
   const signs = ADA?.signs;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+    children: [numberOfSigns && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
       className: "grid grid-cols-2 gap-4 mb-1",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         className: "uppercase font-semibold text-sm",
@@ -30297,7 +30311,6 @@ function ChannelLetters({
 }) {
   const [productType, setProductType] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
-  const numberOfSigns = form.watch('channelLetters.numberOfSigns');
   const processedProductType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => productType, [productType]);
   const types = processedProductType?.product_types_options?.find(item => item.name === 'Types');
   const backer = processedProductType?.product_types_options?.find(item => item.name === 'Backer');
@@ -30823,7 +30836,6 @@ function DimensionalLetters({
 }) {
   const [productType, setProductType] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
-  const numberOfSigns = form.watch('dimensionalLetters.numberOfSigns');
   const processedProductType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => productType, [productType]);
   const types = processedProductType?.product_types_options?.find(item => item.name === 'Types');
   const mounting = processedProductType?.product_types_options?.find(item => item.name === 'Mounting');
@@ -30939,14 +30951,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ SidebarDimensionalLetters)
 /* harmony export */ });
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+
 
 function SidebarDimensionalLetters({
   form
 }) {
   var _dimensionalLetters$n;
-  const dimensionalLetters = form.watch('dimensionalLetters');
+  const dimensionalLetters = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_1__.useWatch)({
+    control: form.control,
+    name: 'dimensionalLetters'
+  });
   const numberOfSigns = (_dimensionalLetters$n = dimensionalLetters?.numberOfSigns) !== null && _dimensionalLetters$n !== void 0 ? _dimensionalLetters$n : 0;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -31134,7 +31151,6 @@ function Lightbox({
 }) {
   const [productType, setProductType] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
-  const numberOfSigns = form.watch('lightbox.numberOfSigns');
   const processedProductType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => productType, [productType]);
   const types = processedProductType?.product_types_options?.find(item => item.name === 'Types');
   const mounting = processedProductType?.product_types_options?.find(item => item.name === 'Mounting');
@@ -31254,14 +31270,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ SidebarLightbox)
 /* harmony export */ });
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+
 
 function SidebarLightbox({
   form
 }) {
   var _lightbox$numberOfSig;
-  const lightbox = form.watch('lightbox');
+  const lightbox = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_1__.useWatch)({
+    control: form.control,
+    name: 'lightbox'
+  });
   const numberOfSigns = (_lightbox$numberOfSig = lightbox?.numberOfSigns) !== null && _lightbox$numberOfSig !== void 0 ? _lightbox$numberOfSig : 0;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -31474,7 +31495,6 @@ function MonumentsAndPylons({
 }) {
   const [productType, setProductType] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
-  const numberOfSigns = form.watch('monumentsAndPylons.numberOfSigns');
   const processedProductType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => productType, [productType]);
   const types = processedProductType?.product_types_options?.find(item => item.name === 'Types');
   const illuminations = processedProductType?.product_types_options?.find(item => item.name === 'Illumination');
@@ -31581,14 +31601,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ SidebarMonuments)
 /* harmony export */ });
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+
 
 function SidebarMonuments({
   form
 }) {
   var _monumentsAndPylons$n;
-  const monumentsAndPylons = form.watch('monumentsAndPylons');
+  const monumentsAndPylons = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_1__.useWatch)({
+    control: form.control,
+    name: 'monumentsAndPylons'
+  });
   const numberOfSigns = (_monumentsAndPylons$n = monumentsAndPylons?.numberOfSigns) !== null && _monumentsAndPylons$n !== void 0 ? _monumentsAndPylons$n : 0;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {

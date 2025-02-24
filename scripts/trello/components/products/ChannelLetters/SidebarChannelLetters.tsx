@@ -1,13 +1,7 @@
-import { FormSchema } from '@/trello/helpers/schema';
-import { UseFormReturn, useWatch } from 'react-hook-form';
+import { useWatch } from 'react-hook-form';
+import { FormType } from '@/trello/helpers/types';
 
-interface SidebarChannelLettersProps {
-	form: UseFormReturn<FormSchema>;
-}
-
-export default function SidebarChannelLetters({
-	form,
-}: SidebarChannelLettersProps) {
+export default function SidebarChannelLetters({ form }: FormType) {
 	const channelLetters = useWatch({
 		control: form.control,
 		name: 'channelLetters',

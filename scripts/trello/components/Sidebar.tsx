@@ -1,18 +1,11 @@
 import { Button } from '@/components/ui/button';
 import SidebarDetails from './SidebarDetails';
-import { UseFormReturn, useWatch } from 'react-hook-form';
-
-import { FormSchema } from '@/trello/helpers/schema';
-
+import { useWatch } from 'react-hook-form';
 import { ComponentType } from '@/trello/helpers/defaults';
-
 import { decodeHTMLEntities } from '@/lib/utils';
+import { FormType } from '@/trello/helpers/types';
 
-interface SidebarProps {
-	form: UseFormReturn<FormSchema>;
-}
-
-export default function Sidebar({ form }: SidebarProps) {
+export default function Sidebar({ form }: FormType) {
 	const turnaroundTime = useWatch({
 		control: form.control,
 		name: 'turnaroundTime',

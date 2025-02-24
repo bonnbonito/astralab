@@ -1,14 +1,11 @@
-import { FormSchema } from '@/trello/helpers/schema';
-import { UseFormReturn } from 'react-hook-form';
+import { useWatch } from 'react-hook-form';
+import { FormType } from '@/trello/helpers/types';
 
-interface SidebarDimensionalLettersProps {
-	form: UseFormReturn<FormSchema>;
-}
-
-export default function SidebarDimensionalLetters({
-	form,
-}: SidebarDimensionalLettersProps) {
-	const dimensionalLetters = form.watch('dimensionalLetters');
+export default function SidebarDimensionalLetters({ form }: FormType) {
+	const dimensionalLetters = useWatch({
+		control: form.control,
+		name: 'dimensionalLetters',
+	});
 	const numberOfSigns = dimensionalLetters?.numberOfSigns ?? 0;
 	return (
 		<>

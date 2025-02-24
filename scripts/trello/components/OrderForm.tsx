@@ -14,12 +14,12 @@ import { Form } from '@/components/ui/form';
 
 import Sidebar from './Sidebar';
 import Main from './Main';
-import { Astralab } from '@/trello/helpers/types';
 import axios from 'axios';
 import { Toaster } from '@/components/ui/toaster';
 import { useToast } from '@/hooks/use-toast';
 import { useEffect } from 'react';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import { Astralab } from '@/trello/helpers/types';
 
 declare const astralab: Astralab;
 

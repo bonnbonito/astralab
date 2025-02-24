@@ -1,29 +1,20 @@
 import { useState, useEffect, useMemo } from 'react';
-import { UseFormReturn } from 'react-hook-form';
 
 import NumberSigns from '@/trello/components/fields/NumberSigns';
-
-import { FormSchema } from '@/trello/helpers/schema';
 import DesignInspiration from '@/trello/components/DesignInspiration';
 import { ProductOptions } from '@/trello/components/fields/ProductOptions';
 import TextField from '@/trello/components/fields/TextField';
-import { ProductTypeDataProps } from '@/trello/helpers/types';
+import { ProductProps, ProductTypeDataProps } from '@/trello/helpers/types';
 import AccordionProductType from '@/trello/components/AccordionProductType';
+import { Astralab } from '@/trello/helpers/types';
 
-interface LightboxProps {
-	form: UseFormReturn<FormSchema>;
-	product: number;
-}
+declare const astralab: Astralab;
 
-declare const astralab: Record<string, string>;
-
-export default function Lightbox({ form, product }: LightboxProps) {
+export default function Lightbox({ form, product }: ProductProps) {
 	const [productType, setProductType] = useState<ProductTypeDataProps | null>(
 		null
 	);
 	const [loading, setLoading] = useState(true);
-
-	const numberOfSigns = form.watch('lightbox.numberOfSigns');
 
 	const processedProductType = useMemo(() => productType, [productType]);
 

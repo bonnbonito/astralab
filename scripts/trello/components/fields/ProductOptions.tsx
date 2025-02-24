@@ -10,12 +10,7 @@ import { Label } from '@/components/ui/label';
 import { FormSchema } from '@/trello/helpers/schema';
 import { UseFormReturn } from 'react-hook-form';
 
-export const ProductOptions = ({
-	form,
-	options,
-	formKey,
-	optionTitle,
-}: {
+interface ProductOptionsProps {
 	form: UseFormReturn<FormSchema>;
 	options: Array<{
 		title: string;
@@ -23,7 +18,14 @@ export const ProductOptions = ({
 	}>;
 	formKey: string;
 	optionTitle: string;
-}) => {
+}
+
+export const ProductOptions = ({
+	form,
+	options,
+	formKey,
+	optionTitle,
+}: ProductOptionsProps) => {
 	return (
 		<FormField
 			control={form.control}
