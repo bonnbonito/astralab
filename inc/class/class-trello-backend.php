@@ -596,6 +596,30 @@ class Trello_Backend {
 				$project_details .= '</ul>';
 			}
 
+			// --- Vehicle Wrap ---
+			$vehicleWrap = $jsonData['vehicleWrap'] ?? [];
+			if ( ! empty( $_POST["vehicleWrap"] ) && ! empty( $vehicleWrap ) ) {
+				$vehicleWrap_design = [];
+				if ( ! empty( $vehicleWrap['designInspirations'] ) ) {
+					$vehicleWrap_design = array();
+					$inspirations_json = $vehicleWrap['designInspirations'];
+					$inspirations = json_decode( stripslashes( $inspirations_json ), true );
+					if ( is_array( $inspirations ) ) {
+						foreach ( $inspirations as $inspiration ) {
+							if ( isset( $inspiration['url'] ) && isset( $inspiration['title'] ) ) {
+								$vehicleWrap_design[] = '<a href="' . esc_url( $inspiration['url'] ) . '">' . esc_html( $inspiration['title'] ) . '</a>';
+							}
+						}
+					}
+				}
+
+				$project_details .= '<h3><strong>Vehicle Wrap</strong></h3>';
+				$project_details .= '<p><strong>Description:</strong></p><p>' . ( $vehicleWrap['description'] ?? '' ) . '</p>';
+				$project_details .= '<p><strong>Coverage:</strong> ' . ( $vehicleWrap['coverage'] ?? '' ) . '</p>';
+				$project_details .= '<p><strong>Design Inspiration:</strong> ' . implode( ", ", $vehicleWrap_design ) . '</p>';
+				$project_details .= '</ul>';
+			}
+
 			// --- Custom Job ---
 			$customJob = $jsonData['customJob'] ?? [];
 			if ( ! empty( $_POST["customJob"] ) && ! empty( $customJob ) ) {
@@ -683,6 +707,8 @@ class Trello_Backend {
 					update_post_meta( $post_id, 'product_channel_letters', $channelLetters );
 					update_post_meta( $post_id, 'product_dimensional_letters', $dimensionalLetters );
 					update_post_meta( $post_id, 'product_lightbox', $lightbox );
+					update_post_meta( $post_id, 'product_vehicle_wrap', $vehicleWrap );
+					update_post_meta( $post_id, 'product_custom_job', $customJob );
 
 
 					update_post_meta( $post_id, 'trello_card_id', $card_id );

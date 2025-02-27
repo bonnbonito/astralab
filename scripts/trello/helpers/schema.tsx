@@ -6,6 +6,8 @@ import { ChannelLettersSchema } from '@/trello/components/products/ChannelLetter
 import { DimensionalLettersSchema } from '../components/products/DimensionalLetters/schema';
 import { LightboxSchema } from '../components/products/Lightbox/schema';
 import { CustomJobSchema } from '../components/products/CustomJob/schema';
+import { VehicleWrapSchema } from '../components/products/VehicleWrap/schema';
+
 const formSchema = z
 	.object({
 		projectName: z.string().min(2, {
@@ -44,7 +46,8 @@ const formSchema = z
 	.and(ChannelLettersSchema)
 	.and(DimensionalLettersSchema)
 	.and(LightboxSchema)
-	.and(CustomJobSchema);
+	.and(CustomJobSchema)
+	.and(VehicleWrapSchema);
 
 type FormSchema = z.infer<typeof formSchema>;
 
@@ -63,6 +66,7 @@ const formDefaultValues: FormSchema = {
 	hasDimensionalLetters: false,
 	hasLightbox: false,
 	hasCustomJob: false,
+	hasVehicleWrap: false,
 };
 
 export { formDefaultValues, formSchema, type FormSchema };

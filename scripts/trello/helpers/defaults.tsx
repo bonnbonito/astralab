@@ -7,7 +7,7 @@ import SidebarChannelLetters from '@/trello/components/products/ChannelLetters/S
 import SidebarDimensionalLetters from '@/trello/components/products/DimensionalLetters/SidebarDimensionalLetters';
 import SidebarLightbox from '@/trello/components/products/Lightbox/SidebarLightbox';
 import SidebarCustomJob from '@/trello/components/products/CustomJob/SidebarCustomJob';
-
+import SidebarVehicleWrap from '@/trello/components/products/VehicleWrap/SidebarVehicleWrap';
 type SidebarComponent = ReactComponentType<{ form: UseFormReturn<FormSchema> }>;
 
 interface ComponentConfig {
@@ -36,6 +36,10 @@ export const COMPONENT_MAP = {
 	Lightbox: {
 		fieldName: 'hasLightbox',
 		sidebar: SidebarLightbox,
+	},
+	VehicleWrap: {
+		fieldName: 'hasVehicleWrap',
+		sidebar: SidebarVehicleWrap,
 	},
 	CustomJob: {
 		fieldName: 'hasCustomJob',

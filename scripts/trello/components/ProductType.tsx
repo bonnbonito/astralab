@@ -11,7 +11,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { FormType } from '@/trello/helpers/types';
 import { COMPONENT_MAP } from '@/trello/helpers/defaults';
 import { useProductTypes } from '@/trello/hooks/useProductTypes';
-import { FormSchema } from '../helpers/schema';
+import { FormSchema } from '@/trello/helpers/schema';
 
 export default function ProductType({ form }: FormType) {
 	const { productTypes, loading } = useProductTypes();

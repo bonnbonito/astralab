@@ -9,7 +9,7 @@ import DimensionalLetters from './products/DimensionalLetters/DimensionalLetters
 import Lightbox from './products/Lightbox/Lightbox';
 import CustomJob from './products/CustomJob/CustomJob';
 import { FormType } from '@/trello/helpers/types';
-
+import VehicleWrap from './products/VehicleWrap/VehicleWrap';
 export default function Main({ form }: FormType) {
 	const productTypes = useWatch({
 		control: form.control,
@@ -54,6 +54,12 @@ export default function Main({ form }: FormType) {
 					{productType.component === 'CustomJob' && (
 						<>
 							<CustomJob form={form} product={productType.id} />
+						</>
+					)}
+
+					{productType.component === 'VehicleWrap' && (
+						<>
+							<VehicleWrap form={form} product={productType.id} />
 						</>
 					)}
 				</div>

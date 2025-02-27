@@ -28415,15 +28415,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProjectDetails__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProjectDetails */ "./scripts/trello/components/ProjectDetails.tsx");
 /* harmony import */ var _ProductType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductType */ "./scripts/trello/components/ProductType.tsx");
 /* harmony import */ var _products_ADA_ADAWayfinding__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./products/ADA/ADAWayfinding */ "./scripts/trello/components/products/ADA/ADAWayfinding.tsx");
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Loading */ "./scripts/trello/components/Loading.js");
 /* harmony import */ var _products_MonumentsAndPylons_MonumentsAndPylons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./products/MonumentsAndPylons/MonumentsAndPylons */ "./scripts/trello/components/products/MonumentsAndPylons/MonumentsAndPylons.tsx");
 /* harmony import */ var _products_ChannelLetters_ChannelLetters__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./products/ChannelLetters/ChannelLetters */ "./scripts/trello/components/products/ChannelLetters/ChannelLetters.tsx");
 /* harmony import */ var _products_DimensionalLetters_DimensionalLetters__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./products/DimensionalLetters/DimensionalLetters */ "./scripts/trello/components/products/DimensionalLetters/DimensionalLetters.tsx");
 /* harmony import */ var _products_Lightbox_Lightbox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./products/Lightbox/Lightbox */ "./scripts/trello/components/products/Lightbox/Lightbox.tsx");
 /* harmony import */ var _products_CustomJob_CustomJob__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./products/CustomJob/CustomJob */ "./scripts/trello/components/products/CustomJob/CustomJob.tsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _products_VehicleWrap_VehicleWrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./products/VehicleWrap/VehicleWrap */ "./scripts/trello/components/products/VehicleWrap/VehicleWrap.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__);
+
 
 
 
@@ -28438,53 +28440,58 @@ __webpack_require__.r(__webpack_exports__);
 function Main({
   form
 }) {
-  const productTypes = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_10__.useWatch)({
+  const productTypes = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_11__.useWatch)({
     control: form.control,
     name: 'productTypes'
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
     className: "flex-1 w-full relative",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_ProjectDetails__WEBPACK_IMPORTED_MODULE_0__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_ProjectDetails__WEBPACK_IMPORTED_MODULE_0__["default"], {
       form: form
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h3", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h3", {
       className: "text-[30px]",
       children: "PRODUCT TYPE"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_ProductType__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_ProductType__WEBPACK_IMPORTED_MODULE_1__["default"], {
       form: form
-    }), productTypes?.map((productType, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+    }), productTypes?.map((productType, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
       className: "productAccordion mt-6",
-      children: [productType.component === 'ADAWayfinding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_products_ADA_ADAWayfinding__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      children: [productType.component === 'ADAWayfinding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_products_ADA_ADAWayfinding__WEBPACK_IMPORTED_MODULE_2__["default"], {
           form: form,
           product: productType.id
         })
-      }), productType.component === 'MonumentsAndPylons' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_products_MonumentsAndPylons_MonumentsAndPylons__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }), productType.component === 'MonumentsAndPylons' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_products_MonumentsAndPylons_MonumentsAndPylons__WEBPACK_IMPORTED_MODULE_4__["default"], {
           form: form,
           product: productType.id
         })
-      }), productType.component === 'ChannelLetters' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_products_ChannelLetters_ChannelLetters__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }), productType.component === 'ChannelLetters' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_products_ChannelLetters_ChannelLetters__WEBPACK_IMPORTED_MODULE_5__["default"], {
           form: form,
           product: productType.id
         })
-      }), productType.component === 'DimensionalLetters' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_products_DimensionalLetters_DimensionalLetters__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      }), productType.component === 'DimensionalLetters' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_products_DimensionalLetters_DimensionalLetters__WEBPACK_IMPORTED_MODULE_6__["default"], {
           form: form,
           product: productType.id
         })
-      }), productType.component === 'Lightbox' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_products_Lightbox_Lightbox__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      }), productType.component === 'Lightbox' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_products_Lightbox_Lightbox__WEBPACK_IMPORTED_MODULE_7__["default"], {
           form: form,
           product: productType.id
         })
-      }), productType.component === 'CustomJob' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_products_CustomJob_CustomJob__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }), productType.component === 'CustomJob' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_products_CustomJob_CustomJob__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          form: form,
+          product: productType.id
+        })
+      }), productType.component === 'VehicleWrap' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_products_VehicleWrap_VehicleWrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
           form: form,
           product: productType.id
         })
       })]
-    }, productType.id)), form.formState.isSubmitting && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
+    }, productType.id)), form.formState.isSubmitting && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
   });
 }
 
@@ -31756,6 +31763,189 @@ const MonumentsAndPylonsSchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.discriminate
 
 /***/ }),
 
+/***/ "./scripts/trello/components/products/VehicleWrap/SidebarVehicleWrap.tsx":
+/*!*******************************************************************************!*\
+  !*** ./scripts/trello/components/products/VehicleWrap/SidebarVehicleWrap.tsx ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SidebarVehicleWrap)
+/* harmony export */ });
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function SidebarVehicleWrap({
+  form
+}) {
+  const vehicleWrap = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_1__.useWatch)({
+    control: form.control,
+    name: 'vehicleWrap'
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Description"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: vehicleWrap?.description || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Coverage"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: vehicleWrap?.coverage || ''
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "grid grid-cols-2 gap-4 mb-1",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "uppercase font-semibold text-sm",
+        children: "Design Inspirations"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "text-xs",
+        children: vehicleWrap?.designInspirations?.map(inspiration => `${inspiration.title}`).join(', ')
+      })]
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./scripts/trello/components/products/VehicleWrap/VehicleWrap.tsx":
+/*!************************************************************************!*\
+  !*** ./scripts/trello/components/products/VehicleWrap/VehicleWrap.tsx ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ VehicleWrap)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/trello/components/DesignInspiration */ "./scripts/trello/components/DesignInspiration.tsx");
+/* harmony import */ var _trello_components_AccordionProductType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/trello/components/AccordionProductType */ "./scripts/trello/components/AccordionProductType.tsx");
+/* harmony import */ var _trello_components_fields_Textarea__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/trello/components/fields/Textarea */ "./scripts/trello/components/fields/Textarea.tsx");
+/* harmony import */ var _trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/trello/components/fields/ProductOptions */ "./scripts/trello/components/fields/ProductOptions.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+
+function VehicleWrap({
+  form,
+  product
+}) {
+  const [productType, setProductType] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const processedProductType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => productType, [productType]);
+  const coverage = processedProductType?.product_types_options?.find(item => item.name === 'Coverage');
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    async function fetchProductTypes() {
+      try {
+        setLoading(true);
+        const response = await fetch(`${astralab['product-types']}/${product}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setProductType(data || null);
+      } catch (error) {
+        console.error('Error fetching product type:', error);
+        setProductType(null);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProductTypes();
+  }, [product]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_trello_components_AccordionProductType__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    product: product,
+    loading: loading,
+    title: processedProductType?.title?.rendered,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "p-4 pt-0",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "my-6",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "mb-6",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_trello_components_fields_Textarea__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            form: form,
+            name: "vehicleWrap.description",
+            label: "Description",
+            placeholder: "Enter your description here"
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__.ProductOptions, {
+        form: form,
+        options: coverage?.options || [],
+        formKey: "vehicleWrap.coverage",
+        optionTitle: "Coverage"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        form: form,
+        fieldName: "vehicleWrap[designInspirations]",
+        options: Array.isArray(processedProductType?.design_inspiration) ? processedProductType.design_inspiration.map(inspiration => ({
+          name: inspiration.title,
+          images: Array.isArray(inspiration.images) ? inspiration.images.map(image => ({
+            url: image.url,
+            title: image.title
+          })) : []
+        })) : []
+      })]
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./scripts/trello/components/products/VehicleWrap/schema.tsx":
+/*!*******************************************************************!*\
+  !*** ./scripts/trello/components/products/VehicleWrap/schema.tsx ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   VehicleWrapSchema: () => (/* binding */ VehicleWrapSchema)
+/* harmony export */ });
+/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
+
+const VehicleWrapSchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.discriminatedUnion('hasVehicleWrap', [zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+  hasVehicleWrap: zod__WEBPACK_IMPORTED_MODULE_0__.z.literal(true),
+  vehicleWrap: zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+    description: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
+      message: 'Description is required.'
+    }),
+    coverage: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
+      message: 'Coverage is required.'
+    }),
+    designInspirations: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+      title: zod__WEBPACK_IMPORTED_MODULE_0__.z.string(),
+      url: zod__WEBPACK_IMPORTED_MODULE_0__.z.string()
+    })).min(1, {
+      message: 'Select atleast one inspiration'
+    })
+  })
+}), zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+  hasVehicleWrap: zod__WEBPACK_IMPORTED_MODULE_0__.z.literal(false)
+})]);
+
+/***/ }),
+
 /***/ "./scripts/trello/helpers/defaults.tsx":
 /*!*********************************************!*\
   !*** ./scripts/trello/helpers/defaults.tsx ***!
@@ -31774,6 +31964,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _trello_components_products_DimensionalLetters_SidebarDimensionalLetters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/trello/components/products/DimensionalLetters/SidebarDimensionalLetters */ "./scripts/trello/components/products/DimensionalLetters/SidebarDimensionalLetters.tsx");
 /* harmony import */ var _trello_components_products_Lightbox_SidebarLightbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/trello/components/products/Lightbox/SidebarLightbox */ "./scripts/trello/components/products/Lightbox/SidebarLightbox.tsx");
 /* harmony import */ var _trello_components_products_CustomJob_SidebarCustomJob__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/trello/components/products/CustomJob/SidebarCustomJob */ "./scripts/trello/components/products/CustomJob/SidebarCustomJob.tsx");
+/* harmony import */ var _trello_components_products_VehicleWrap_SidebarVehicleWrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/trello/components/products/VehicleWrap/SidebarVehicleWrap */ "./scripts/trello/components/products/VehicleWrap/SidebarVehicleWrap.tsx");
+
 
 
 
@@ -31801,6 +31993,10 @@ const COMPONENT_MAP = {
   Lightbox: {
     fieldName: 'hasLightbox',
     sidebar: _trello_components_products_Lightbox_SidebarLightbox__WEBPACK_IMPORTED_MODULE_4__["default"]
+  },
+  VehicleWrap: {
+    fieldName: 'hasVehicleWrap',
+    sidebar: _trello_components_products_VehicleWrap_SidebarVehicleWrap__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   CustomJob: {
     fieldName: 'hasCustomJob',
@@ -31844,13 +32040,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   formDefaultValues: () => (/* binding */ formDefaultValues),
 /* harmony export */   formSchema: () => (/* binding */ formSchema)
 /* harmony export */ });
-/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
+/* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
 /* harmony import */ var _trello_components_products_ADA_schema__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/trello/components/products/ADA/schema */ "./scripts/trello/components/products/ADA/schema.tsx");
 /* harmony import */ var _trello_components_products_MonumentsAndPylons_schema__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/trello/components/products/MonumentsAndPylons/schema */ "./scripts/trello/components/products/MonumentsAndPylons/schema.tsx");
 /* harmony import */ var _trello_components_products_ChannelLetters_schema__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/trello/components/products/ChannelLetters/schema */ "./scripts/trello/components/products/ChannelLetters/schema.tsx");
 /* harmony import */ var _components_products_DimensionalLetters_schema__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/products/DimensionalLetters/schema */ "./scripts/trello/components/products/DimensionalLetters/schema.tsx");
 /* harmony import */ var _components_products_Lightbox_schema__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/products/Lightbox/schema */ "./scripts/trello/components/products/Lightbox/schema.tsx");
 /* harmony import */ var _components_products_CustomJob_schema__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/products/CustomJob/schema */ "./scripts/trello/components/products/CustomJob/schema.tsx");
+/* harmony import */ var _components_products_VehicleWrap_schema__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/products/VehicleWrap/schema */ "./scripts/trello/components/products/VehicleWrap/schema.tsx");
 
 
 
@@ -31858,35 +32055,36 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const formSchema = zod__WEBPACK_IMPORTED_MODULE_6__.z.object({
-  projectName: zod__WEBPACK_IMPORTED_MODULE_6__.z.string().min(2, {
+
+const formSchema = zod__WEBPACK_IMPORTED_MODULE_7__.z.object({
+  projectName: zod__WEBPACK_IMPORTED_MODULE_7__.z.string().min(2, {
     message: 'Project Name must contain at least 2 character(s)'
   }),
-  turnaroundTime: zod__WEBPACK_IMPORTED_MODULE_6__.z.string().nonempty({
+  turnaroundTime: zod__WEBPACK_IMPORTED_MODULE_7__.z.string().nonempty({
     message: 'Turnaround Time is required.'
   }),
-  designDetails: zod__WEBPACK_IMPORTED_MODULE_6__.z.string().nonempty({
+  designDetails: zod__WEBPACK_IMPORTED_MODULE_7__.z.string().nonempty({
     message: 'Design Details is required.'
   }),
-  projectDescription: zod__WEBPACK_IMPORTED_MODULE_6__.z.string().nonempty({
+  projectDescription: zod__WEBPACK_IMPORTED_MODULE_7__.z.string().nonempty({
     message: 'Project Description is required.'
   }),
-  layoutType: zod__WEBPACK_IMPORTED_MODULE_6__.z.string().nonempty({
+  layoutType: zod__WEBPACK_IMPORTED_MODULE_7__.z.string().nonempty({
     message: 'Layout Type is required.'
   }),
-  productTypes: zod__WEBPACK_IMPORTED_MODULE_6__.z.array(zod__WEBPACK_IMPORTED_MODULE_6__.z.object({
-    title: zod__WEBPACK_IMPORTED_MODULE_6__.z.string().nonempty(),
-    component: zod__WEBPACK_IMPORTED_MODULE_6__.z.string().nonempty(),
-    id: zod__WEBPACK_IMPORTED_MODULE_6__.z.number().positive()
+  productTypes: zod__WEBPACK_IMPORTED_MODULE_7__.z.array(zod__WEBPACK_IMPORTED_MODULE_7__.z.object({
+    title: zod__WEBPACK_IMPORTED_MODULE_7__.z.string().nonempty(),
+    component: zod__WEBPACK_IMPORTED_MODULE_7__.z.string().nonempty(),
+    id: zod__WEBPACK_IMPORTED_MODULE_7__.z.number().positive()
   })).optional(),
-  fileUpload: zod__WEBPACK_IMPORTED_MODULE_6__.z.array(zod__WEBPACK_IMPORTED_MODULE_6__.z.instanceof(File)).min(1, {
+  fileUpload: zod__WEBPACK_IMPORTED_MODULE_7__.z.array(zod__WEBPACK_IMPORTED_MODULE_7__.z.instanceof(File)).min(1, {
     message: 'Upload atleast 1 File.'
   }),
-  bulkOrderFile: zod__WEBPACK_IMPORTED_MODULE_6__.z.instanceof(File).optional()
+  bulkOrderFile: zod__WEBPACK_IMPORTED_MODULE_7__.z.instanceof(File).optional()
 }).refine(data => data.productTypes ? data.productTypes.length > 0 : true, {
   message: 'Select at least one Product Type',
   path: ['productTypes']
-}).and(_trello_components_products_ADA_schema__WEBPACK_IMPORTED_MODULE_0__.ADASchema).and(_trello_components_products_MonumentsAndPylons_schema__WEBPACK_IMPORTED_MODULE_1__.MonumentsAndPylonsSchema).and(_trello_components_products_ChannelLetters_schema__WEBPACK_IMPORTED_MODULE_2__.ChannelLettersSchema).and(_components_products_DimensionalLetters_schema__WEBPACK_IMPORTED_MODULE_3__.DimensionalLettersSchema).and(_components_products_Lightbox_schema__WEBPACK_IMPORTED_MODULE_4__.LightboxSchema).and(_components_products_CustomJob_schema__WEBPACK_IMPORTED_MODULE_5__.CustomJobSchema);
+}).and(_trello_components_products_ADA_schema__WEBPACK_IMPORTED_MODULE_0__.ADASchema).and(_trello_components_products_MonumentsAndPylons_schema__WEBPACK_IMPORTED_MODULE_1__.MonumentsAndPylonsSchema).and(_trello_components_products_ChannelLetters_schema__WEBPACK_IMPORTED_MODULE_2__.ChannelLettersSchema).and(_components_products_DimensionalLetters_schema__WEBPACK_IMPORTED_MODULE_3__.DimensionalLettersSchema).and(_components_products_Lightbox_schema__WEBPACK_IMPORTED_MODULE_4__.LightboxSchema).and(_components_products_CustomJob_schema__WEBPACK_IMPORTED_MODULE_5__.CustomJobSchema).and(_components_products_VehicleWrap_schema__WEBPACK_IMPORTED_MODULE_6__.VehicleWrapSchema);
 const formDefaultValues = {
   projectName: '',
   turnaroundTime: '',
@@ -31901,7 +32099,8 @@ const formDefaultValues = {
   hasChannelLetters: false,
   hasDimensionalLetters: false,
   hasLightbox: false,
-  hasCustomJob: false
+  hasCustomJob: false,
+  hasVehicleWrap: false
 };
 
 
