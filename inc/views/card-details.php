@@ -163,7 +163,7 @@ function output_array( $array ) {
 									<?php if ( ! empty( $monuments_design ) ) : ?>
 										<div class="grid grid-cols-3 gap-2">
 											<?php foreach ( $monuments_design as $design ) : ?>
-												<div>
+												<div class="w-[150px] p-2 border rounded">
 													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>"
 														class="w-10 h-10 object-cover">
 													<div class="text-xs"><?php echo $design['title']; ?></div>
@@ -228,7 +228,7 @@ function output_array( $array ) {
 									}
 								}
 								?>
-								<div><?php echo implode( ', ', $channel_design ); ?></div>
+								<div class="w-[150px] p-2 border rounded"><?php echo implode( ', ', $channel_design ); ?></div>
 							</div>
 						</div>
 
@@ -280,7 +280,19 @@ function output_array( $array ) {
 									}
 								}
 								?>
-								<div><?php echo implode( ', ', $dimensional_design ); ?></div>
+								<div>
+									<?php if ( ! empty( $dimensional_design ) ) : ?>
+										<div class="grid grid-cols-3 gap-2">
+											<?php foreach ( $dimensional_design as $design ) : ?>
+												<div class="w-[150px] p-2 border rounded">
+													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>"
+														class="w-10 h-10 object-cover">
+													<div class="text-xs"><?php echo $design['title']; ?></div>
+												</div>
+											<?php endforeach; ?>
+										</div>
+									<?php endif; ?>
+								</div>
 							</div>
 						</div>
 
@@ -334,7 +346,19 @@ function output_array( $array ) {
 									}
 								}
 								?>
-								<div><?php echo implode( ', ', $lightbox_design ); ?></div>
+								<div>
+									<?php if ( ! empty( $lightbox_design ) ) : ?>
+										<div class="grid grid-cols-3 gap-2">
+											<?php foreach ( $lightbox_design as $design ) : ?>
+												<div class="w-[150px] p-2 border rounded">
+													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>"
+														class="w-10 h-10 object-cover">
+													<div class="text-xs"><?php echo $design['title']; ?></div>
+												</div>
+											<?php endforeach; ?>
+										</div>
+									<?php endif; ?>
+								</div>
 							</div>
 						</div>
 
@@ -365,7 +389,19 @@ function output_array( $array ) {
 									}
 								}
 								?>
-								<div><?php echo implode( ', ', $custom_design ); ?></div>
+								<div>
+									<?php if ( ! empty( $custom_design ) ) : ?>
+										<div class="grid grid-cols-3 gap-2">
+											<?php foreach ( $custom_design as $design ) : ?>
+												<div class="w-[150px] p-2 border rounded">
+													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>"
+														class="w-10 h-10 object-cover">
+													<div class="text-xs"><?php echo $design['title']; ?></div>
+												</div>
+											<?php endforeach; ?>
+										</div>
+									<?php endif; ?>
+								</div>
 							</div>
 						</div>
 						<?php
