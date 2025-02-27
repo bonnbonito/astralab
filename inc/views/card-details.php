@@ -29,6 +29,54 @@ function output_array( $array ) {
 	return $array;
 }
 
+/**
+ * Process and display design inspirations consistently
+ * 
+ * @param array|string $design_inspirations The raw design inspirations data
+ * @return string HTML output of design inspirations
+ */
+function get_design_inspirations( $design_inspirations ) {
+	$designs = [];
+
+	if ( empty( $design_inspirations ) ) {
+		return '';
+	}
+
+	// Parse JSON if it's a string
+	if ( is_string( $design_inspirations ) ) {
+		$inspirations = json_decode( stripslashes( $design_inspirations ), true );
+	} else {
+		$inspirations = $design_inspirations;
+	}
+
+	// Process inspirations
+	if ( is_array( $inspirations ) ) {
+		foreach ( $inspirations as $inspiration ) {
+			if ( isset( $inspiration['url'] ) && isset( $inspiration['title'] ) ) {
+				$designs[] = [ 
+					'url' => $inspiration['url'],
+					'title' => $inspiration['title'],
+				];
+			}
+		}
+	}
+
+	// Generate HTML output
+	$output = '';
+	if ( ! empty( $designs ) ) {
+		$output .= '<div class="grid grid-cols-3 gap-2">';
+		foreach ( $designs as $design ) {
+			$output .= '<div class="w-[150px] p-2 border rounded">';
+			$output .= '<img src="' . esc_url( $design['url'] ) . '" alt="' . esc_attr( $design['title'] ) . '" class="">';
+			$output .= '<div class="text-xs">' . esc_html( $design['title'] ) . '</div>';
+			$output .= '</div>';
+		}
+		$output .= '</div>';
+	}
+
+	return $output;
+}
+
 ?>
 <div class="mt-8">
 	<div class="flex gap-4">
@@ -83,34 +131,8 @@ function output_array( $array ) {
 								<?php echo is_array( $ada['types'] ) ? implode( ', ', $ada['types'] ) : $ada['types']; ?>
 							</div>
 							<div class="font-semibold">DESIGN INSPIRATIONS</div>
-							<?php
-							$ada_design = [];
-							if ( ! empty( $ada['designInspirations'] ) ) {
-								$ada_inspirations_json = $ada['designInspirations'];
-								$ada_inspirations = json_decode( stripslashes( $ada_inspirations_json ), true );
-								if ( is_array( $ada_inspirations ) ) {
-									foreach ( $ada_inspirations as $ada_inspiration ) {
-										if ( isset( $ada_inspiration['url'] ) && isset( $ada_inspiration['title'] ) ) {
-											$ada_design[] = array(
-												'url' => $ada_inspiration['url'],
-												'title' => $ada_inspiration['title'],
-											);
-										}
-									}
-								}
-							}
-							?>
-							<div class="mt-4">
-								<?php if ( ! empty( $ada_design ) ) : ?>
-									<div class="grid grid-cols-[150px_150px_150px] gap-2">
-										<?php foreach ( $ada_design as $design ) : ?>
-											<div class="w-[150px] p-2 border rounded">
-												<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>" class="">
-												<div class="text-xs"><?php echo $design['title']; ?></div>
-											</div>
-										<?php endforeach; ?>
-									</div>
-								<?php endif; ?>
+							<div>
+								<?php echo get_design_inspirations( $ada['designInspirations'] ); ?>
 							</div>
 						</div>
 					<?php endif;
@@ -142,34 +164,8 @@ function output_array( $array ) {
 								<div class="font-semibold">ILLUMINATION</div>
 								<div><?php echo output_array( $monuments['illumination'] ); ?></div>
 								<div class="font-semibold">DESIGN INSPIRATIONS</div>
-								<?php
-								$monuments_design = [];
-								if ( ! empty( $monuments['designInspirations'] ) ) {
-									$monuments_inspirations_json = $monuments['designInspirations'];
-									$monuments_inspirations = json_decode( stripslashes( $monuments_inspirations_json ), true );
-									if ( is_array( $monuments_inspirations ) ) {
-										foreach ( $monuments_inspirations as $monuments_inspiration ) {
-											if ( isset( $monuments_inspiration['url'] ) && isset( $monuments_inspiration['title'] ) ) {
-												$monuments_design[] = array(
-													'url' => $monuments_inspiration['url'],
-													'title' => $monuments_inspiration['title'],
-												);
-											}
-										}
-									}
-								}
-								?>
 								<div>
-									<?php if ( ! empty( $monuments_design ) ) : ?>
-										<div class="grid grid-cols-3 gap-2">
-											<?php foreach ( $monuments_design as $design ) : ?>
-												<div class="w-[150px] p-2 border rounded">
-													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>">
-													<div class="text-xs"><?php echo $design['title']; ?></div>
-												</div>
-											<?php endforeach; ?>
-										</div>
-									<?php endif; ?>
+									<?php echo get_design_inspirations( $monuments['designInspirations'] ); ?>
 								</div>
 							</div>
 						</div>
@@ -213,21 +209,9 @@ function output_array( $array ) {
 								<div class="font-semibold">MOUNTING</div>
 								<div><?php echo output_array( $channelLetters['mounting'] ); ?></div>
 								<div class="font-semibold">DESIGN INSPIRATIONS</div>
-								<?php
-								$channel_design = [];
-								if ( ! empty( $channelLetters['designInspirations'] ) ) {
-									$channel_inspirations_json = $channelLetters['designInspirations'];
-									$channel_inspirations = json_decode( stripslashes( $channel_inspirations_json ), true );
-									if ( is_array( $channel_inspirations ) ) {
-										foreach ( $channel_inspirations as $channel_inspiration ) {
-											if ( isset( $channel_inspiration['url'] ) && isset( $channel_inspiration['title'] ) ) {
-												$channel_design[] = '<a href="' . esc_url( $channel_inspiration['url'] ) . '">' . esc_html( $channel_inspiration['title'] ) . '</a>';
-											}
-										}
-									}
-								}
-								?>
-								<div class="w-[150px] p-2 border rounded"><?php echo implode( ', ', $channel_design ); ?></div>
+								<div>
+									<?php echo get_design_inspirations( $channelLetters['designInspirations'] ); ?>
+								</div>
 							</div>
 						</div>
 
@@ -265,31 +249,8 @@ function output_array( $array ) {
 								<div class="font-semibold">MOUNTING</div>
 								<div><?php echo output_array( $dimensionalLetters['mounting'] ); ?></div>
 								<div class="font-semibold">DESIGN INSPIRATIONS</div>
-								<?php
-								$dimensional_design = [];
-								if ( ! empty( $dimensionalLetters['designInspirations'] ) ) {
-									$dimensional_inspirations_json = $dimensionalLetters['designInspirations'];
-									$dimensional_inspirations = json_decode( stripslashes( $dimensional_inspirations_json ), true );
-									if ( is_array( $dimensional_inspirations ) ) {
-										foreach ( $dimensional_inspirations as $dimensional_inspiration ) {
-											if ( isset( $dimensional_inspiration['url'] ) && isset( $dimensional_inspiration['title'] ) ) {
-												$dimensional_design[] = '<a href="' . esc_url( $dimensional_inspiration['url'] ) . '">' . esc_html( $dimensional_inspiration['title'] ) . '</a>';
-											}
-										}
-									}
-								}
-								?>
 								<div>
-									<?php if ( ! empty( $dimensional_design ) ) : ?>
-										<div class="grid grid-cols-3 gap-2">
-											<?php foreach ( $dimensional_design as $design ) : ?>
-												<div class="w-[150px] p-2 border rounded">
-													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>">
-													<div class="text-xs"><?php echo $design['title']; ?></div>
-												</div>
-											<?php endforeach; ?>
-										</div>
-									<?php endif; ?>
+									<?php echo get_design_inspirations( $dimensionalLetters['designInspirations'] ); ?>
 								</div>
 							</div>
 						</div>
@@ -330,31 +291,8 @@ function output_array( $array ) {
 
 								<div><?php echo $lightbox['mounting']; ?></div>
 								<div class="font-semibold">DESIGN INSPIRATIONS</div>
-								<?php
-								$lightbox_design = [];
-								if ( ! empty( $lightbox['designInspirations'] ) ) {
-									$lightbox_inspirations_json = $lightbox['designInspirations'];
-									$lightbox_inspirations = json_decode( stripslashes( $lightbox_inspirations_json ), true );
-									if ( is_array( $lightbox_inspirations ) ) {
-										foreach ( $lightbox_inspirations as $lightbox_inspiration ) {
-											if ( isset( $lightbox_inspiration['url'] ) && isset( $lightbox_inspiration['title'] ) ) {
-												$lightbox_design[] = '<a href="' . esc_url( $lightbox_inspiration['url'] ) . '">' . esc_html( $lightbox_inspiration['title'] ) . '</a>';
-											}
-										}
-									}
-								}
-								?>
 								<div>
-									<?php if ( ! empty( $lightbox_design ) ) : ?>
-										<div class="grid grid-cols-3 gap-2">
-											<?php foreach ( $lightbox_design as $design ) : ?>
-												<div class="w-[150px] p-2 border rounded">
-													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>">
-													<div class="text-xs"><?php echo $design['title']; ?></div>
-												</div>
-											<?php endforeach; ?>
-										</div>
-									<?php endif; ?>
+									<?php echo get_design_inspirations( $lightbox['designInspirations'] ); ?>
 								</div>
 							</div>
 						</div>
@@ -372,31 +310,8 @@ function output_array( $array ) {
 								<div class="font-semibold">DESCRIPTION</div>
 								<div><?php echo $customJob['description']; ?></div>
 								<div class="font-semibold">DESIGN INSPIRATIONS</div>
-								<?php
-								$custom_design = [];
-								if ( ! empty( $customJob['designInspirations'] ) ) {
-									$custom_inspirations_json = $customJob['designInspirations'];
-									$custom_inspirations = json_decode( stripslashes( $custom_inspirations_json ), true );
-									if ( is_array( $custom_inspirations ) ) {
-										foreach ( $custom_inspirations as $custom_inspiration ) {
-											if ( isset( $custom_inspiration['url'] ) && isset( $custom_inspiration['title'] ) ) {
-												$custom_design[] = '<a href="' . esc_url( $custom_inspiration['url'] ) . '">' . esc_html( $custom_inspiration['title'] ) . '</a>';
-											}
-										}
-									}
-								}
-								?>
 								<div>
-									<?php if ( ! empty( $custom_design ) ) : ?>
-										<div class="grid grid-cols-3 gap-2">
-											<?php foreach ( $custom_design as $design ) : ?>
-												<div class="w-[150px] p-2 border rounded">
-													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>">
-													<div class="text-xs"><?php echo $design['title']; ?></div>
-												</div>
-											<?php endforeach; ?>
-										</div>
-									<?php endif; ?>
+									<?php echo get_design_inspirations( $customJob['designInspirations'] ); ?>
 								</div>
 							</div>
 						</div>
