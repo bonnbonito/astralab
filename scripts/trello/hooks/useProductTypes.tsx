@@ -29,6 +29,15 @@ export function useProductTypes(): UseProductTypesReturn {
 				}
 				const data = await response.json();
 				data.sort((a: ProductType, b: ProductType) => a.id - b.id);
+				console.log(data);
+				//make data with slug "custom-job" at the bottom
+				const customJob = data.find(
+					(item: ProductType) => item.acf.component === 'CustomJob'
+				);
+				if (customJob) {
+					data.splice(data.indexOf(customJob), 1);
+					data.push(customJob);
+				}
 				setProductTypes(data);
 			} catch (error) {
 				console.error('Error fetching product types:', error);
