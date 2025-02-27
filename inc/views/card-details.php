@@ -48,7 +48,7 @@ function output_array( $array ) {
 					<div class="font-semibold">LAYOUT TYPE</div>
 					<div><?php echo $trello_layout_type; ?></div>
 					<div class="font-semibold">UPLOADS</div>
-					<div class="flex flex-wrap gap-2"><?php echo implode( ' ', $attachments ); ?></div>
+					<div class="flex flex-wrap gap-2"><?php echo output_array( $attachments ); ?></div>
 				</div>
 			</div>
 
@@ -142,7 +142,7 @@ function output_array( $array ) {
 									<?php echo is_array( $monuments['types'] ) ? implode( ', ', $monuments['types'] ) : $monuments['types']; ?>
 								</div>
 								<div class="font-semibold">ILLUMINATION</div>
-								<div><?php echo implode( ', ', $monuments['illumination'] ); ?></div>
+								<div><?php echo output_array( $monuments['illumination'] ); ?></div>
 								<div class="font-semibold">DESIGN INSPIRATIONS</div>
 								<?php
 								$monuments_design = [];
@@ -209,7 +209,7 @@ function output_array( $array ) {
 								<div><?php echo $channelLetters['returnDepth']; ?></div>
 								<div class="font-semibold">TYPES</div>
 								<div>
-									<?php echo is_array( $channelLetters['types'] ) ? implode( ', ', $channelLetters['types'] ) : $channelLetters['types']; ?>
+									<?php echo output_array( $channelLetters['types'] ); ?>
 								</div>
 								<div class="font-semibold">BACKER</div>
 								<div><?php echo output_array( $channelLetters['backer'] ); ?></div>
@@ -263,7 +263,7 @@ function output_array( $array ) {
 								<div><?php echo $dimensionalLetters['location']; ?></div>
 								<div class="font-semibold">TYPES</div>
 								<div>
-									<?php echo is_array( $dimensionalLetters['types'] ) ? implode( ', ', $dimensionalLetters['types'] ) : $dimensionalLetters['types']; ?>
+									<?php echo output_array( $dimensionalLetters['types'] ); ?>
 								</div>
 								<div class="font-semibold">MOUNTING</div>
 								<div><?php echo output_array( $dimensionalLetters['mounting'] ); ?></div>
@@ -316,7 +316,7 @@ function output_array( $array ) {
 								<div><?php echo $lightbox['retainers']; ?></div>
 								<div class="font-semibold">TYPES</div>
 								<div>
-									<?php echo is_array( $lightbox['types'] ) ? implode( ', ', $lightbox['types'] ) : $lightbox['types']; ?>
+									<?php echo output_array( $lightbox['types'] ); ?>
 								</div>
 								<div class="font-semibold">MOUNTING</div>
 
