@@ -11,11 +11,14 @@ export interface AstralabDashboard {
 		id: number;
 		title: string;
 		date: string;
+		date_updated: string;
 		meta: {
 			trello_card_list?: string[];
 			trello_card_comment_count?: string[];
 			trello_card_activities: string[];
 			[key: string]: unknown;
+			review_studio_link?: string;
 		};
+		url?: string;
 	}[];
 }

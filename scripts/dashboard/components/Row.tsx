@@ -38,7 +38,7 @@ export default function Row(): JSX.Element {
 				trelloCards?.map((card) => (
 					<div
 						key={card.id}
-						className="p-4 px-6 border border-input rounded block sm:grid sm:max-lg:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] lg:grid-cols-5 items-center justify-between gap-4"
+						className="p-4 px-6 border border-input rounded block sm:grid sm:max-lg:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] lg:grid-cols-6 items-center justify-between gap-4"
 					>
 						<div className="flex gap-2 items-center">
 							<div className="font-semibold text-base uppercase">
@@ -66,7 +66,7 @@ export default function Row(): JSX.Element {
 							<div className="text-sm uppercase">{card.id}</div>
 						</div>
 
-						<div className="flex gap-2 items-center justify-end max-[1024px]:col-span-2">
+						<div className="flex gap-2 items-center justify-end col-span-2">
 							<div className="text-sm uppercase flex gap-2 items-center">
 								<div>{card.meta.trello_card_comment_count ?? 0}</div>
 								<div>
@@ -79,11 +79,21 @@ export default function Row(): JSX.Element {
 							>
 								View Details
 							</a>
+							{card.meta.review_studio_link && (
+								<a
+									className="text-sm uppercase p-2 px-4 border bg border-input text-center ml-4 rounded hover:bg-input hover:text-white max-[1024px]:w-full"
+									href={card.meta.review_studio_link}
+								>
+									Review Design
+								</a>
+							)}
 						</div>
 					</div>
 				))
 			) : (
-				<p>Order First</p>
+				<div className="p-4 px-6 border border-input rounded block sm:grid sm:max-lg:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] lg:grid-cols-6 items-center justify-between gap-4 bg-gray-100">
+					<p>No orders yet</p>
+				</div>
 			)}
 		</>
 	);

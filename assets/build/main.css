@@ -2074,6 +2074,10 @@ video {
     #astralab .sm\:max-lg\:grid-cols-\[repeat\(auto-fill\2c minmax\(200px\2c 1fr\)\)\] {
       grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
     }
+
+    #astralab .sm\:max-lg\:grid-cols-\[200px_200px_100px_100px_1fr\] {
+      grid-template-columns: 200px 200px 100px 100px 1fr;
+    }
   }
 }
 
@@ -2123,6 +2127,10 @@ video {
 
   #astralab .lg\:grid-cols-\[45\%_1fr_1fr\] {
     grid-template-columns: 45% 1fr 1fr;
+  }
+
+  #astralab .lg\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }
 
