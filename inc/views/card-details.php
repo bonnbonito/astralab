@@ -164,8 +164,7 @@ function output_array( $array ) {
 										<div class="grid grid-cols-3 gap-2">
 											<?php foreach ( $monuments_design as $design ) : ?>
 												<div class="w-[150px] p-2 border rounded">
-													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>"
-														class="w-10 h-10 object-cover">
+													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>">
 													<div class="text-xs"><?php echo $design['title']; ?></div>
 												</div>
 											<?php endforeach; ?>
@@ -285,8 +284,7 @@ function output_array( $array ) {
 										<div class="grid grid-cols-3 gap-2">
 											<?php foreach ( $dimensional_design as $design ) : ?>
 												<div class="w-[150px] p-2 border rounded">
-													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>"
-														class="w-10 h-10 object-cover">
+													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>">
 													<div class="text-xs"><?php echo $design['title']; ?></div>
 												</div>
 											<?php endforeach; ?>
@@ -351,8 +349,7 @@ function output_array( $array ) {
 										<div class="grid grid-cols-3 gap-2">
 											<?php foreach ( $lightbox_design as $design ) : ?>
 												<div class="w-[150px] p-2 border rounded">
-													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>"
-														class="w-10 h-10 object-cover">
+													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>">
 													<div class="text-xs"><?php echo $design['title']; ?></div>
 												</div>
 											<?php endforeach; ?>
@@ -394,8 +391,7 @@ function output_array( $array ) {
 										<div class="grid grid-cols-3 gap-2">
 											<?php foreach ( $custom_design as $design ) : ?>
 												<div class="w-[150px] p-2 border rounded">
-													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>"
-														class="w-10 h-10 object-cover">
+													<img src="<?php echo $design['url']; ?>" alt="<?php echo $design['title']; ?>">
 													<div class="text-xs"><?php echo $design['title']; ?></div>
 												</div>
 											<?php endforeach; ?>
