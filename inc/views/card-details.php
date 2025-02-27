@@ -138,9 +138,7 @@ function output_array( $array ) {
 								<div class="font-semibold">MAX GROUND CLEARANCE</div>
 								<div><?php echo $monuments['maxGroundClearance']; ?></div>
 								<div class="font-semibold">TYPES</div>
-								<div>
-									<?php echo is_array( $monuments['types'] ) ? implode( ', ', $monuments['types'] ) : $monuments['types']; ?>
-								</div>
+								<div><?php echo output_array( $monuments['types'] ); ?></div>
 								<div class="font-semibold">ILLUMINATION</div>
 								<div><?php echo output_array( $monuments['illumination'] ); ?></div>
 								<div class="font-semibold">DESIGN INSPIRATIONS</div>
