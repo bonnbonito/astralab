@@ -111,7 +111,7 @@ function get_design_inspirations( $design_inspirations ) {
 					?>
 					<div class="mt-8">
 						<p class="uppercase text-lg mb-3">ADA WAYFINDING</p>
-						<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1 *:py-2">
+						<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
 							<div class="font-semibold">NUMBER OF SIGNS</div>
 							<div><?php echo $ada['numberOfSigns']; ?></div>
 							<?php
