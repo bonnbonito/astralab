@@ -2,6 +2,15 @@
 
 namespace ASTRALAB;
 
+use function add_action;
+use function current_user_can;
+use function get_role;
+use function in_array;
+use function is_wp_error;
+use function update_user_meta;
+use function wp_redirect;
+use function wp_safe_redirect;
+
 class Users {
 	/**
 	 * Instance of this class
@@ -24,6 +33,7 @@ class Users {
 	public function __construct() {
 		add_action( 'init', array( $this, 'add_client_role' ) );
 		add_action( 'user_register', array( $this, 'create_trello_after_register' ) );
+		add_action( 'wp_login', array( $this, 'redirect_client_after_login' ), 10, 2 );
 	}
 
 	/**
@@ -39,6 +49,20 @@ class Users {
 		$subscriber_capabilities = $subscriber_role->capabilities;
 
 		add_role( 'client', 'Client', $subscriber_capabilities );
+	}
+
+	/**
+	 * Redirect clients to order form after login
+	 *
+	 * @param string  $user_login Username.
+	 * @param \WP_User $user       WP_User object of the logged-in user.
+	 */
+	public function redirect_client_after_login( $user_login, $user ) {
+		// Check if user has the client role
+		if ( in_array( 'client', (array) $user->roles, true ) ) {
+			wp_safe_redirect( home_url( '/order-form' ) );
+			exit;
+		}
 	}
 
 	public function create_trello_after_register( $user_id ) {
@@ -62,19 +86,19 @@ class Users {
 			return;
 		}
 
-		$full_name  = $user->display_name ?: 'User';
+		$full_name = $user->display_name ?: 'User';
 		$board_name = $full_name . ' Board';
 
 		// Prepare board creation arguments
 		$board_args = array(
-			'name'                  => $board_name,
-			'defaultLists'          => 'true',
+			'name' => $board_name,
+			'defaultLists' => 'true',
 			'prefs_permissionLevel' => 'private',
-			'idOrganization'        => 'astralabtickets',
+			'idOrganization' => 'astralabtickets',
 		);
 
 		// Create the board using trello_api_request
-		$trello_api     = \ASTRALAB\Trello_API::get_instance();
+		$trello_api = \ASTRALAB\Trello_API::get_instance();
 		$trello_backend = \ASTRALAB\Trello_Backend::get_instance();
 
 		if ( ! $trello_backend && ! $trello_api ) {
@@ -85,7 +109,9 @@ class Users {
 
 		// Handle errors in creating the board
 		if ( is_wp_error( $board_response ) ) {
-			$trello_backend->astralab_redirect_with_message( $user_id, 'error', 'Error creating board: ' . $board_response->get_error_message() );
+			if ( $trello_backend ) {
+				$trello_backend->astralab_redirect_with_message( $user_id, 'error', 'Error creating board: ' . $board_response->get_error_message() );
+			}
 			return;
 		}
 
@@ -110,10 +136,14 @@ class Users {
 			}
 
 			// Redirect with success message
-			$trello_backend->astralab_redirect_with_message( $user_id, 'success', 'Trello board created successfully!' );
+			if ( $trello_backend ) {
+				$trello_backend->astralab_redirect_with_message( $user_id, 'success', 'Trello board created successfully!' );
+			}
 
 		} else {
-			$trello_backend->astralab_redirect_with_message( $user_id, 'error', 'Failed to create Trello board. Check API credentials and permissions.' );
+			if ( $trello_backend ) {
+				$trello_backend->astralab_redirect_with_message( $user_id, 'error', 'Failed to create Trello board. Check API credentials and permissions.' );
+			}
 		}
 	}
 }
