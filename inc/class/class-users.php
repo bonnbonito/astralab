@@ -10,6 +10,8 @@ use function is_wp_error;
 use function update_user_meta;
 use function wp_redirect;
 use function wp_safe_redirect;
+use function add_shortcode;
+use function shortcode_atts;
 
 class Users {
 	/**
@@ -44,6 +46,15 @@ class Users {
 		// Add button to user profile
 		add_action( 'edit_user_profile', array( $this, 'add_recreate_trello_button' ) );
 		add_action( 'show_user_profile', array( $this, 'add_recreate_trello_button' ) );
+
+		// Add temporary login link functionality
+		add_action( 'edit_user_profile', array( $this, 'add_temp_login_link_section' ) );
+		add_action( 'show_user_profile', array( $this, 'add_temp_login_link_section' ) );
+		add_action( 'wp_ajax_generate_temp_login_link', array( $this, 'ajax_generate_temp_login_link' ) );
+		add_action( 'init', array( $this, 'process_temp_login' ) );
+
+		// Register shortcode for temporary login links
+		add_shortcode( 'temp_login_link', array( $this, 'temp_login_link_shortcode' ) );
 	}
 
 	/**
@@ -504,5 +515,343 @@ class Users {
 				$trello_backend->astralab_redirect_with_message( $user_id, 'error', 'Failed to create Trello board. Check API credentials and permissions.' );
 			}
 		}
+	}
+
+	/**
+	 * Add temporary login link section to user profile
+	 * 
+	 * @param \WP_User $user User object.
+	 */
+	public function add_temp_login_link_section( $user ) {
+		if ( ! current_user_can( 'edit_user', $user->ID ) ) {
+			return;
+		}
+
+		// Only administrators can generate temporary login links
+		if ( ! current_user_can( 'administrator' ) ) {
+			return;
+		}
+
+		wp_enqueue_script(
+			'astralab-temp-login',
+			ASTRALAB_DIR_URI . '/assets/js/temp-login.js',
+			array( 'jquery' ),
+			filemtime( ASTRALAB_DIR_PATH . '/assets/js/temp-login.js' ),
+			true
+		);
+
+		wp_localize_script(
+			'astralab-temp-login',
+			'astralabTempLogin',
+			array(
+				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+				'nonce' => wp_create_nonce( 'temp_login_nonce' ),
+			)
+		);
+
+		?>
+<div class="temp-login-section">
+  <h2>Temporary Login Link</h2>
+  <table class="form-table">
+    <tr>
+      <th scope="row"><label for="temp_login_expiry">Link Expiration</label></th>
+      <td>
+        <select id="temp_login_expiry" name="temp_login_expiry">
+          <option value="3600" selected>1 hour</option>
+          <option value="86400">24 hours</option>
+          <option value="604800">7 days</option>
+          <option value="2592000">30 days</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row"><label for="temp_login_redirect">Redirect After Login</label></th>
+      <td>
+        <input type="text" id="temp_login_redirect" name="temp_login_redirect" class="regular-text"
+          placeholder="<?php echo esc_attr( home_url() ); ?>" />
+        <p class="description">Leave empty to use default redirect.</p>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td>
+        <button type="button" id="generate-temp-login" class="button button-primary"
+          data-user-id="<?php echo esc_attr( $user->ID ); ?>">
+          Generate Temporary Login Link
+        </button>
+        <span class="spinner" style="float: none; margin-top: 0;"></span>
+      </td>
+    </tr>
+    <tr id="temp-login-result-row" style="display: none;">
+      <th scope="row"><label for="temp_login_link">Login Link</label></th>
+      <td>
+        <div class="temp-login-result">
+          <input type="text" id="temp_login_link" class="regular-text" readonly />
+          <button type="button" id="copy-temp-login" class="button button-secondary">
+            Copy Link
+          </button>
+          <p class="description">
+            This link will expire after the selected time period. Anyone with this link can log in as this user until it
+            expires.
+          </p>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<?php
+	}
+
+	/**
+	 * AJAX handler for generating temporary login link
+	 */
+	public function ajax_generate_temp_login_link() {
+		// Set proper content type for JSON response
+		header( 'Content-Type: application/json' );
+
+		// Check nonce
+		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'temp_login_nonce' ) ) {
+			wp_send_json_error( array( 'message' => 'Security check failed.' ) );
+			exit;
+		}
+
+		// Check user permissions
+		if ( ! current_user_can( 'administrator' ) ) {
+			wp_send_json_error( array( 'message' => 'You do not have permission to perform this action.' ) );
+			exit;
+		}
+
+		// Get parameters
+		$user_id = isset( $_POST['user_id'] ) ? intval( $_POST['user_id'] ) : 0;
+		$expiry = isset( $_POST['expiry'] ) ? intval( $_POST['expiry'] ) : 3600; // Default: 1 hours
+		$redirect_to = isset( $_POST['redirect_to'] ) ? esc_url_raw( wp_unslash( $_POST['redirect_to'] ) ) : '';
+
+		if ( ! $user_id ) {
+			wp_send_json_error( array( 'message' => 'Invalid user ID.' ) );
+			exit;
+		}
+
+		// Check if user exists
+		$user = get_user_by( 'id', $user_id );
+		if ( ! $user ) {
+			wp_send_json_error( array( 'message' => 'User not found.' ) );
+			exit;
+		}
+
+		// Generate the temporary login link
+		$login_link = $this->generate_temp_login_link( $user_id, $expiry, $redirect_to );
+
+		if ( ! $login_link ) {
+			wp_send_json_error( array( 'message' => 'Failed to generate login link.' ) );
+			exit;
+		}
+
+		wp_send_json_success( array(
+			'message' => 'Temporary login link generated successfully.',
+			'link' => $login_link,
+			'expires' => date( 'Y-m-d H:i:s', time() + $expiry ),
+		) );
+		exit;
+	}
+
+	/**
+	 * Generate a temporary login link for a user
+	 * 
+	 * @param int    $user_id     User ID.
+	 * @param int    $expiry      Expiration time in seconds.
+	 * @param string $redirect_to Optional URL to redirect to after login.
+	 * @return string|false Login URL or false on failure.
+	 */
+	public function generate_temp_login_link( $user_id, $expiry = 86400, $redirect_to = '' ) {
+		if ( ! $user_id ) {
+			return false;
+		}
+
+		// Generate a secure token
+		$token = wp_generate_password( 32, false );
+
+		// Calculate expiration time
+		$expires = time() + $expiry;
+
+		// Store the token in user meta
+		$tokens = get_user_meta( $user_id, 'temp_login_tokens', true );
+		if ( ! is_array( $tokens ) ) {
+			$tokens = array();
+		}
+
+		// Add the new token
+		$tokens[ $token ] = array(
+			'expires' => $expires,
+			'redirect_to' => $redirect_to,
+			'created' => time(),
+		);
+
+		// Clean up expired tokens
+		foreach ( $tokens as $key => $data ) {
+			if ( $data['expires'] < time() ) {
+				unset( $tokens[ $key ] );
+			}
+		}
+
+		// Update user meta
+		update_user_meta( $user_id, 'temp_login_tokens', $tokens );
+
+		// Generate the login URL
+		$login_url = add_query_arg(
+			array(
+				'temp_login' => 1,
+				'user_id' => $user_id,
+				'token' => $token,
+			),
+			home_url()
+		);
+
+		return $login_url;
+	}
+
+	/**
+	 * Generate a temporary login link and return it as a formatted HTML link
+	 * 
+	 * @param int    $user_id     User ID.
+	 * @param int    $expiry      Expiration time in seconds.
+	 * @param string $redirect_to Optional URL to redirect to after login.
+	 * @param string $link_text   Optional text for the link.
+	 * @return string HTML link or empty string on failure.
+	 */
+	public function get_temp_login_link_html( $user_id, $expiry = 86400, $redirect_to = '', $link_text = '' ) {
+		$url = $this->generate_temp_login_link( $user_id, $expiry, $redirect_to );
+
+		if ( ! $url ) {
+			return '';
+		}
+
+		if ( empty( $link_text ) ) {
+			$user = get_user_by( 'id', $user_id );
+			$link_text = sprintf( 'Login as %s', $user ? $user->display_name : 'User' );
+		}
+
+		return sprintf(
+			'<a href="%s" class="temp-login-link">%s</a>',
+			esc_url( $url ),
+			esc_html( $link_text )
+		);
+	}
+
+	/**
+	 * Process temporary login request
+	 */
+	public function process_temp_login() {
+		// Check if this is a temporary login request
+		if ( ! isset( $_GET['temp_login'] ) || ! isset( $_GET['user_id'] ) || ! isset( $_GET['token'] ) ) {
+			return;
+		}
+
+		// Get parameters
+		$user_id = intval( $_GET['user_id'] );
+		$token = sanitize_text_field( wp_unslash( $_GET['token'] ) );
+
+		// Validate user ID
+		if ( ! $user_id ) {
+			wp_die( 'Invalid login request.', 'Login Error', array( 'response' => 403 ) );
+		}
+
+		// Get user
+		$user = get_user_by( 'id', $user_id );
+		if ( ! $user ) {
+			wp_die( 'User not found.', 'Login Error', array( 'response' => 404 ) );
+		}
+
+		// Get tokens
+		$tokens = get_user_meta( $user_id, 'temp_login_tokens', true );
+		if ( ! is_array( $tokens ) || ! isset( $tokens[ $token ] ) ) {
+			wp_die( 'Invalid or expired login link.', 'Login Error', array( 'response' => 403 ) );
+		}
+
+		// Check if token is expired
+		$token_data = $tokens[ $token ];
+		if ( $token_data['expires'] < time() ) {
+			// Remove expired token
+			unset( $tokens[ $token ] );
+			update_user_meta( $user_id, 'temp_login_tokens', $tokens );
+			wp_die( 'Login link has expired.', 'Login Error', array( 'response' => 403 ) );
+		}
+
+		// Token is valid, log the user in
+		wp_set_auth_cookie( $user_id, false );
+
+		// Remove the used token (one-time use)
+		unset( $tokens[ $token ] );
+		update_user_meta( $user_id, 'temp_login_tokens', $tokens );
+
+		// Log the login
+		$this->log_temp_login( $user_id, $_SERVER['REMOTE_ADDR'] );
+
+		// Redirect after login
+		$redirect_to = ! empty( $token_data['redirect_to'] ) ? $token_data['redirect_to'] : home_url();
+		wp_safe_redirect( $redirect_to );
+		exit;
+	}
+
+	/**
+	 * Log temporary login
+	 * 
+	 * @param int    $user_id User ID.
+	 * @param string $ip      IP address.
+	 */
+	private function log_temp_login( $user_id, $ip ) {
+		$logs = get_user_meta( $user_id, 'temp_login_logs', true );
+		if ( ! is_array( $logs ) ) {
+			$logs = array();
+		}
+
+		// Add new log entry
+		$logs[] = array(
+			'time' => current_time( 'mysql' ),
+			'ip' => $ip,
+		);
+
+		// Keep only the last 10 entries
+		if ( count( $logs ) > 10 ) {
+			$logs = array_slice( $logs, -10 );
+		}
+
+		update_user_meta( $user_id, 'temp_login_logs', $logs );
+	}
+
+	/**
+	 * Shortcode for generating temporary login links
+	 * 
+	 * Usage: [temp_login_link user_id="123" expiry="86400" redirect_to="/dashboard" text="Login here"]
+	 * 
+	 * @param array $atts Shortcode attributes.
+	 * @return string HTML output.
+	 */
+	public function temp_login_link_shortcode( $atts ) {
+		// Only allow administrators to use this shortcode
+		if ( ! current_user_can( 'administrator' ) ) {
+			return '';
+		}
+
+		$atts = shortcode_atts(
+			array(
+				'user_id' => 0,
+				'expiry' => 86400,
+				'redirect_to' => '',
+				'text' => '',
+			),
+			$atts,
+			'temp_login_link'
+		);
+
+		$user_id = intval( $atts['user_id'] );
+		if ( ! $user_id ) {
+			return '<p class="error">Error: Missing or invalid user ID.</p>';
+		}
+
+		$expiry = intval( $atts['expiry'] );
+		$redirect_to = esc_url_raw( $atts['redirect_to'] );
+		$link_text = sanitize_text_field( $atts['text'] );
+
+		return $this->get_temp_login_link_html( $user_id, $expiry, $redirect_to, $link_text );
 	}
 }
