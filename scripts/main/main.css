@@ -36,6 +36,10 @@
 	}
 }
 
+button.mb-4 {
+	@apply mb-4;
+}
+
 #orderForm *::placeholder {
 	@apply text-muted-foreground;
 }
