@@ -1,7 +1,7 @@
 import domReady from '@wordpress/dom-ready';
 import { createRoot } from 'react-dom/client';
 
-import './main.scss';
+import './main.css';
 
 import App from './components/App';
 

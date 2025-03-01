@@ -149,7 +149,7 @@ export default function Sidebar({ form }: FormType) {
 				{/* Submit Button */}
 				<Button
 					type="submit"
-					className="w-full uppercase font-semibold"
+					className="w-full uppercase font-semibold submitButton"
 					disabled={form.formState.isSubmitting}
 				>
 					{submitLabel}

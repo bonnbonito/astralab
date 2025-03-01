@@ -28,8 +28,8 @@ export default function AccordionProductType({
 			defaultValue={product.toString()}
 			className="border border-input border-solid rounded"
 		>
-			<AccordionItem value={product.toString()}>
-				<AccordionTrigger className="uppercase bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4">
+			<AccordionItem value={product.toString()} className="border-b-input">
+				<AccordionTrigger className="accordion uppercase bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4">
 					{loading
 						? 'Loading...'
 						: title

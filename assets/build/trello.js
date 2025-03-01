@@ -28232,8 +28232,9 @@ function AccordionProductType({
     className: "border border-input border-solid rounded",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_0__.AccordionItem, {
       value: product.toString(),
+      className: "border-b-input",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_0__.AccordionTrigger, {
-        className: "uppercase bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4",
+        className: "accordion uppercase bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4",
         children: loading ? 'Loading...' : title ? (0,_lib_utils__WEBPACK_IMPORTED_MODULE_2__.decodeHTMLEntities)(title) : 'No Data Available'
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_0__.AccordionContent, {
         children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_trello_components_SkeletonCard__WEBPACK_IMPORTED_MODULE_1__.SkeletonCard, {}) : children
@@ -28294,11 +28295,11 @@ function DesignInspiration({
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "mt-2 flex no-wrap justify-between border-b-[#D2D2D2] border-b uppercase overflow-x-auto",
           children: [options.map((option, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-            className: `px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${isCurrent(option.name, tab) ? 'border-t-[#D2D2D2] border-x-[#D2D2D2]' : 'border-transparent border-b-0'}`,
+            className: `px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${isCurrent(option.name, tab) ? 'border-y-[#D2D2D2] border-x-[#D2D2D2] border-b-transparent' : 'border-transparent border-b-0'}`,
             onClick: () => selectTab(option.name),
             children: option.name
           }, `${fieldName}-tab-${index}`)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-            className: `px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${isCurrent('All', tab) ? 'border-t-[#D2D2D2] border-x-[#D2D2D2]' : 'border-transparent border-b-0'}`,
+            className: `px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${isCurrent('All', tab) ? 'border-t-[#D2D2D2] border-x-[#D2D2D2] border-b-transparent' : 'border-transparent border-b-0'}`,
             onClick: () => selectTab('All'),
             children: "All"
           })]
@@ -28700,10 +28701,7 @@ function ProductType({
       control: form.control,
       name: "productTypes",
       render: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
-          className: "uppercase font-semibold text-base",
-          children: "Product Type"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
             className: "grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-6",
             children: loading ? Array.from({
@@ -29055,7 +29053,7 @@ function Sidebar({
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_button__WEBPACK_IMPORTED_MODULE_0__.Button, {
         type: "submit",
-        className: "w-full uppercase font-semibold",
+        className: "w-full uppercase font-semibold submitButton",
         disabled: form.formState.isSubmitting,
         children: submitLabel
       })]
@@ -29223,8 +29221,7 @@ function BulkOrders({
       className: "flex items-center gap-3",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_button__WEBPACK_IMPORTED_MODULE_0__.Button, {
         type: "button",
-        variant: "outline",
-        className: "bg-[#9F9F9F] text-white hover:bg-[#8a8a8a] uppercase font-semibold max-w-52 w-full",
+        className: "bulkOrderButton",
         children: "Download Sheet"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
         className: "text-sm text-muted-foreground",
@@ -29245,7 +29242,7 @@ function BulkOrders({
                 type: "button",
                 variant: "outline",
                 onClick: handleUploadClick,
-                className: "inline-block bg-button border-0 relative cursor-pointer max-w-52 w-full font-semibold uppercase hover:bg-[#9F9F9F] hover:text-white truncate",
+                className: "uploadFiles truncate",
                 children: getButtonText()
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_input__WEBPACK_IMPORTED_MODULE_2__.Input, {
                 ...field,
@@ -29291,36 +29288,39 @@ function DesignDetails({
   designDetailsOptions,
   loading
 }) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
-    control: form.control,
-    name: "designDetails",
-    render: ({
-      field
-    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
-        className: "uppercase font-semibold text-base",
-        children: "Design Details"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.Select, {
-          onValueChange: field.onChange,
-          value: field.value,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectTrigger, {
-            className: "border-solid font-light",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectValue, {
-              placeholder: "Select an option"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectContent, {
-            children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-              children: "Loading options..."
-            }) : designDetailsOptions.length > 0 ? designDetailsOptions.map((option, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectItem, {
-              value: option.name,
-              children: option.name
-            }, index)) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-              children: "No options available"
-            })
-          })]
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "lg:max-w-[221px]",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
+      control: form.control,
+      name: "designDetails",
+      render: ({
+        field
+      }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
+          className: "uppercase font-semibold text-base",
+          children: "Design Details"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.Select, {
+            onValueChange: field.onChange,
+            value: field.value,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectTrigger, {
+              className: "border-solid font-light",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectValue, {
+                placeholder: "Select an option"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectContent, {
+              children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+                children: "Loading options..."
+              }) : designDetailsOptions.length > 0 ? designDetailsOptions.map((option, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectItem, {
+                value: option.name,
+                children: option.name
+              }, index)) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+                children: "No options available"
+              })
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
+      })
     })
   });
 }
@@ -29404,7 +29404,7 @@ function FileUpload({
             type: "button",
             variant: "outline",
             onClick: handleButtonClick,
-            className: "inline-block bg-button border-0 relative cursor-pointer max-w-52 w-full font-semibold uppercase hover:bg-[#9F9F9F] hover:text-white",
+            className: "uploadFiles inline-block bg-button border-0 relative cursor-pointer max-w-52 w-full font-semibold uppercase hover:bg-[#9F9F9F] hover:text-white",
             children: getButtonText(fileUpload)
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_input__WEBPACK_IMPORTED_MODULE_2__.Input, {
             ...field,
@@ -29878,9 +29878,10 @@ function TextField({
           children: label
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_input__WEBPACK_IMPORTED_MODULE_1__.Input, {
+            className: "form-input",
             placeholder: placeholder,
             ...field,
-            value: typeof field.value === 'string' ? field.value : '' // Validate value type
+            value: typeof field.value === 'string' ? field.value : ''
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
       })
@@ -29966,36 +29967,39 @@ function TurnaroundTime({
   turnaroundTimeOptions,
   loading
 }) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
-    control: form.control,
-    name: "turnaroundTime",
-    render: ({
-      field
-    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
-        className: "uppercase font-semibold text-base",
-        children: "Turnaround Time"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.Select, {
-          onValueChange: field.onChange,
-          value: field.value,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectTrigger, {
-            className: "border-solid font-light",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectValue, {
-              placeholder: "Select an option"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectContent, {
-            children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-              children: "Loading options..."
-            }) : turnaroundTimeOptions.length > 0 ? turnaroundTimeOptions.map((option, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectItem, {
-              value: option.name,
-              children: option.name
-            }, index)) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-              children: "No options available"
-            })
-          })]
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "lg:max-w-[221px]",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
+      control: form.control,
+      name: "turnaroundTime",
+      render: ({
+        field
+      }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
+          className: "uppercase font-semibold text-base",
+          children: "Turnaround Time"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.Select, {
+            onValueChange: field.onChange,
+            value: field.value,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectTrigger, {
+              className: "border-solid font-light",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectValue, {
+                placeholder: "Select an option"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectContent, {
+              children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+                children: "Loading options..."
+              }) : turnaroundTimeOptions.length > 0 ? turnaroundTimeOptions.map((option, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectItem, {
+                value: option.name,
+                children: option.name
+              }, index)) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+                children: "No options available"
+              })
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
+      })
     })
   });
 }

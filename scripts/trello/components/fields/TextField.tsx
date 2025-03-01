@@ -40,9 +40,10 @@ export default function TextField({
 						</FormLabel>
 						<FormControl>
 							<Input
+								className="form-input"
 								placeholder={placeholder}
 								{...field}
-								value={typeof field.value === 'string' ? field.value : ''} // Validate value type
+								value={typeof field.value === 'string' ? field.value : ''}
 							/>
 						</FormControl>
 						<FormMessage />

@@ -26,7 +26,7 @@ class Scripts {
 	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'init' ), 1 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 99 );
 		//add_filter( 'kadence_css_files', array( $this, 'kadence_css_files' ) );
 	}
 

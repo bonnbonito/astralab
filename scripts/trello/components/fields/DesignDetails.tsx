@@ -32,39 +32,41 @@ export default function DesignDetails({
 	loading,
 }: DesignDetailsProps) {
 	return (
-		<FormField
-			control={form.control}
-			name="designDetails"
-			render={({ field }) => (
-				<FormItem>
-					<FormLabel className="uppercase font-semibold text-base">
-						Design Details
-					</FormLabel>
-					<FormControl>
-						<Select onValueChange={field.onChange} value={field.value}>
-							<SelectTrigger className="border-solid font-light">
-								<SelectValue placeholder="Select an option" />
-							</SelectTrigger>
-							<SelectContent>
-								{loading ? (
-									<p>Loading options...</p>
-								) : designDetailsOptions.length > 0 ? (
-									designDetailsOptions.map(
-										(option: { name: string }, index: number) => (
-											<SelectItem key={index} value={option.name}>
-												{option.name}
-											</SelectItem>
+		<div className="lg:max-w-[221px]">
+			<FormField
+				control={form.control}
+				name="designDetails"
+				render={({ field }) => (
+					<FormItem>
+						<FormLabel className="uppercase font-semibold text-base">
+							Design Details
+						</FormLabel>
+						<FormControl>
+							<Select onValueChange={field.onChange} value={field.value}>
+								<SelectTrigger className="border-solid font-light">
+									<SelectValue placeholder="Select an option" />
+								</SelectTrigger>
+								<SelectContent>
+									{loading ? (
+										<p>Loading options...</p>
+									) : designDetailsOptions.length > 0 ? (
+										designDetailsOptions.map(
+											(option: { name: string }, index: number) => (
+												<SelectItem key={index} value={option.name}>
+													{option.name}
+												</SelectItem>
+											)
 										)
-									)
-								) : (
-									<p>No options available</p>
-								)}
-							</SelectContent>
-						</Select>
-					</FormControl>
-					<FormMessage />
-				</FormItem>
-			)}
-		/>
+									) : (
+										<p>No options available</p>
+									)}
+								</SelectContent>
+							</Select>
+						</FormControl>
+						<FormMessage />
+					</FormItem>
+				)}
+			/>
+		</div>
 	);
 }

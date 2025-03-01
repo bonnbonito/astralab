@@ -23,9 +23,6 @@ export default function ProductType({ form }: FormType) {
 				name="productTypes"
 				render={() => (
 					<FormItem>
-						<FormLabel className="uppercase font-semibold text-base">
-							Product Type
-						</FormLabel>
 						<FormControl>
 							<div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-6">
 								{loading ? (

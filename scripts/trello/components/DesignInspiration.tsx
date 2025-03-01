@@ -56,7 +56,7 @@ export default function DesignInspiration({
 									key={`${fieldName}-tab-${index}`}
 									className={`px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${
 										isCurrent(option.name, tab)
-											? 'border-t-[#D2D2D2] border-x-[#D2D2D2]'
+											? 'border-y-[#D2D2D2] border-x-[#D2D2D2] border-b-transparent'
 											: 'border-transparent border-b-0'
 									}`}
 									onClick={() => selectTab(option.name)}
@@ -67,7 +67,7 @@ export default function DesignInspiration({
 							<div
 								className={`px-6 py-2 text-center cursor-pointer border whitespace-nowrap font-semibold ${
 									isCurrent('All', tab)
-										? 'border-t-[#D2D2D2] border-x-[#D2D2D2]'
+										? 'border-t-[#D2D2D2] border-x-[#D2D2D2] border-b-transparent'
 										: 'border-transparent border-b-0'
 								}`}
 								onClick={() => selectTab('All')}

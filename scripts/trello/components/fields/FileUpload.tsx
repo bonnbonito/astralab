@@ -61,7 +61,7 @@ export default function FileUpload({ form }: FormType) {
 								type="button"
 								variant="outline"
 								onClick={handleButtonClick}
-								className="inline-block bg-button border-0 relative cursor-pointer max-w-52 w-full font-semibold uppercase hover:bg-[#9F9F9F] hover:text-white"
+								className="uploadFiles inline-block bg-button border-0 relative cursor-pointer max-w-52 w-full font-semibold uppercase hover:bg-[#9F9F9F] hover:text-white"
 							>
 								{getButtonText(fileUpload)}
 							</Button>

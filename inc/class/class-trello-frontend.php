@@ -146,7 +146,7 @@ class Trello_Frontend {
 	public function enqueue_trello_vanilla_js_script() {
 		wp_enqueue_script(
 			'astralab/trello',
-			get_template_directory_uri() . '/js/trello-vanilla.js',
+			get_stylesheet_directory_uri() . '/assets/build/js/trello.js',
 			array(),
 			null,
 			true

@@ -39,11 +39,7 @@ export default function BulkOrders({ form }: FormType) {
 		<div className="mt-8">
 			<h3 className="uppercase font-semibold text-base mb-2">BULK ORDERS</h3>
 			<div className="flex items-center gap-3">
-				<Button
-					type="button"
-					variant="outline"
-					className="bg-[#9F9F9F] text-white hover:bg-[#8a8a8a] uppercase font-semibold max-w-52 w-full"
-				>
+				<Button type="button" className="bulkOrderButton">
 					Download Sheet
 				</Button>
 				<span className="text-sm text-muted-foreground">then</span>
@@ -58,7 +54,7 @@ export default function BulkOrders({ form }: FormType) {
 										type="button"
 										variant="outline"
 										onClick={handleUploadClick}
-										className="inline-block bg-button border-0 relative cursor-pointer max-w-52 w-full font-semibold uppercase hover:bg-[#9F9F9F] hover:text-white truncate"
+										className="uploadFiles truncate"
 									>
 										{getButtonText()}
 									</Button>
