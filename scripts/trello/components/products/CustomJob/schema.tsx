@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
-export const CustomJobSchema = z.object({
-	hasCustomJob: z.boolean(),
-	customJob: z
-		.object({
+export const CustomJobSchema = z.discriminatedUnion('hasCustomJob', [
+	z.object({
+		hasCustomJob: z.literal(true),
+		customJob: z.object({
 			description: z.string().nonempty({
 				message: 'Description is required.',
 			}),
@@ -17,6 +17,9 @@ export const CustomJobSchema = z.object({
 				.min(1, {
 					message: 'Select atleast one inspiration',
 				}),
-		})
-		.optional(),
-});
+		}),
+	}),
+	z.object({
+		hasCustomJob: z.literal(false),
+	}),
+]);

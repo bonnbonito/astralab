@@ -195,11 +195,11 @@ class Trello_Backend {
 		$trello_list_id = get_user_meta( $user->ID, 'trello_list_id', true );
 
 		?>
-		<h2>Create Trello Board</h2>
-		<table class="form-table">
-			<tr>
-				<th scope="row"><label for="create_trello_board">Trello Board</label></th>
-				<?php
+<h2>Create Trello Board</h2>
+<table class="form-table">
+  <tr>
+    <th scope="row"><label for="create_trello_board">Trello Board</label></th>
+    <?php
 				if ( ! empty( $trello_board_id ) ) {
 					echo '<td>
 					<p><strong>Trello Board ID:</strong> ' . esc_html( $trello_board_id ) . ' <a href="' . esc_url( $trello_url ) . '" target="_blank">View Board</a></p>';
@@ -209,18 +209,18 @@ class Trello_Backend {
 					echo '</td>';
 				} else {
 					?>
-					<td>
-						<label for="create_trello_board">
-							<input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
-							Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
-						</label>
-					</td>
-					<?php
+    <td>
+      <label for="create_trello_board">
+        <input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
+        Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
+      </label>
+    </td>
+    <?php
 				}
 				?>
-			</tr>
-		</table>
-		<?php
+  </tr>
+</table>
+<?php
 	}
 
 	/**
@@ -931,7 +931,27 @@ class Trello_Backend {
 					wp_send_json_success( 'Card created successfully!' );
 				}
 			} else {
-				throw new \Exception( 'Error creating card.' );
+				// Log detailed error information for debugging
+				$response_code = wp_remote_retrieve_response_code( $card_response );
+				$response_message = wp_remote_retrieve_response_message( $card_response );
+				$response_body = wp_remote_retrieve_body( $card_response );
+
+				error_log( 'Trello Card Creation Failed:' );
+				error_log( 'Response Code: ' . $response_code );
+				error_log( 'Response Message: ' . $response_message );
+				error_log( 'Response Body: ' . $response_body );
+				error_log( 'Card Arguments: ' . print_r( $card_args, true ) );
+
+				// Check for specific error conditions
+				if ( $response_code >= 400 ) {
+					$error_details = json_decode( $response_body, true );
+					$error_message = isset( $error_details['message'] ) ?
+						'Trello API Error: ' . $error_details['message'] :
+						'Trello API Error: Unknown error (Code: ' . $response_code . ')';
+					error_log( $error_message );
+					throw new \Exception( $error_message );
+				}
+				throw new \Exception( 'Error creating card. trello-backend.php' );
 			}
 		} catch (\Exception $e) {
 			error_log( 'Trello Form Submission Error: ' . $e->getMessage() );

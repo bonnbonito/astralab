@@ -264,15 +264,21 @@ class Trello_API {
 			'headers' => $headers,
 		);
 
-		if ( strtoupper( $method ) === 'GET' ) {
-			$url = add_query_arg( $params, $url );
-		} elseif ( strtoupper( $method ) === 'POST' ) {
-			$args['body'] = $params;
-		} else {
-			return new \WP_Error( 'invalid_method', 'Invalid HTTP method. Only GET and POST are supported.' );
-		}
+		$method = strtoupper( $method );
 
-		$response = strtoupper( $method ) === 'GET' ? wp_remote_get( $url, $args ) : wp_remote_post( $url, $args );
+		if ( $method === 'GET' ) {
+			$url = add_query_arg( $params, $url );
+			$response = wp_remote_get( $url, $args );
+		} elseif ( $method === 'POST' ) {
+			$args['body'] = $params;
+			$response = wp_remote_post( $url, $args );
+		} elseif ( $method === 'DELETE' ) {
+			$url = add_query_arg( $params, $url );
+			$args['method'] = 'DELETE';
+			$response = wp_remote_request( $url, $args );
+		} else {
+			return new \WP_Error( 'invalid_method', 'Invalid HTTP method. Only GET, POST, and DELETE are supported.' );
+		}
 
 		if ( is_wp_error( $response ) ) {
 			return $response;

@@ -30793,8 +30793,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zod */ "./node_modules/zod/lib/index.mjs");
 
-const CustomJobSchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
-  hasCustomJob: zod__WEBPACK_IMPORTED_MODULE_0__.z.boolean(),
+const CustomJobSchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.discriminatedUnion('hasCustomJob', [zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+  hasCustomJob: zod__WEBPACK_IMPORTED_MODULE_0__.z.literal(true),
   customJob: zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
     description: zod__WEBPACK_IMPORTED_MODULE_0__.z.string().nonempty({
       message: 'Description is required.'
@@ -30805,8 +30805,10 @@ const CustomJobSchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
     })).min(1, {
       message: 'Select atleast one inspiration'
     })
-  }).optional()
-});
+  })
+}), zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
+  hasCustomJob: zod__WEBPACK_IMPORTED_MODULE_0__.z.literal(false)
+})]);
 
 /***/ }),
 
