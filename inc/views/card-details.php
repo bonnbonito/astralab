@@ -309,6 +309,8 @@ function get_design_inspirations( $design_inspirations ) {
             <div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
               <div class="font-semibold">DESCRIPTION</div>
               <div><?php echo $vehicleWrap['description']; ?></div>
+              <div class="font-semibold">COVERAGE</div>
+              <div><?php echo $vehicleWrap['coverage']; ?></div>
               <div class="font-semibold">DESIGN INSPIRATIONS</div>
               <div>
                 <?php echo get_design_inspirations( $vehicleWrap['designInspirations'] ); ?>
@@ -319,7 +321,6 @@ function get_design_inspirations( $design_inspirations ) {
           <?php
 				endif;
 
-				$customJob = get_post_meta( $post_id, 'product_custom_job', true );
 				$customJob = get_post_meta( $post_id, 'product_custom_job', true );
 				if ( $customJob ) :
 					?>
