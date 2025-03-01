@@ -29932,6 +29932,7 @@ function Textarea({
           children: label
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_textarea__WEBPACK_IMPORTED_MODULE_1__.Textarea, {
+            className: "border-input focus:border",
             placeholder: placeholder,
             ...field,
             value: typeof field.value === 'string' ? field.value : ''

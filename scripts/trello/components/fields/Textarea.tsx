@@ -40,6 +40,7 @@ export default function Textarea({
 						</FormLabel>
 						<FormControl>
 							<TextareaUI
+								className="border-input focus:border"
 								placeholder={placeholder}
 								{...field}
 								value={typeof field.value === 'string' ? field.value : ''}

@@ -12,6 +12,7 @@
 	--color-card: hsl(0 0% 100%);
 	--color-card-foreground: hsl(222.2 47.4% 11.2%);
 	--color-primary: hsl(222.2 47.4% 11.2%);
+	--border-primary: hsl(222.2 47.4% 11.2%);
 	--color-primary-foreground: hsl(210 40% 98%);
 	--color-secondary: hsl(210 40% 96.1%);
 	--color-secondary-foreground: hsl(222.2 47.4% 11.2%);
@@ -40,11 +41,15 @@
 }
 
 #orderForm button.uploadFiles {
-	@apply items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input h-10 px-4 py-2 inline-block border-0 relative cursor-pointer max-w-52 w-full font-semibold uppercase hover:bg-[#9F9F9F] hover:text-white mb-2;
+	@apply items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input h-10 px-4 py-2 inline-block border-0 relative cursor-pointer max-w-52 w-full font-semibold uppercase hover:bg-[#9F9F9F] hover:text-white mb-2 truncate overflow-x-hidden;
 }
 
 #orderForm button.bulkOrderButton {
-	@apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-[#9F9F9F] text-white hover:bg-[#8a8a8a] uppercase font-semibold max-w-52 w-full;
+	@apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-[#9F9F9F] text-white hover:bg-[#8a8a8a] uppercase font-semibold max-w-52 w-full truncate overflow-x-hidden max-w-52;
+}
+
+#orderForm textarea {
+	@apply flex w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm;
 }
 
 #orderForm button[role='radio'] {
