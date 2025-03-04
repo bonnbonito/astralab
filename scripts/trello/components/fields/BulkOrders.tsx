@@ -11,7 +11,7 @@ import { useWatch } from 'react-hook-form';
 import { FormType } from '@/trello/helpers/types';
 
 const bulkFile =
-	'http://astralab.ca/wp-content/uploads/2025/03/Astra-Lab_-Sign-Template.xlsx';
+	'https://astralab.ca/wp-content/uploads/2025/03/Astra-Lab_-Sign-Template.xlsx';
 
 export default function BulkOrders({ form }: FormType) {
 	const fileInputRef = useRef<HTMLInputElement>(null);

@@ -29189,7 +29189,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const bulkFile = 'http://astralab.ca/wp-content/uploads/2025/03/Astra-Lab_-Sign-Template.xlsx';
+const bulkFile = 'https://astralab.ca/wp-content/uploads/2025/03/Astra-Lab_-Sign-Template.xlsx';
 function BulkOrders({
   form
 }) {
