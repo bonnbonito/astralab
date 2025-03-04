@@ -29189,6 +29189,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const bulkFile = 'http://astralab.ca/wp-content/uploads/2025/03/Astra-Lab_-Sign-Template.xlsx';
 function BulkOrders({
   form
 }) {
@@ -29222,6 +29223,7 @@ function BulkOrders({
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_button__WEBPACK_IMPORTED_MODULE_0__.Button, {
         type: "button",
         className: "bulkOrderButton",
+        onClick: () => window.open(bulkFile, '_blank'),
         children: "Download Sheet"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
         className: "text-sm text-muted-foreground",

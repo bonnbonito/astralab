@@ -10,6 +10,9 @@ import { useRef } from 'react';
 import { useWatch } from 'react-hook-form';
 import { FormType } from '@/trello/helpers/types';
 
+const bulkFile =
+	'http://astralab.ca/wp-content/uploads/2025/03/Astra-Lab_-Sign-Template.xlsx';
+
 export default function BulkOrders({ form }: FormType) {
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const bulkOrderFile = useWatch({
@@ -39,7 +42,11 @@ export default function BulkOrders({ form }: FormType) {
 		<div className="mt-8">
 			<h3 className="uppercase font-semibold text-base mb-2">BULK ORDERS</h3>
 			<div className="flex items-center gap-3">
-				<Button type="button" className="bulkOrderButton">
+				<Button
+					type="button"
+					className="bulkOrderButton"
+					onClick={() => window.open(bulkFile, '_blank')}
+				>
 					Download Sheet
 				</Button>
 				<span className="text-sm text-muted-foreground">then</span>

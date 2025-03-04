@@ -40,6 +40,10 @@ button.mb-4 {
 	@apply mb-4;
 }
 
+p.mb-0 {
+	@apply mb-0;
+}
+
 #orderForm *::placeholder {
 	@apply text-muted-foreground;
 }
