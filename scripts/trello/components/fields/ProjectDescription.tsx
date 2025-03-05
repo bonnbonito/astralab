@@ -20,7 +20,7 @@ export default function ProjectDescription({ form }: FormType) {
 					</FormLabel>
 					<FormControl>
 						<Textarea
-							className="min-h-48"
+							className="min-h-48 focus:ring-1 focus:ring-ring focus:border-none"
 							onChange={field.onChange}
 							value={field.value}
 							placeholder="Describe your project"

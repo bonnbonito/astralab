@@ -81,6 +81,10 @@ export default function ProjectDetails({ form }: FormType) {
 
 			<div className="mb-6">
 				<ProjectDescription form={form} />
+				<p className="text-muted-foreground text-sm pt-2">
+					Describe the signage details. Share a Google Drive/Dropbox link here
+					if you have multiple files for reference or design guides.
+				</p>
 			</div>
 
 			<div className="mb-6">

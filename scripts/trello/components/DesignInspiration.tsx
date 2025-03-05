@@ -130,7 +130,7 @@ export default function DesignInspiration({
 
 																form.trigger(fieldName as keyof FormSchema);
 															}}
-															className="p-0 border-input border-solid bg-transparent ml-auto absolute top-2 right-2 bg-white rounded-full"
+															className="p-0 border-input border-solid ml-auto absolute top-2 right-2 bg-white rounded-full"
 														/>
 													</div>
 													<img

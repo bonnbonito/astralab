@@ -22,6 +22,7 @@
 	--color-destructive-foreground: hsl(210 40% 98%);
 	--color-ring: hsl(215 20.2% 65.1%);
 	--border-radius: 0.5rem;
+	--ring-width: 1px;
 }
 
 @layer base {
@@ -44,45 +45,46 @@ p.mb-0 {
 	@apply mb-0;
 }
 
-#orderForm *::placeholder {
-	@apply text-muted-foreground;
-}
+#orderForm {
+	*::placeholder {
+		@apply text-muted-foreground;
+	}
 
-#orderForm button.uploadFiles {
-	@apply items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input h-10 px-4 py-2 inline-block border-0 relative cursor-pointer max-w-52 w-full font-semibold uppercase hover:bg-[#9F9F9F] hover:text-white mb-2 truncate overflow-x-hidden;
-}
+	button.uploadFiles {
+		@apply items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input h-10 px-4 py-2 inline-block border-0 relative cursor-pointer max-w-52 w-full font-semibold uppercase hover:bg-[#9F9F9F] hover:text-white mb-2 truncate overflow-x-hidden;
+	}
 
-#orderForm button.bulkOrderButton {
-	@apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-[#9F9F9F] text-white hover:bg-[#8a8a8a] uppercase font-semibold max-w-52 w-full truncate overflow-x-hidden max-w-52;
-}
+	button.bulkOrderButton {
+		@apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-[#9F9F9F] text-white hover:bg-[#8a8a8a] uppercase w-full truncate overflow-x-hidden max-w-52;
+	}
 
-#orderForm textarea {
-	@apply flex w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm;
-}
+	button[role='radio'] {
+		@apply aspect-square h-4 w-4 rounded-full border text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 p-0 bg-transparent border-input border-solid;
+	}
 
-#orderForm button[role='radio'] {
-	@apply aspect-square h-4 w-4 rounded-full border text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 p-0 bg-transparent border-input border-solid;
-}
+	button[role='checkbox'] {
+		@apply h-4 w-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 bg-white data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground p-0 border-input border-solid;
+	}
 
-#orderForm button[role='checkbox'] {
-	@apply h-4 w-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground p-0 border-input border-solid bg-transparent;
-}
+	button[role='combobox'] {
+		@apply flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 border-solid font-light bg-white hover:bg-white;
+	}
 
-#orderForm button[role='combobox'] {
-	background: transparent;
-	@apply flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 border-solid font-light bg-white hover:bg-white;
-}
+	.form-input {
+		@apply flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm;
+	}
 
-#orderForm .form-input {
-	@apply flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm;
-}
+	.productAccordion button.accordion {
+		@apply flex flex-1 items-center justify-between py-4 transition-all text-left [&[data-state=open]>svg]:rotate-180 uppercase bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4;
+	}
 
-#orderForm .productAccordion button.accordion {
-	@apply flex flex-1 items-center justify-between py-4 transition-all text-left [&[data-state=open]>svg]:rotate-180 uppercase bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4;
-}
+	.submitButton {
+		@apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full uppercase font-semibold;
+	}
 
-#orderForm .submitButton {
-	@apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full uppercase font-semibold;
+	textarea {
+		@apply focus:ring-1 focus:ring-ring focus:border-transparent;
+	}
 }
 
 .box {

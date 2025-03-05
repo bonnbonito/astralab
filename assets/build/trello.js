@@ -28335,7 +28335,7 @@ function DesignInspiration({
                           form.setValue(fieldName, updatedDesigns);
                           form.trigger(fieldName);
                         },
-                        className: "p-0 border-input border-solid bg-transparent ml-auto absolute top-2 right-2 bg-white rounded-full"
+                        className: "p-0 border-input border-solid ml-auto absolute top-2 right-2 bg-white rounded-full"
                       })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
                       src: image.url,
@@ -28867,11 +28867,14 @@ function ProjectDetails({
         designDetailsOptions: designDetailsOptions,
         loading: loading
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
       className: "mb-6",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_fields_ProjectDescription__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_fields_ProjectDescription__WEBPACK_IMPORTED_MODULE_4__["default"], {
         form: form
-      })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
+        className: "text-muted-foreground text-sm pt-2",
+        children: "Describe the signage details. Share a Google Drive/Dropbox link here if you have multiple files for reference or design guides."
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       className: "mb-6",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_fields_LayoutType__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -29340,53 +29343,84 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ FileUpload)
 /* harmony export */ });
-/* harmony import */ var _components_ui_button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/ui/button */ "./scripts/components/ui/button.tsx");
-/* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/form */ "./scripts/components/ui/form.tsx");
-/* harmony import */ var _components_ui_input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/input */ "./scripts/components/ui/input.tsx");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
-
+/* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/ui/form */ "./scripts/components/ui/form.tsx");
+/* harmony import */ var _components_ui_input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/input */ "./scripts/components/ui/input.tsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
 
 
 const getButtonText = files => {
-  if (!files?.length) return 'Upload Files';
+  if (!files?.length) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+    className: "text-[#d2d2d2] text-xl font-semibold",
+    children: "Drag & Drop Files Here"
+  });
   const fileCount = files.length;
   return `Selected ${fileCount} ${fileCount === 1 ? 'file' : 'files'}`;
 };
 function FileUpload({
   form
 }) {
-  const fileInputRef = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)(null);
+  const fileInputRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
+  const [isDragging, setIsDragging] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
 
   // Handle form reset in useEffect to properly manage side effects
-  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
     if (form.formState.isSubmitted && fileInputRef.current) {
       fileInputRef.current.value = '';
     }
   }, [form.formState.isSubmitted]);
-  const handleFileChange = event => {
-    const files = event.target.files;
-    if (files?.length) {
-      form.setValue('fileUpload', Array.from(files), {
+  const handleFileChange = files => {
+    const fileArray = Array.from(files);
+    if (fileArray.length) {
+      form.setValue('fileUpload', fileArray, {
         shouldValidate: true,
         shouldDirty: true
       });
     }
   };
+  const handleRemoveFile = indexToRemove => {
+    const currentFiles = form.getValues('fileUpload') || [];
+    const updatedFiles = currentFiles.filter((_, index) => index !== indexToRemove);
+    form.setValue('fileUpload', updatedFiles, {
+      shouldValidate: true,
+      shouldDirty: true
+    });
+  };
+  const handleDragEnter = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+  const handleDragLeave = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+  const handleDragOver = e => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+  const handleDrop = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    const files = e.dataTransfer.files;
+    handleFileChange(files);
+  };
   const handleButtonClick = () => {
     fileInputRef.current?.click();
   };
-  const fileUpload = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_5__.useWatch)({
+  const fileUpload = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_4__.useWatch)({
     control: form.control,
     name: 'fileUpload'
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormField, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
     control: form.control,
     name: "fileUpload",
     render: ({
@@ -29394,43 +29428,67 @@ function FileUpload({
         value,
         ...field
       }
-    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormItem, {
+    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
       className: "relative grid gap-2",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
         className: "uppercase font-semibold text-base",
         children: "Uploads"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormControl, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "space-y-4",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_button__WEBPACK_IMPORTED_MODULE_0__.Button, {
-            type: "button",
-            variant: "outline",
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "relative",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: `space-y-4 py-10 px-6 border-2 border-dashed rounded-lg transition-colors cursor-pointer flex items-center justify-center hover:bg-primary/5 ${isDragging ? 'border-primary bg-primary/5' : 'border-muted-foreground/25'}`,
+            onDragEnter: handleDragEnter,
+            onDragLeave: handleDragLeave,
+            onDragOver: handleDragOver,
+            onDrop: handleDrop,
             onClick: handleButtonClick,
-            className: "uploadFiles inline-block bg-button border-0 relative cursor-pointer max-w-52 w-full font-semibold uppercase hover:bg-[#9F9F9F] hover:text-white",
-            children: getButtonText(fileUpload)
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_input__WEBPACK_IMPORTED_MODULE_2__.Input, {
-            ...field,
-            id: "fileUpload",
-            value: undefined,
-            type: "file",
-            ref: fileInputRef,
-            multiple: true,
-            onChange: handleFileChange,
-            className: "hidden"
-          }), fileUpload?.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "text-[0.8rem] text-muted-foreground",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "m-0 text-primary text-center font-medium",
+              children: isDragging ? 'Drop files here' : getButtonText(fileUpload)
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_input__WEBPACK_IMPORTED_MODULE_1__.Input, {
+              ...field,
+              id: "fileUpload",
+              value: undefined,
+              type: "file",
+              ref: fileInputRef,
+              multiple: true,
+              onChange: e => e.target.files && handleFileChange(e.target.files),
+              className: "hidden"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+            className: "text-[#868686] text-sm pt-2",
+            children: "Please upload logos, designs, branding guides, site photos, inspiration, and other relevant files to help us understand your project."
+          }), fileUpload?.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "text-muted-foreground",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
               className: "space-y-1",
-              children: fileUpload.map((file, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
-                children: file.name
+              children: fileUpload.map((file, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
+                className: "flex items-center gap-4",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                  className: "truncate max-w-[80%]",
+                  children: file.name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                  onClick: () => handleRemoveFile(index),
+                  className: "p-1 cursor-pointer text-red-600",
+                  "aria-label": `Remove ${file.name}`,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("svg", {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 20 20",
+                    fill: "currentColor",
+                    className: "size-5",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+                      fillRule: "evenodd",
+                      d: "M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z",
+                      clipRule: "evenodd"
+                    })
+                  })
+                })]
               }, index))
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-            className: "text-[#868686] text-sm",
-            children: "Please upload logos, designs, branding guides, site photos, inspiration, and other relevant files to help us understand your project. Multiple file uploads are allowed."
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_1__.FormMessage, {})]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
     })
   });
 }
@@ -29785,7 +29843,7 @@ function ProjectDescription({
         children: "Project Description"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_textarea__WEBPACK_IMPORTED_MODULE_1__.Textarea, {
-          className: "min-h-48",
+          className: "min-h-48 focus:ring-1 focus:ring-ring focus:border-none",
           onChange: field.onChange,
           value: field.value,
           placeholder: "Describe your project"
