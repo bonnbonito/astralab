@@ -32199,7 +32199,6 @@ function useProductTypes() {
         }
         const data = await response.json();
         data.sort((a, b) => a.id - b.id);
-        console.log(data);
         //make data with slug "custom-job" at the bottom
         const customJob = data.find(item => item.acf.component === 'CustomJob');
         if (customJob) {
