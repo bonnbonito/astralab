@@ -5,6 +5,7 @@ import AccordionProductType from '@/trello/components/AccordionProductType';
 import Textarea from '@/trello/components/fields/Textarea';
 import { Astralab } from '@/trello/helpers/types';
 import { ProductOptions } from '@/trello/components/fields/ProductOptions';
+import SelectDropdown from '../../fields/SelectDropdown';
 
 declare const astralab: Astralab;
 
@@ -19,6 +20,13 @@ export default function WallVinyl({ form, product }: ProductProps) {
 	const type = processedProductType?.product_types_options?.find(
 		(item) => item.name === 'Type'
 	);
+
+	const typeOptions = [
+		'Cut Wall Graphics',
+		'Full Wall Wrap',
+		'Cut Window Graphics',
+		'Full Window Graphics',
+	];
 
 	useEffect(() => {
 		async function fetchProductTypes() {
@@ -47,6 +55,13 @@ export default function WallVinyl({ form, product }: ProductProps) {
 			title={processedProductType?.title?.rendered}
 		>
 			<div className="p-4 pt-0">
+				<SelectDropdown
+					form={form}
+					name="wallVinyl.type"
+					label="Type"
+					options={typeOptions}
+				/>
+
 				<div className="my-6">
 					<div className="mb-6">
 						<Textarea
@@ -57,13 +72,6 @@ export default function WallVinyl({ form, product }: ProductProps) {
 						/>
 					</div>
 				</div>
-
-				<ProductOptions
-					form={form}
-					options={type?.options || []}
-					formKey="wallVinyl.type"
-					optionTitle="Type"
-				/>
 
 				<DesignInspiration
 					form={form}

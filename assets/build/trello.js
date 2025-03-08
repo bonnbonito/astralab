@@ -29922,6 +29922,67 @@ function ProjectName({
 
 /***/ }),
 
+/***/ "./scripts/trello/components/fields/SelectDropdown.tsx":
+/*!*************************************************************!*\
+  !*** ./scripts/trello/components/fields/SelectDropdown.tsx ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SelectDropdown)
+/* harmony export */ });
+/* harmony import */ var _components_ui_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/ui/form */ "./scripts/components/ui/form.tsx");
+/* harmony import */ var _components_ui_select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/select */ "./scripts/components/ui/select.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+function SelectDropdown({
+  form,
+  options,
+  name,
+  label = 'Select an option'
+}) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "lg:max-w-[221px]",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormField, {
+      control: form.control,
+      name: name,
+      render: ({
+        field
+      }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormItem, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormLabel, {
+          className: "uppercase font-semibold text-base",
+          children: label
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormControl, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.Select, {
+            onValueChange: field.onChange,
+            value: field.value,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectTrigger, {
+              className: "border-solid font-light",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectValue, {
+                placeholder: "Select an option"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectContent, {
+              children: options.length > 0 ? options.map((option, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_select__WEBPACK_IMPORTED_MODULE_1__.SelectItem, {
+                value: option,
+                children: option
+              }, `${option}-${index}`)) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+                children: "No options available"
+              })
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_ui_form__WEBPACK_IMPORTED_MODULE_0__.FormMessage, {})]
+      })
+    })
+  });
+}
+
+/***/ }),
+
 /***/ "./scripts/trello/components/fields/TextField.tsx":
 /*!********************************************************!*\
   !*** ./scripts/trello/components/fields/TextField.tsx ***!
@@ -32020,7 +32081,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/trello/components/DesignInspiration */ "./scripts/trello/components/DesignInspiration.tsx");
 /* harmony import */ var _trello_components_AccordionProductType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/trello/components/AccordionProductType */ "./scripts/trello/components/AccordionProductType.tsx");
 /* harmony import */ var _trello_components_fields_Textarea__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/trello/components/fields/Textarea */ "./scripts/trello/components/fields/Textarea.tsx");
-/* harmony import */ var _trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/trello/components/fields/ProductOptions */ "./scripts/trello/components/fields/ProductOptions.tsx");
+/* harmony import */ var _fields_SelectDropdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../fields/SelectDropdown */ "./scripts/trello/components/fields/SelectDropdown.tsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 
@@ -32036,7 +32097,7 @@ function PrintCut({
   const [productType, setProductType] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const processedProductType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => productType, [productType]);
-  const type = processedProductType?.product_types_options?.find(item => item.name === 'Type');
+  const typeOptions = ['Banners', 'Digital Print', 'Cut Vinyl', 'Print & Cut', 'Yard Signs'];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     async function fetchProductTypes() {
       try {
@@ -32062,7 +32123,12 @@ function PrintCut({
     title: processedProductType?.title?.rendered,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "p-4 pt-0",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fields_SelectDropdown__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        form: form,
+        name: "printCut.type",
+        label: "Type",
+        options: typeOptions
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "my-6",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
           className: "mb-6",
@@ -32073,11 +32139,6 @@ function PrintCut({
             placeholder: "Enter your description here"
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__.ProductOptions, {
-        form: form,
-        options: type?.options || [],
-        formKey: "printCut.type",
-        optionTitle: "Type"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_1__["default"], {
         form: form,
         fieldName: "printCut[designInspirations]",
@@ -32441,7 +32502,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/trello/components/DesignInspiration */ "./scripts/trello/components/DesignInspiration.tsx");
 /* harmony import */ var _trello_components_AccordionProductType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/trello/components/AccordionProductType */ "./scripts/trello/components/AccordionProductType.tsx");
 /* harmony import */ var _trello_components_fields_Textarea__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/trello/components/fields/Textarea */ "./scripts/trello/components/fields/Textarea.tsx");
-/* harmony import */ var _trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/trello/components/fields/ProductOptions */ "./scripts/trello/components/fields/ProductOptions.tsx");
+/* harmony import */ var _fields_SelectDropdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../fields/SelectDropdown */ "./scripts/trello/components/fields/SelectDropdown.tsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 
@@ -32458,6 +32519,7 @@ function WallVinyl({
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const processedProductType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => productType, [productType]);
   const type = processedProductType?.product_types_options?.find(item => item.name === 'Type');
+  const typeOptions = ['Cut Wall Graphics', 'Full Wall Wrap', 'Cut Window Graphics', 'Full Window Graphics'];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     async function fetchProductTypes() {
       try {
@@ -32483,7 +32545,12 @@ function WallVinyl({
     title: processedProductType?.title?.rendered,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "p-4 pt-0",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fields_SelectDropdown__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        form: form,
+        name: "wallVinyl.type",
+        label: "Type",
+        options: typeOptions
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "my-6",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
           className: "mb-6",
@@ -32494,11 +32561,6 @@ function WallVinyl({
             placeholder: "Enter your description here"
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_trello_components_fields_ProductOptions__WEBPACK_IMPORTED_MODULE_4__.ProductOptions, {
-        form: form,
-        options: type?.options || [],
-        formKey: "wallVinyl.type",
-        optionTitle: "Type"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_trello_components_DesignInspiration__WEBPACK_IMPORTED_MODULE_1__["default"], {
         form: form,
         fieldName: "wallVinyl[designInspirations]",
