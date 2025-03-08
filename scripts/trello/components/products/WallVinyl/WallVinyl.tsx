@@ -17,10 +17,6 @@ export default function WallVinyl({ form, product }: ProductProps) {
 
 	const processedProductType = useMemo(() => productType, [productType]);
 
-	const type = processedProductType?.product_types_options?.find(
-		(item) => item.name === 'Type'
-	);
-
 	const typeOptions = [
 		'Cut Wall Graphics',
 		'Full Wall Wrap',

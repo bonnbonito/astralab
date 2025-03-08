@@ -32518,7 +32518,6 @@ function WallVinyl({
   const [productType, setProductType] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const processedProductType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => productType, [productType]);
-  const type = processedProductType?.product_types_options?.find(item => item.name === 'Type');
   const typeOptions = ['Cut Wall Graphics', 'Full Wall Wrap', 'Cut Window Graphics', 'Full Window Graphics'];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     async function fetchProductTypes() {
