@@ -195,11 +195,11 @@ class Trello_Backend {
 		$trello_list_id = get_user_meta( $user->ID, 'trello_list_id', true );
 
 		?>
-<h2>Create Trello Board</h2>
-<table class="form-table">
-  <tr>
-    <th scope="row"><label for="create_trello_board">Trello Board</label></th>
-    <?php
+		<h2>Create Trello Board</h2>
+		<table class="form-table">
+			<tr>
+				<th scope="row"><label for="create_trello_board">Trello Board</label></th>
+				<?php
 				if ( ! empty( $trello_board_id ) ) {
 					echo '<td>
 					<p><strong>Trello Board ID:</strong> ' . esc_html( $trello_board_id ) . ' <a href="' . esc_url( $trello_url ) . '" target="_blank">View Board</a></p>';
@@ -209,18 +209,18 @@ class Trello_Backend {
 					echo '</td>';
 				} else {
 					?>
-    <td>
-      <label for="create_trello_board">
-        <input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
-        Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
-      </label>
-    </td>
-    <?php
+					<td>
+						<label for="create_trello_board">
+							<input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
+							Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
+						</label>
+					</td>
+					<?php
 				}
 				?>
-  </tr>
-</table>
-<?php
+			</tr>
+		</table>
+		<?php
 	}
 
 	/**
@@ -503,19 +503,41 @@ class Trello_Backend {
 				$project_details .= '<h3><strong>Channel Letters</strong></h3>';
 				$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $channelLetters['numberOfSigns'] ?? '' );
 				$project_details .= '<ul>';
-				$project_details .= "<li>Text & Content: " . ( $channelLetters['textAndContent'] ?? '' ) . "</li>";
-				$project_details .= "<li>Vendor: " . ( $channelLetters['vendor'] ?? '' ) . "</li>";
-				$project_details .= "<li>Sides: " . ( $channelLetters['sides'] ?? '' ) . "</li>";
-				$project_details .= "<li>Dimensions: " . ( $channelLetters['dimensions'] ?? '' ) . "</li>";
-				$project_details .= "<li>Maximum Content Area: " . ( $channelLetters['maxContentArea'] ?? '' ) . "</li>";
-				$project_details .= "<li>Minimum Content Area: " . ( $channelLetters['minContentArea'] ?? '' ) . "</li>";
-				$project_details .= "<li>Maximum Ground Clearance: " . ( $channelLetters['maxGroundClearance'] ?? '' ) . "</li>";
+				if ( ! empty( $channelLetters['textAndContent'] ) ) {
+					$project_details .= "<li>Text & Content: " . ( $channelLetters['textAndContent'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $channelLetters['vendor'] ) ) {
+					$project_details .= "<li>Vendor: " . ( $channelLetters['vendor'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $channelLetters['sides'] ) ) {
+					$project_details .= "<li>Sides: " . ( $channelLetters['sides'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $channelLetters['dimensions'] ) ) {
+					$project_details .= "<li>Dimensions: " . ( $channelLetters['dimensions'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $channelLetters['maxContentArea'] ) ) {
+					$project_details .= "<li>Maximum Content Area: " . ( $channelLetters['maxContentArea'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $channelLetters['minContentArea'] ) ) {
+					$project_details .= "<li>Minimum Content Area: " . ( $channelLetters['minContentArea'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $channelLetters['maxGroundClearance'] ) ) {
+					$project_details .= "<li>Maximum Ground Clearance: " . ( $channelLetters['maxGroundClearance'] ?? '' ) . "</li>";
+				}
 				$project_details .= '</ul>';
 				$project_details .= '</li>';
-				$project_details .= '<li><strong>Types:</strong> ' . $channelLetters_types . '</li>';
-				$project_details .= '<li><strong>Backer:</strong> ' . $channelLetters_backer . '</li>';
-				$project_details .= '<li><strong>Mounting:</strong> ' . $channelLetters_mounting . '</li>';
-				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $channelLetters_design ) . '</li>';
+				if ( ! empty( $channelLetters_types ) ) {
+					$project_details .= '<li><strong>Types:</strong> ' . $channelLetters_types . '</li>';
+				}
+				if ( ! empty( $channelLetters_backer ) ) {
+					$project_details .= '<li><strong>Backer:</strong> ' . $channelLetters_backer . '</li>';
+				}
+				if ( ! empty( $channelLetters_mounting ) ) {
+					$project_details .= '<li><strong>Mounting:</strong> ' . $channelLetters_mounting . '</li>';
+				}
+				if ( ! empty( $channelLetters_design ) ) {
+					$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $channelLetters_design ) . '</li>';
+				}
 				$project_details .= '</ul>';
 			}
 
@@ -541,19 +563,41 @@ class Trello_Backend {
 				$project_details .= '<h3><strong>Dimensional Letters</strong></h3>';
 				$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $dimensionalLetters['numberOfSigns'] ?? '' );
 				$project_details .= '<ul>';
-				$project_details .= "<li>Text & Content: " . ( $dimensionalLetters['textAndContent'] ?? '' ) . "</li>";
-				$project_details .= "<li>Font: " . ( $dimensionalLetters['font'] ?? '' ) . "</li>";
-				$project_details .= "<li>Vendor: " . ( $dimensionalLetters['vendor'] ?? '' ) . "</li>";
-				$project_details .= "<li>Wall Dimension: " . ( $dimensionalLetters['wallDimension'] ?? '' ) . "</li>";
-				$project_details .= "<li>Sign Dimension: " . ( $dimensionalLetters['signDimension'] ?? '' ) . "</li>";
-				$project_details .= "<li>Sides: " . ( $dimensionalLetters['sides'] ?? '' ) . "</li>";
-				$project_details .= "<li>Back Panel: " . ( $dimensionalLetters['backPanel'] ?? '' ) . "</li>";
-				$project_details .= "<li>Location: " . ( $dimensionalLetters['location'] ?? '' ) . "</li>";
+				if ( ! empty( $dimensionalLetters['textAndContent'] ) ) {
+					$project_details .= "<li>Text & Content: " . ( $dimensionalLetters['textAndContent'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $dimensionalLetters['font'] ) ) {
+					$project_details .= "<li>Font: " . ( $dimensionalLetters['font'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $dimensionalLetters['vendor'] ) ) {
+					$project_details .= "<li>Vendor: " . ( $dimensionalLetters['vendor'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $dimensionalLetters['wallDimension'] ) ) {
+					$project_details .= "<li>Wall Dimension: " . ( $dimensionalLetters['wallDimension'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $dimensionalLetters['signDimension'] ) ) {
+					$project_details .= "<li>Sign Dimension: " . ( $dimensionalLetters['signDimension'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $dimensionalLetters['sides'] ) ) {
+					$project_details .= "<li>Sides: " . ( $dimensionalLetters['sides'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $dimensionalLetters['backPanel'] ) ) {
+					$project_details .= "<li>Back Panel: " . ( $dimensionalLetters['backPanel'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $dimensionalLetters['location'] ) ) {
+					$project_details .= "<li>Location: " . ( $dimensionalLetters['location'] ?? '' ) . "</li>";
+				}
 				$project_details .= '</ul>';
 				$project_details .= '</li>';
-				$project_details .= '<li><strong>Types:</strong> ' . $dimensionalLetters_types . '</li>';
-				$project_details .= '<li><strong>Mounting:</strong> ' . $dimensionalLetters_mounting . '</li>';
-				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $dimensionalLetters_design ) . '</li>';
+				if ( ! empty( $dimensionalLetters_types ) ) {
+					$project_details .= '<li><strong>Types:</strong> ' . $dimensionalLetters_types . '</li>';
+				}
+				if ( ! empty( $dimensionalLetters_mounting ) ) {
+					$project_details .= '<li><strong>Mounting:</strong> ' . $dimensionalLetters_mounting . '</li>';
+				}
+				if ( ! empty( $dimensionalLetters_design ) ) {
+					$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $dimensionalLetters_design ) . '</li>';
+				}
 				$project_details .= '</ul>';
 			}
 
@@ -614,9 +658,79 @@ class Trello_Backend {
 				}
 
 				$project_details .= '<h3><strong>Vehicle Wrap</strong></h3>';
-				$project_details .= '<p><strong>Description:</strong></p><p>' . ( $vehicleWrap['description'] ?? '' ) . '</p>';
-				$project_details .= '<p><strong>Coverage:</strong> ' . ( $vehicleWrap['coverage'] ?? '' ) . '</p>';
-				$project_details .= '<p><strong>Design Inspiration:</strong> ' . implode( ", ", $vehicleWrap_design ) . '</p>';
+				$project_details .= '<ul><li><strong>Description:</strong></li><li>' . ( $vehicleWrap['description'] ?? '' ) . '</li>';
+				$project_details .= '<li><strong>Coverage:</strong> ' . ( $vehicleWrap['coverage'] ?? '' ) . '</li>';
+				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $vehicleWrap_design ) . '</li>';
+				$project_details .= '</ul>';
+			}
+
+			// --- Wall Vinyl ---
+			$wallVinyl = $jsonData['wallVinyl'] ?? [];
+			if ( ! empty( $_POST["wallVinyl"] ) && ! empty( $wallVinyl ) ) {
+				$wallVinyl_design = [];
+				if ( ! empty( $wallVinyl['designInspirations'] ) ) {
+					$inspirations_json = $wallVinyl['designInspirations'];
+					$inspirations = json_decode( stripslashes( $inspirations_json ), true );
+					if ( is_array( $inspirations ) ) {
+						foreach ( $inspirations as $inspiration ) {
+							if ( isset( $inspiration['url'] ) && isset( $inspiration['title'] ) ) {
+								$wallVinyl_design[] = '<a href="' . esc_url( $inspiration['url'] ) . '">' . esc_html( $inspiration['title'] ) . '</a>';
+							}
+						}
+					}
+				}
+
+				$project_details .= '<h3><strong>Wall Vinyl</strong></h3>';
+				$project_details .= '<ul><li><strong>Description:</strong><ul><li>' . ( $wallVinyl['description'] ?? '' ) . '</li></ul></li>';
+				$project_details .= '<li><strong>Type:</strong> ' . ( $wallVinyl['type'] ?? '' ) . '</li>';
+				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $wallVinyl_design ) . '</li>';
+				$project_details .= '</ul>';
+			}
+
+			// --- Print Cut ---
+			$printCut = $jsonData['printCut'] ?? [];
+			if ( ! empty( $_POST["printCut"] ) && ! empty( $printCut ) ) {
+				$printCut_design = [];
+				if ( ! empty( $printCut['designInspirations'] ) ) {
+					$inspirations_json = $printCut['designInspirations'];
+					$inspirations = json_decode( stripslashes( $inspirations_json ), true );
+					if ( is_array( $inspirations ) ) {
+						foreach ( $inspirations as $inspiration ) {
+							if ( isset( $inspiration['url'] ) && isset( $inspiration['title'] ) ) {
+								$printCut_design[] = '<a href="' . esc_url( $inspiration['url'] ) . '">' . esc_html( $inspiration['title'] ) . '</a>';
+							}
+						}
+					}
+				}
+
+				$project_details .= '<h3><strong>Print Cut</strong></h3>';
+				$project_details .= '<ul><li><strong>Description:</strong><ul><li>' . ( $printCut['description'] ?? '' ) . '</li></ul></li>';
+				$project_details .= '<li><strong>Type:</strong> ' . ( $printCut['type'] ?? '' ) . '</li>';
+				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $printCut_design ) . '</li>';
+				$project_details .= '</ul>';
+			}
+
+			// --- Logo Design ---
+			$logoDesign = $jsonData['logoDesign'] ?? [];
+			if ( ! empty( $_POST["logoDesign"] ) && ! empty( $logoDesign ) ) {
+				$logoDesign_design = [];
+				if ( ! empty( $logoDesign['designInspirations'] ) ) {
+					$inspirations_json = $logoDesign['designInspirations'];
+					$inspirations = json_decode( stripslashes( $inspirations_json ), true );
+					if ( is_array( $inspirations ) ) {
+						foreach ( $inspirations as $inspiration ) {
+							if ( isset( $inspiration['url'] ) && isset( $inspiration['title'] ) ) {
+								$logoDesign_design[] = '<a href="' . esc_url( $inspiration['url'] ) . '">' . esc_html( $inspiration['title'] ) . '</a>';
+							}
+						}
+					}
+				}
+
+				$project_details .= '<h3><strong>Logo Design</strong></h3>';
+				$project_details .= '<ul><li><strong>Description:</strong><ul><li>' . ( $logoDesign['description'] ?? '' ) . '</li></ul></li>';
+				if ( ! empty( $logoDesign_design ) ) {
+					$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $logoDesign_design ) . '</li>';
+				}
 				$project_details .= '</ul>';
 			}
 
@@ -708,6 +822,9 @@ class Trello_Backend {
 					update_post_meta( $post_id, 'product_dimensional_letters', $dimensionalLetters );
 					update_post_meta( $post_id, 'product_lightbox', $lightbox );
 					update_post_meta( $post_id, 'product_vehicle_wrap', $vehicleWrap );
+					update_post_meta( $post_id, 'product_wall_vinyl', $wallVinyl );
+					update_post_meta( $post_id, 'product_print_cut', $printCut );
+					update_post_meta( $post_id, 'product_logo_design', $logoDesign );
 					update_post_meta( $post_id, 'product_custom_job', $customJob );
 
 

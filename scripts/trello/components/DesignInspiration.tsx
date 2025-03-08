@@ -36,6 +36,10 @@ export default function DesignInspiration({
 }) {
 	const [tab, selectTab] = useState<string>(options[0]?.name || '');
 
+	if (options.length === 0) {
+		return null;
+	}
+
 	const isCurrent = (current: string, state: string): boolean => {
 		return current === state;
 	};

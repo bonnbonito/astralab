@@ -37,7 +37,8 @@ export default function FileUpload({ form }: FormType) {
 	const handleFileChange = (files: FileList | File[]) => {
 		const fileArray = Array.from(files);
 		if (fileArray.length) {
-			form.setValue('fileUpload', fileArray, {
+			const currentFiles = form.getValues('fileUpload') || [];
+			form.setValue('fileUpload', [...currentFiles, ...fileArray], {
 				shouldValidate: true,
 				shouldDirty: true,
 			});

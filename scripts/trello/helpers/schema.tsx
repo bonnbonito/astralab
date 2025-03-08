@@ -7,6 +7,9 @@ import { DimensionalLettersSchema } from '../components/products/DimensionalLett
 import { LightboxSchema } from '../components/products/Lightbox/schema';
 import { CustomJobSchema } from '../components/products/CustomJob/schema';
 import { VehicleWrapSchema } from '../components/products/VehicleWrap/schema';
+import { WallVinylSchema } from '../components/products/WallVinyl/schema';
+import { PrintCutSchema } from '../components/products/PrintCut/schema';
+import { LogoDesignSchema } from '../components/products/LogoDesign/schema';
 
 const formSchema = z
 	.object({
@@ -47,7 +50,10 @@ const formSchema = z
 	.and(DimensionalLettersSchema)
 	.and(LightboxSchema)
 	.and(CustomJobSchema)
-	.and(VehicleWrapSchema);
+	.and(VehicleWrapSchema)
+	.and(WallVinylSchema)
+	.and(PrintCutSchema)
+	.and(LogoDesignSchema);
 
 type FormSchema = z.infer<typeof formSchema>;
 
@@ -67,6 +73,9 @@ const formDefaultValues: FormSchema = {
 	hasLightbox: false,
 	hasCustomJob: false,
 	hasVehicleWrap: false,
+	hasWallVinyl: false,
+	hasPrintCut: false,
+	hasLogoDesign: false,
 };
 
 export { formDefaultValues, formSchema, type FormSchema };

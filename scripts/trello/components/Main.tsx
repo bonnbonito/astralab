@@ -10,6 +10,10 @@ import Lightbox from './products/Lightbox/Lightbox';
 import CustomJob from './products/CustomJob/CustomJob';
 import { FormType } from '@/trello/helpers/types';
 import VehicleWrap from './products/VehicleWrap/VehicleWrap';
+import WallVinyl from './products/WallVinyl/WallVinyl';
+import PrintCut from './products/PrintCut/PrintCut';
+import LogoDesign from './products/LogoDesign/LogoDesign';
+
 export default function Main({ form }: FormType) {
 	const productTypes = useWatch({
 		control: form.control,
@@ -51,15 +55,33 @@ export default function Main({ form }: FormType) {
 						</>
 					)}
 
-					{productType.component === 'CustomJob' && (
-						<>
-							<CustomJob form={form} product={productType.id} />
-						</>
-					)}
-
 					{productType.component === 'VehicleWrap' && (
 						<>
 							<VehicleWrap form={form} product={productType.id} />
+						</>
+					)}
+
+					{productType.component === 'WallVinyl' && (
+						<>
+							<WallVinyl form={form} product={productType.id} />
+						</>
+					)}
+
+					{productType.component === 'PrintCut' && (
+						<>
+							<PrintCut form={form} product={productType.id} />
+						</>
+					)}
+
+					{productType.component === 'LogoDesign' && (
+						<>
+							<LogoDesign form={form} product={productType.id} />
+						</>
+					)}
+
+					{productType.component === 'CustomJob' && (
+						<>
+							<CustomJob form={form} product={productType.id} />
 						</>
 					)}
 				</div>

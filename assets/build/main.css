@@ -41,8 +41,6 @@
     --text-lg--line-height: calc(1.75 / 1.125);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
-    --text-2xl: 1.5rem;
-    --text-2xl--line-height: calc(2 / 1.5);
     --text-3xl: 1.875rem;
     --text-3xl--line-height: calc(2.25 / 1.875);
     --font-weight-light: 300;
@@ -1175,9 +1173,6 @@
   .py-6 {
     padding-block: calc(var(--spacing) * 6);
   }
-  .py-8 {
-    padding-block: calc(var(--spacing) * 8);
-  }
   .py-10 {
     padding-block: calc(var(--spacing) * 10);
   }
@@ -1222,10 +1217,6 @@
   }
   .text-left {
     text-align: left;
-  }
-  .text-2xl {
-    font-size: var(--text-2xl);
-    line-height: var(--tw-leading, var(--text-2xl--line-height));
   }
   .text-3xl {
     font-size: var(--text-3xl);
@@ -1730,13 +1721,6 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-input);
-      }
-    }
-  }
-  .hover\:bg-muted {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-muted);
       }
     }
   }

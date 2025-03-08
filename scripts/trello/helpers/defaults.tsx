@@ -8,6 +8,9 @@ import SidebarDimensionalLetters from '@/trello/components/products/DimensionalL
 import SidebarLightbox from '@/trello/components/products/Lightbox/SidebarLightbox';
 import SidebarCustomJob from '@/trello/components/products/CustomJob/SidebarCustomJob';
 import SidebarVehicleWrap from '@/trello/components/products/VehicleWrap/SidebarVehicleWrap';
+import SidebarWallVinyl from '@/trello/components/products/WallVinyl/SidebarWallVinyl';
+import SidebarPrintCut from '@/trello/components/products/PrintCut/SidebarPrintCut';
+import SidebarLogoDesign from '@/trello/components/products/LogoDesign/SidebarLogoDesign';
 type SidebarComponent = ReactComponentType<{ form: UseFormReturn<FormSchema> }>;
 
 interface ComponentConfig {
@@ -44,6 +47,18 @@ export const COMPONENT_MAP = {
 	CustomJob: {
 		fieldName: 'hasCustomJob',
 		sidebar: SidebarCustomJob,
+	},
+	WallVinyl: {
+		fieldName: 'hasWallVinyl',
+		sidebar: SidebarWallVinyl,
+	},
+	PrintCut: {
+		fieldName: 'hasPrintCut',
+		sidebar: SidebarPrintCut,
+	},
+	LogoDesign: {
+		fieldName: 'hasLogoDesign',
+		sidebar: SidebarLogoDesign,
 	},
 } as const satisfies Record<string, ComponentConfig>;
 
