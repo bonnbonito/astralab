@@ -1432,6 +1432,11 @@
     -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: auto;
   }
+  .placeholder-gray-800 {
+    &::placeholder {
+      color: var(--color-gray-800);
+    }
+  }
   .opacity-0 {
     opacity: 0%;
   }
@@ -1647,6 +1652,11 @@
   .file\:text-foreground {
     &::file-selector-button {
       color: var(--color-foreground);
+    }
+  }
+  .placeholder\:text-gray-800 {
+    &::placeholder {
+      color: var(--color-gray-800);
     }
   }
   .placeholder\:text-muted-foreground {
@@ -2660,6 +2670,9 @@ p.mb-0 {
   }
 }
 textarea {
+  &::placeholder {
+    color: var(--color-gray-800);
+  }
   &:focus {
     border-style: var(--tw-border-style);
     border-width: 1px;
@@ -2687,6 +2700,11 @@ textarea {
     @media (hover: hover) {
       background-color: var(--color-gray-800);
     }
+  }
+}
+.placeholder-gray-800 {
+  &::placeholder {
+    color: var(--color-gray-800);
   }
 }
 .box {

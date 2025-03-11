@@ -88,7 +88,7 @@ p.mb-0 {
 }
 
 textarea {
-	@apply focus:border-black focus:border-solid focus:border;
+	@apply focus:border-black focus:border-solid focus:border placeholder:text-gray-800;
 }
 
 .text-white {
@@ -97,6 +97,10 @@ textarea {
 
 .button.bg-black {
 	@apply bg-black text-white w-full text-center hover:bg-gray-800 transition-all;
+}
+
+.placeholder-gray-800 {
+	@apply placeholder:text-gray-800;
 }
 
 .box {

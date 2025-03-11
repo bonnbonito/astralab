@@ -5,7 +5,7 @@
 		<input type="hidden" name="card_id" value="<?php echo esc_attr( $card_id ); ?>">
 		<div class="flex gap-4 items-center">
 			<textarea id="card_desc" name="card_desc" class="h-[100px] focus:border focus:border-solid focus:border-black"
-				required></textarea>
+				placeholder="Add a comment..." required></textarea>
 
 			<div class="min-w-[300px]">
 
