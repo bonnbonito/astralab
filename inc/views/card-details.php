@@ -110,7 +110,7 @@ function get_design_inspirations( $design_inspirations ) {
 
 					?>
 					<div class="mt-8">
-						<p class="uppercase text-lg mb-3">ADA WAYFINDING</p>
+						<h4 class="uppercase text-lg mb-3">ADA WAYFINDING</h4>
 						<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
 							<div class="font-semibold">NUMBER OF SIGNS</div>
 							<div><?php echo $ada['numberOfSigns']; ?></div>
@@ -135,42 +135,43 @@ function get_design_inspirations( $design_inspirations ) {
 								<?php echo get_design_inspirations( $ada['designInspirations'] ); ?>
 							</div>
 						</div>
-					<?php endif;
+					</div>
+				<?php endif;
 
 				$monuments = get_post_meta( $post_id, 'product_monuments', true );
 
 				if ( $monuments ) :
 					?>
 
-						<div class="mt-8">
-							<p class="uppercase text-lg mb-3">MONUMENTS & PYLONS</p>
-							<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
-								<div class="font-semibold">NUMBER OF SIGNS</div>
-								<div><?php echo $monuments['numberOfSigns']; ?></div>
-								<div class="font-semibold">SIGN TEXT & CONTEXT</div>
-								<div><?php echo $monuments['textAndContent']; ?></div>
-								<div class="font-semibold">SIDES</div>
-								<div><?php echo $monuments['sides']; ?></div>
-								<div class="font-semibold">DIMENSIONS</div>
-								<div><?php echo $monuments['dimensions']; ?></div>
-								<div class="font-semibold">MAX CONTENT AREA</div>
-								<div><?php echo $monuments['maxContentArea']; ?></div>
-								<div class="font-semibold">MIN CONTENT AREA</div>
-								<div><?php echo $monuments['minContentArea']; ?></div>
-								<div class="font-semibold">MAX GROUND CLEARANCE</div>
-								<div><?php echo $monuments['maxGroundClearance']; ?></div>
-								<div class="font-semibold">TYPES</div>
-								<div><?php echo output_array( $monuments['types'] ); ?></div>
-								<div class="font-semibold">ILLUMINATION</div>
-								<div><?php echo output_array( $monuments['illumination'] ); ?></div>
-								<div class="font-semibold">DESIGN INSPIRATIONS</div>
-								<div>
-									<?php echo get_design_inspirations( $monuments['designInspirations'] ); ?>
-								</div>
+					<div class="mt-8">
+						<h4 class="uppercase text-lg mb-3">MONUMENTS & PYLONS</h4>
+						<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
+							<div class="font-semibold">NUMBER OF SIGNS</div>
+							<div><?php echo $monuments['numberOfSigns']; ?></div>
+							<div class="font-semibold">SIGN TEXT & CONTEXT</div>
+							<div><?php echo $monuments['textAndContent']; ?></div>
+							<div class="font-semibold">SIDES</div>
+							<div><?php echo $monuments['sides']; ?></div>
+							<div class="font-semibold">DIMENSIONS</div>
+							<div><?php echo $monuments['dimensions']; ?></div>
+							<div class="font-semibold">MAX CONTENT AREA</div>
+							<div><?php echo $monuments['maxContentArea']; ?></div>
+							<div class="font-semibold">MIN CONTENT AREA</div>
+							<div><?php echo $monuments['minContentArea']; ?></div>
+							<div class="font-semibold">MAX GROUND CLEARANCE</div>
+							<div><?php echo $monuments['maxGroundClearance']; ?></div>
+							<div class="font-semibold">TYPES</div>
+							<div><?php echo output_array( $monuments['types'] ); ?></div>
+							<div class="font-semibold">ILLUMINATION</div>
+							<div><?php echo output_array( $monuments['illumination'] ); ?></div>
+							<div class="font-semibold">DESIGN INSPIRATIONS</div>
+							<div>
+								<?php echo get_design_inspirations( $monuments['designInspirations'] ); ?>
 							</div>
 						</div>
+					</div>
 
-						<?php
+					<?php
 				endif;
 
 				$channelLetters = get_post_meta( $post_id, 'product_channel_letters', true );
@@ -178,71 +179,71 @@ function get_design_inspirations( $design_inspirations ) {
 
 					?>
 
-						<div class="mt-8">
-							<h4 class="uppercase text-lg mb-3">CHANNEL LETTERS</h4>
-							<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
-								<div class="font-semibold">NUMBER OF SIGNS</div>
-								<div><?php echo $channelLetters['numberOfSigns']; ?></div>
-								<?php if ( isset( $channelLetters['textAndContent'] ) && ! empty( $channelLetters['textAndContent'] ) && $channelLetters['textAndContent'] !== 'undefined' ) : ?>
-									<div class="font-semibold">SIGN TEXT & CONTEXT</div>
-									<div><?php echo $channelLetters['textAndContent']; ?></div>
-								<?php endif; ?>
-								<?php if ( isset( $channelLetters['font'] ) && ! empty( $channelLetters['font'] ) && $channelLetters['font'] !== 'undefined' ) : ?>
-									<div class="font-semibold">FONT</div>
-									<div><?php echo $channelLetters['font'] ?? ''; ?></div>
-								<?php endif; ?>
-								<?php if ( isset( $channelLetters['wallDimension'] ) && ! empty( $channelLetters['wallDimension'] ) && $channelLetters['wallDimension'] !== 'undefined' ) : ?>
-									<div class="font-semibold">WALL DIMENSION</div>
-									<div><?php echo $channelLetters['wallDimension']; ?></div>
-								<?php endif; ?>
-								<?php if ( isset( $channelLetters['signDimension'] ) && ! empty( $channelLetters['signDimension'] ) && $channelLetters['signDimension'] !== 'undefined' ) : ?>
-									<div class="font-semibold">SIGN DIMENSION</div>
-									<div><?php echo $channelLetters['signDimension']; ?></div>
-								<?php endif; ?>
-								<?php if ( isset( $channelLetters['material'] ) && ! empty( $channelLetters['material'] ) && $channelLetters['material'] !== 'undefined' ) : ?>
-									<div class="font-semibold">material</div>
-									<div><?php echo $channelLetters['material']; ?></div>
-								<?php endif; ?>
-								<?php if ( isset( $channelLetters['trimCapColor'] ) && ! empty( $channelLetters['trimCapColor'] ) && $channelLetters['trimCapColor'] !== 'undefined' ) : ?>
-									<div class="font-semibold">TRIM CAP COLOR</div>
-									<div><?php echo $channelLetters['trimCapColor']; ?></div>
-								<?php endif; ?>
-								<?php if ( isset( $channelLetters['faceColor'] ) && ! empty( $channelLetters['faceColor'] ) && $channelLetters['faceColor'] !== 'undefined' ) : ?>
-									<div class="font-semibold">FACE COLOR</div>
-									<div><?php echo $channelLetters['faceColor']; ?></div>
-								<?php endif; ?>
-								<?php if ( isset( $channelLetters['returnColor'] ) && ! empty( $channelLetters['returnColor'] ) && $channelLetters['returnColor'] !== 'undefined' ) : ?>
-									<div class="font-semibold">RETURN COLOR</div>
-									<div><?php echo $channelLetters['returnColor']; ?></div>
-								<?php endif; ?>
-								<?php if ( isset( $channelLetters['returnDepth'] ) && ! empty( $channelLetters['returnDepth'] ) && $channelLetters['returnDepth'] !== 'undefined' ) : ?>
-									<div class="font-semibold">RETURN DEPTH</div>
-									<div><?php echo $channelLetters['returnDepth']; ?></div>
-								<?php endif; ?>
-								<?php if ( isset( $channelLetters['types'] ) && ! empty( $channelLetters['types'] ) && $channelLetters['types'] !== 'undefined' ) : ?>
-									<div class="font-semibold">TYPES</div>
-									<div>
-										<?php echo output_array( $channelLetters['types'] ); ?>
-									</div>
-								<?php endif; ?>
-								<?php if ( isset( $channelLetters['backer'] ) && ! empty( $channelLetters['backer'] ) && $channelLetters['backer'] !== 'undefined' ) : ?>
-									<div class="font-semibold">BACKER</div>
-									<div><?php echo output_array( $channelLetters['backer'] ); ?></div>
-								<?php endif; ?>
-								<?php if ( isset( $channelLetters['mounting'] ) && ! empty( $channelLetters['mounting'] ) && $channelLetters['mounting'] !== 'undefined' ) : ?>
-									<div class="font-semibold">MOUNTING</div>
-									<div><?php echo output_array( $channelLetters['mounting'] ); ?></div>
-								<?php endif; ?>
-								<?php if ( isset( $channelLetters['designInspirations'] ) && ! empty( $channelLetters['designInspirations'] ) && $channelLetters['designInspirations'] !== 'undefined' ) : ?>
-									<div class="font-semibold">DESIGN INSPIRATIONS</div>
-									<div>
-										<?php echo get_design_inspirations( $channelLetters['designInspirations'] ); ?>
-									</div>
-								<?php endif; ?>
-							</div>
+					<div class="mt-8">
+						<h4 class="uppercase text-lg mb-3">CHANNEL LETTERS</h4>
+						<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
+							<div class="font-semibold">NUMBER OF SIGNS</div>
+							<div><?php echo $channelLetters['numberOfSigns']; ?></div>
+							<?php if ( isset( $channelLetters['textAndContent'] ) && ! empty( $channelLetters['textAndContent'] ) && $channelLetters['textAndContent'] !== 'undefined' ) : ?>
+								<div class="font-semibold">SIGN TEXT & CONTEXT</div>
+								<div><?php echo $channelLetters['textAndContent']; ?></div>
+							<?php endif; ?>
+							<?php if ( isset( $channelLetters['font'] ) && ! empty( $channelLetters['font'] ) && $channelLetters['font'] !== 'undefined' ) : ?>
+								<div class="font-semibold">FONT</div>
+								<div><?php echo $channelLetters['font'] ?? ''; ?></div>
+							<?php endif; ?>
+							<?php if ( isset( $channelLetters['wallDimension'] ) && ! empty( $channelLetters['wallDimension'] ) && $channelLetters['wallDimension'] !== 'undefined' ) : ?>
+								<div class="font-semibold">WALL DIMENSION</div>
+								<div><?php echo $channelLetters['wallDimension']; ?></div>
+							<?php endif; ?>
+							<?php if ( isset( $channelLetters['signDimension'] ) && ! empty( $channelLetters['signDimension'] ) && $channelLetters['signDimension'] !== 'undefined' ) : ?>
+								<div class="font-semibold">SIGN DIMENSION</div>
+								<div><?php echo $channelLetters['signDimension']; ?></div>
+							<?php endif; ?>
+							<?php if ( isset( $channelLetters['material'] ) && ! empty( $channelLetters['material'] ) && $channelLetters['material'] !== 'undefined' ) : ?>
+								<div class="font-semibold">material</div>
+								<div><?php echo $channelLetters['material']; ?></div>
+							<?php endif; ?>
+							<?php if ( isset( $channelLetters['trimCapColor'] ) && ! empty( $channelLetters['trimCapColor'] ) && $channelLetters['trimCapColor'] !== 'undefined' ) : ?>
+								<div class="font-semibold">TRIM CAP COLOR</div>
+								<div><?php echo $channelLetters['trimCapColor']; ?></div>
+							<?php endif; ?>
+							<?php if ( isset( $channelLetters['faceColor'] ) && ! empty( $channelLetters['faceColor'] ) && $channelLetters['faceColor'] !== 'undefined' ) : ?>
+								<div class="font-semibold">FACE COLOR</div>
+								<div><?php echo $channelLetters['faceColor']; ?></div>
+							<?php endif; ?>
+							<?php if ( isset( $channelLetters['returnColor'] ) && ! empty( $channelLetters['returnColor'] ) && $channelLetters['returnColor'] !== 'undefined' ) : ?>
+								<div class="font-semibold">RETURN COLOR</div>
+								<div><?php echo $channelLetters['returnColor']; ?></div>
+							<?php endif; ?>
+							<?php if ( isset( $channelLetters['returnDepth'] ) && ! empty( $channelLetters['returnDepth'] ) && $channelLetters['returnDepth'] !== 'undefined' ) : ?>
+								<div class="font-semibold">RETURN DEPTH</div>
+								<div><?php echo $channelLetters['returnDepth']; ?></div>
+							<?php endif; ?>
+							<?php if ( isset( $channelLetters['types'] ) && ! empty( $channelLetters['types'] ) && $channelLetters['types'] !== 'undefined' ) : ?>
+								<div class="font-semibold">TYPES</div>
+								<div>
+									<?php echo output_array( $channelLetters['types'] ); ?>
+								</div>
+							<?php endif; ?>
+							<?php if ( isset( $channelLetters['backer'] ) && ! empty( $channelLetters['backer'] ) && $channelLetters['backer'] !== 'undefined' ) : ?>
+								<div class="font-semibold">BACKER</div>
+								<div><?php echo output_array( $channelLetters['backer'] ); ?></div>
+							<?php endif; ?>
+							<?php if ( isset( $channelLetters['mounting'] ) && ! empty( $channelLetters['mounting'] ) && $channelLetters['mounting'] !== 'undefined' ) : ?>
+								<div class="font-semibold">MOUNTING</div>
+								<div><?php echo output_array( $channelLetters['mounting'] ); ?></div>
+							<?php endif; ?>
+							<?php if ( isset( $channelLetters['designInspirations'] ) && ! empty( $channelLetters['designInspirations'] ) && $channelLetters['designInspirations'] !== 'undefined' ) : ?>
+								<div class="font-semibold">DESIGN INSPIRATIONS</div>
+								<div>
+									<?php echo get_design_inspirations( $channelLetters['designInspirations'] ); ?>
+								</div>
+							<?php endif; ?>
 						</div>
+					</div>
 
-						<?php
+					<?php
 				endif;
 
 
@@ -250,194 +251,192 @@ function get_design_inspirations( $design_inspirations ) {
 				if ( $dimensionalLetters ) :
 					?>
 
-						<div class="mt-8">
-							<p class="uppercase text-lg mb-3">DIMENSIONAL LETTERS</p>
-							<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
-								<div class="font-semibold">NUMBER OF SIGNS</div>
-								<div><?php echo $dimensionalLetters['numberOfSigns']; ?></div>
-								<div class="font-semibold">SIGN TEXT & CONTEXT</div>
-								<div><?php echo $dimensionalLetters['textAndContent']; ?></div>
-								<div class="font-semibold">FONT</div>
-								<div><?php echo $dimensionalLetters['font'] ?? ''; ?></div>
-								<div class="font-semibold">WALL DIMENSION</div>
-								<div><?php echo $dimensionalLetters['wallDimension']; ?></div>
-								<div class="font-semibold">SIGN DIMENSION</div>
-								<div><?php echo $dimensionalLetters['signDimension']; ?></div>
-								<div class="font-semibold">SIDES</div>
-								<div><?php echo $dimensionalLetters['sides']; ?></div>
-								<div class="font-semibold">BACK PANEL</div>
-								<div><?php echo $dimensionalLetters['backPanel']; ?></div>
-								<div class="font-semibold">LOCATION</div>
-								<div><?php echo $dimensionalLetters['location']; ?></div>
-								<div class="font-semibold">TYPES</div>
-								<div>
-									<?php echo output_array( $dimensionalLetters['types'] ); ?>
-								</div>
-								<div class="font-semibold">MOUNTING</div>
-								<div><?php echo output_array( $dimensionalLetters['mounting'] ); ?></div>
-								<div class="font-semibold">DESIGN INSPIRATIONS</div>
-								<div>
-									<?php echo get_design_inspirations( $dimensionalLetters['designInspirations'] ); ?>
-								</div>
+					<div class="mt-8">
+						<h4 class="uppercase text-lg mb-3">DIMENSIONAL LETTERS</h4>
+						<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
+							<div class="font-semibold">NUMBER OF SIGNS</div>
+							<div><?php echo $dimensionalLetters['numberOfSigns']; ?></div>
+							<div class="font-semibold">SIGN TEXT & CONTEXT</div>
+							<div><?php echo $dimensionalLetters['textAndContent']; ?></div>
+							<div class="font-semibold">FONT</div>
+							<div><?php echo $dimensionalLetters['font'] ?? ''; ?></div>
+							<div class="font-semibold">WALL DIMENSION</div>
+							<div><?php echo $dimensionalLetters['wallDimension']; ?></div>
+							<div class="font-semibold">SIGN DIMENSION</div>
+							<div><?php echo $dimensionalLetters['signDimension']; ?></div>
+							<div class="font-semibold">SIDES</div>
+							<div><?php echo $dimensionalLetters['sides']; ?></div>
+							<div class="font-semibold">BACK PANEL</div>
+							<div><?php echo $dimensionalLetters['backPanel']; ?></div>
+							<div class="font-semibold">LOCATION</div>
+							<div><?php echo $dimensionalLetters['location']; ?></div>
+							<div class="font-semibold">TYPES</div>
+							<div>
+								<?php echo output_array( $dimensionalLetters['types'] ); ?>
+							</div>
+							<div class="font-semibold">MOUNTING</div>
+							<div><?php echo output_array( $dimensionalLetters['mounting'] ); ?></div>
+							<div class="font-semibold">DESIGN INSPIRATIONS</div>
+							<div>
+								<?php echo get_design_inspirations( $dimensionalLetters['designInspirations'] ); ?>
 							</div>
 						</div>
+					</div>
 
-						<?php
+					<?php
 				endif;
 
 				$lightbox = get_post_meta( $post_id, 'product_lightbox', true );
 				if ( $lightbox ) :
 					?>
 
-						<div class="mt-8">
-							<p class="uppercase text-lg mb-3">LIGHTBOX</p>
-							<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
-								<div class="font-semibold">NUMBER OF SIGNS</div>
-								<div><?php echo $lightbox['numberOfSigns']; ?></div>
-								<div class="font-semibold">SIGN TEXT & CONTEXT</div>
-								<div><?php echo $lightbox['textAndContent']; ?></div>
-								<div class="font-semibold">FONT</div>
-								<div><?php echo $lightbox['font'] ?? ''; ?></div>
-								<div class="font-semibold">WALL DIMENSION</div>
-								<div><?php echo $lightbox['wallDimension']; ?></div>
-								<div class="font-semibold">SIGN DIMENSION</div>
-								<div><?php echo $lightbox['signDimension']; ?></div>
-								<div class="font-semibold">DEPTH</div>
-								<div><?php echo $lightbox['depth']; ?></div>
-								<div class="font-semibold">SIDES</div>
-								<div><?php echo $lightbox['sides']; ?></div>
-								<div class="font-semibold">COLOR</div>
-								<div><?php echo $lightbox['color']; ?></div>
-								<div class="font-semibold">RETAINERS</div>
-								<div><?php echo $lightbox['retainers']; ?></div>
-								<div class="font-semibold">TYPES</div>
-								<div>
-									<?php echo output_array( $lightbox['types'] ); ?>
-								</div>
-								<div class="font-semibold">MOUNTING</div>
+					<div class="mt-8">
+						<h4 class="uppercase text-lg mb-3">LIGHTBOX</h4>
+						<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
+							<div class="font-semibold">NUMBER OF SIGNS</div>
+							<div><?php echo $lightbox['numberOfSigns']; ?></div>
+							<div class="font-semibold">SIGN TEXT & CONTEXT</div>
+							<div><?php echo $lightbox['textAndContent']; ?></div>
+							<div class="font-semibold">FONT</div>
+							<div><?php echo $lightbox['font'] ?? ''; ?></div>
+							<div class="font-semibold">WALL DIMENSION</div>
+							<div><?php echo $lightbox['wallDimension']; ?></div>
+							<div class="font-semibold">SIGN DIMENSION</div>
+							<div><?php echo $lightbox['signDimension']; ?></div>
+							<div class="font-semibold">DEPTH</div>
+							<div><?php echo $lightbox['depth']; ?></div>
+							<div class="font-semibold">SIDES</div>
+							<div><?php echo $lightbox['sides']; ?></div>
+							<div class="font-semibold">COLOR</div>
+							<div><?php echo $lightbox['color']; ?></div>
+							<div class="font-semibold">RETAINERS</div>
+							<div><?php echo $lightbox['retainers']; ?></div>
+							<div class="font-semibold">TYPES</div>
+							<div>
+								<?php echo output_array( $lightbox['types'] ); ?>
+							</div>
+							<div class="font-semibold">MOUNTING</div>
 
-								<div><?php echo $lightbox['mounting']; ?></div>
-								<div class="font-semibold">DESIGN INSPIRATIONS</div>
-								<div>
-									<?php echo get_design_inspirations( $lightbox['designInspirations'] ); ?>
-								</div>
+							<div><?php echo $lightbox['mounting']; ?></div>
+							<div class="font-semibold">DESIGN INSPIRATIONS</div>
+							<div>
+								<?php echo get_design_inspirations( $lightbox['designInspirations'] ); ?>
 							</div>
 						</div>
+					</div>
 
-						<?php
+					<?php
 				endif;
 
 				$vehicleWrap = get_post_meta( $post_id, 'product_vehicle_wrap', true );
 				if ( $vehicleWrap ) :
 					?>
 
-						<div class="mt-8">
-							<p class="uppercase text-lg mb-3">VEHICLE WRAP</p>
-							<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
-								<div class="font-semibold">DESCRIPTION</div>
-								<div><?php echo $vehicleWrap['description']; ?></div>
-								<div class="font-semibold">COVERAGE</div>
-								<div><?php echo $vehicleWrap['coverage']; ?></div>
-								<div class="font-semibold">DESIGN INSPIRATIONS</div>
-								<div>
-									<?php echo get_design_inspirations( $vehicleWrap['designInspirations'] ); ?>
-								</div>
+					<div class="mt-8">
+						<h4 class="uppercase text-lg mb-3">VEHICLE WRAP</h4>
+						<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
+							<div class="font-semibold">DESCRIPTION</div>
+							<div><?php echo $vehicleWrap['description']; ?></div>
+							<div class="font-semibold">COVERAGE</div>
+							<div><?php echo $vehicleWrap['coverage']; ?></div>
+							<div class="font-semibold">DESIGN INSPIRATIONS</div>
+							<div>
+								<?php echo get_design_inspirations( $vehicleWrap['designInspirations'] ); ?>
 							</div>
 						</div>
+					</div>
 
-						<?php
+					<?php
 				endif;
 
 				$wallVinyl = get_post_meta( $post_id, 'product_wall_vinyl', true );
 				if ( $wallVinyl ) :
 					?>
 
-						<div class="mt-8">
-							<p class="uppercase text-lg mb-3">WALL VINYL</p>
-							<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
-								<div class="font-semibold">DESCRIPTION</div>
-								<div><?php echo $wallVinyl['description']; ?></div>
-								<div class="font-semibold">TYPE</div>
-								<div><?php echo $wallVinyl['type']; ?></div>
-								<?php if ( isset( $wallVinyl['designInspirations'] ) && ! empty( $wallVinyl['designInspirations'] ) ) : ?>
-									<div class="font-semibold">DESIGN INSPIRATIONS</div>
-									<div>
-										<?php echo get_design_inspirations( $wallVinyl['designInspirations'] ); ?>
-									</div>
-								<?php endif; ?>
-							</div>
+					<div class="mt-8">
+						<h4 class="uppercase text-lg mb-3">WALL VINYL</h4>
+						<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
+							<div class="font-semibold">DESCRIPTION</div>
+							<div><?php echo $wallVinyl['description']; ?></div>
+							<div class="font-semibold">TYPE</div>
+							<div><?php echo $wallVinyl['type']; ?></div>
+							<?php if ( isset( $wallVinyl['designInspirations'] ) && ! empty( $wallVinyl['designInspirations'] ) ) : ?>
+								<div class="font-semibold">DESIGN INSPIRATIONS</div>
+								<div>
+									<?php echo get_design_inspirations( $wallVinyl['designInspirations'] ); ?>
+								</div>
+							<?php endif; ?>
 						</div>
+					</div>
 
-						<?php
+					<?php
 				endif;
 
 				$printCut = get_post_meta( $post_id, 'product_print_cut', true );
 				if ( $printCut ) :
 					?>
 
-						<div class="mt-8">
-							<p class="uppercase text-lg mb-3">PRINT CUT</p>
-							<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
-								<div class="font-semibold">DESCRIPTION</div>
-								<div><?php echo $printCut['description']; ?></div>
-								<div class="font-semibold">TYPE</div>
-								<div><?php echo $printCut['type']; ?></div>
-								<?php if ( isset( $printCut['designInspirations'] ) && ! empty( $printCut['designInspirations'] ) ) : ?>
-									<div class="font-semibold">DESIGN INSPIRATIONS</div>
-									<div>
-										<?php echo get_design_inspirations( $printCut['designInspirations'] ); ?>
-									</div>
-								<?php endif; ?>
-							</div>
+					<div class="mt-8">
+						<h4 class="uppercase text-lg mb-3">PRINT CUT</h4>
+						<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
+							<div class="font-semibold">DESCRIPTION</div>
+							<div><?php echo $printCut['description']; ?></div>
+							<div class="font-semibold">TYPE</div>
+							<div><?php echo $printCut['type']; ?></div>
+							<?php if ( isset( $printCut['designInspirations'] ) && ! empty( $printCut['designInspirations'] ) ) : ?>
+								<div class="font-semibold">DESIGN INSPIRATIONS</div>
+								<div>
+									<?php echo get_design_inspirations( $printCut['designInspirations'] ); ?>
+								</div>
+							<?php endif; ?>
 						</div>
+					</div>
 
-						<?php
+					<?php
 				endif;
 
 				$logoDesign = get_post_meta( $post_id, 'product_logo_design', true );
 				if ( $logoDesign ) :
 					?>
 
-						<div class="mt-8">
-							<p class="uppercase text-lg mb-3">LOGO DESIGN</p>
-							<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
-								<div class="font-semibold">DESCRIPTION</div>
-								<div><?php echo $logoDesign['description']; ?></div>
-								<?php if ( isset( $logoDesign['designInspirations'] ) && ! empty( $logoDesign['designInspirations'] ) ) : ?>
-									<div class="font-semibold">DESIGN INSPIRATIONS</div>
-									<div>
-										<?php echo get_design_inspirations( $logoDesign['designInspirations'] ); ?>
-									</div>
-								<?php endif; ?>
-							</div>
+					<div class="mt-8">
+						<h4 class="uppercase text-lg mb-3">LOGO DESIGN</h4>
+						<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
+							<div class="font-semibold">DESCRIPTION</div>
+							<div><?php echo $logoDesign['description']; ?></div>
+							<?php if ( isset( $logoDesign['designInspirations'] ) && ! empty( $logoDesign['designInspirations'] ) ) : ?>
+								<div class="font-semibold">DESIGN INSPIRATIONS</div>
+								<div>
+									<?php echo get_design_inspirations( $logoDesign['designInspirations'] ); ?>
+								</div>
+							<?php endif; ?>
 						</div>
+					</div>
 
-						<?php
+					<?php
 				endif;
 
 				$customJob = get_post_meta( $post_id, 'product_custom_job', true );
 				if ( $customJob ) :
 					?>
 
-						<div class="mt-8">
-							<p class="uppercase text-lg mb-3">CUSTOM JOB</p>
-							<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
-								<div class="font-semibold">DESCRIPTION</div>
-								<div><?php echo $customJob['description']; ?></div>
-								<div class="font-semibold">DESIGN INSPIRATIONS</div>
-								<div>
-									<?php echo get_design_inspirations( $customJob['designInspirations'] ); ?>
-								</div>
+					<div class="mt-8">
+						<h4 class="uppercase text-lg mb-3">CUSTOM JOB</h4>
+						<div class="grid grid-cols-[200px_1fr] gap-x-8 gap-y-1">
+							<div class="font-semibold">DESCRIPTION</div>
+							<div><?php echo $customJob['description']; ?></div>
+							<div class="font-semibold">DESIGN INSPIRATIONS</div>
+							<div>
+								<?php echo get_design_inspirations( $customJob['designInspirations'] ); ?>
 							</div>
 						</div>
-						<?php
+					</div>
+					<?php
 				endif;
 
 				?>
 
-				</div>
 			</div>
-
 		</div>
 
 		<div class="min-w-[300px]">
@@ -451,5 +450,9 @@ function get_design_inspirations( $design_inspirations ) {
 		</div>
 
 	</div>
+
+
+
+</div>
 
 </div>

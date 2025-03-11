@@ -87,6 +87,18 @@ p.mb-0 {
 	}
 }
 
+textarea {
+	@apply focus:border-black focus:border-solid focus:border;
+}
+
+.text-white {
+	@apply text-white;
+}
+
+.button.bg-black {
+	@apply bg-black text-white w-full text-center hover:bg-gray-800 transition-all;
+}
+
 .box {
 	border: 1px solid #999;
 	border-radius: 10px;

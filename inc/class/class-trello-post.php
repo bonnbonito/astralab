@@ -87,7 +87,7 @@ class Trello_Post {
 		add_settings_section(
 			'astralab_trello_section',
 			'Configure Trello API Credentials',
-			null,
+			array( $this, 'render_trello_section_description' ),
 			'astralab-trello-settings'
 		);
 
@@ -142,6 +142,13 @@ class Trello_Post {
 		$value = isset( $options['trello_webhook_callback'] ) ? esc_url( $options['trello_webhook_callback'] ) : '';
 		echo "<input type='url' name='{$this->option_name}[trello_webhook_callback]' value='{$value}' class='regular-text' placeholder='https://example.com/trello-webhook-handler' />";
 		echo "<p class='description'>Publicly accessible HTTPS URL for Trello to send webhook events.</p>";
+	}
+
+	/**
+	 * Render the description for the Trello settings section.
+	 */
+	public function render_trello_section_description() {
+		echo '<p>Enter your Trello API credentials below to enable integration with Trello.</p>';
 	}
 
 	/**

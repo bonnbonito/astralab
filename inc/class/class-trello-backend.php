@@ -195,11 +195,11 @@ class Trello_Backend {
 		$trello_list_id = get_user_meta( $user->ID, 'trello_list_id', true );
 
 		?>
-		<h2>Create Trello Board</h2>
-		<table class="form-table">
-			<tr>
-				<th scope="row"><label for="create_trello_board">Trello Board</label></th>
-				<?php
+<h2>Create Trello Board</h2>
+<table class="form-table">
+  <tr>
+    <th scope="row"><label for="create_trello_board">Trello Board</label></th>
+    <?php
 				if ( ! empty( $trello_board_id ) ) {
 					echo '<td>
 					<p><strong>Trello Board ID:</strong> ' . esc_html( $trello_board_id ) . ' <a href="' . esc_url( $trello_url ) . '" target="_blank">View Board</a></p>';
@@ -209,18 +209,18 @@ class Trello_Backend {
 					echo '</td>';
 				} else {
 					?>
-					<td>
-						<label for="create_trello_board">
-							<input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
-							Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
-						</label>
-					</td>
-					<?php
+    <td>
+      <label for="create_trello_board">
+        <input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
+        Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
+      </label>
+    </td>
+    <?php
 				}
 				?>
-			</tr>
-		</table>
-		<?php
+  </tr>
+</table>
+<?php
 	}
 
 	/**
@@ -435,8 +435,12 @@ class Trello_Backend {
 					$project_details .= '</ul>';
 				}
 				$project_details .= '</li>';
-				$project_details .= '<li><strong>Types:</strong> ' . $ada_types . '</li>';
-				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $ada_design ) . '</li>';
+				if ( ! empty( $ada_types ) ) {
+					$project_details .= '<li><strong>Types:</strong> ' . $ada_types . '</li>';
+				}
+				if ( ! empty( $ada_design ) ) {
+					$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $ada_design ) . '</li>';
+				}
 				$project_details .= '</ul>';
 			}
 
@@ -463,18 +467,38 @@ class Trello_Backend {
 				$project_details .= '<h3><strong>Monuments & Pylons</strong></h3>';
 				$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $monuments['numberOfSigns'] ?? '' );
 				$project_details .= '<ul>';
-				$project_details .= "<li>Text & Content: " . ( $monuments['textAndContent'] ?? '' ) . "</li>";
-				$project_details .= "<li>Vendor: " . ( $monuments['vendor'] ?? '' ) . "</li>";
-				$project_details .= "<li>Sides: " . ( $monuments['sides'] ?? '' ) . "</li>";
-				$project_details .= "<li>Dimensions: " . ( $monuments['dimensions'] ?? '' ) . "</li>";
-				$project_details .= "<li>Maximum Content Area: " . ( $monuments['maxContentArea'] ?? '' ) . "</li>";
-				$project_details .= "<li>Minimum Content Area: " . ( $monuments['minContentArea'] ?? '' ) . "</li>";
-				$project_details .= "<li>Maximum Ground Clearance: " . ( $monuments['maxGroundClearance'] ?? '' ) . "</li>";
+				if ( ! empty( $monuments['textAndContent'] ) ) {
+					$project_details .= "<li>Text & Content: " . ( $monuments['textAndContent'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $monuments['vendor'] ) ) {
+					$project_details .= "<li>Vendor: " . ( $monuments['vendor'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $monuments['sides'] ) ) {
+					$project_details .= "<li>Sides: " . ( $monuments['sides'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $monuments['dimensions'] ) ) {
+					$project_details .= "<li>Dimensions: " . ( $monuments['dimensions'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $monuments['maxContentArea'] ) ) {
+					$project_details .= "<li>Maximum Content Area: " . ( $monuments['maxContentArea'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $monuments['minContentArea'] ) ) {
+					$project_details .= "<li>Minimum Content Area: " . ( $monuments['minContentArea'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $monuments['maxGroundClearance'] ) ) {
+					$project_details .= "<li>Maximum Ground Clearance: " . ( $monuments['maxGroundClearance'] ?? '' ) . "</li>";
+				}
 				$project_details .= '</ul>';
 				$project_details .= '</li>';
-				$project_details .= '<li><strong>Types:</strong> ' . $monuments_types . '</li>';
-				$project_details .= '<li><strong>Illumination:</strong> ' . $illumination . '</li>';
-				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $monuments_design ) . '</li>';
+				if ( ! empty( $monuments_types ) ) {
+					$project_details .= '<li><strong>Types:</strong> ' . $monuments_types . '</li>';
+				}
+				if ( ! empty( $illumination ) ) {
+					$project_details .= '<li><strong>Illumination:</strong> ' . $illumination . '</li>';
+				}
+				if ( ! empty( $monuments_design ) ) {
+					$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $monuments_design ) . '</li>';
+				}
 				$project_details .= '</ul>';
 			}
 
@@ -624,19 +648,41 @@ class Trello_Backend {
 				$project_details .= '<h3><strong>Lightbox</strong></h3>';
 				$project_details .= '<ul><li><strong>No. of Signs:</strong> ' . ( $lightbox['numberOfSigns'] ?? '' );
 				$project_details .= '<ul>';
-				$project_details .= "<li>Text & Content: " . ( $lightbox['textAndContent'] ?? '' ) . "</li>";
-				$project_details .= "<li>Font: " . ( $lightbox['font'] ?? '' ) . "</li>";
-				$project_details .= "<li>Wall Dimension: " . ( $lightbox['wallDimension'] ?? '' ) . "</li>";
-				$project_details .= "<li>Sign Dimension: " . ( $lightbox['signDimension'] ?? '' ) . "</li>";
-				$project_details .= "<li>Depth: " . ( $lightbox['depth'] ?? '' ) . "</li>";
-				$project_details .= "<li>Sides: " . ( $lightbox['sides'] ?? '' ) . "</li>";
-				$project_details .= "<li>Color: " . ( $lightbox['color'] ?? '' ) . "</li>";
-				$project_details .= "<li>Retainers: " . ( $lightbox['retainers'] ?? '' ) . "</li>";
+				if ( ! empty( $lightbox['textAndContent'] ) ) {
+					$project_details .= "<li>Text & Content: " . ( $lightbox['textAndContent'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $lightbox['font'] ) ) {
+					$project_details .= "<li>Font: " . ( $lightbox['font'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $lightbox['wallDimension'] ) ) {
+					$project_details .= "<li>Wall Dimension: " . ( $lightbox['wallDimension'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $lightbox['signDimension'] ) ) {
+					$project_details .= "<li>Sign Dimension: " . ( $lightbox['signDimension'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $lightbox['depth'] ) ) {
+					$project_details .= "<li>Depth: " . ( $lightbox['depth'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $lightbox['sides'] ) ) {
+					$project_details .= "<li>Sides: " . ( $lightbox['sides'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $lightbox['color'] ) ) {
+					$project_details .= "<li>Color: " . ( $lightbox['color'] ?? '' ) . "</li>";
+				}
+				if ( ! empty( $lightbox['retainers'] ) ) {
+					$project_details .= "<li>Retainers: " . ( $lightbox['retainers'] ?? '' ) . "</li>";
+				}
 				$project_details .= '</ul>';
 				$project_details .= '</li>';
-				$project_details .= '<li><strong>Types:</strong> ' . $lightbox_types . '</li>';
-				$project_details .= '<li><strong>Mounting:</strong> ' . $lightbox_mounting . '</li>';
-				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $lightbox_design ) . '</li>';
+				if ( ! empty( $lightbox_types ) ) {
+					$project_details .= '<li><strong>Types:</strong> ' . $lightbox_types . '</li>';
+				}
+				if ( ! empty( $lightbox_mounting ) ) {
+					$project_details .= '<li><strong>Mounting:</strong> ' . $lightbox_mounting . '</li>';
+				}
+				if ( ! empty( $lightbox_design ) ) {
+					$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $lightbox_design ) . '</li>';
+				}
 				$project_details .= '</ul>';
 			}
 
@@ -683,7 +729,9 @@ class Trello_Backend {
 				$project_details .= '<h3><strong>Wall Vinyl</strong></h3>';
 				$project_details .= '<ul><li><strong>Description:</strong><ul><li>' . ( $wallVinyl['description'] ?? '' ) . '</li></ul></li>';
 				$project_details .= '<li><strong>Type:</strong> ' . ( $wallVinyl['type'] ?? '' ) . '</li>';
-				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $wallVinyl_design ) . '</li>';
+				if ( ! empty( $wallVinyl_design ) ) {
+					$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $wallVinyl_design ) . '</li>';
+				}
 				$project_details .= '</ul>';
 			}
 
@@ -705,8 +753,12 @@ class Trello_Backend {
 
 				$project_details .= '<h3><strong>Print Cut</strong></h3>';
 				$project_details .= '<ul><li><strong>Description:</strong><ul><li>' . ( $printCut['description'] ?? '' ) . '</li></ul></li>';
-				$project_details .= '<li><strong>Type:</strong> ' . ( $printCut['type'] ?? '' ) . '</li>';
-				$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $printCut_design ) . '</li>';
+				if ( ! empty( $printCut['type'] ) ) {
+					$project_details .= '<li><strong>Type:</strong> ' . ( $printCut['type'] ?? '' ) . '</li>';
+				}
+				if ( ! empty( $printCut_design ) ) {
+					$project_details .= '<li><strong>Design Inspiration:</strong> ' . implode( ", ", $printCut_design ) . '</li>';
+				}
 				$project_details .= '</ul>';
 			}
 
