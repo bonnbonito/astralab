@@ -188,40 +188,24 @@ function Row() {
       const activitiesString = card.meta?.trello_card_activities?.[0];
       if (!activitiesString) return false;
 
-      // Enhanced JSON cleaning and error handling
-      // First remove control characters
-      let cleanedString = activitiesString.replace(/[\u0000-\u001F\u007F-\u009F]/g, '');
-
-      // Try to fix common JSON syntax issues
+      // Use a try-catch with JSON.parse directly - the string is actually valid JSON
       try {
-        // Attempt to parse the cleaned string
-        const activities = JSON.parse(cleanedString);
+        const activities = JSON.parse(activitiesString);
         if (!Array.isArray(activities)) return false;
+
+        // Find the latest comment card activity
         const latestComment = activities.find(activity => activity.type === 'commentCard' && activity.data?.text);
+
+        // Check if comment exists and doesn't contain the reply marker
         return latestComment ? !latestComment.data.text.includes('# **Reply') : false;
-      } catch (initialError) {
-        // If the first parse fails, try more aggressive JSON repair
-        console.log('Initial JSON parse failed, attempting repair', initialError);
+      } catch (parseError) {
+        // Log detailed error info for debugging
+        console.error('Parse error details:', parseError);
+        console.error('Problematic string:', activitiesString);
 
-        // Try a more comprehensive approach to fix the JSON
-        try {
-          // Replace unescaped quotes in strings
-          cleanedString = cleanedString.replace(/([^\\])"([^"]*)":/g, '$1\\"$2\\":');
-
-          // Add missing commas or fix trailing commas
-          cleanedString = cleanedString.replace(/}(\s*){/g, '},{');
-
-          // Another attempt at parsing
-          const repaired = JSON.parse(cleanedString);
-          if (!Array.isArray(repaired)) return false;
-          const repairComment = repaired.find(activity => activity.type === 'commentCard' && activity.data?.text);
-          return repairComment ? !repairComment.data.text.includes('# **Reply') : false;
-        } catch (secondaryError) {
-          // If all repair attempts fail, log and return false
-          console.error('JSON repair failed:', secondaryError);
-          console.error('Problematic JSON string:', activitiesString);
-          return false;
-        }
+        // As a fallback, do a simple check for comment indicators
+        // This is a simplistic approach that might help in some cases
+        return activitiesString.includes('"type":"commentCard"') && !activitiesString.includes('# **Reply');
       }
     } catch (error) {
       console.error('Error in hasUpdates function:', error);
