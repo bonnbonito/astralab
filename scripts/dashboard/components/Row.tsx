@@ -22,6 +22,7 @@ export default function Row(): JSX.Element {
 
 			try {
 				const activities = JSON.parse(activitiesString);
+				console.log(activities);
 				if (!Array.isArray(activities)) return false;
 
 				// Find the latest comment card activity
