@@ -16,25 +16,31 @@ export default function Row(): JSX.Element {
 	};
 
 	const hasUpdates = (card: AstralabDashboard['cards'][0]) => {
-		const activities = card.meta?.trello_card_activities?.[0]
-			? JSON.parse(
-					card.meta.trello_card_activities[0].replace(
-						/[\u0000-\u001F\u007F-\u009F]/g,
-						''
-					)
-			  )
-			: [];
+		try {
+			const activitiesString = card.meta?.trello_card_activities?.[0];
+			if (!activitiesString) return false;
 
-		if (activities) {
-			const latestComment = activities.find(
-				(activity: { type: string }) => activity.type === 'commentCard'
+			// Clean the string of control characters and ensure it's valid JSON
+			const cleanedString = activitiesString.replace(
+				/[\u0000-\u001F\u007F-\u009F]/g,
+				''
 			);
-			if (latestComment && latestComment.data.text) {
-				return !latestComment.data.text.includes('# **Reply');
-			}
-		}
+			const activities = JSON.parse(cleanedString);
 
-		return false;
+			if (!Array.isArray(activities)) return false;
+
+			const latestComment = activities.find(
+				(activity: { type: string; data?: { text?: string } }) =>
+					activity.type === 'commentCard' && activity.data?.text
+			);
+
+			return latestComment
+				? !latestComment.data.text.includes('# **Reply')
+				: false;
+		} catch (error) {
+			console.error('Error parsing Trello activities:', error);
+			return false;
+		}
 	};
 
 	return (

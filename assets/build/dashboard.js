@@ -184,14 +184,20 @@ function Row() {
     });
   };
   const hasUpdates = card => {
-    const activities = card.meta?.trello_card_activities?.[0] ? JSON.parse(card.meta.trello_card_activities[0].replace(/[\u0000-\u001F\u007F-\u009F]/g, '')) : [];
-    if (activities) {
-      const latestComment = activities.find(activity => activity.type === 'commentCard');
-      if (latestComment && latestComment.data.text) {
-        return !latestComment.data.text.includes('# **Reply');
-      }
+    try {
+      const activitiesString = card.meta?.trello_card_activities?.[0];
+      if (!activitiesString) return false;
+
+      // Clean the string of control characters and ensure it's valid JSON
+      const cleanedString = activitiesString.replace(/[\u0000-\u001F\u007F-\u009F]/g, '');
+      const activities = JSON.parse(cleanedString);
+      if (!Array.isArray(activities)) return false;
+      const latestComment = activities.find(activity => activity.type === 'commentCard' && activity.data?.text);
+      return latestComment ? !latestComment.data.text.includes('# **Reply') : false;
+    } catch (error) {
+      console.error('Error parsing Trello activities:', error);
+      return false;
     }
-    return false;
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: trelloCards.length > 0 ? trelloCards?.map(card => {
