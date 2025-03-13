@@ -184,7 +184,7 @@ function Row() {
     });
   };
   const hasUpdates = card => {
-    const activities = card.meta?.trello_card_activities?.[0] ? JSON.parse(card.meta.trello_card_activities[0]) : [];
+    const activities = card.meta?.trello_card_activities?.[0] ? JSON.parse(card.meta.trello_card_activities[0].replace(/[\u0000-\u001F\u007F-\u009F]/g, '')) : [];
     if (activities) {
       const latestComment = activities.find(activity => activity.type === 'commentCard');
       if (latestComment && latestComment.data.text) {
