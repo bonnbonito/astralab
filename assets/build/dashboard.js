@@ -188,14 +188,43 @@ function Row() {
       const activitiesString = card.meta?.trello_card_activities?.[0];
       if (!activitiesString) return false;
 
-      // Clean the string of control characters and ensure it's valid JSON
-      const cleanedString = activitiesString.replace(/[\u0000-\u001F\u007F-\u009F]/g, '');
-      const activities = JSON.parse(cleanedString);
-      if (!Array.isArray(activities)) return false;
-      const latestComment = activities.find(activity => activity.type === 'commentCard' && activity.data?.text);
-      return latestComment ? !latestComment.data.text.includes('# **Reply') : false;
+      // Enhanced JSON cleaning and error handling
+      // First remove control characters
+      let cleanedString = activitiesString.replace(/[\u0000-\u001F\u007F-\u009F]/g, '');
+
+      // Try to fix common JSON syntax issues
+      try {
+        // Attempt to parse the cleaned string
+        const activities = JSON.parse(cleanedString);
+        if (!Array.isArray(activities)) return false;
+        const latestComment = activities.find(activity => activity.type === 'commentCard' && activity.data?.text);
+        return latestComment ? !latestComment.data.text.includes('# **Reply') : false;
+      } catch (initialError) {
+        // If the first parse fails, try more aggressive JSON repair
+        console.log('Initial JSON parse failed, attempting repair', initialError);
+
+        // Try a more comprehensive approach to fix the JSON
+        try {
+          // Replace unescaped quotes in strings
+          cleanedString = cleanedString.replace(/([^\\])"([^"]*)":/g, '$1\\"$2\\":');
+
+          // Add missing commas or fix trailing commas
+          cleanedString = cleanedString.replace(/}(\s*){/g, '},{');
+
+          // Another attempt at parsing
+          const repaired = JSON.parse(cleanedString);
+          if (!Array.isArray(repaired)) return false;
+          const repairComment = repaired.find(activity => activity.type === 'commentCard' && activity.data?.text);
+          return repairComment ? !repairComment.data.text.includes('# **Reply') : false;
+        } catch (secondaryError) {
+          // If all repair attempts fail, log and return false
+          console.error('JSON repair failed:', secondaryError);
+          console.error('Problematic JSON string:', activitiesString);
+          return false;
+        }
+      }
     } catch (error) {
-      console.error('Error parsing Trello activities:', error);
+      console.error('Error in hasUpdates function:', error);
       return false;
     }
   };
