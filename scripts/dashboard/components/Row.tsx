@@ -20,35 +20,10 @@ export default function Row(): JSX.Element {
 			const activitiesString = card.meta?.trello_card_activities?.[0];
 			if (!activitiesString) return false;
 
-			try {
-				const activities = JSON.parse(activitiesString);
-				console.log(activities);
-				if (!Array.isArray(activities)) return false;
-
-				// Find the latest comment card activity
-				const latestComment = activities.find(
-					(activity: { type: string; data?: { text?: string } }) =>
-						activity.type === 'commentCard' && activity.data?.text
-				);
-
-				console.log(latestComment.data.text);
-
-				// Check if comment exists and doesn't contain the reply marker
-				return latestComment
-					? !latestComment.data.text.includes('# **Reply')
-					: false;
-			} catch (parseError) {
-				// Log detailed error info for debugging
-				console.error('Parse error details:', parseError);
-				console.error('Problematic string:', activitiesString);
-
-				// As a fallback, do a simple check for comment indicators
-				// This is a simplistic approach that might help in some cases
-				return (
-					activitiesString.includes('"type":"commentCard"') &&
-					!activitiesString.includes('# **Reply')
-				);
-			}
+			return (
+				activitiesString.includes('"type":"commentCard"') &&
+				!activitiesString.includes('# **Reply')
+			);
 		} catch (error) {
 			console.error('Error in hasUpdates function:', error);
 			return false;
