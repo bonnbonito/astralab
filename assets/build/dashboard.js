@@ -187,14 +187,13 @@ function Row() {
     try {
       const activitiesString = card.meta?.trello_card_activities?.[0];
       if (!activitiesString) return false;
-
-      // Use a try-catch with JSON.parse directly - the string is actually valid JSON
       try {
         const activities = JSON.parse(activitiesString);
         if (!Array.isArray(activities)) return false;
 
         // Find the latest comment card activity
         const latestComment = activities.find(activity => activity.type === 'commentCard' && activity.data?.text);
+        console.log(latestComment.data.text);
 
         // Check if comment exists and doesn't contain the reply marker
         return latestComment ? !latestComment.data.text.includes('# **Reply') : false;
