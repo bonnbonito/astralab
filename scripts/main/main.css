@@ -103,6 +103,10 @@ textarea {
 	@apply placeholder:text-gray-800;
 }
 
+.\*\:text-white {
+	@apply *:text-white;
+}
+
 .box {
 	border: 1px solid #999;
 	border-radius: 10px;

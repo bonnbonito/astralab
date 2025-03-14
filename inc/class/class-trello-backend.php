@@ -47,6 +47,16 @@ class Trello_Backend {
 
 		//Add Rest API for Options
 		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
+
+		// Add custom columns for trello-card post type
+		add_filter( 'manage_trello-card_posts_columns', array( $this, 'add_trello_card_columns' ) );
+		add_action( 'manage_trello-card_posts_custom_column', array( $this, 'manage_trello_card_columns' ), 10, 2 );
+		add_filter( 'manage_edit-trello-card_sortable_columns', array( $this, 'make_trello_card_columns_sortable' ) );
+
+		// Add search functionality for project_id meta
+		add_filter( 'posts_join', array( $this, 'extend_admin_search_join' ) );
+		add_filter( 'posts_where', array( $this, 'extend_admin_search_where' ) );
+		add_filter( 'posts_distinct', array( $this, 'extend_admin_search_distinct' ) );
 	}
 
 	/**
@@ -195,11 +205,11 @@ class Trello_Backend {
 		$trello_list_id = get_user_meta( $user->ID, 'trello_list_id', true );
 
 		?>
-<h2>Create Trello Board</h2>
-<table class="form-table">
-  <tr>
-    <th scope="row"><label for="create_trello_board">Trello Board</label></th>
-    <?php
+		<h2>Create Trello Board</h2>
+		<table class="form-table">
+			<tr>
+				<th scope="row"><label for="create_trello_board">Trello Board</label></th>
+				<?php
 				if ( ! empty( $trello_board_id ) ) {
 					echo '<td>
 					<p><strong>Trello Board ID:</strong> ' . esc_html( $trello_board_id ) . ' <a href="' . esc_url( $trello_url ) . '" target="_blank">View Board</a></p>';
@@ -209,18 +219,18 @@ class Trello_Backend {
 					echo '</td>';
 				} else {
 					?>
-    <td>
-      <label for="create_trello_board">
-        <input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
-        Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
-      </label>
-    </td>
-    <?php
+					<td>
+						<label for="create_trello_board">
+							<input type="checkbox" name="create_trello_board" id="create_trello_board" value="1">
+							Create Trello Board Named '<?php echo esc_html( $user->display_name ); ?> Board'
+						</label>
+					</td>
+					<?php
 				}
 				?>
-  </tr>
-</table>
-<?php
+			</tr>
+		</table>
+		<?php
 	}
 
 	/**
@@ -322,6 +332,35 @@ class Trello_Backend {
 			return implode( ', ', $value );
 		}
 		return $value;
+	}
+
+	/**
+	 * Generate a unique project ID based on user nickname, location and post ID
+	 *
+	 * @param int $post_id The post ID
+	 * @return string The generated project ID in uppercase
+	 */
+	private function generate_project_id( $post_id ) {
+		$user_id = get_current_user_id();
+		$user = get_user_by( 'id', $user_id );
+		$first_name = $user->first_name ? $user->first_name : 'client';
+		$nickname = str_replace( ' ', '', sanitize_title( $first_name ) );
+
+		// Get billing country code and state
+		$country = strtoupper( get_user_meta( $user_id, 'billing_country', true ) ); // Already 2-letter code
+		$state = strtoupper( substr( get_user_meta( $user_id, 'billing_state', true ), 0, 2 ) );
+
+		// Format location as country-state or just country if no state
+		$location = '';
+		if ( $country && $state ) {
+			$location = $country . '-' . $state;
+		} elseif ( $country ) {
+			$location = $country;
+		} else {
+			$location = 'NA';
+		}
+
+		return strtoupper( sprintf( '%s-%s-%d', $nickname, $location, $post_id ) );
 	}
 
 	public function astralab_form_submission() {
@@ -860,6 +899,9 @@ class Trello_Backend {
 				);
 
 				if ( ! is_wp_error( $post_id ) && $post_id ) {
+					// Generate and save project ID
+					$project_id = $this->generate_project_id( $post_id );
+					update_post_meta( $post_id, 'project_id', $project_id );
 
 					update_post_meta( $post_id, 'trello_project_name', $card_name );
 					update_post_meta( $post_id, 'trello_turnaround_time', $turn_around_time );
@@ -886,6 +928,10 @@ class Trello_Backend {
 					update_post_meta( $post_id, 'trello_card_user_email', $email );
 					update_post_meta( $post_id, 'trello_card_list', $list_name );
 					update_post_meta( $post_id, 'trello_card_comment_from_admin', false );
+
+					//save generate_project_id to post meta
+					$project_id = $this->generate_project_id( $post_id );
+					update_post_meta( $post_id, 'project_id', $project_id );
 
 
 					/**
@@ -1152,5 +1198,110 @@ class Trello_Backend {
 			default:
 				return 'Unknown upload error';
 		}
+	}
+
+	/**
+	 * Extend the admin search to join with postmeta table
+	 *
+	 * @param string $join The JOIN clause of the query
+	 * @return string Modified JOIN clause
+	 */
+	public function extend_admin_search_join( $join ) {
+		global $wpdb, $pagenow, $typenow;
+
+		if ( 'edit.php' !== $pagenow || 'trello-card' !== $typenow || ! get_query_var( 's' ) ) {
+			return $join;
+		}
+
+		$join .= " LEFT JOIN {$wpdb->postmeta} pm ON {$wpdb->posts}.ID = pm.post_id ";
+
+		return $join;
+	}
+
+	/**
+	 * Extend the admin search WHERE clause to include project_id meta
+	 *
+	 * @param string $where The WHERE clause of the query
+	 * @return string Modified WHERE clause
+	 */
+	public function extend_admin_search_where( $where ) {
+		global $pagenow, $typenow, $wpdb;
+
+		if ( 'edit.php' !== $pagenow || 'trello-card' !== $typenow || ! get_query_var( 's' ) ) {
+			return $where;
+		}
+
+		$search_term = get_query_var( 's' );
+
+		// Add project_id meta to search
+		$where = preg_replace(
+			"/\(\s*{$wpdb->posts}.post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
+			"({$wpdb->posts}.post_title LIKE $1) OR (pm.meta_key = 'project_id' AND pm.meta_value LIKE $1)",
+			$where
+		);
+
+		return $where;
+	}
+
+	/**
+	 * Ensure distinct results when searching
+	 *
+	 * @param string $distinct The DISTINCT clause of the query
+	 * @return string Modified DISTINCT clause
+	 */
+	public function extend_admin_search_distinct( $distinct ) {
+		global $pagenow, $typenow;
+
+		if ( 'edit.php' !== $pagenow || 'trello-card' !== $typenow || ! get_query_var( 's' ) ) {
+			return $distinct;
+		}
+
+		return "DISTINCT";
+	}
+
+	/**
+	 * Add custom columns to trello-card post type
+	 *
+	 * @param array $columns Array of column names
+	 * @return array Modified array of column names
+	 */
+	public function add_trello_card_columns( $columns ) {
+		$new_columns = array();
+
+		// Insert project ID column before title
+		foreach ( $columns as $key => $value ) {
+			if ( $key === 'title' ) {
+				$new_columns['project_id'] = 'Project ID';
+			}
+			$new_columns[ $key ] = $value;
+		}
+
+		return $new_columns;
+	}
+
+	/**
+	 * Manage content of custom columns for trello-card post type
+	 *
+	 * @param string $column Column name
+	 * @param int $post_id Post ID
+	 */
+	public function manage_trello_card_columns( $column, $post_id ) {
+		switch ( $column ) {
+			case 'project_id':
+				$project_id = get_post_meta( $post_id, 'project_id', true );
+				echo esc_html( $project_id );
+				break;
+		}
+	}
+
+	/**
+	 * Make custom columns sortable
+	 *
+	 * @param array $columns Array of sortable columns
+	 * @return array Modified array of sortable columns
+	 */
+	public function make_trello_card_columns_sortable( $columns ) {
+		$columns['project_id'] = 'project_id';
+		return $columns;
 	}
 }
