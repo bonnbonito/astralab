@@ -14,9 +14,7 @@ export const CustomJobSchema = z.discriminatedUnion('hasCustomJob', [
 						url: z.string(),
 					})
 				)
-				.min(1, {
-					message: 'Select atleast one inspiration',
-				}),
+				.optional(),
 		}),
 	}),
 	z.object({

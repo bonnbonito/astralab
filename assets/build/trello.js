@@ -30941,9 +30941,7 @@ const CustomJobSchema = zod__WEBPACK_IMPORTED_MODULE_0__.z.discriminatedUnion('h
     designInspirations: zod__WEBPACK_IMPORTED_MODULE_0__.z.array(zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
       title: zod__WEBPACK_IMPORTED_MODULE_0__.z.string(),
       url: zod__WEBPACK_IMPORTED_MODULE_0__.z.string()
-    })).min(1, {
-      message: 'Select atleast one inspiration'
-    })
+    })).optional()
   })
 }), zod__WEBPACK_IMPORTED_MODULE_0__.z.object({
   hasCustomJob: zod__WEBPACK_IMPORTED_MODULE_0__.z.literal(false)
