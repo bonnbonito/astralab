@@ -942,7 +942,10 @@ class Trello_Backend {
 
 					// Prepend the link to what Trello currently has (i.e., $card_body->desc).
 					// This ensures we do NOT overwrite the existing description.
-					$desc_with_edit_link = "**WP Edit URL:** [Edit Post]({$edit_url})\n\n" . $card_body->desc;
+
+					$desc_with_edit_link = "**PROJECT ID:** " . $project_id . "\n\n" .
+						"**WP Edit URL:** [Edit Post]({$edit_url})\n\n" .
+						$card_body->desc;
 
 					// Make a second request to Trello to update the card's description
 					$update_url = "https://api.trello.com/1/cards/{$card_id}";
