@@ -63,6 +63,18 @@ class Users {
 
 		// Store plain text password when user is created
 		add_action( 'user_register', array( $this, 'store_plain_password' ), 9 );
+
+
+		//Add logout button
+		add_action( 'kadence_header_button', array( $this, 'logout_button' ) );
+	}
+
+	public function logout_button() {
+		if ( is_user_logged_in() ) {
+			?>
+<a href="<?php echo wp_logout_url( home_url( '/login' ) ); ?>" class="button">Logout</a>
+<?php
+		}
 	}
 
 	public function astralab_trello_board_lists() {
@@ -117,103 +129,24 @@ class Users {
 			$reset_link = network_site_url( "wp-login.php?action=rp&key=$key&login=" . rawurlencode( $user->user_login ), 'login' );
 		}
 
-		// Build your custom HTML message.
-		$message = sprintf(
-			'<!DOCTYPE html>
-<html>
-<head>
-<style>
-body {
-	font-family: Arial, sans-serif;
-	line-height: 1.6;
-	color: #333;
-}
-.container {
-	max-width: 600px;
-	margin: 0 auto;
-	padding: 20px;
-}
-.header {
-	background-color: #f8f9fa;
-	padding: 20px;
-	text-align: center;
-	border-radius: 5px;
-}
-.content {
-	padding: 20px 0;
-}
-.footer {
-	font-size: 12px;
-	color: #666;
-	text-align: center;
-	padding-top: 20px;
-	border-top: 1px solid #eee;
-}
-.button {
-	display: inline-block;
-	padding: 10px 20px;
-	background-color: #0073aa;
-	color: #ffffff !important;
-	text-decoration: none;
-	border-radius: 5px;
-	margin: 20px 0;
-}
-.info-box {
-	background-color: #f8f9fa;
-	padding: 15px;
-	border-radius: 5px;
-	margin: 20px 0;
-}
-</style>
-</head>
-<body>
-<div class="container">
-	<div class="header">
-		<h1>Welcome to Astra Lab!</h1>
-	</div>
-	<div class="content">
-		<p>Dear %s,</p>
-		
-		<p>We\'re thrilled to have you as our newest partner.</p>
-		
-		<div class="info-box">
-			<h2>LOGIN INFO</h2>
-			<p><strong>Username:</strong> %s</p>
-			<p><strong>Password:</strong> %s</p>
-		</div>
-		
-		<p>Please click the button below to login:</p>
-		<p style="text-align: center;">
-			<a href="%s" class="button">Login to Your Account</a>
-		</p>
-		
-		<p>For security, we encourage you to <strong><a href="%s">create a new password</a></strong>.</p>
-		
-		<div class="info-box">
-			<h3>Need Help?</h3>
-			<p>Contact us at: <a href="mailto:hello@astralab.ca">hello@astralab.ca</a></p>
-		</div>
+		// Get email template instance
+		$email_template = \ASTRALAB\Email_Template::get_instance();
 
-		<p>Get started by logging in, exploring our order form, and placing your first sign design order.</p> 
-		
-		<p>If you have any questions or need assistance, don\'t hesitate to reach out.</p>
-		
-		<p>Best regards,<br>The Astra Lab Team</p>
-	</div>
-	<div class="footer">
-		<p>This is an automated message. Please do not reply directly to this email. For support, use the contact information provided above.</p>
-	</div>
-</div>
-</body>
-</html>',
-			$user->display_name ?: $user->user_login,  // Use display name if available, fallback to username
-			$user->user_login,       // Username
-			$plain_password,         // Plain text password
-			$login_url,              // Login link,
-			$reset_link,
+		// Prepare template data
+		$template_data = array(
+			'display_name' => $user->display_name,
+			'user_login' => $user->user_login,
+			'password' => $plain_password,
+			'login_url' => $login_url,
+			'reset_link' => $reset_link
 		);
+		// Get the welcome email HTML
+		$message = '';
+		if ( $email_template !== null ) {
+			$message = $email_template->get_welcome_email( $template_data );
+		}
 
-		// Set the custom subject and message.
+		// Set the custom subject and message
 		$wp_new_user_notification_email['subject'] = sprintf( 'Welcome to Astra Lab, %s!', $user->display_name ?: $user->user_login );
 		$wp_new_user_notification_email['message'] = $message;
 		$wp_new_user_notification_email['headers'] = array( 'Content-Type: text/html; charset=UTF-8' );
@@ -344,59 +277,59 @@ body {
 		$existing_board_url = get_user_meta( $user->ID, 'trello_board_short_url', true );
 
 		?>
-		<div class="recreate-trello-section">
-			<h2>Trello Board Management</h2>
-			<table class="form-table">
-				<tr>
-					<th scope="row"><label for="recreate_trello_board">Trello Board</label></th>
-					<td>
-						<?php if ( ! empty( $existing_board_id ) && ! empty( $existing_board_url ) ) : ?>
-							<p>
-								<strong>Current Board ID:</strong> <?php echo esc_html( $existing_board_id ); ?>
-								<a href="<?php echo esc_url( $existing_board_url ); ?>" target="_blank">View Board</a>
-							</p>
-						<?php endif; ?>
+<div class="recreate-trello-section">
+  <h2>Trello Board Management</h2>
+  <table class="form-table">
+    <tr>
+      <th scope="row"><label for="recreate_trello_board">Trello Board</label></th>
+      <td>
+        <?php if ( ! empty( $existing_board_id ) && ! empty( $existing_board_url ) ) : ?>
+        <p>
+          <strong>Current Board ID:</strong> <?php echo esc_html( $existing_board_id ); ?>
+          <a href="<?php echo esc_url( $existing_board_url ); ?>" target="_blank">View Board</a>
+        </p>
+        <?php endif; ?>
 
-						<button type="button" id="recreate-trello-board" class="button button-secondary"
-							data-user-id="<?php echo esc_attr( $user->ID ); ?>">
-							<?php echo ! empty( $existing_board_id ) ? 'Recreate Trello Board' : 'Create Trello Board'; ?>
-						</button>
-						<span class="spinner" style="float: none; margin-top: 0;"></span>
-						<p class="description">
-							<?php if ( ! empty( $existing_board_id ) ) : ?>
-								This will delete the existing board and create a new one. All data on the current board will be lost.
-							<?php else : ?>
-								Click to create a new Trello board for this user.
-							<?php endif; ?>
-						</p>
-					</td>
-				</tr>
-			</table>
-		</div>
+        <button type="button" id="recreate-trello-board" class="button button-secondary"
+          data-user-id="<?php echo esc_attr( $user->ID ); ?>">
+          <?php echo ! empty( $existing_board_id ) ? 'Recreate Trello Board' : 'Create Trello Board'; ?>
+        </button>
+        <span class="spinner" style="float: none; margin-top: 0;"></span>
+        <p class="description">
+          <?php if ( ! empty( $existing_board_id ) ) : ?>
+          This will delete the existing board and create a new one. All data on the current board will be lost.
+          <?php else : ?>
+          Click to create a new Trello board for this user.
+          <?php endif; ?>
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>
 
-		<!-- Confirmation Modal -->
-		<div id="trello-confirm-modal" class="trello-confirm-modal">
-			<div class="trello-confirm-content">
-				<h3 class="trello-confirm-header">Confirm Trello Board Recreation</h3>
-				<p>Are you sure you want to recreate this Trello board?</p>
-				<p><strong>Warning:</strong> This will <em>permanently delete</em> the existing board (ID:
-					<?php echo esc_html( $existing_board_id ); ?>) and all its data including:
-				</p>
-				<ul style="margin-left: 20px; list-style-type: disc;">
-					<li>All cards and their content</li>
-					<li>All lists and their organization</li>
-					<li>All attachments and comments</li>
-					<li>All board settings and customizations</li>
-				</ul>
-				<p>A new empty board will be created with default lists. This action <strong>cannot be undone</strong>.</p>
-				<div class="trello-confirm-buttons">
-					<button type="button" id="trello-confirm-cancel" class="button trello-confirm-cancel">Cancel</button>
-					<button type="button" id="trello-confirm-proceed" class="button trello-confirm-proceed">Yes, Delete and Recreate
-						Board</button>
-				</div>
-			</div>
-		</div>
-		<?php
+<!-- Confirmation Modal -->
+<div id="trello-confirm-modal" class="trello-confirm-modal">
+  <div class="trello-confirm-content">
+    <h3 class="trello-confirm-header">Confirm Trello Board Recreation</h3>
+    <p>Are you sure you want to recreate this Trello board?</p>
+    <p><strong>Warning:</strong> This will <em>permanently delete</em> the existing board (ID:
+      <?php echo esc_html( $existing_board_id ); ?>) and all its data including:
+    </p>
+    <ul style="margin-left: 20px; list-style-type: disc;">
+      <li>All cards and their content</li>
+      <li>All lists and their organization</li>
+      <li>All attachments and comments</li>
+      <li>All board settings and customizations</li>
+    </ul>
+    <p>A new empty board will be created with default lists. This action <strong>cannot be undone</strong>.</p>
+    <div class="trello-confirm-buttons">
+      <button type="button" id="trello-confirm-cancel" class="button trello-confirm-cancel">Cancel</button>
+      <button type="button" id="trello-confirm-proceed" class="button trello-confirm-proceed">Yes, Delete and Recreate
+        Board</button>
+    </div>
+  </div>
+</div>
+<?php
 	}
 
 	/**
@@ -740,56 +673,56 @@ body {
 		);
 
 		?>
-		<div class="temp-login-section">
-			<h2>Temporary Login Link</h2>
-			<table class="form-table">
-				<tr>
-					<th scope="row"><label for="temp_login_expiry">Link Expiration</label></th>
-					<td>
-						<select id="temp_login_expiry" name="temp_login_expiry">
-							<option value="3600" selected>1 hour</option>
-							<option value="86400">24 hours</option>
-							<option value="604800">7 days</option>
-							<option value="2592000">30 days</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="temp_login_redirect">Redirect After Login</label></th>
-					<td>
-						<input type="text" id="temp_login_redirect" name="temp_login_redirect" class="regular-text"
-							placeholder="<?php echo esc_attr( home_url() ); ?>" />
-						<p class="description">Leave empty to use default redirect.</p>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row"></th>
-					<td>
-						<button type="button" id="generate-temp-login" class="button button-primary"
-							data-user-id="<?php echo esc_attr( $user->ID ); ?>">
-							Generate Temporary Login Link
-						</button>
-						<span class="spinner" style="float: none; margin-top: 0;"></span>
-					</td>
-				</tr>
-				<tr id="temp-login-result-row" style="display: none;">
-					<th scope="row"><label for="temp_login_link">Login Link</label></th>
-					<td>
-						<div class="temp-login-result">
-							<input type="text" id="temp_login_link" class="regular-text" readonly />
-							<button type="button" id="copy-temp-login" class="button button-secondary">
-								Copy Link
-							</button>
-							<p class="description">
-								This link will expire after the selected time period. Anyone with this link can log in as this user until it
-								expires.
-							</p>
-						</div>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<?php
+<div class="temp-login-section">
+  <h2>Temporary Login Link</h2>
+  <table class="form-table">
+    <tr>
+      <th scope="row"><label for="temp_login_expiry">Link Expiration</label></th>
+      <td>
+        <select id="temp_login_expiry" name="temp_login_expiry">
+          <option value="3600" selected>1 hour</option>
+          <option value="86400">24 hours</option>
+          <option value="604800">7 days</option>
+          <option value="2592000">30 days</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row"><label for="temp_login_redirect">Redirect After Login</label></th>
+      <td>
+        <input type="text" id="temp_login_redirect" name="temp_login_redirect" class="regular-text"
+          placeholder="<?php echo esc_attr( home_url() ); ?>" />
+        <p class="description">Leave empty to use default redirect.</p>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td>
+        <button type="button" id="generate-temp-login" class="button button-primary"
+          data-user-id="<?php echo esc_attr( $user->ID ); ?>">
+          Generate Temporary Login Link
+        </button>
+        <span class="spinner" style="float: none; margin-top: 0;"></span>
+      </td>
+    </tr>
+    <tr id="temp-login-result-row" style="display: none;">
+      <th scope="row"><label for="temp_login_link">Login Link</label></th>
+      <td>
+        <div class="temp-login-result">
+          <input type="text" id="temp_login_link" class="regular-text" readonly />
+          <button type="button" id="copy-temp-login" class="button button-secondary">
+            Copy Link
+          </button>
+          <p class="description">
+            This link will expire after the selected time period. Anyone with this link can log in as this user until it
+            expires.
+          </p>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<?php
 	}
 
 	/**

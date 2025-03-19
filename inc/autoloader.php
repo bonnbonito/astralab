@@ -33,6 +33,7 @@ spl_autoload_register( 'autoloader' );
 
 $instances = array(
 	'Scripts',
+	'Email_Template',
 	'Single_Card',
 	'Trello_Post',
 	'Trello_Frontend',
