@@ -41,6 +41,14 @@ export const DashboardContext = ({ children }: { children: ReactNode }) => {
 							new Date(b.date_updated).getTime() -
 							new Date(a.date_updated).getTime()
 				  )
+				: filter === 'Doing' || filter === 'In Progress'
+				? cards.filter(
+						(card) => card.meta.trello_card_list?.[0] === 'In Progress'
+				  )
+				: filter === 'Completed' || filter === 'Done'
+				? cards.filter(
+						(card) => card.meta.trello_card_list?.[0] === 'Completed'
+				  )
 				: cards.filter((card) => card.meta.trello_card_list?.[0] === filter)
 		);
 	};

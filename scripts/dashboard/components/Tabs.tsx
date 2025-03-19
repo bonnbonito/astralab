@@ -3,7 +3,15 @@ import { useDashboard } from './DashboardContext';
 export default function Tabs() {
 	const { filterCards, tabActive } = useDashboard();
 
-	const tabsArray = ['All', 'Recently Updated', 'To Do', 'Doing', 'Done'];
+	const tabsArray = [
+		'All',
+		'Recently Updated',
+		'To Do',
+		'In Progress',
+		'Review/Approval',
+		'Revisions',
+		'Completed',
+	];
 
 	return (
 		<div className="mt-2 flex no-wrap justify-between border-b-[#D2D2D2] border-b uppercase overflow-x-auto mb-8">

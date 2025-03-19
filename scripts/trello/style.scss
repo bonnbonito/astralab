@@ -328,3 +328,7 @@
 		margin-bottom: 0;
 	}
 }
+
+[data-state='closed']:has(> .accordion-content) {
+	display: none;
+}

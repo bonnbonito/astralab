@@ -330,4 +330,8 @@
   margin-bottom: 0;
 }
 
+[data-state=closed]:has(> .accordion-content) {
+  display: none;
+}
+
 /*# sourceMappingURL=style-trello.css.map*/

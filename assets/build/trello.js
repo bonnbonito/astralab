@@ -28237,6 +28237,8 @@ function AccordionProductType({
         className: "accordion uppercase bg-transparent mb-0 text-[26px] font-medium shadow-none hover:no-underline [&>svg]:h-6 [&>svg]:w-6 pl-4",
         children: loading ? 'Loading...' : title ? (0,_lib_utils__WEBPACK_IMPORTED_MODULE_2__.decodeHTMLEntities)(title) : 'No Data Available'
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ui_accordion__WEBPACK_IMPORTED_MODULE_0__.AccordionContent, {
+        forceMount: true,
+        className: "accordion-content",
         children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_trello_components_SkeletonCard__WEBPACK_IMPORTED_MODULE_1__.SkeletonCard, {}) : children
       })]
     })

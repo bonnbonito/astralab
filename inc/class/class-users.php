@@ -12,6 +12,7 @@ use function wp_redirect;
 use function wp_safe_redirect;
 use function add_shortcode;
 use function shortcode_atts;
+use function get_password_reset_key;
 
 class Users {
 	/**
@@ -59,6 +60,31 @@ class Users {
 		add_filter( 'wp_new_user_notification_email', array( $this, 'custom_new_user_notification_email' ), 10, 3 );
 
 		add_filter( 'wp_send_new_user_notification_to_user', array( $this, 'custom_new_user_notification_to_user' ), 10, 2 );
+
+		// Store plain text password when user is created
+		add_action( 'user_register', array( $this, 'store_plain_password' ), 9 );
+	}
+
+	public function astralab_trello_board_lists() {
+		return apply_filters( 'astralab_trello_board_lists', array(
+			'To Do',
+			'In Progress',
+			'Review/Approval',
+			'Revisions',
+			'Completed'
+		)
+		);
+	}
+
+	/**
+	 * Store plain text password when user is created
+	 * 
+	 * @param int $user_id User ID.
+	 */
+	public function store_plain_password( $user_id ) {
+		if ( isset( $_POST['pass1'] ) && ! empty( $_POST['pass1'] ) ) {
+			update_user_meta( $user_id, '_plain_password', sanitize_text_field( $_POST['pass1'] ) );
+		}
 	}
 
 	public function custom_new_user_notification_to_user( $send, $user ) {
@@ -72,7 +98,24 @@ class Users {
 
 	public function custom_new_user_notification_email( $wp_new_user_notification_email, $user, $blogname ) {
 		// Create the login URL.
-		$login_url = wp_login_url();
+		$login_url = home_url( '/login' );
+
+		// Get the plain text password from the user creation process
+		$plain_password = get_user_meta( $user->ID, '_plain_password', true );
+		if ( empty( $plain_password ) ) {
+			// If no plain password is found, generate a random one
+			$plain_password = wp_generate_password( 12, false );
+			wp_set_password( $plain_password, $user->ID );
+		}
+
+		// Generate password reset key
+		$key = get_password_reset_key( $user );
+		if ( is_wp_error( $key ) ) {
+			// Handle error - fallback to default reset link
+			$reset_link = wp_lostpassword_url();
+		} else {
+			$reset_link = network_site_url( "wp-login.php?action=rp&key=$key&login=" . rawurlencode( $user->user_login ), 'login' );
+		}
 
 		// Build your custom HTML message.
 		$message = sprintf(
@@ -131,10 +174,10 @@ body {
 	<div class="content">
 		<p>Dear %s,</p>
 		
-		<p>We\'re thrilled to have you as our newest partner! Your account has been successfully created and is ready for you to explore.</p>
+		<p>We\'re thrilled to have you as our newest partner.</p>
 		
 		<div class="info-box">
-			<h2>GET STARTED</h2>
+			<h2>LOGIN INFO</h2>
 			<p><strong>Username:</strong> %s</p>
 			<p><strong>Password:</strong> %s</p>
 		</div>
@@ -144,12 +187,14 @@ body {
 			<a href="%s" class="button">Login to Your Account</a>
 		</p>
 		
-		<p>Get started by logging in, exploring our order form, and placing your first sign design order.</p>
+		<p>For security, we encourage you to <strong><a href="%s">create a new password</a></strong>.</p>
 		
 		<div class="info-box">
 			<h3>Need Help?</h3>
 			<p>Contact us at: <a href="mailto:hello@astralab.ca">hello@astralab.ca</a></p>
 		</div>
+
+		<p>Get started by logging in, exploring our order form, and placing your first sign design order.</p> 
 		
 		<p>If you have any questions or need assistance, don\'t hesitate to reach out.</p>
 		
@@ -163,14 +208,18 @@ body {
 </html>',
 			$user->display_name ?: $user->user_login,  // Use display name if available, fallback to username
 			$user->user_login,       // Username
-			$user->user_pass,        // Password
-			$login_url               // Login link
+			$plain_password,         // Plain text password
+			$login_url,              // Login link,
+			$reset_link,
 		);
 
 		// Set the custom subject and message.
 		$wp_new_user_notification_email['subject'] = sprintf( 'Welcome to Astra Lab, %s!', $user->display_name ?: $user->user_login );
 		$wp_new_user_notification_email['message'] = $message;
 		$wp_new_user_notification_email['headers'] = array( 'Content-Type: text/html; charset=UTF-8' );
+
+		// Delete the plain text password from user meta after sending the email
+		delete_user_meta( $user->ID, '_plain_password' );
 
 		return $wp_new_user_notification_email;
 	}
@@ -472,7 +521,7 @@ body {
 		// Prepare board creation arguments
 		$board_args = array(
 			'name' => $board_name,
-			'defaultLists' => 'true',
+			'defaultLists' => 'false', // Disable default lists
 			'prefs_permissionLevel' => 'private',
 			'idOrganization' => 'astralabtickets',
 		);
@@ -497,15 +546,26 @@ body {
 				$result['board_url'] = $board_response['shortUrl'];
 			}
 
-			// Retrieve the lists for the created board
-			$lists_response = $trello_api->trello_api_request( 'GET', "boards/{$board_response['id']}/lists" );
+			// Create custom lists
+			$lists = $this->astralab_trello_board_lists();
 
-			if ( ! is_wp_error( $lists_response ) && is_array( $lists_response ) ) {
-				foreach ( $lists_response as $list ) {
-					if ( isset( $list['name'] ) && $list['name'] === 'To Do' && isset( $list['id'] ) ) {
-						update_user_meta( $user_id, 'trello_list_id', $list['id'] );
-						$result['list_id'] = $list['id'];
-						break;
+			$list_ids = array();
+			foreach ( $lists as $list_name ) {
+				$list_args = array(
+					'name' => $list_name,
+					'idBoard' => $board_response['id'],
+					'pos' => 'bottom'
+				);
+
+				$list_response = $trello_api->trello_api_request( 'POST', 'lists', $list_args );
+
+				if ( ! is_wp_error( $list_response ) && isset( $list_response['id'] ) ) {
+					$list_ids[ $list_name ] = $list_response['id'];
+
+					// Store the "To Do" list ID for future reference
+					if ( $list_name === 'To Do' ) {
+						update_user_meta( $user_id, 'trello_list_id', $list_response['id'] );
+						$result['list_id'] = $list_response['id'];
 					}
 				}
 			}
@@ -585,7 +645,7 @@ body {
 		// Prepare board creation arguments
 		$board_args = array(
 			'name' => $board_name,
-			'defaultLists' => 'true',
+			'defaultLists' => 'false', // Disable default lists
 			'prefs_permissionLevel' => 'private',
 			'idOrganization' => 'astralabtickets',
 		);
@@ -608,14 +668,28 @@ body {
 				update_user_meta( $user_id, 'trello_board_short_url', $board_response['shortUrl'] );
 			}
 
-			// Retrieve the lists for the created board
-			$lists_response = $trello_api->trello_api_request( 'GET', "boards/{$board_response['id']}/lists" );
+			// Create custom lists
+			$lists = array(
+				'To Do',
+				'In Progress',
+				'Review/Approval',
+				'Revisions',
+				'Completed'
+			);
 
-			if ( ! is_wp_error( $lists_response ) && is_array( $lists_response ) ) {
-				foreach ( $lists_response as $list ) {
-					if ( isset( $list['name'] ) && $list['name'] === 'To Do' && isset( $list['id'] ) ) {
-						update_user_meta( $user_id, 'trello_list_id', $list['id'] );
-						break;
+			foreach ( $lists as $list_name ) {
+				$list_args = array(
+					'name' => $list_name,
+					'idBoard' => $board_response['id'],
+					'pos' => 'bottom'
+				);
+
+				$list_response = $trello_api->trello_api_request( 'POST', 'lists', $list_args );
+
+				if ( ! is_wp_error( $list_response ) && isset( $list_response['id'] ) ) {
+					// Store the "To Do" list ID for future reference
+					if ( $list_name === 'To Do' ) {
+						update_user_meta( $user_id, 'trello_list_id', $list_response['id'] );
 					}
 				}
 			}

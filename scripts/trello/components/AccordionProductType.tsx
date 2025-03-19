@@ -36,7 +36,7 @@ export default function AccordionProductType({
 						? decodeHTMLEntities(title)
 						: 'No Data Available'}
 				</AccordionTrigger>
-				<AccordionContent>
+				<AccordionContent forceMount className="accordion-content">
 					{loading ? <SkeletonCard /> : children}
 				</AccordionContent>
 			</AccordionItem>

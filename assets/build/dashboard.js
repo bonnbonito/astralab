@@ -97,7 +97,7 @@ const DashboardContext = ({
     setTabActive(filter);
     const dashboard = window?.astralabDashboard;
     const cards = (_dashboard$cards2 = dashboard?.cards) !== null && _dashboard$cards2 !== void 0 ? _dashboard$cards2 : [];
-    setTrelloCards(filter === 'All' ? cards : filter === 'Recently Updated' ? [...cards].sort((a, b) => new Date(b.date_updated).getTime() - new Date(a.date_updated).getTime()) : cards.filter(card => card.meta.trello_card_list?.[0] === filter));
+    setTrelloCards(filter === 'All' ? cards : filter === 'Recently Updated' ? [...cards].sort((a, b) => new Date(b.date_updated).getTime() - new Date(a.date_updated).getTime()) : filter === 'Doing' || filter === 'In Progress' ? cards.filter(card => card.meta.trello_card_list?.[0] === 'In Progress') : filter === 'Completed' || filter === 'Done' ? cards.filter(card => card.meta.trello_card_list?.[0] === 'Completed') : cards.filter(card => card.meta.trello_card_list?.[0] === filter));
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {}, [trelloCards]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Dashboard.Provider, {
@@ -285,7 +285,7 @@ function Tabs() {
     filterCards,
     tabActive
   } = (0,_DashboardContext__WEBPACK_IMPORTED_MODULE_0__.useDashboard)();
-  const tabsArray = ['All', 'Recently Updated', 'To Do', 'Doing', 'Done'];
+  const tabsArray = ['All', 'Recently Updated', 'To Do', 'In Progress', 'Review/Approval', 'Revisions', 'Completed'];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: "mt-2 flex no-wrap justify-between border-b-[#D2D2D2] border-b uppercase overflow-x-auto mb-8",
     children: tabsArray.map(tabName => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
