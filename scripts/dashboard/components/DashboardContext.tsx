@@ -43,11 +43,15 @@ export const DashboardContext = ({ children }: { children: ReactNode }) => {
 				  )
 				: filter === 'Doing' || filter === 'In Progress'
 				? cards.filter(
-						(card) => card.meta.trello_card_list?.[0] === 'In Progress'
+						(card) =>
+							card.meta.trello_card_list?.[0] === 'In Progress' ||
+							card.meta.trello_card_list?.[0] === 'Doing'
 				  )
 				: filter === 'Completed' || filter === 'Done'
 				? cards.filter(
-						(card) => card.meta.trello_card_list?.[0] === 'Completed'
+						(card) =>
+							card.meta.trello_card_list?.[0] === 'Completed' ||
+							card.meta.trello_card_list?.[0] === 'Done'
 				  )
 				: cards.filter((card) => card.meta.trello_card_list?.[0] === filter)
 		);

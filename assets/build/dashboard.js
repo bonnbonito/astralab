@@ -97,7 +97,7 @@ const DashboardContext = ({
     setTabActive(filter);
     const dashboard = window?.astralabDashboard;
     const cards = (_dashboard$cards2 = dashboard?.cards) !== null && _dashboard$cards2 !== void 0 ? _dashboard$cards2 : [];
-    setTrelloCards(filter === 'All' ? cards : filter === 'Recently Updated' ? [...cards].sort((a, b) => new Date(b.date_updated).getTime() - new Date(a.date_updated).getTime()) : filter === 'Doing' || filter === 'In Progress' ? cards.filter(card => card.meta.trello_card_list?.[0] === 'In Progress') : filter === 'Completed' || filter === 'Done' ? cards.filter(card => card.meta.trello_card_list?.[0] === 'Completed') : cards.filter(card => card.meta.trello_card_list?.[0] === filter));
+    setTrelloCards(filter === 'All' ? cards : filter === 'Recently Updated' ? [...cards].sort((a, b) => new Date(b.date_updated).getTime() - new Date(a.date_updated).getTime()) : filter === 'Doing' || filter === 'In Progress' ? cards.filter(card => card.meta.trello_card_list?.[0] === 'In Progress' || card.meta.trello_card_list?.[0] === 'Doing') : filter === 'Completed' || filter === 'Done' ? cards.filter(card => card.meta.trello_card_list?.[0] === 'Completed' || card.meta.trello_card_list?.[0] === 'Done') : cards.filter(card => card.meta.trello_card_list?.[0] === filter));
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {}, [trelloCards]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Dashboard.Provider, {
