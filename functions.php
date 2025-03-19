@@ -103,3 +103,17 @@ function modify_rest_featured_media() {
 	);
 }
 add_action( 'rest_api_init', 'modify_rest_featured_media' );
+
+/**
+ * Change email From Name
+ */
+add_filter( 'wp_mail_from_name', function () {
+	return 'AstraLab';
+} );
+
+/**
+ * Change email From Email
+ */
+add_filter( 'wp_mail_from', function () {
+	return 'noreply@astralab.ca';
+} );

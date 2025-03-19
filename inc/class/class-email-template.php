@@ -125,7 +125,7 @@ class Email_Template {
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo"><img src="' . self::EMAIL_LOGO_URL . '" alt="Astra Lab Logo"></div>
+            <div class="logo"><img style="width: 120px;" src="' . self::EMAIL_LOGO_URL . '" alt="Astra Lab Logo"></div>
             <h1>%s</h1>
         </div>
         
