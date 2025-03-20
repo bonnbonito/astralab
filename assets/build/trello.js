@@ -29405,7 +29405,10 @@ function FileUpload({
     const fileArray = Array.from(files);
     if (fileArray.length) {
       const currentFiles = form.getValues('fileUpload') || [];
-      form.setValue('fileUpload', [...currentFiles, ...fileArray], {
+
+      // Filter out duplicates by comparing file names and sizes
+      const updatedFiles = [...currentFiles, ...fileArray.filter(newFile => !currentFiles.some(existingFile => existingFile.name === newFile.name && existingFile.size === newFile.size))];
+      form.setValue('fileUpload', updatedFiles, {
         shouldValidate: true,
         shouldDirty: true
       });
