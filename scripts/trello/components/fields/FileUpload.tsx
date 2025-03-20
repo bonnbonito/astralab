@@ -10,7 +10,6 @@ import { Input } from '@/components/ui/input';
 import { useRef, useEffect, useState } from 'react';
 import { useWatch } from 'react-hook-form';
 import { FormType } from '@/trello/helpers/types';
-import { X } from 'lucide-react';
 
 const getButtonText = (files?: File[]) => {
 	if (!files?.length)
@@ -127,6 +126,7 @@ export default function FileUpload({ form }: FormType) {
 									onChange={(e) =>
 										e.target.files && handleFileChange(e.target.files)
 									}
+									accept=".pdf,.ai,.png,.jpg,.jpeg,.eps,.webp"
 									className="hidden"
 								/>
 							</div>

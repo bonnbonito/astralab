@@ -8,7 +8,6 @@ use function get_role;
 use function in_array;
 use function is_wp_error;
 use function update_user_meta;
-use function wp_redirect;
 use function wp_safe_redirect;
 use function add_shortcode;
 use function shortcode_atts;
@@ -66,14 +65,57 @@ class Users {
 
 
 		//Add logout button
-		add_action( 'kadence_header_button', array( $this, 'logout_button' ) );
+		add_action( 'kadence_header_button', array( $this, 'astra_header_button' ), 1 );
 	}
 
-	public function logout_button() {
-		if ( is_user_logged_in() ) {
-			?>
-<a href="<?php echo wp_logout_url( home_url( '/login' ) ); ?>" class="button">Logout</a>
-<?php
+	public function astra_header_button() {
+		remove_action( 'kadence_header_button', 'Kadence\header_button' );
+
+		if ( ! is_user_logged_in() ) {
+			$label = \Kadence\kadence()->option( 'header_button_label' );
+			if ( 'loggedin' === \Kadence\kadence()->option( 'header_button_visibility' ) && ! is_user_logged_in() ) {
+				return;
+			}
+			if ( 'loggedout' === \Kadence\kadence()->option( 'header_button_visibility' ) && is_user_logged_in() ) {
+				return;
+			}
+			if ( $label || is_customize_preview() ) {
+				$wrap_classes = array();
+				$wrap_classes[] = 'header-button-wrap';
+				if ( 'loggedin' === \Kadence\kadence()->option( 'header_button_visibility' ) ) {
+					$wrap_classes[] = 'vs-logged-out-false';
+				}
+				if ( 'loggedout' === \Kadence\kadence()->option( 'header_button_visibility' ) ) {
+					$wrap_classes[] = 'vs-logged-in-false';
+				}
+				echo '<div class="' . esc_attr( implode( ' ', $wrap_classes ) ) . '">';
+				\Kadence\kadence()->customizer_quick_link();
+				echo '<div class="header-button-inner-wrap">';
+				$rel = array();
+				if ( \Kadence\kadence()->option( 'header_button_target' ) ) {
+					$rel[] = 'noopener';
+					$rel[] = 'noreferrer';
+				}
+				if ( \Kadence\kadence()->option( 'header_button_nofollow' ) ) {
+					$rel[] = 'nofollow';
+				}
+				if ( \Kadence\kadence()->option( 'header_button_sponsored' ) ) {
+					$rel[] = 'sponsored';
+				}
+				echo '<a href="' . esc_attr( do_shortcode( \Kadence\kadence()->option( 'header_button_link' ) ) ) . '" target="' . esc_attr( \Kadence\kadence()->option( 'header_button_target' ) ? '_blank' : '_self' ) . '"' . ( ! empty( $rel ) ? ' rel="' . esc_attr( implode( ' ', $rel ) ) . '"' : '' ) . ( ! empty( \Kadence\kadence()->option( 'header_button_download' ) ) ? ' download' : '' ) . ' class="button header-button button-size-' . esc_attr( \Kadence\kadence()->option( 'header_button_size' ) ) . ' button-style-' . esc_attr( \Kadence\kadence()->option( 'header_button_style' ) ) . '">';
+				echo esc_html( do_shortcode( $label ) );
+				echo '</a>';
+				echo '</div>';
+				echo '</div>';
+			}
+		} else {
+			echo '<div class="header-button-wrap">';
+			echo '<div class="header-button-inner-wrap">';
+			echo '<a href="' . wp_logout_url( home_url() ) . '" class="button header-button button-size-' . esc_attr( \Kadence\kadence()->option( 'header_button_size' ) ) . ' button-style-' . esc_attr( \Kadence\kadence()->option( 'header_button_style' ) ) . '">';
+			echo 'LOGOUT';
+			echo '</a>';
+			echo '</div>';
+			echo '</div>';
 		}
 	}
 
@@ -277,59 +319,59 @@ class Users {
 		$existing_board_url = get_user_meta( $user->ID, 'trello_board_short_url', true );
 
 		?>
-<div class="recreate-trello-section">
-  <h2>Trello Board Management</h2>
-  <table class="form-table">
-    <tr>
-      <th scope="row"><label for="recreate_trello_board">Trello Board</label></th>
-      <td>
-        <?php if ( ! empty( $existing_board_id ) && ! empty( $existing_board_url ) ) : ?>
-        <p>
-          <strong>Current Board ID:</strong> <?php echo esc_html( $existing_board_id ); ?>
-          <a href="<?php echo esc_url( $existing_board_url ); ?>" target="_blank">View Board</a>
-        </p>
-        <?php endif; ?>
+		<div class="recreate-trello-section">
+			<h2>Trello Board Management</h2>
+			<table class="form-table">
+				<tr>
+					<th scope="row"><label for="recreate_trello_board">Trello Board</label></th>
+					<td>
+						<?php if ( ! empty( $existing_board_id ) && ! empty( $existing_board_url ) ) : ?>
+							<p>
+								<strong>Current Board ID:</strong> <?php echo esc_html( $existing_board_id ); ?>
+								<a href="<?php echo esc_url( $existing_board_url ); ?>" target="_blank">View Board</a>
+							</p>
+						<?php endif; ?>
 
-        <button type="button" id="recreate-trello-board" class="button button-secondary"
-          data-user-id="<?php echo esc_attr( $user->ID ); ?>">
-          <?php echo ! empty( $existing_board_id ) ? 'Recreate Trello Board' : 'Create Trello Board'; ?>
-        </button>
-        <span class="spinner" style="float: none; margin-top: 0;"></span>
-        <p class="description">
-          <?php if ( ! empty( $existing_board_id ) ) : ?>
-          This will delete the existing board and create a new one. All data on the current board will be lost.
-          <?php else : ?>
-          Click to create a new Trello board for this user.
-          <?php endif; ?>
-        </p>
-      </td>
-    </tr>
-  </table>
-</div>
+						<button type="button" id="recreate-trello-board" class="button button-secondary"
+							data-user-id="<?php echo esc_attr( $user->ID ); ?>">
+							<?php echo ! empty( $existing_board_id ) ? 'Recreate Trello Board' : 'Create Trello Board'; ?>
+						</button>
+						<span class="spinner" style="float: none; margin-top: 0;"></span>
+						<p class="description">
+							<?php if ( ! empty( $existing_board_id ) ) : ?>
+								This will delete the existing board and create a new one. All data on the current board will be lost.
+							<?php else : ?>
+								Click to create a new Trello board for this user.
+							<?php endif; ?>
+						</p>
+					</td>
+				</tr>
+			</table>
+		</div>
 
-<!-- Confirmation Modal -->
-<div id="trello-confirm-modal" class="trello-confirm-modal">
-  <div class="trello-confirm-content">
-    <h3 class="trello-confirm-header">Confirm Trello Board Recreation</h3>
-    <p>Are you sure you want to recreate this Trello board?</p>
-    <p><strong>Warning:</strong> This will <em>permanently delete</em> the existing board (ID:
-      <?php echo esc_html( $existing_board_id ); ?>) and all its data including:
-    </p>
-    <ul style="margin-left: 20px; list-style-type: disc;">
-      <li>All cards and their content</li>
-      <li>All lists and their organization</li>
-      <li>All attachments and comments</li>
-      <li>All board settings and customizations</li>
-    </ul>
-    <p>A new empty board will be created with default lists. This action <strong>cannot be undone</strong>.</p>
-    <div class="trello-confirm-buttons">
-      <button type="button" id="trello-confirm-cancel" class="button trello-confirm-cancel">Cancel</button>
-      <button type="button" id="trello-confirm-proceed" class="button trello-confirm-proceed">Yes, Delete and Recreate
-        Board</button>
-    </div>
-  </div>
-</div>
-<?php
+		<!-- Confirmation Modal -->
+		<div id="trello-confirm-modal" class="trello-confirm-modal">
+			<div class="trello-confirm-content">
+				<h3 class="trello-confirm-header">Confirm Trello Board Recreation</h3>
+				<p>Are you sure you want to recreate this Trello board?</p>
+				<p><strong>Warning:</strong> This will <em>permanently delete</em> the existing board (ID:
+					<?php echo esc_html( $existing_board_id ); ?>) and all its data including:
+				</p>
+				<ul style="margin-left: 20px; list-style-type: disc;">
+					<li>All cards and their content</li>
+					<li>All lists and their organization</li>
+					<li>All attachments and comments</li>
+					<li>All board settings and customizations</li>
+				</ul>
+				<p>A new empty board will be created with default lists. This action <strong>cannot be undone</strong>.</p>
+				<div class="trello-confirm-buttons">
+					<button type="button" id="trello-confirm-cancel" class="button trello-confirm-cancel">Cancel</button>
+					<button type="button" id="trello-confirm-proceed" class="button trello-confirm-proceed">Yes, Delete and Recreate
+						Board</button>
+				</div>
+			</div>
+		</div>
+		<?php
 	}
 
 	/**
@@ -673,56 +715,56 @@ class Users {
 		);
 
 		?>
-<div class="temp-login-section">
-  <h2>Temporary Login Link</h2>
-  <table class="form-table">
-    <tr>
-      <th scope="row"><label for="temp_login_expiry">Link Expiration</label></th>
-      <td>
-        <select id="temp_login_expiry" name="temp_login_expiry">
-          <option value="3600" selected>1 hour</option>
-          <option value="86400">24 hours</option>
-          <option value="604800">7 days</option>
-          <option value="2592000">30 days</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row"><label for="temp_login_redirect">Redirect After Login</label></th>
-      <td>
-        <input type="text" id="temp_login_redirect" name="temp_login_redirect" class="regular-text"
-          placeholder="<?php echo esc_attr( home_url() ); ?>" />
-        <p class="description">Leave empty to use default redirect.</p>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row"></th>
-      <td>
-        <button type="button" id="generate-temp-login" class="button button-primary"
-          data-user-id="<?php echo esc_attr( $user->ID ); ?>">
-          Generate Temporary Login Link
-        </button>
-        <span class="spinner" style="float: none; margin-top: 0;"></span>
-      </td>
-    </tr>
-    <tr id="temp-login-result-row" style="display: none;">
-      <th scope="row"><label for="temp_login_link">Login Link</label></th>
-      <td>
-        <div class="temp-login-result">
-          <input type="text" id="temp_login_link" class="regular-text" readonly />
-          <button type="button" id="copy-temp-login" class="button button-secondary">
-            Copy Link
-          </button>
-          <p class="description">
-            This link will expire after the selected time period. Anyone with this link can log in as this user until it
-            expires.
-          </p>
-        </div>
-      </td>
-    </tr>
-  </table>
-</div>
-<?php
+		<div class="temp-login-section">
+			<h2>Temporary Login Link</h2>
+			<table class="form-table">
+				<tr>
+					<th scope="row"><label for="temp_login_expiry">Link Expiration</label></th>
+					<td>
+						<select id="temp_login_expiry" name="temp_login_expiry">
+							<option value="3600" selected>1 hour</option>
+							<option value="86400">24 hours</option>
+							<option value="604800">7 days</option>
+							<option value="2592000">30 days</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"><label for="temp_login_redirect">Redirect After Login</label></th>
+					<td>
+						<input type="text" id="temp_login_redirect" name="temp_login_redirect" class="regular-text"
+							placeholder="<?php echo esc_attr( home_url() ); ?>" />
+						<p class="description">Leave empty to use default redirect.</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"></th>
+					<td>
+						<button type="button" id="generate-temp-login" class="button button-primary"
+							data-user-id="<?php echo esc_attr( $user->ID ); ?>">
+							Generate Temporary Login Link
+						</button>
+						<span class="spinner" style="float: none; margin-top: 0;"></span>
+					</td>
+				</tr>
+				<tr id="temp-login-result-row" style="display: none;">
+					<th scope="row"><label for="temp_login_link">Login Link</label></th>
+					<td>
+						<div class="temp-login-result">
+							<input type="text" id="temp_login_link" class="regular-text" readonly />
+							<button type="button" id="copy-temp-login" class="button button-secondary">
+								Copy Link
+							</button>
+							<p class="description">
+								This link will expire after the selected time period. Anyone with this link can log in as this user until it
+								expires.
+							</p>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<?php
 	}
 
 	/**
